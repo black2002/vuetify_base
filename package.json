@@ -3,14 +3,14 @@
   "_id": "vuetify@2.4.0",
   "_inBundle": false,
   "_integrity": "sha512-FBFAtg1ZnNwDBhMzENCzgh0hBV+HMjXejrxeRQqTfKPojKQSQFswtdHatUPmlkArDulZC73GRs2F/IwdF48o5g==",
-  "_location": "/vuetify",
+  "_location": "/vuetify_base",
   "_phantomChildren": {},
   "_requested": {
     "type": "tag",
     "registry": true,
-    "raw": "vuetify",
-    "name": "vuetify",
-    "escapedName": "vuetify",
+    "raw": "vuetify_base",
+    "name": "vuetify_base",
+    "escapedName": "vuetify_base",
     "rawSpec": "",
     "saveSpec": null,
     "fetchSpec": "latest"
@@ -21,7 +21,7 @@
   ],
   "_resolved": "https://registry.npmjs.org/vuetify/-/vuetify-2.4.0.tgz",
   "_shasum": "6aa2616b0fecb0614cf85052b0ffbb5cad80bf92",
-  "_spec": "vuetify",
+  "_spec": "vuetify_base",
   "_where": "C:\\Code\\znizhki",
   "author": {
     "name": "John Leider",
@@ -99,7 +99,7 @@
   "license": "MIT",
   "main": "dist/vuetify.js",
   "module": "dist/vuetify.js",
-  "name": "vuetify",
+  "name": "vuetify_base",
   "peerDependencies": {
     "vue": "^2.6.4"
   },
@@ -109,7 +109,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vuetifyjs/vuetify.git",
-    "directory": "packages/vuetify"
+    "directory": "packages/vuetify_base"
   },
   "scripts": {
     "build": "concurrently \"yarn build:dist --no-progress\" \"yarn build:lib\" -n \"dist,lib\" --kill-others-on-fail -r && yarn build:json",
