@@ -12655,13 +12655,18 @@
       <file leaf-file-name="vuetify.min.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dist/vuetify.min.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="301" column="55" lean-forward="true" selection-start-line="301" selection-start-column="55" selection-end-line="301" selection-end-column="55" />
+            <state relative-caret-position="780">
+              <caret line="3825" column="1" selection-start-line="3825" selection-start-column="1" selection-end-line="3825" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>V</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -12670,6 +12675,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/dist/vuetify.min.css" />
       </list>
     </option>
   </component>
@@ -12710,12 +12716,6 @@
               <item name="vuetify_base" type="b2602c69:ProjectViewProjectNode" />
               <item name="vuetify_base" type="462c0819:PsiDirectoryNode" />
               <item name="dist" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="vuetify_base" type="b2602c69:ProjectViewProjectNode" />
-              <item name="vuetify_base" type="462c0819:PsiDirectoryNode" />
-              <item name="dist" type="462c0819:PsiDirectoryNode" />
-              <item name="vuetify.css" type="620a8d5e:NestingTreeNode" />
             </path>
           </expand>
           <select />
@@ -12758,7 +12758,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="725000" />
+    <option name="totallyTimeSpent" value="1417000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -38071,8 +38071,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dist/vuetify.min.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="301" column="55" lean-forward="true" selection-start-line="301" selection-start-column="55" selection-end-line="301" selection-end-column="55" />
+        <state relative-caret-position="780">
+          <caret line="3825" column="1" selection-start-line="3825" selection-start-column="1" selection-end-line="3825" selection-end-column="1" />
         </state>
       </provider>
     </entry>

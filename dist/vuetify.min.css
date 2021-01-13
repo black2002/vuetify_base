@@ -3812,13 +3812,7 @@
 }
 
 .v-treeview-node__label {
-    font-size: 12px !important;
-    font-weight: bold !important;
     color: #046ed2 !important;
-}
-
-.v-treeview--dense .v-treeview-node__root {
-    min-height: 25px !important;
 }
 
 .v-dialog {
