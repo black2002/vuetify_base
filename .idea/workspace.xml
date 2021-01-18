@@ -12655,8 +12655,8 @@
       <file leaf-file-name="vuetify.min.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dist/vuetify.min.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="780">
-              <caret line="3825" column="1" selection-start-line="3825" selection-start-column="1" selection-end-line="3825" selection-end-column="1" />
+            <state relative-caret-position="606">
+              <caret line="3815" column="1" selection-start-line="3815" selection-start-column="1" selection-end-line="3815" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -12758,7 +12758,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1417000" />
+    <option name="totallyTimeSpent" value="1480000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -38071,8 +38071,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dist/vuetify.min.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="780">
-          <caret line="3825" column="1" selection-start-line="3825" selection-start-column="1" selection-end-line="3825" selection-end-column="1" />
+        <state relative-caret-position="606">
+          <caret line="3815" column="1" selection-start-line="3815" selection-start-column="1" selection-end-line="3815" selection-end-column="1" />
         </state>
       </provider>
     </entry>
