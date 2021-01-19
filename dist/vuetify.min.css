@@ -3,7 +3,7 @@
 * Forged by John Leider
 * Released under the MIT License.
 */
-.v-navigation-drawer__content::-webkit-scrollbar {display: none;}  .v-navigation-drawer__content:: {-ms-overflow-style: none;  /* IE and Edge */scrollbar-width: none;  /* Firefox */}
+
 
 
 
@@ -3760,61 +3760,3 @@
 .v-virtual-scroll__container{display:block}
 .v-virtual-scroll__item{left:0;position:absolute;right:0}
 
-@media only screen and (max-width: 960px) {
-    .v-carousel__controls__item {
-        margin: 0 0 !important;
-    }
-
-    /*only for all_all*/
-}
-
-.m_title:first-letter {
-    text-transform: uppercase;
-}
-
-/*.v-toolbar__content { max-height: 40px!important;}*/
-.no-hover-btn:hover:before {
-    background-color: transparent !important;
-}
-
-.v-text-field {
-    font-weight: 500;
-}
-
-.v-card__text, .v-card__title {
-    word-break: break-word !important;
-    white-space: normal;
-}
-
-.v-treeview-node__label {
-    color: black !important;
-    font-weight: bold;
-}
-
-.pointer {
-    cursor: pointer;
-}
-
-.small-toolbar {
-    height: 48px !important;
-}
-
-.mobile {
-    padding: 10px 0 0 !important;
-}
-
-.v-list-item__subtitle, .v-list-item__title {
-    white-space: normal !important;
-}
-
-.v-ripple__container {
-    display: none !important;
-}
-
-.v-treeview-node__label {
-    color: #046ed2 !important;
-}
-
-.v-dialog {
-    z-index: inherit
-}
