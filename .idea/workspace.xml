@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1a2e0237-974c-43d9-9e37-c25a68a9cab0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/vuetify.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/vuetify.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/vuetify.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/dist/vuetify.min.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -12,16 +14,46 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DarkyenusTimeTracker">
-    <option name="totalTimeSeconds" value="142" />
+    <option name="totalTimeSeconds" value="250" />
     <option name="idleThresholdMs" value="320000" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="804">
+            <state relative-caret-position="2057">
               <caret line="121" column="71" selection-start-line="121" selection-start-column="71" selection-end-line="121" selection-end-column="71" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="vuetify.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dist/vuetify.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="552551">
+              <caret line="32507" selection-start-line="32507" selection-end-line="32507" />
+              <folding>
+                <element signature="e#1212810#1212840#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="vuetify.min.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/dist/vuetify.min.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="157">
+              <caret line="3615" column="12" selection-start-line="3615" selection-start-column="12" selection-end-line="3615" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="vuetify.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/dist/vuetify.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="25874">
+              <caret line="1029" selection-start-line="1029" selection-end-line="1029" />
             </state>
           </provider>
         </entry>
@@ -35,6 +67,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/dist/vuetify.js" />
+        <option value="$PROJECT_DIR$/dist/vuetify.min.css" />
+        <option value="$PROJECT_DIR$/dist/vuetify.css" />
       </list>
     </option>
   </component>
@@ -72,6 +107,17 @@
               <item name="vuetify_base" type="b2602c69:ProjectViewProjectNode" />
               <item name="vuetify_base" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="vuetify_base" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vuetify_base" type="462c0819:PsiDirectoryNode" />
+              <item name="dist" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="vuetify_base" type="b2602c69:ProjectViewProjectNode" />
+              <item name="vuetify_base" type="462c0819:PsiDirectoryNode" />
+              <item name="dist" type="462c0819:PsiDirectoryNode" />
+              <item name="vuetify.css" type="620a8d5e:NestingTreeNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -80,7 +126,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../vuetify" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -110,14 +156,19 @@
       <workItem from="1609167069857" duration="718000" />
       <workItem from="1609255214627" duration="593000" />
       <workItem from="1609295067809" duration="206000" />
+      <workItem from="1609866860284" duration="1246000" />
+      <workItem from="1610160752424" duration="734000" />
+      <workItem from="1610505431284" duration="643000" />
+      <workItem from="1610637182441" duration="30000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1517000" />
+    <option name="totallyTimeSpent" value="4170000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-21" y="0" width="927" height="1047" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -127,7 +178,7 @@
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="right" id="Remote Host" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25836217" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12526652" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -156,6 +207,78 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dist/vuetify.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552619">
+          <caret line="32507" selection-start-line="32507" selection-end-line="32507" />
+          <folding>
+            <element signature="e#1212810#1212840#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/vuetify.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25874">
+          <caret line="1029" selection-start-line="1029" selection-end-line="1029" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/vuetify.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="61455">
+          <caret line="3615" column="12" lean-forward="true" selection-start-line="3615" selection-start-column="12" selection-end-line="3615" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2057">
+          <caret line="121" column="71" selection-start-line="121" selection-start-column="71" selection-end-line="121" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/vuetify.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552619">
+          <caret line="32507" selection-start-line="32507" selection-end-line="32507" />
+          <folding>
+            <element signature="e#1212810#1212840#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/vuetify.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="62084">
+          <caret line="3652" column="57" selection-start-line="3652" selection-start-column="57" selection-end-line="3652" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/vuetify.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25874">
+          <caret line="1029" selection-start-line="1029" selection-end-line="1029" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2057">
+          <caret line="121" column="71" selection-start-line="121" selection-start-column="71" selection-end-line="121" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/vuetify.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552619">
+          <caret line="32507" lean-forward="true" selection-start-line="32507" selection-end-line="32507" />
+          <folding>
+            <element signature="e#1212810#1212840#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2057">
@@ -165,8 +288,46 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="804">
+        <state relative-caret-position="2057">
           <caret line="121" column="71" selection-start-line="121" selection-start-column="71" selection-end-line="121" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2057">
+          <caret line="121" column="71" selection-start-line="121" selection-start-column="71" selection-end-line="121" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2057">
+          <caret line="121" column="71" selection-start-line="121" selection-start-column="71" selection-end-line="121" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/vuetify.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552551">
+          <caret line="32507" selection-start-line="32507" selection-end-line="32507" />
+          <folding>
+            <element signature="e#1212810#1212840#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/vuetify.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25874">
+          <caret line="1029" selection-start-line="1029" selection-end-line="1029" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/vuetify.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="3615" column="12" selection-start-line="3615" selection-start-column="12" selection-end-line="3615" selection-end-column="12" />
         </state>
       </provider>
     </entry>
