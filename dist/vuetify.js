@@ -8254,6 +8254,1093 @@
             /* harmony default export */ __webpack_exports__["default"] = (_VData__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
             /***/ }),
+        /***/ "./src/components/VColorPicker/VColorPicker.sass":
+        /*!*******************************************************!*\
+          !*** ./src/components/VColorPicker/VColorPicker.sass ***!
+          \*******************************************************/
+        /*! no static exports found */
+        /***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+            /***/ }),
+
+        /***/ "./src/components/VColorPicker/VColorPicker.ts":
+        /*!*****************************************************!*\
+          !*** ./src/components/VColorPicker/VColorPicker.ts ***!
+          \*****************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VColorPicker_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VColorPicker.sass */ "./src/components/VColorPicker/VColorPicker.sass");
+            /* harmony import */ var _VColorPicker_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VColorPicker_sass__WEBPACK_IMPORTED_MODULE_0__);
+            /* harmony import */ var _VSheet_VSheet__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../VSheet/VSheet */ "./src/components/VSheet/VSheet.ts");
+            /* harmony import */ var _VColorPickerPreview__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./VColorPickerPreview */ "./src/components/VColorPicker/VColorPickerPreview.ts");
+            /* harmony import */ var _VColorPickerCanvas__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./VColorPickerCanvas */ "./src/components/VColorPicker/VColorPickerCanvas.ts");
+            /* harmony import */ var _VColorPickerEdit__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./VColorPickerEdit */ "./src/components/VColorPicker/VColorPickerEdit.ts");
+            /* harmony import */ var _VColorPickerSwatches__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./VColorPickerSwatches */ "./src/components/VColorPicker/VColorPickerSwatches.ts");
+            /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./util */ "./src/components/VColorPicker/util/index.ts");
+            /* harmony import */ var _util_mixins__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../util/mixins */ "./src/util/mixins.ts");
+            /* harmony import */ var _util_helpers__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../util/helpers */ "./src/util/helpers.ts");
+            /* harmony import */ var _mixins_elevatable__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../mixins/elevatable */ "./src/mixins/elevatable/index.ts");
+            /* harmony import */ var _mixins_themeable__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../mixins/themeable */ "./src/mixins/themeable/index.ts");
+            var __assign = undefined && undefined.__assign || function () {
+                __assign = Object.assign || function (t) {
+                    for (var s, i = 1, n = arguments.length; i < n; i++) {
+                        s = arguments[i];
+
+                        for (var p in s) {
+                            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+                        }
+                    }
+
+                    return t;
+                };
+
+                return __assign.apply(this, arguments);
+            }; // Styles
+
+
+            // Components
+
+
+
+
+
+            // Helpers
+
+
+
+            // Mixins
+
+
+
+            /* harmony default export */ __webpack_exports__["default"] = (Object(_util_mixins__WEBPACK_IMPORTED_MODULE_7__["default"])(_mixins_elevatable__WEBPACK_IMPORTED_MODULE_9__["default"], _mixins_themeable__WEBPACK_IMPORTED_MODULE_10__["default"]).extend({
+                name: 'v-color-picker',
+                props: {
+                    canvasHeight: {
+                        type: [String, Number],
+                        default: 150
+                    },
+                    disabled: Boolean,
+                    dotSize: {
+                        type: [Number, String],
+                        default: 10
+                    },
+                    flat: Boolean,
+                    hideCanvas: Boolean,
+                    hideSliders: Boolean,
+                    hideInputs: Boolean,
+                    hideModeSwitch: Boolean,
+                    mode: {
+                        type: String,
+                        default: 'rgba',
+                        validator: function validator(v) {
+                            return Object.keys(_VColorPickerEdit__WEBPACK_IMPORTED_MODULE_4__["modes"]).includes(v);
+                        }
+                    },
+                    showSwatches: Boolean,
+                    swatches: Array,
+                    swatchesMaxHeight: {
+                        type: [Number, String],
+                        default: 150
+                    },
+                    value: {
+                        type: [Object, String]
+                    },
+                    width: {
+                        type: [Number, String],
+                        default: 300
+                    }
+                },
+                data: function data() {
+                    return {
+                        internalValue: Object(_util__WEBPACK_IMPORTED_MODULE_6__["fromRGBA"])({
+                            r: 255,
+                            g: 0,
+                            b: 0,
+                            a: 1
+                        })
+                    };
+                },
+                computed: {
+                    hideAlpha: function hideAlpha() {
+                        if (!this.value) return false;
+                        return !Object(_util__WEBPACK_IMPORTED_MODULE_6__["hasAlpha"])(this.value);
+                    }
+                },
+                watch: {
+                    value: {
+                        handler: function handler(color) {
+                            this.updateColor(Object(_util__WEBPACK_IMPORTED_MODULE_6__["parseColor"])(color, this.internalValue));
+                        },
+                        immediate: true
+                    }
+                },
+                methods: {
+                    updateColor: function updateColor(color) {
+                        this.internalValue = color;
+                        var value = Object(_util__WEBPACK_IMPORTED_MODULE_6__["extractColor"])(this.internalValue, this.value);
+
+                        if (!Object(_util_helpers__WEBPACK_IMPORTED_MODULE_8__["deepEqual"])(value, this.value)) {
+                            this.$emit('input', value);
+                            this.$emit('update:color', this.internalValue);
+                        }
+                    },
+                    genCanvas: function genCanvas() {
+                        return this.$createElement(_VColorPickerCanvas__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                            props: {
+                                color: this.internalValue,
+                                disabled: this.disabled,
+                                dotSize: this.dotSize,
+                                width: this.width,
+                                height: this.canvasHeight
+                            },
+                            on: {
+                                'update:color': this.updateColor
+                            }
+                        });
+                    },
+                    genControls: function genControls() {
+                        return this.$createElement('div', {
+                            staticClass: 'v-color-picker__controls'
+                        }, [!this.hideSliders && this.genPreview(), !this.hideInputs && this.genEdit()]);
+                    },
+                    genEdit: function genEdit() {
+                        var _this = this;
+
+                        return this.$createElement(_VColorPickerEdit__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                            props: {
+                                color: this.internalValue,
+                                disabled: this.disabled,
+                                hideAlpha: this.hideAlpha,
+                                hideModeSwitch: this.hideModeSwitch,
+                                mode: this.mode
+                            },
+                            on: {
+                                'update:color': this.updateColor,
+                                'update:mode': function updateMode(v) {
+                                    return _this.$emit('update:mode', v);
+                                }
+                            }
+                        });
+                    },
+                    genPreview: function genPreview() {
+                        return this.$createElement(_VColorPickerPreview__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                            props: {
+                                color: this.internalValue,
+                                disabled: this.disabled,
+                                hideAlpha: this.hideAlpha
+                            },
+                            on: {
+                                'update:color': this.updateColor
+                            }
+                        });
+                    },
+                    genSwatches: function genSwatches() {
+                        return this.$createElement(_VColorPickerSwatches__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                            props: {
+                                dark: this.dark,
+                                light: this.light,
+                                swatches: this.swatches,
+                                color: this.internalValue,
+                                maxHeight: this.swatchesMaxHeight
+                            },
+                            on: {
+                                'update:color': this.updateColor
+                            }
+                        });
+                    }
+                },
+                render: function render(h) {
+                    return h(_VSheet_VSheet__WEBPACK_IMPORTED_MODULE_1__["default"], {
+                        staticClass: 'v-color-picker',
+                        class: __assign(__assign({
+                            'v-color-picker--flat': this.flat
+                        }, this.themeClasses), this.elevationClasses),
+                        props: {
+                            maxWidth: this.width
+                        }
+                    }, [!this.hideCanvas && this.genCanvas(), (!this.hideSliders || !this.hideInputs) && this.genControls(), this.showSwatches && this.genSwatches()]);
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VColorPicker/VColorPickerCanvas.sass":
+        /*!*************************************************************!*\
+          !*** ./src/components/VColorPicker/VColorPickerCanvas.sass ***!
+          \*************************************************************/
+        /*! no static exports found */
+        /***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+            /***/ }),
+
+        /***/ "./src/components/VColorPicker/VColorPickerCanvas.ts":
+        /*!***********************************************************!*\
+          !*** ./src/components/VColorPicker/VColorPickerCanvas.ts ***!
+          \***********************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VColorPickerCanvas_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VColorPickerCanvas.sass */ "./src/components/VColorPicker/VColorPickerCanvas.sass");
+            /* harmony import */ var _VColorPickerCanvas_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VColorPickerCanvas_sass__WEBPACK_IMPORTED_MODULE_0__);
+            /* harmony import */ var _util_helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util/helpers */ "./src/util/helpers.ts");
+            /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./util */ "./src/components/VColorPicker/util/index.ts");
+            /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "vue");
+            /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_3__);
+// Styles
+            // Helpers
+
+
+            // Types
+
+
+            /* harmony default export */ __webpack_exports__["default"] = (vue__WEBPACK_IMPORTED_MODULE_3___default.a.extend({
+                name: 'v-color-picker-canvas',
+                props: {
+                    color: {
+                        type: Object,
+                        default: function _default() {
+                            return Object(_util__WEBPACK_IMPORTED_MODULE_2__["fromRGBA"])({
+                                r: 255,
+                                g: 0,
+                                b: 0,
+                                a: 1
+                            });
+                        }
+                    },
+                    disabled: Boolean,
+                    dotSize: {
+                        type: [Number, String],
+                        default: 10
+                    },
+                    height: {
+                        type: [Number, String],
+                        default: 150
+                    },
+                    width: {
+                        type: [Number, String],
+                        default: 300
+                    }
+                },
+                data: function data() {
+                    return {
+                        boundingRect: {
+                            width: 0,
+                            height: 0,
+                            left: 0,
+                            top: 0
+                        }
+                    };
+                },
+                computed: {
+                    dot: function dot() {
+                        if (!this.color) return {
+                            x: 0,
+                            y: 0
+                        };
+                        return {
+                            x: this.color.hsva.s * parseInt(this.width, 10),
+                            y: (1 - this.color.hsva.v) * parseInt(this.height, 10)
+                        };
+                    }
+                },
+                watch: {
+                    'color.hue': 'updateCanvas'
+                },
+                mounted: function mounted() {
+                    this.updateCanvas();
+                },
+                methods: {
+                    emitColor: function emitColor(x, y) {
+                        var _a = this.boundingRect,
+                            left = _a.left,
+                            top = _a.top,
+                            width = _a.width,
+                            height = _a.height;
+                        this.$emit('update:color', Object(_util__WEBPACK_IMPORTED_MODULE_2__["fromHSVA"])({
+                            h: this.color.hue,
+                            s: Object(_util_helpers__WEBPACK_IMPORTED_MODULE_1__["clamp"])(x - left, 0, width) / width,
+                            v: 1 - Object(_util_helpers__WEBPACK_IMPORTED_MODULE_1__["clamp"])(y - top, 0, height) / height,
+                            a: this.color.alpha
+                        }));
+                    },
+                    updateCanvas: function updateCanvas() {
+                        if (!this.color) return;
+                        var canvas = this.$refs.canvas;
+                        var ctx = canvas.getContext('2d');
+                        if (!ctx) return;
+                        var saturationGradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+                        saturationGradient.addColorStop(0, 'hsla(0, 0%, 100%, 1)'); // white
+
+                        saturationGradient.addColorStop(1, "hsla(" + this.color.hue + ", 100%, 50%, 1)");
+                        ctx.fillStyle = saturationGradient;
+                        ctx.fillRect(0, 0, canvas.width, canvas.height);
+                        var valueGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+                        valueGradient.addColorStop(0, 'hsla(0, 0%, 100%, 0)'); // transparent
+
+                        valueGradient.addColorStop(1, 'hsla(0, 0%, 0%, 1)'); // black
+
+                        ctx.fillStyle = valueGradient;
+                        ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    },
+                    handleClick: function handleClick(e) {
+                        if (this.disabled) return;
+                        this.boundingRect = this.$el.getBoundingClientRect();
+                        this.emitColor(e.clientX, e.clientY);
+                    },
+                    handleMouseDown: function handleMouseDown(e) {
+                        // To prevent selection while moving cursor
+                        e.preventDefault();
+                        if (this.disabled) return;
+                        this.boundingRect = this.$el.getBoundingClientRect();
+                        window.addEventListener('mousemove', this.handleMouseMove);
+                        window.addEventListener('mouseup', this.handleMouseUp);
+                    },
+                    handleMouseMove: function handleMouseMove(e) {
+                        if (this.disabled) return;
+                        this.emitColor(e.clientX, e.clientY);
+                    },
+                    handleMouseUp: function handleMouseUp() {
+                        window.removeEventListener('mousemove', this.handleMouseMove);
+                        window.removeEventListener('mouseup', this.handleMouseUp);
+                    },
+                    genCanvas: function genCanvas() {
+                        return this.$createElement('canvas', {
+                            ref: 'canvas',
+                            attrs: {
+                                width: this.width,
+                                height: this.height
+                            }
+                        });
+                    },
+                    genDot: function genDot() {
+                        var radius = parseInt(this.dotSize, 10) / 2;
+                        var x = Object(_util_helpers__WEBPACK_IMPORTED_MODULE_1__["convertToUnit"])(this.dot.x - radius);
+                        var y = Object(_util_helpers__WEBPACK_IMPORTED_MODULE_1__["convertToUnit"])(this.dot.y - radius);
+                        return this.$createElement('div', {
+                            staticClass: 'v-color-picker__canvas-dot',
+                            class: {
+                                'v-color-picker__canvas-dot--disabled': this.disabled
+                            },
+                            style: {
+                                width: Object(_util_helpers__WEBPACK_IMPORTED_MODULE_1__["convertToUnit"])(this.dotSize),
+                                height: Object(_util_helpers__WEBPACK_IMPORTED_MODULE_1__["convertToUnit"])(this.dotSize),
+                                transform: "translate(" + x + ", " + y + ")"
+                            }
+                        });
+                    }
+                },
+                render: function render(h) {
+                    return h('div', {
+                        staticClass: 'v-color-picker__canvas',
+                        style: {
+                            width: Object(_util_helpers__WEBPACK_IMPORTED_MODULE_1__["convertToUnit"])(this.width),
+                            height: Object(_util_helpers__WEBPACK_IMPORTED_MODULE_1__["convertToUnit"])(this.height)
+                        },
+                        on: {
+                            click: this.handleClick,
+                            mousedown: this.handleMouseDown
+                        }
+                    }, [this.genCanvas(), this.genDot()]);
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VColorPicker/VColorPickerEdit.sass":
+        /*!***********************************************************!*\
+          !*** ./src/components/VColorPicker/VColorPickerEdit.sass ***!
+          \***********************************************************/
+        /*! no static exports found */
+        /***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+            /***/ }),
+
+        /***/ "./src/components/VColorPicker/VColorPickerEdit.ts":
+        /*!*********************************************************!*\
+          !*** ./src/components/VColorPicker/VColorPickerEdit.ts ***!
+          \*********************************************************/
+        /*! exports provided: modes, default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modes", function() { return modes; });
+            /* harmony import */ var _VColorPickerEdit_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VColorPickerEdit.sass */ "./src/components/VColorPicker/VColorPickerEdit.sass");
+            /* harmony import */ var _VColorPickerEdit_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VColorPickerEdit_sass__WEBPACK_IMPORTED_MODULE_0__);
+            /* harmony import */ var _VBtn__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../VBtn */ "./src/components/VBtn/index.ts");
+            /* harmony import */ var _VIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../VIcon */ "./src/components/VIcon/index.ts");
+            /* harmony import */ var _util_colorUtils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../util/colorUtils */ "./src/util/colorUtils.ts");
+            /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue */ "vue");
+            /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_4__);
+            /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./util */ "./src/components/VColorPicker/util/index.ts");
+            var __read = undefined && undefined.__read || function (o, n) {
+                var m = typeof Symbol === "function" && o[Symbol.iterator];
+                if (!m) return o;
+                var i = m.call(o),
+                    r,
+                    ar = [],
+                    e;
+
+                try {
+                    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
+                        ar.push(r.value);
+                    }
+                } catch (error) {
+                    e = {
+                        error: error
+                    };
+                } finally {
+                    try {
+                        if (r && !r.done && (m = i["return"])) m.call(i);
+                    } finally {
+                        if (e) throw e.error;
+                    }
+                }
+
+                return ar;
+            }; // Styles
+
+
+            // Components
+
+
+            // Helpers
+
+            // Types
+
+
+
+            var modes = {
+                rgba: {
+                    inputs: [['r', 255, 'int'], ['g', 255, 'int'], ['b', 255, 'int'], ['a', 1, 'float']],
+                    from: _util__WEBPACK_IMPORTED_MODULE_5__["fromRGBA"]
+                },
+                hsla: {
+                    inputs: [['h', 360, 'int'], ['s', 1, 'float'], ['l', 1, 'float'], ['a', 1, 'float']],
+                    from: _util__WEBPACK_IMPORTED_MODULE_5__["fromHSLA"]
+                },
+                hexa: {
+                    from: _util__WEBPACK_IMPORTED_MODULE_5__["fromHexa"]
+                }
+            };
+            /* harmony default export */ __webpack_exports__["default"] = (vue__WEBPACK_IMPORTED_MODULE_4___default.a.extend({
+                name: 'v-color-picker-edit',
+                props: {
+                    color: Object,
+                    disabled: Boolean,
+                    hideAlpha: Boolean,
+                    hideModeSwitch: Boolean,
+                    mode: {
+                        type: String,
+                        default: 'rgba',
+                        validator: function validator(v) {
+                            return Object.keys(modes).includes(v);
+                        }
+                    }
+                },
+                data: function data() {
+                    return {
+                        modes: modes,
+                        internalMode: this.mode
+                    };
+                },
+                computed: {
+                    currentMode: function currentMode() {
+                        return this.modes[this.internalMode];
+                    }
+                },
+                watch: {
+                    mode: function mode(_mode) {
+                        this.internalMode = _mode;
+                    }
+                },
+                created: function created() {
+                    this.internalMode = this.mode;
+                },
+                methods: {
+                    getValue: function getValue(v, type) {
+                        if (type === 'float') return Math.round(v * 100) / 100;else if (type === 'int') return Math.round(v);else return 0;
+                    },
+                    parseValue: function parseValue(v, type) {
+                        if (type === 'float') return parseFloat(v);else if (type === 'int') return parseInt(v, 10) || 0;else return 0;
+                    },
+                    changeMode: function changeMode() {
+                        var modes = Object.keys(this.modes);
+                        var index = modes.indexOf(this.internalMode);
+                        var newMode = modes[(index + 1) % modes.length];
+                        this.internalMode = newMode;
+                        this.$emit('update:mode', newMode);
+                    },
+                    genInput: function genInput(target, attrs, value, on) {
+                        return this.$createElement('div', {
+                            staticClass: 'v-color-picker__input'
+                        }, [this.$createElement('input', {
+                            key: target,
+                            attrs: attrs,
+                            domProps: {
+                                value: value
+                            },
+                            on: on
+                        }), this.$createElement('span', target.toUpperCase())]);
+                    },
+                    genInputs: function genInputs() {
+                        var _this = this;
+
+                        if (this.internalMode === 'hexa') {
+                            var hex = this.color.hexa;
+                            var value = this.hideAlpha && hex.endsWith('FF') ? hex.substr(0, 7) : hex;
+                            return this.genInput('hex', {
+                                maxlength: this.hideAlpha ? 7 : 9,
+                                disabled: this.disabled
+                            }, value, {
+                                change: function change(e) {
+                                    var el = e.target;
+
+                                    _this.$emit('update:color', _this.currentMode.from(Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_3__["parseHex"])(el.value)));
+                                }
+                            });
+                        } else {
+                            var inputs = this.hideAlpha ? this.currentMode.inputs.slice(0, -1) : this.currentMode.inputs;
+                            return inputs.map(function (_a) {
+                                var _b = __read(_a, 3),
+                                    target = _b[0],
+                                    max = _b[1],
+                                    type = _b[2];
+
+                                var value = _this.color[_this.internalMode];
+                                return _this.genInput(target, {
+                                    type: 'number',
+                                    min: 0,
+                                    max: max,
+                                    step: type === 'float' ? '0.01' : type === 'int' ? '1' : undefined,
+                                    disabled: _this.disabled
+                                }, _this.getValue(value[target], type), {
+                                    input: function input(e) {
+                                        var _a;
+
+                                        var el = e.target;
+
+                                        var newVal = _this.parseValue(el.value || '0', type);
+
+                                        _this.$emit('update:color', _this.currentMode.from(Object.assign({}, value, (_a = {}, _a[target] = newVal, _a)), _this.color.alpha));
+                                    }
+                                });
+                            });
+                        }
+                    },
+                    genSwitch: function genSwitch() {
+                        return this.$createElement(_VBtn__WEBPACK_IMPORTED_MODULE_1__["default"], {
+                            props: {
+                                small: true,
+                                icon: true,
+                                disabled: this.disabled
+                            },
+                            on: {
+                                click: this.changeMode
+                            }
+                        }, [this.$createElement(_VIcon__WEBPACK_IMPORTED_MODULE_2__["default"], '$unfold')]);
+                    }
+                },
+                render: function render(h) {
+                    return h('div', {
+                        staticClass: 'v-color-picker__edit'
+                    }, [this.genInputs(), !this.hideModeSwitch && this.genSwitch()]);
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VColorPicker/VColorPickerPreview.sass":
+        /*!**************************************************************!*\
+          !*** ./src/components/VColorPicker/VColorPickerPreview.sass ***!
+          \**************************************************************/
+        /*! no static exports found */
+        /***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+            /***/ }),
+
+        /***/ "./src/components/VColorPicker/VColorPickerPreview.ts":
+        /*!************************************************************!*\
+          !*** ./src/components/VColorPicker/VColorPickerPreview.ts ***!
+          \************************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VColorPickerPreview_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VColorPickerPreview.sass */ "./src/components/VColorPicker/VColorPickerPreview.sass");
+            /* harmony import */ var _VColorPickerPreview_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VColorPickerPreview_sass__WEBPACK_IMPORTED_MODULE_0__);
+            /* harmony import */ var _VSlider_VSlider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../VSlider/VSlider */ "./src/components/VSlider/VSlider.ts");
+            /* harmony import */ var _util_colorUtils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../util/colorUtils */ "./src/util/colorUtils.ts");
+            /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "vue");
+            /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_3__);
+            /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./util */ "./src/components/VColorPicker/util/index.ts");
+            var __assign = undefined && undefined.__assign || function () {
+                __assign = Object.assign || function (t) {
+                    for (var s, i = 1, n = arguments.length; i < n; i++) {
+                        s = arguments[i];
+
+                        for (var p in s) {
+                            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+                        }
+                    }
+
+                    return t;
+                };
+
+                return __assign.apply(this, arguments);
+            }; // Styles
+
+
+            // Components
+
+            // Utilities
+
+            // Types
+
+
+
+            /* harmony default export */ __webpack_exports__["default"] = (vue__WEBPACK_IMPORTED_MODULE_3___default.a.extend({
+                name: 'v-color-picker-preview',
+                props: {
+                    color: Object,
+                    disabled: Boolean,
+                    hideAlpha: Boolean
+                },
+                methods: {
+                    genAlpha: function genAlpha() {
+                        var _this = this;
+
+                        return this.genTrack({
+                            staticClass: 'v-color-picker__alpha',
+                            props: {
+                                thumbColor: 'grey lighten-2',
+                                hideDetails: true,
+                                value: this.color.alpha,
+                                step: 0,
+                                min: 0,
+                                max: 1
+                            },
+                            style: {
+                                backgroundImage: this.disabled ? undefined : "linear-gradient(to " + (this.$vuetify.rtl ? 'left' : 'right') + ", transparent, " + Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_2__["RGBtoCSS"])(this.color.rgba) + ")"
+                            },
+                            on: {
+                                input: function input(val) {
+                                    return _this.color.alpha !== val && _this.$emit('update:color', Object(_util__WEBPACK_IMPORTED_MODULE_4__["fromHSVA"])(__assign(__assign({}, _this.color.hsva), {
+                                        a: val
+                                    })));
+                                }
+                            }
+                        });
+                    },
+                    genSliders: function genSliders() {
+                        return this.$createElement('div', {
+                            staticClass: 'v-color-picker__sliders'
+                        }, [this.genHue(), !this.hideAlpha && this.genAlpha()]);
+                    },
+                    genDot: function genDot() {
+                        return this.$createElement('div', {
+                            staticClass: 'v-color-picker__dot'
+                        }, [this.$createElement('div', {
+                            style: {
+                                background: Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_2__["RGBAtoCSS"])(this.color.rgba)
+                            }
+                        })]);
+                    },
+                    genHue: function genHue() {
+                        var _this = this;
+
+                        return this.genTrack({
+                            staticClass: 'v-color-picker__hue',
+                            props: {
+                                thumbColor: 'grey lighten-2',
+                                hideDetails: true,
+                                value: this.color.hue,
+                                step: 0,
+                                min: 0,
+                                max: 360
+                            },
+                            on: {
+                                input: function input(val) {
+                                    return _this.color.hue !== val && _this.$emit('update:color', Object(_util__WEBPACK_IMPORTED_MODULE_4__["fromHSVA"])(__assign(__assign({}, _this.color.hsva), {
+                                        h: val
+                                    })));
+                                }
+                            }
+                        });
+                    },
+                    genTrack: function genTrack(options) {
+                        return this.$createElement(_VSlider_VSlider__WEBPACK_IMPORTED_MODULE_1__["default"], __assign(__assign({
+                            class: 'v-color-picker__track'
+                        }, options), {
+                            props: __assign({
+                                disabled: this.disabled
+                            }, options.props)
+                        }));
+                    }
+                },
+                render: function render(h) {
+                    return h('div', {
+                        staticClass: 'v-color-picker__preview',
+                        class: {
+                            'v-color-picker__preview--hide-alpha': this.hideAlpha
+                        }
+                    }, [this.genDot(), this.genSliders()]);
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VColorPicker/VColorPickerSwatches.sass":
+        /*!***************************************************************!*\
+          !*** ./src/components/VColorPicker/VColorPickerSwatches.sass ***!
+          \***************************************************************/
+        /*! no static exports found */
+        /***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+            /***/ }),
+
+        /***/ "./src/components/VColorPicker/VColorPickerSwatches.ts":
+        /*!*************************************************************!*\
+          !*** ./src/components/VColorPicker/VColorPickerSwatches.ts ***!
+          \*************************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VColorPickerSwatches_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VColorPickerSwatches.sass */ "./src/components/VColorPicker/VColorPickerSwatches.sass");
+            /* harmony import */ var _VColorPickerSwatches_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VColorPickerSwatches_sass__WEBPACK_IMPORTED_MODULE_0__);
+            /* harmony import */ var _VIcon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../VIcon */ "./src/components/VIcon/index.ts");
+            /* harmony import */ var _util_colors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../util/colors */ "./src/util/colors.ts");
+            /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./util */ "./src/components/VColorPicker/util/index.ts");
+            /* harmony import */ var _util_helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../util/helpers */ "./src/util/helpers.ts");
+            /* harmony import */ var _util_mixins__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../util/mixins */ "./src/util/mixins.ts");
+            /* harmony import */ var _mixins_themeable__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../mixins/themeable */ "./src/mixins/themeable/index.ts");
+            /* harmony import */ var _util_colorUtils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../util/colorUtils */ "./src/util/colorUtils.ts");
+// Styles
+            // Components
+
+            // Helpers
+
+
+
+
+
+
+
+
+            function parseDefaultColors(colors) {
+                return Object.keys(colors).map(function (key) {
+                    var color = colors[key];
+                    return color.base ? [color.base, color.darken4, color.darken3, color.darken2, color.darken1, color.lighten1, color.lighten2, color.lighten3, color.lighten4, color.lighten5] : [color.black, color.white, color.transparent];
+                });
+            }
+
+            var white = Object(_util__WEBPACK_IMPORTED_MODULE_3__["fromHex"])('#FFFFFF').rgba;
+            var black = Object(_util__WEBPACK_IMPORTED_MODULE_3__["fromHex"])('#000000').rgba;
+            /* harmony default export */ __webpack_exports__["default"] = (Object(_util_mixins__WEBPACK_IMPORTED_MODULE_5__["default"])(_mixins_themeable__WEBPACK_IMPORTED_MODULE_6__["default"]).extend({
+                name: 'v-color-picker-swatches',
+                props: {
+                    swatches: {
+                        type: Array,
+                        default: function _default() {
+                            return parseDefaultColors(_util_colors__WEBPACK_IMPORTED_MODULE_2__["default"]);
+                        }
+                    },
+                    color: Object,
+                    maxWidth: [Number, String],
+                    maxHeight: [Number, String]
+                },
+                methods: {
+                    genColor: function genColor(color) {
+                        var _this = this;
+
+                        var content = this.$createElement('div', {
+                            style: {
+                                background: color
+                            }
+                        }, [Object(_util_helpers__WEBPACK_IMPORTED_MODULE_4__["deepEqual"])(this.color, Object(_util__WEBPACK_IMPORTED_MODULE_3__["parseColor"])(color, null)) && this.$createElement(_VIcon__WEBPACK_IMPORTED_MODULE_1__["default"], {
+                            props: {
+                                small: true,
+                                dark: Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_7__["contrastRatio"])(this.color.rgba, white) > 2 && this.color.alpha > 0.5,
+                                light: Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_7__["contrastRatio"])(this.color.rgba, black) > 2 && this.color.alpha > 0.5
+                            }
+                        }, '$success')]);
+                        return this.$createElement('div', {
+                            staticClass: 'v-color-picker__color',
+                            on: {
+                                // TODO: Less hacky way of catching transparent
+                                click: function click() {
+                                    return _this.$emit('update:color', Object(_util__WEBPACK_IMPORTED_MODULE_3__["fromHex"])(color === 'transparent' ? '#00000000' : color));
+                                }
+                            }
+                        }, [content]);
+                    },
+                    genSwatches: function genSwatches() {
+                        var _this = this;
+
+                        return this.swatches.map(function (swatch) {
+                            var colors = swatch.map(_this.genColor);
+                            return _this.$createElement('div', {
+                                staticClass: 'v-color-picker__swatch'
+                            }, colors);
+                        });
+                    }
+                },
+                render: function render(h) {
+                    return h('div', {
+                        staticClass: 'v-color-picker__swatches',
+                        style: {
+                            maxWidth: Object(_util_helpers__WEBPACK_IMPORTED_MODULE_4__["convertToUnit"])(this.maxWidth),
+                            maxHeight: Object(_util_helpers__WEBPACK_IMPORTED_MODULE_4__["convertToUnit"])(this.maxHeight)
+                        }
+                    }, [this.$createElement('div', this.genSwatches())]);
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VColorPicker/index.ts":
+        /*!**********************************************!*\
+          !*** ./src/components/VColorPicker/index.ts ***!
+          \**********************************************/
+        /*! exports provided: VColorPicker, VColorPickerSwatches, VColorPickerCanvas, default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VColorPicker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VColorPicker */ "./src/components/VColorPicker/VColorPicker.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VColorPicker", function() { return _VColorPicker__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+            /* harmony import */ var _VColorPickerSwatches__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VColorPickerSwatches */ "./src/components/VColorPicker/VColorPickerSwatches.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VColorPickerSwatches", function() { return _VColorPickerSwatches__WEBPACK_IMPORTED_MODULE_1__["default"]; });
+
+            /* harmony import */ var _VColorPickerCanvas__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./VColorPickerCanvas */ "./src/components/VColorPicker/VColorPickerCanvas.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VColorPickerCanvas", function() { return _VColorPickerCanvas__WEBPACK_IMPORTED_MODULE_2__["default"]; });
+
+
+
+
+
+            /* harmony default export */ __webpack_exports__["default"] = (_VColorPicker__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+            /***/ }),
+
+        /***/ "./src/components/VColorPicker/util/index.ts":
+        /*!***************************************************!*\
+          !*** ./src/components/VColorPicker/util/index.ts ***!
+          \***************************************************/
+        /*! exports provided: fromHSVA, fromHSLA, fromRGBA, fromHexa, fromHex, parseColor, extractColor, hasAlpha */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromHSVA", function() { return fromHSVA; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromHSLA", function() { return fromHSLA; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromRGBA", function() { return fromRGBA; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromHexa", function() { return fromHexa; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromHex", function() { return fromHex; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseColor", function() { return parseColor; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "extractColor", function() { return extractColor; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hasAlpha", function() { return hasAlpha; });
+            /* harmony import */ var _util_colorUtils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../util/colorUtils */ "./src/util/colorUtils.ts");
+            function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+            var __assign = undefined && undefined.__assign || function () {
+                __assign = Object.assign || function (t) {
+                    for (var s, i = 1, n = arguments.length; i < n; i++) {
+                        s = arguments[i];
+
+                        for (var p in s) {
+                            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+                        }
+                    }
+
+                    return t;
+                };
+
+                return __assign.apply(this, arguments);
+            };
+
+            var __rest = undefined && undefined.__rest || function (s, e) {
+                var t = {};
+
+                for (var p in s) {
+                    if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+                }
+
+                if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+                    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
+                }
+                return t;
+            }; // Utilities
+
+
+
+            function fromHSVA(hsva) {
+                hsva = __assign({}, hsva);
+                var hexa = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSVAtoHex"])(hsva);
+                var hsla = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSVAtoHSLA"])(hsva);
+                var rgba = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSVAtoRGBA"])(hsva);
+                return {
+                    alpha: hsva.a,
+                    hex: hexa.substr(0, 7),
+                    hexa: hexa,
+                    hsla: hsla,
+                    hsva: hsva,
+                    hue: hsva.h,
+                    rgba: rgba
+                };
+            }
+            function fromHSLA(hsla) {
+                var hsva = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSLAtoHSVA"])(hsla);
+                var hexa = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSVAtoHex"])(hsva);
+                var rgba = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSVAtoRGBA"])(hsva);
+                return {
+                    alpha: hsva.a,
+                    hex: hexa.substr(0, 7),
+                    hexa: hexa,
+                    hsla: hsla,
+                    hsva: hsva,
+                    hue: hsva.h,
+                    rgba: rgba
+                };
+            }
+            function fromRGBA(rgba) {
+                var hsva = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["RGBAtoHSVA"])(rgba);
+                var hexa = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["RGBAtoHex"])(rgba);
+                var hsla = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSVAtoHSLA"])(hsva);
+                return {
+                    alpha: hsva.a,
+                    hex: hexa.substr(0, 7),
+                    hexa: hexa,
+                    hsla: hsla,
+                    hsva: hsva,
+                    hue: hsva.h,
+                    rgba: rgba
+                };
+            }
+            function fromHexa(hexa) {
+                var hsva = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HexToHSVA"])(hexa);
+                var hsla = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSVAtoHSLA"])(hsva);
+                var rgba = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSVAtoRGBA"])(hsva);
+                return {
+                    alpha: hsva.a,
+                    hex: hexa.substr(0, 7),
+                    hexa: hexa,
+                    hsla: hsla,
+                    hsva: hsva,
+                    hue: hsva.h,
+                    rgba: rgba
+                };
+            }
+            function fromHex(hex) {
+                return fromHexa(Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["parseHex"])(hex));
+            }
+
+            function has(obj, key) {
+                return key.every(function (k) {
+                    return obj.hasOwnProperty(k);
+                });
+            }
+
+            function parseColor(color, oldColor) {
+                if (!color) return fromRGBA({
+                    r: 255,
+                    g: 0,
+                    b: 0,
+                    a: 1
+                });
+
+                if (typeof color === 'string') {
+                    if (color === 'transparent') return fromHexa('#00000000');
+                    var hex = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["parseHex"])(color);
+                    if (oldColor && hex === oldColor.hexa) return oldColor;else return fromHexa(hex);
+                }
+
+                if (_typeof(color) === 'object') {
+                    if (color.hasOwnProperty('alpha')) return color;
+                    var a = color.hasOwnProperty('a') ? parseFloat(color.a) : 1;
+
+                    if (has(color, ['r', 'g', 'b'])) {
+                        if (oldColor && color === oldColor.rgba) return oldColor;else return fromRGBA(__assign(__assign({}, color), {
+                            a: a
+                        }));
+                    } else if (has(color, ['h', 's', 'l'])) {
+                        if (oldColor && color === oldColor.hsla) return oldColor;else return fromHSLA(__assign(__assign({}, color), {
+                            a: a
+                        }));
+                    } else if (has(color, ['h', 's', 'v'])) {
+                        if (oldColor && color === oldColor.hsva) return oldColor;else return fromHSVA(__assign(__assign({}, color), {
+                            a: a
+                        }));
+                    }
+                }
+
+                return fromRGBA({
+                    r: 255,
+                    g: 0,
+                    b: 0,
+                    a: 1
+                });
+            }
+
+            function stripAlpha(color, stripAlpha) {
+                if (stripAlpha) {
+                    var a = color.a,
+                        rest = __rest(color, ["a"]);
+
+                    return rest;
+                }
+
+                return color;
+            }
+
+            function extractColor(color, input) {
+                if (input == null) return color;
+
+                if (typeof input === 'string') {
+                    return input.length === 7 ? color.hex : color.hexa;
+                }
+
+                if (_typeof(input) === 'object') {
+                    var shouldStrip = typeof input.a === 'number' && input.a === 0 ? !!input.a : !input.a;
+                    if (has(input, ['r', 'g', 'b'])) return stripAlpha(color.rgba, shouldStrip);else if (has(input, ['h', 's', 'l'])) return stripAlpha(color.hsla, shouldStrip);else if (has(input, ['h', 's', 'v'])) return stripAlpha(color.hsva, shouldStrip);
+                }
+
+                return color;
+            }
+            function hasAlpha(color) {
+                if (!color) return false;
+
+                if (typeof color === 'string') {
+                    return color.length > 7;
+                }
+
+                if (_typeof(color) === 'object') {
+                    return has(color, ['a']) || has(color, ['alpha']);
+                }
+
+                return false;
+            }
+
+            /***/ }),
 
         /***/ "./src/components/VDataIterator/VDataFooter.sass":
         /*!*******************************************************!*\
@@ -30518,6 +31605,13 @@
 
             /* harmony import */ var _VChipGroup__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./VChipGroup */ "./src/components/VChipGroup/index.ts");
             /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VChipGroup", function() { return _VChipGroup__WEBPACK_IMPORTED_MODULE_17__["VChipGroup"]; });
+
+            /* harmony import */ var _VColorPicker__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./VColorPicker */ "./src/components/VColorPicker/index.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VColorPicker", function() { return _VColorPicker__WEBPACK_IMPORTED_MODULE_18__["VColorPicker"]; });
+
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VColorPickerSwatches", function() { return _VColorPicker__WEBPACK_IMPORTED_MODULE_18__["VColorPickerSwatches"]; });
+
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VColorPickerCanvas", function() { return _VColorPicker__WEBPACK_IMPORTED_MODULE_18__["VColorPickerCanvas"]; });
 
             /* harmony import */ var _VContent__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./VContent */ "./src/components/VContent/index.ts");
             /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VContent", function() { return _VContent__WEBPACK_IMPORTED_MODULE_19__["VContent"]; });
