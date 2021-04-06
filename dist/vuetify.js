@@ -1873,6 +1873,182 @@
 
             /***/ }),
 
+        /***/ "./src/components/VBottomNavigation/VBottomNavigation.sass":
+        /*!*****************************************************************!*\
+  !*** ./src/components/VBottomNavigation/VBottomNavigation.sass ***!
+  \*****************************************************************/
+        /*! no static exports found */
+        /***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+            /***/ }),
+
+        /***/ "./src/components/VBottomNavigation/VBottomNavigation.ts":
+        /*!***************************************************************!*\
+  !*** ./src/components/VBottomNavigation/VBottomNavigation.ts ***!
+  \***************************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VBottomNavigation_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VBottomNavigation.sass */ "./src/components/VBottomNavigation/VBottomNavigation.sass");
+            /* harmony import */ var _VBottomNavigation_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VBottomNavigation_sass__WEBPACK_IMPORTED_MODULE_0__);
+            /* harmony import */ var _mixins_applicationable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins/applicationable */ "./src/mixins/applicationable/index.ts");
+            /* harmony import */ var _mixins_button_group__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../mixins/button-group */ "./src/mixins/button-group/index.ts");
+            /* harmony import */ var _mixins_colorable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../mixins/colorable */ "./src/mixins/colorable/index.ts");
+            /* harmony import */ var _mixins_measurable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../mixins/measurable */ "./src/mixins/measurable/index.ts");
+            /* harmony import */ var _mixins_proxyable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../mixins/proxyable */ "./src/mixins/proxyable/index.ts");
+            /* harmony import */ var _mixins_scrollable__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../mixins/scrollable */ "./src/mixins/scrollable/index.ts");
+            /* harmony import */ var _mixins_themeable__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../mixins/themeable */ "./src/mixins/themeable/index.ts");
+            /* harmony import */ var _mixins_toggleable__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../mixins/toggleable */ "./src/mixins/toggleable/index.ts");
+            /* harmony import */ var _util_mixins__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../util/mixins */ "./src/util/mixins.ts");
+            /* harmony import */ var _util_console__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../util/console */ "./src/util/console.ts");
+            var __assign = undefined && undefined.__assign || function () {
+                __assign = Object.assign || function (t) {
+                    for (var s, i = 1, n = arguments.length; i < n; i++) {
+                        s = arguments[i];
+
+                        for (var p in s) {
+                            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+                        }
+                    }
+
+                    return t;
+                };
+
+                return __assign.apply(this, arguments);
+            }; // Styles
+
+
+            // Mixins
+
+
+
+
+
+
+
+
+            // Utilities
+
+
+
+            /* harmony default export */ __webpack_exports__["default"] = (Object(_util_mixins__WEBPACK_IMPORTED_MODULE_9__["default"])(Object(_mixins_applicationable__WEBPACK_IMPORTED_MODULE_1__["default"])('bottom', ['height', 'inputValue']), _mixins_colorable__WEBPACK_IMPORTED_MODULE_3__["default"], _mixins_measurable__WEBPACK_IMPORTED_MODULE_4__["default"], Object(_mixins_toggleable__WEBPACK_IMPORTED_MODULE_8__["factory"])('inputValue'), _mixins_proxyable__WEBPACK_IMPORTED_MODULE_5__["default"], _mixins_scrollable__WEBPACK_IMPORTED_MODULE_6__["default"], _mixins_themeable__WEBPACK_IMPORTED_MODULE_7__["default"]
+                /* @vue/component */
+            ).extend({
+                name: 'v-bottom-navigation',
+                props: {
+                    activeClass: {
+                        type: String,
+                        default: 'v-btn--active'
+                    },
+                    backgroundColor: String,
+                    grow: Boolean,
+                    height: {
+                        type: [Number, String],
+                        default: 56
+                    },
+                    hideOnScroll: Boolean,
+                    horizontal: Boolean,
+                    inputValue: {
+                        type: Boolean,
+                        default: true
+                    },
+                    mandatory: Boolean,
+                    shift: Boolean
+                },
+                data: function data() {
+                    return {
+                        isActive: this.inputValue
+                    };
+                },
+                computed: {
+                    canScroll: function canScroll() {
+                        return _mixins_scrollable__WEBPACK_IMPORTED_MODULE_6__["default"].options.computed.canScroll.call(this) && (this.hideOnScroll || !this.inputValue);
+                    },
+                    classes: function classes() {
+                        return {
+                            'v-bottom-navigation--absolute': this.absolute,
+                            'v-bottom-navigation--grow': this.grow,
+                            'v-bottom-navigation--fixed': !this.absolute && (this.app || this.fixed),
+                            'v-bottom-navigation--horizontal': this.horizontal,
+                            'v-bottom-navigation--shift': this.shift
+                        };
+                    },
+                    styles: function styles() {
+                        return __assign(__assign({}, this.measurableStyles), {
+                            transform: this.isActive ? 'none' : 'translateY(100%)'
+                        });
+                    }
+                },
+                created: function created() {
+                    /* istanbul ignore next */
+                    if (this.$attrs.hasOwnProperty('active')) {
+                        Object(_util_console__WEBPACK_IMPORTED_MODULE_10__["breaking"])('active.sync', 'value or v-model', this);
+                    }
+                },
+                methods: {
+                    thresholdMet: function thresholdMet() {
+                        this.isActive = !this.isScrollingUp;
+                        this.$emit('update:input-value', this.isActive);
+                    },
+                    updateApplication: function updateApplication() {
+                        return this.$el ? this.$el.clientHeight : 0;
+                    },
+                    updateValue: function updateValue(val) {
+                        this.$emit('change', val);
+                    }
+                },
+                render: function render(h) {
+                    var data = this.setBackgroundColor(this.backgroundColor, {
+                        staticClass: 'v-bottom-navigation',
+                        class: this.classes,
+                        style: this.styles,
+                        props: {
+                            activeClass: this.activeClass,
+                            mandatory: Boolean(this.mandatory || this.value !== undefined),
+                            value: this.internalValue
+                        },
+                        on: {
+                            change: this.updateValue
+                        }
+                    });
+
+                    if (this.canScroll) {
+                        data.directives = data.directives || [];
+                        data.directives.push({
+                            arg: this.scrollTarget,
+                            name: 'scroll',
+                            value: this.onScroll
+                        });
+                    }
+
+                    return h(_mixins_button_group__WEBPACK_IMPORTED_MODULE_2__["default"], this.setTextColor(this.color, data), this.$slots.default);
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VBottomNavigation/index.ts":
+        /*!***************************************************!*\
+  !*** ./src/components/VBottomNavigation/index.ts ***!
+  \***************************************************/
+        /*! exports provided: VBottomNavigation, default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VBottomNavigation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VBottomNavigation */ "./src/components/VBottomNavigation/VBottomNavigation.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBottomNavigation", function() { return _VBottomNavigation__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+            /* harmony default export */ __webpack_exports__["default"] = (_VBottomNavigation__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+            /***/ }),
+
         /***/ "./src/components/VBottomSheet/VBottomSheet.sass":
         /*!*******************************************************!*\
   !*** ./src/components/VBottomSheet/VBottomSheet.sass ***!
@@ -1960,6 +2136,232 @@
 
             /***/ }),
 
+        /***/ "./src/components/VBreadcrumbs/VBreadcrumbs.sass":
+        /*!*******************************************************!*\
+  !*** ./src/components/VBreadcrumbs/VBreadcrumbs.sass ***!
+  \*******************************************************/
+        /*! no static exports found */
+        /***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+            /***/ }),
+
+        /***/ "./src/components/VBreadcrumbs/VBreadcrumbs.ts":
+        /*!*****************************************************!*\
+  !*** ./src/components/VBreadcrumbs/VBreadcrumbs.ts ***!
+  \*****************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VBreadcrumbs_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VBreadcrumbs.sass */ "./src/components/VBreadcrumbs/VBreadcrumbs.sass");
+            /* harmony import */ var _VBreadcrumbs_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VBreadcrumbs_sass__WEBPACK_IMPORTED_MODULE_0__);
+            /* harmony import */ var _VBreadcrumbsItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VBreadcrumbsItem */ "./src/components/VBreadcrumbs/VBreadcrumbsItem.ts");
+            /* harmony import */ var _VBreadcrumbsDivider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./VBreadcrumbsDivider */ "./src/components/VBreadcrumbs/VBreadcrumbsDivider.ts");
+            /* harmony import */ var _mixins_themeable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../mixins/themeable */ "./src/mixins/themeable/index.ts");
+            /* harmony import */ var _util_mixins__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../util/mixins */ "./src/util/mixins.ts");
+            var __assign = undefined && undefined.__assign || function () {
+                __assign = Object.assign || function (t) {
+                    for (var s, i = 1, n = arguments.length; i < n; i++) {
+                        s = arguments[i];
+
+                        for (var p in s) {
+                            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+                        }
+                    }
+
+                    return t;
+                };
+
+                return __assign.apply(this, arguments);
+            }; // Styles
+
+
+            // Components
+
+
+            // Mixins
+
+            // Utils
+
+
+            /* harmony default export */ __webpack_exports__["default"] = (Object(_util_mixins__WEBPACK_IMPORTED_MODULE_4__["default"])(_mixins_themeable__WEBPACK_IMPORTED_MODULE_3__["default"]
+                /* @vue/component */
+            ).extend({
+                name: 'v-breadcrumbs',
+                props: {
+                    divider: {
+                        type: String,
+                        default: '/'
+                    },
+                    items: {
+                        type: Array,
+                        default: function _default() {
+                            return [];
+                        }
+                    },
+                    large: Boolean
+                },
+                computed: {
+                    classes: function classes() {
+                        return __assign({
+                            'v-breadcrumbs--large': this.large
+                        }, this.themeClasses);
+                    }
+                },
+                methods: {
+                    genDivider: function genDivider() {
+                        return this.$createElement(_VBreadcrumbsDivider__WEBPACK_IMPORTED_MODULE_2__["default"], this.$slots.divider ? this.$slots.divider : this.divider);
+                    },
+                    genItems: function genItems() {
+                        var items = [];
+                        var hasSlot = !!this.$scopedSlots.item;
+                        var keys = [];
+
+                        for (var i = 0; i < this.items.length; i++) {
+                            var item = this.items[i];
+                            keys.push(item.text);
+                            if (hasSlot) items.push(this.$scopedSlots.item({
+                                item: item
+                            }));else items.push(this.$createElement(_VBreadcrumbsItem__WEBPACK_IMPORTED_MODULE_1__["default"], {
+                                key: keys.join('.'),
+                                props: item
+                            }, [item.text]));
+                            if (i < this.items.length - 1) items.push(this.genDivider());
+                        }
+
+                        return items;
+                    }
+                },
+                render: function render(h) {
+                    var children = this.$slots.default || this.genItems();
+                    return h('ul', {
+                        staticClass: 'v-breadcrumbs',
+                        class: this.classes
+                    }, children);
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VBreadcrumbs/VBreadcrumbsDivider.ts":
+        /*!************************************************************!*\
+  !*** ./src/components/VBreadcrumbs/VBreadcrumbsDivider.ts ***!
+  \************************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _util_helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../util/helpers */ "./src/util/helpers.ts");
+
+            /* harmony default export */ __webpack_exports__["default"] = (Object(_util_helpers__WEBPACK_IMPORTED_MODULE_0__["createSimpleFunctional"])('v-breadcrumbs__divider', 'li'));
+
+            /***/ }),
+
+        /***/ "./src/components/VBreadcrumbs/VBreadcrumbsItem.ts":
+        /*!*********************************************************!*\
+  !*** ./src/components/VBreadcrumbs/VBreadcrumbsItem.ts ***!
+  \*********************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _mixins_routable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/routable */ "./src/mixins/routable/index.ts");
+            /* harmony import */ var _util_mixins__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util/mixins */ "./src/util/mixins.ts");
+            var __assign = undefined && undefined.__assign || function () {
+                __assign = Object.assign || function (t) {
+                    for (var s, i = 1, n = arguments.length; i < n; i++) {
+                        s = arguments[i];
+
+                        for (var p in s) {
+                            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+                        }
+                    }
+
+                    return t;
+                };
+
+                return __assign.apply(this, arguments);
+            };
+
+
+
+            /* @vue/component */
+
+            /* harmony default export */ __webpack_exports__["default"] = (Object(_util_mixins__WEBPACK_IMPORTED_MODULE_1__["default"])(_mixins_routable__WEBPACK_IMPORTED_MODULE_0__["default"]).extend({
+                name: 'v-breadcrumbs-item',
+                props: {
+                    // In a breadcrumb, the currently
+                    // active item should be dimmed
+                    activeClass: {
+                        type: String,
+                        default: 'v-breadcrumbs__item--disabled'
+                    },
+                    ripple: {
+                        type: [Boolean, Object],
+                        default: false
+                    }
+                },
+                computed: {
+                    classes: function classes() {
+                        var _a;
+
+                        return _a = {
+                            'v-breadcrumbs__item': true
+                        }, _a[this.activeClass] = this.disabled, _a;
+                    }
+                },
+                render: function render(h) {
+                    var _a = this.generateRouteLink(),
+                        tag = _a.tag,
+                        data = _a.data;
+
+                    return h('li', [h(tag, __assign(__assign({}, data), {
+                        attrs: __assign(__assign({}, data.attrs), {
+                            'aria-current': this.isActive && this.isLink ? 'page' : undefined
+                        })
+                    }), this.$slots.default)]);
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VBreadcrumbs/index.ts":
+        /*!**********************************************!*\
+  !*** ./src/components/VBreadcrumbs/index.ts ***!
+  \**********************************************/
+        /*! exports provided: VBreadcrumbs, VBreadcrumbsItem, VBreadcrumbsDivider, default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VBreadcrumbs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VBreadcrumbs */ "./src/components/VBreadcrumbs/VBreadcrumbs.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBreadcrumbs", function() { return _VBreadcrumbs__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+            /* harmony import */ var _VBreadcrumbsItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VBreadcrumbsItem */ "./src/components/VBreadcrumbs/VBreadcrumbsItem.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBreadcrumbsItem", function() { return _VBreadcrumbsItem__WEBPACK_IMPORTED_MODULE_1__["default"]; });
+
+            /* harmony import */ var _VBreadcrumbsDivider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./VBreadcrumbsDivider */ "./src/components/VBreadcrumbs/VBreadcrumbsDivider.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBreadcrumbsDivider", function() { return _VBreadcrumbsDivider__WEBPACK_IMPORTED_MODULE_2__["default"]; });
+
+
+
+
+
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                $_vuetify_subcomponents: {
+                    VBreadcrumbs: _VBreadcrumbs__WEBPACK_IMPORTED_MODULE_0__["default"],
+                    VBreadcrumbsItem: _VBreadcrumbsItem__WEBPACK_IMPORTED_MODULE_1__["default"],
+                    VBreadcrumbsDivider: _VBreadcrumbsDivider__WEBPACK_IMPORTED_MODULE_2__["default"]
+                }
+            });
+
+            /***/ }),
+
         /***/ "./src/components/VBtn/VBtn.sass":
         /*!***************************************!*\
   !*** ./src/components/VBtn/VBtn.sass ***!
@@ -1986,12 +2388,11 @@
             /* harmony import */ var _VProgressCircular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../VProgressCircular */ "./src/components/VProgressCircular/index.ts");
             /* harmony import */ var _mixins_groupable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../mixins/groupable */ "./src/mixins/groupable/index.ts");
             /* harmony import */ var _mixins_toggleable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../mixins/toggleable */ "./src/mixins/toggleable/index.ts");
-            /* harmony import */ var _mixins_elevatable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../mixins/elevatable */ "./src/mixins/elevatable/index.ts");
-            /* harmony import */ var _mixins_positionable__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../mixins/positionable */ "./src/mixins/positionable/index.ts");
-            /* harmony import */ var _mixins_routable__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../mixins/routable */ "./src/mixins/routable/index.ts");
-            /* harmony import */ var _mixins_sizeable__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../mixins/sizeable */ "./src/mixins/sizeable/index.ts");
-            /* harmony import */ var _util_mixins__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../util/mixins */ "./src/util/mixins.ts");
-            /* harmony import */ var _util_console__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../util/console */ "./src/util/console.ts");
+            /* harmony import */ var _mixins_positionable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../mixins/positionable */ "./src/mixins/positionable/index.ts");
+            /* harmony import */ var _mixins_routable__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../mixins/routable */ "./src/mixins/routable/index.ts");
+            /* harmony import */ var _mixins_sizeable__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../mixins/sizeable */ "./src/mixins/sizeable/index.ts");
+            /* harmony import */ var _util_mixins__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../util/mixins */ "./src/util/mixins.ts");
+            /* harmony import */ var _util_console__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../util/console */ "./src/util/console.ts");
             function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
             var __assign = undefined && undefined.__assign || function () {
@@ -2048,12 +2449,11 @@
 
 
 
-
             // Utilities
 
 
 
-            var baseMixins = Object(_util_mixins__WEBPACK_IMPORTED_MODULE_9__["default"])(_VSheet__WEBPACK_IMPORTED_MODULE_1__["default"], _mixins_routable__WEBPACK_IMPORTED_MODULE_7__["default"], _mixins_positionable__WEBPACK_IMPORTED_MODULE_6__["default"], _mixins_sizeable__WEBPACK_IMPORTED_MODULE_8__["default"], Object(_mixins_groupable__WEBPACK_IMPORTED_MODULE_3__["factory"])('btnToggle'), Object(_mixins_toggleable__WEBPACK_IMPORTED_MODULE_4__["factory"])('inputValue')
+            var baseMixins = Object(_util_mixins__WEBPACK_IMPORTED_MODULE_8__["default"])(_VSheet__WEBPACK_IMPORTED_MODULE_1__["default"], _mixins_routable__WEBPACK_IMPORTED_MODULE_6__["default"], _mixins_positionable__WEBPACK_IMPORTED_MODULE_5__["default"], _mixins_sizeable__WEBPACK_IMPORTED_MODULE_7__["default"], Object(_mixins_groupable__WEBPACK_IMPORTED_MODULE_3__["factory"])('btnToggle'), Object(_mixins_toggleable__WEBPACK_IMPORTED_MODULE_4__["factory"])('inputValue')
                 /* @vue/component */
             );
             /* harmony default export */ __webpack_exports__["default"] = (baseMixins.extend().extend({
@@ -2096,14 +2496,17 @@
                     classes: function classes() {
                         return __assign(__assign(__assign(__assign(__assign(__assign({
                             'v-btn': true
-                        }, _mixins_routable__WEBPACK_IMPORTED_MODULE_7__["default"].options.computed.classes.call(this)), {
+                        }, _mixins_routable__WEBPACK_IMPORTED_MODULE_6__["default"].options.computed.classes.call(this)), {
                             'v-btn--absolute': this.absolute,
                             'v-btn--block': this.block,
                             'v-btn--bottom': this.bottom,
+                            'v-btn--contained': this.isElevated,
+                            'v-btn--depressed': this.depressed || this.outlined,
                             'v-btn--disabled': this.disabled,
                             'v-btn--is-elevated': this.isElevated,
                             'v-btn--fab': this.fab,
                             'v-btn--fixed': this.fixed,
+                            'v-btn--flat': !this.isElevated,
                             'v-btn--has-bg': this.hasBg,
                             'v-btn--icon': this.icon,
                             'v-btn--left': this.left,
@@ -2119,10 +2522,6 @@
                             'v-btn--top': this.top
                         }), this.themeClasses), this.groupClasses), this.elevationClasses), this.sizeableClasses);
                     },
-                    computedElevation: function computedElevation() {
-                        if (this.disabled) return undefined;
-                        return _mixins_elevatable__WEBPACK_IMPORTED_MODULE_5__["default"].options.computed.computedElevation.call(this);
-                    },
                     computedRipple: function computedRipple() {
                         var _a;
 
@@ -2132,10 +2531,10 @@
                         if (this.disabled) return false;else return (_a = this.ripple) !== null && _a !== void 0 ? _a : defaultRipple;
                     },
                     hasBg: function hasBg() {
-                        return !this.text && !this.plain && !this.outlined && !this.icon;
+                        return this.isElevated || this.depressed;
                     },
                     isElevated: function isElevated() {
-                        return Boolean(!this.icon && !this.text && !this.outlined && !this.depressed && !this.disabled && !this.plain && (this.elevation == null || Number(this.elevation) > 0));
+                        return Boolean(!this.icon && !this.text && !this.outlined && !this.depressed && !this.disabled && !this.plain) || Number(this.elevation) > 0;
                     },
                     isRound: function isRound() {
                         return Boolean(this.icon || this.fab);
@@ -2155,7 +2554,7 @@
                             original = _b[0],
                             replacement = _b[1];
 
-                        if (_this.$attrs.hasOwnProperty(original)) Object(_util_console__WEBPACK_IMPORTED_MODULE_10__["breaking"])(original, replacement, _this);
+                        if (_this.$attrs.hasOwnProperty(original)) Object(_util_console__WEBPACK_IMPORTED_MODULE_9__["breaking"])(original, replacement, _this);
                     });
                 },
                 methods: {
@@ -2189,7 +2588,7 @@
                         tag = _a.tag,
                         data = _a.data;
 
-                    var setColor = this.hasBg ? this.setBackgroundColor : this.setTextColor;
+                    var setColor = this.isElevated || this.depressed ? this.setBackgroundColor : this.setTextColor;
 
                     if (tag === 'button') {
                         data.attrs.type = this.type;
@@ -2218,6 +2617,109 @@
 
 
             /* harmony default export */ __webpack_exports__["default"] = (_VBtn__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+            /***/ }),
+
+        /***/ "./src/components/VBtnToggle/VBtnToggle.sass":
+        /*!***************************************************!*\
+  !*** ./src/components/VBtnToggle/VBtnToggle.sass ***!
+  \***************************************************/
+        /*! no static exports found */
+        /***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+            /***/ }),
+
+        /***/ "./src/components/VBtnToggle/VBtnToggle.ts":
+        /*!*************************************************!*\
+  !*** ./src/components/VBtnToggle/VBtnToggle.ts ***!
+  \*************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VBtnToggle_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VBtnToggle.sass */ "./src/components/VBtnToggle/VBtnToggle.sass");
+            /* harmony import */ var _VBtnToggle_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VBtnToggle_sass__WEBPACK_IMPORTED_MODULE_0__);
+            /* harmony import */ var _mixins_button_group__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins/button-group */ "./src/mixins/button-group/index.ts");
+            /* harmony import */ var _mixins_colorable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../mixins/colorable */ "./src/mixins/colorable/index.ts");
+            /* harmony import */ var _util_mixins__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../util/mixins */ "./src/util/mixins.ts");
+            var __assign = undefined && undefined.__assign || function () {
+                __assign = Object.assign || function (t) {
+                    for (var s, i = 1, n = arguments.length; i < n; i++) {
+                        s = arguments[i];
+
+                        for (var p in s) {
+                            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+                        }
+                    }
+
+                    return t;
+                };
+
+                return __assign.apply(this, arguments);
+            }; // Styles
+
+
+            // Mixins
+
+
+            // Utilities
+
+
+            /* @vue/component */
+
+            /* harmony default export */ __webpack_exports__["default"] = (Object(_util_mixins__WEBPACK_IMPORTED_MODULE_3__["default"])(_mixins_button_group__WEBPACK_IMPORTED_MODULE_1__["default"], _mixins_colorable__WEBPACK_IMPORTED_MODULE_2__["default"]).extend({
+                name: 'v-btn-toggle',
+                props: {
+                    backgroundColor: String,
+                    borderless: Boolean,
+                    dense: Boolean,
+                    group: Boolean,
+                    rounded: Boolean,
+                    shaped: Boolean,
+                    tile: Boolean
+                },
+                computed: {
+                    classes: function classes() {
+                        return __assign(__assign(__assign({}, _mixins_button_group__WEBPACK_IMPORTED_MODULE_1__["default"].options.computed.classes.call(this)), {
+                            'v-btn-toggle': true,
+                            'v-btn-toggle--borderless': this.borderless,
+                            'v-btn-toggle--dense': this.dense,
+                            'v-btn-toggle--group': this.group,
+                            'v-btn-toggle--rounded': this.rounded,
+                            'v-btn-toggle--shaped': this.shaped,
+                            'v-btn-toggle--tile': this.tile
+                        }), this.themeClasses);
+                    }
+                },
+                methods: {
+                    genData: function genData() {
+                        var data = this.setTextColor(this.color, __assign({}, _mixins_button_group__WEBPACK_IMPORTED_MODULE_1__["default"].options.methods.genData.call(this)));
+                        if (this.group) return data;
+                        return this.setBackgroundColor(this.backgroundColor, data);
+                    }
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VBtnToggle/index.ts":
+        /*!********************************************!*\
+  !*** ./src/components/VBtnToggle/index.ts ***!
+  \********************************************/
+        /*! exports provided: VBtnToggle, default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VBtnToggle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VBtnToggle */ "./src/components/VBtnToggle/VBtnToggle.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBtnToggle", function() { return _VBtnToggle__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+            /* harmony default export */ __webpack_exports__["default"] = (_VBtnToggle__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
             /***/ }),
 
@@ -2552,7 +3054,7 @@
                                     count: 0
                                 };
                                 return map;
-                            }, {});
+                            }, Object.create(null));
 
                             if (!this.categoryHideDynamic || !this.categoryShowAll) {
                                 var categoryLength_1 = categories.length;
@@ -3766,7 +4268,7 @@
                         var _this = this;
 
                         return typeof this.eventName === 'function' ? this.eventName : function (event, timedEvent) {
-                            return Object(_util_helpers__WEBPACK_IMPORTED_MODULE_3__["escapeHTML"])(event.input[_this.eventName] || '');
+                            return Object(_util_helpers__WEBPACK_IMPORTED_MODULE_3__["escapeHTML"])(event.input[_this.eventName]);
                         };
                     },
                     eventModeFunction: function eventModeFunction() {
@@ -4071,7 +4573,7 @@
                         });
                     },
                     isEventForCategory: function isEventForCategory(event, category) {
-                        return !this.categoryMode || _typeof(category) === 'object' && category.categoryName && category.categoryName === event.category || typeof event.category !== 'string' && category === null;
+                        return !this.categoryMode || _typeof(category) === 'object' && category.calendarName && category.categoryName === event.category || typeof event.category !== 'string' && category === null;
                     },
                     getEventsForDay: function getEventsForDay(day) {
                         var identifier = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_6__["getDayIdentifier"])(day);
@@ -7377,6 +7879,1094 @@
 
             /***/ }),
 
+        /***/ "./src/components/VColorPicker/VColorPicker.sass":
+        /*!*******************************************************!*\
+  !*** ./src/components/VColorPicker/VColorPicker.sass ***!
+  \*******************************************************/
+        /*! no static exports found */
+        /***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+            /***/ }),
+
+        /***/ "./src/components/VColorPicker/VColorPicker.ts":
+        /*!*****************************************************!*\
+  !*** ./src/components/VColorPicker/VColorPicker.ts ***!
+  \*****************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VColorPicker_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VColorPicker.sass */ "./src/components/VColorPicker/VColorPicker.sass");
+            /* harmony import */ var _VColorPicker_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VColorPicker_sass__WEBPACK_IMPORTED_MODULE_0__);
+            /* harmony import */ var _VSheet_VSheet__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../VSheet/VSheet */ "./src/components/VSheet/VSheet.ts");
+            /* harmony import */ var _VColorPickerPreview__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./VColorPickerPreview */ "./src/components/VColorPicker/VColorPickerPreview.ts");
+            /* harmony import */ var _VColorPickerCanvas__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./VColorPickerCanvas */ "./src/components/VColorPicker/VColorPickerCanvas.ts");
+            /* harmony import */ var _VColorPickerEdit__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./VColorPickerEdit */ "./src/components/VColorPicker/VColorPickerEdit.ts");
+            /* harmony import */ var _VColorPickerSwatches__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./VColorPickerSwatches */ "./src/components/VColorPicker/VColorPickerSwatches.ts");
+            /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./util */ "./src/components/VColorPicker/util/index.ts");
+            /* harmony import */ var _util_mixins__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../util/mixins */ "./src/util/mixins.ts");
+            /* harmony import */ var _util_helpers__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../util/helpers */ "./src/util/helpers.ts");
+            /* harmony import */ var _mixins_elevatable__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../mixins/elevatable */ "./src/mixins/elevatable/index.ts");
+            /* harmony import */ var _mixins_themeable__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../mixins/themeable */ "./src/mixins/themeable/index.ts");
+            var __assign = undefined && undefined.__assign || function () {
+                __assign = Object.assign || function (t) {
+                    for (var s, i = 1, n = arguments.length; i < n; i++) {
+                        s = arguments[i];
+
+                        for (var p in s) {
+                            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+                        }
+                    }
+
+                    return t;
+                };
+
+                return __assign.apply(this, arguments);
+            }; // Styles
+
+
+            // Components
+
+
+
+
+
+            // Helpers
+
+
+
+            // Mixins
+
+
+
+            /* harmony default export */ __webpack_exports__["default"] = (Object(_util_mixins__WEBPACK_IMPORTED_MODULE_7__["default"])(_mixins_elevatable__WEBPACK_IMPORTED_MODULE_9__["default"], _mixins_themeable__WEBPACK_IMPORTED_MODULE_10__["default"]).extend({
+                name: 'v-color-picker',
+                props: {
+                    canvasHeight: {
+                        type: [String, Number],
+                        default: 150
+                    },
+                    disabled: Boolean,
+                    dotSize: {
+                        type: [Number, String],
+                        default: 10
+                    },
+                    flat: Boolean,
+                    hideCanvas: Boolean,
+                    hideSliders: Boolean,
+                    hideInputs: Boolean,
+                    hideModeSwitch: Boolean,
+                    mode: {
+                        type: String,
+                        default: 'rgba',
+                        validator: function validator(v) {
+                            return Object.keys(_VColorPickerEdit__WEBPACK_IMPORTED_MODULE_4__["modes"]).includes(v);
+                        }
+                    },
+                    showSwatches: Boolean,
+                    swatches: Array,
+                    swatchesMaxHeight: {
+                        type: [Number, String],
+                        default: 150
+                    },
+                    value: {
+                        type: [Object, String]
+                    },
+                    width: {
+                        type: [Number, String],
+                        default: 300
+                    }
+                },
+                data: function data() {
+                    return {
+                        internalValue: Object(_util__WEBPACK_IMPORTED_MODULE_6__["fromRGBA"])({
+                            r: 255,
+                            g: 0,
+                            b: 0,
+                            a: 1
+                        })
+                    };
+                },
+                computed: {
+                    hideAlpha: function hideAlpha() {
+                        if (!this.value) return false;
+                        return !Object(_util__WEBPACK_IMPORTED_MODULE_6__["hasAlpha"])(this.value);
+                    }
+                },
+                watch: {
+                    value: {
+                        handler: function handler(color) {
+                            this.updateColor(Object(_util__WEBPACK_IMPORTED_MODULE_6__["parseColor"])(color, this.internalValue));
+                        },
+                        immediate: true
+                    }
+                },
+                methods: {
+                    updateColor: function updateColor(color) {
+                        this.internalValue = color;
+                        var value = Object(_util__WEBPACK_IMPORTED_MODULE_6__["extractColor"])(this.internalValue, this.value);
+
+                        if (!Object(_util_helpers__WEBPACK_IMPORTED_MODULE_8__["deepEqual"])(value, this.value)) {
+                            this.$emit('input', value);
+                            this.$emit('update:color', this.internalValue);
+                        }
+                    },
+                    genCanvas: function genCanvas() {
+                        return this.$createElement(_VColorPickerCanvas__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                            props: {
+                                color: this.internalValue,
+                                disabled: this.disabled,
+                                dotSize: this.dotSize,
+                                width: this.width,
+                                height: this.canvasHeight
+                            },
+                            on: {
+                                'update:color': this.updateColor
+                            }
+                        });
+                    },
+                    genControls: function genControls() {
+                        return this.$createElement('div', {
+                            staticClass: 'v-color-picker__controls'
+                        }, [!this.hideSliders && this.genPreview(), !this.hideInputs && this.genEdit()]);
+                    },
+                    genEdit: function genEdit() {
+                        var _this = this;
+
+                        return this.$createElement(_VColorPickerEdit__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                            props: {
+                                color: this.internalValue,
+                                disabled: this.disabled,
+                                hideAlpha: this.hideAlpha,
+                                hideModeSwitch: this.hideModeSwitch,
+                                mode: this.mode
+                            },
+                            on: {
+                                'update:color': this.updateColor,
+                                'update:mode': function updateMode(v) {
+                                    return _this.$emit('update:mode', v);
+                                }
+                            }
+                        });
+                    },
+                    genPreview: function genPreview() {
+                        return this.$createElement(_VColorPickerPreview__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                            props: {
+                                color: this.internalValue,
+                                disabled: this.disabled,
+                                hideAlpha: this.hideAlpha
+                            },
+                            on: {
+                                'update:color': this.updateColor
+                            }
+                        });
+                    },
+                    genSwatches: function genSwatches() {
+                        return this.$createElement(_VColorPickerSwatches__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                            props: {
+                                dark: this.dark,
+                                light: this.light,
+                                swatches: this.swatches,
+                                color: this.internalValue,
+                                maxHeight: this.swatchesMaxHeight
+                            },
+                            on: {
+                                'update:color': this.updateColor
+                            }
+                        });
+                    }
+                },
+                render: function render(h) {
+                    return h(_VSheet_VSheet__WEBPACK_IMPORTED_MODULE_1__["default"], {
+                        staticClass: 'v-color-picker',
+                        class: __assign(__assign({
+                            'v-color-picker--flat': this.flat
+                        }, this.themeClasses), this.elevationClasses),
+                        props: {
+                            maxWidth: this.width
+                        }
+                    }, [!this.hideCanvas && this.genCanvas(), (!this.hideSliders || !this.hideInputs) && this.genControls(), this.showSwatches && this.genSwatches()]);
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VColorPicker/VColorPickerCanvas.sass":
+        /*!*************************************************************!*\
+  !*** ./src/components/VColorPicker/VColorPickerCanvas.sass ***!
+  \*************************************************************/
+        /*! no static exports found */
+        /***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+            /***/ }),
+
+        /***/ "./src/components/VColorPicker/VColorPickerCanvas.ts":
+        /*!***********************************************************!*\
+  !*** ./src/components/VColorPicker/VColorPickerCanvas.ts ***!
+  \***********************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VColorPickerCanvas_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VColorPickerCanvas.sass */ "./src/components/VColorPicker/VColorPickerCanvas.sass");
+            /* harmony import */ var _VColorPickerCanvas_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VColorPickerCanvas_sass__WEBPACK_IMPORTED_MODULE_0__);
+            /* harmony import */ var _util_helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util/helpers */ "./src/util/helpers.ts");
+            /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./util */ "./src/components/VColorPicker/util/index.ts");
+            /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "vue");
+            /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_3__);
+// Styles
+            // Helpers
+
+
+            // Types
+
+
+            /* harmony default export */ __webpack_exports__["default"] = (vue__WEBPACK_IMPORTED_MODULE_3___default.a.extend({
+                name: 'v-color-picker-canvas',
+                props: {
+                    color: {
+                        type: Object,
+                        default: function _default() {
+                            return Object(_util__WEBPACK_IMPORTED_MODULE_2__["fromRGBA"])({
+                                r: 255,
+                                g: 0,
+                                b: 0,
+                                a: 1
+                            });
+                        }
+                    },
+                    disabled: Boolean,
+                    dotSize: {
+                        type: [Number, String],
+                        default: 10
+                    },
+                    height: {
+                        type: [Number, String],
+                        default: 150
+                    },
+                    width: {
+                        type: [Number, String],
+                        default: 300
+                    }
+                },
+                data: function data() {
+                    return {
+                        boundingRect: {
+                            width: 0,
+                            height: 0,
+                            left: 0,
+                            top: 0
+                        }
+                    };
+                },
+                computed: {
+                    dot: function dot() {
+                        if (!this.color) return {
+                            x: 0,
+                            y: 0
+                        };
+                        return {
+                            x: this.color.hsva.s * parseInt(this.width, 10),
+                            y: (1 - this.color.hsva.v) * parseInt(this.height, 10)
+                        };
+                    }
+                },
+                watch: {
+                    'color.hue': 'updateCanvas'
+                },
+                mounted: function mounted() {
+                    this.updateCanvas();
+                },
+                methods: {
+                    emitColor: function emitColor(x, y) {
+                        var _a = this.boundingRect,
+                            left = _a.left,
+                            top = _a.top,
+                            width = _a.width,
+                            height = _a.height;
+                        this.$emit('update:color', Object(_util__WEBPACK_IMPORTED_MODULE_2__["fromHSVA"])({
+                            h: this.color.hue,
+                            s: Object(_util_helpers__WEBPACK_IMPORTED_MODULE_1__["clamp"])(x - left, 0, width) / width,
+                            v: 1 - Object(_util_helpers__WEBPACK_IMPORTED_MODULE_1__["clamp"])(y - top, 0, height) / height,
+                            a: this.color.alpha
+                        }));
+                    },
+                    updateCanvas: function updateCanvas() {
+                        if (!this.color) return;
+                        var canvas = this.$refs.canvas;
+                        var ctx = canvas.getContext('2d');
+                        if (!ctx) return;
+                        var saturationGradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+                        saturationGradient.addColorStop(0, 'hsla(0, 0%, 100%, 1)'); // white
+
+                        saturationGradient.addColorStop(1, "hsla(" + this.color.hue + ", 100%, 50%, 1)");
+                        ctx.fillStyle = saturationGradient;
+                        ctx.fillRect(0, 0, canvas.width, canvas.height);
+                        var valueGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+                        valueGradient.addColorStop(0, 'hsla(0, 0%, 100%, 0)'); // transparent
+
+                        valueGradient.addColorStop(1, 'hsla(0, 0%, 0%, 1)'); // black
+
+                        ctx.fillStyle = valueGradient;
+                        ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    },
+                    handleClick: function handleClick(e) {
+                        if (this.disabled) return;
+                        this.boundingRect = this.$el.getBoundingClientRect();
+                        this.emitColor(e.clientX, e.clientY);
+                    },
+                    handleMouseDown: function handleMouseDown(e) {
+                        // To prevent selection while moving cursor
+                        e.preventDefault();
+                        if (this.disabled) return;
+                        this.boundingRect = this.$el.getBoundingClientRect();
+                        window.addEventListener('mousemove', this.handleMouseMove);
+                        window.addEventListener('mouseup', this.handleMouseUp);
+                    },
+                    handleMouseMove: function handleMouseMove(e) {
+                        if (this.disabled) return;
+                        this.emitColor(e.clientX, e.clientY);
+                    },
+                    handleMouseUp: function handleMouseUp() {
+                        window.removeEventListener('mousemove', this.handleMouseMove);
+                        window.removeEventListener('mouseup', this.handleMouseUp);
+                    },
+                    genCanvas: function genCanvas() {
+                        return this.$createElement('canvas', {
+                            ref: 'canvas',
+                            attrs: {
+                                width: this.width,
+                                height: this.height
+                            }
+                        });
+                    },
+                    genDot: function genDot() {
+                        var radius = parseInt(this.dotSize, 10) / 2;
+                        var x = Object(_util_helpers__WEBPACK_IMPORTED_MODULE_1__["convertToUnit"])(this.dot.x - radius);
+                        var y = Object(_util_helpers__WEBPACK_IMPORTED_MODULE_1__["convertToUnit"])(this.dot.y - radius);
+                        return this.$createElement('div', {
+                            staticClass: 'v-color-picker__canvas-dot',
+                            class: {
+                                'v-color-picker__canvas-dot--disabled': this.disabled
+                            },
+                            style: {
+                                width: Object(_util_helpers__WEBPACK_IMPORTED_MODULE_1__["convertToUnit"])(this.dotSize),
+                                height: Object(_util_helpers__WEBPACK_IMPORTED_MODULE_1__["convertToUnit"])(this.dotSize),
+                                transform: "translate(" + x + ", " + y + ")"
+                            }
+                        });
+                    }
+                },
+                render: function render(h) {
+                    return h('div', {
+                        staticClass: 'v-color-picker__canvas',
+                        style: {
+                            width: Object(_util_helpers__WEBPACK_IMPORTED_MODULE_1__["convertToUnit"])(this.width),
+                            height: Object(_util_helpers__WEBPACK_IMPORTED_MODULE_1__["convertToUnit"])(this.height)
+                        },
+                        on: {
+                            click: this.handleClick,
+                            mousedown: this.handleMouseDown
+                        }
+                    }, [this.genCanvas(), this.genDot()]);
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VColorPicker/VColorPickerEdit.sass":
+        /*!***********************************************************!*\
+  !*** ./src/components/VColorPicker/VColorPickerEdit.sass ***!
+  \***********************************************************/
+        /*! no static exports found */
+        /***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+            /***/ }),
+
+        /***/ "./src/components/VColorPicker/VColorPickerEdit.ts":
+        /*!*********************************************************!*\
+  !*** ./src/components/VColorPicker/VColorPickerEdit.ts ***!
+  \*********************************************************/
+        /*! exports provided: modes, default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modes", function() { return modes; });
+            /* harmony import */ var _VColorPickerEdit_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VColorPickerEdit.sass */ "./src/components/VColorPicker/VColorPickerEdit.sass");
+            /* harmony import */ var _VColorPickerEdit_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VColorPickerEdit_sass__WEBPACK_IMPORTED_MODULE_0__);
+            /* harmony import */ var _VBtn__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../VBtn */ "./src/components/VBtn/index.ts");
+            /* harmony import */ var _VIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../VIcon */ "./src/components/VIcon/index.ts");
+            /* harmony import */ var _util_colorUtils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../util/colorUtils */ "./src/util/colorUtils.ts");
+            /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue */ "vue");
+            /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_4__);
+            /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./util */ "./src/components/VColorPicker/util/index.ts");
+            var __read = undefined && undefined.__read || function (o, n) {
+                var m = typeof Symbol === "function" && o[Symbol.iterator];
+                if (!m) return o;
+                var i = m.call(o),
+                    r,
+                    ar = [],
+                    e;
+
+                try {
+                    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
+                        ar.push(r.value);
+                    }
+                } catch (error) {
+                    e = {
+                        error: error
+                    };
+                } finally {
+                    try {
+                        if (r && !r.done && (m = i["return"])) m.call(i);
+                    } finally {
+                        if (e) throw e.error;
+                    }
+                }
+
+                return ar;
+            }; // Styles
+
+
+            // Components
+
+
+            // Helpers
+
+            // Types
+
+
+
+            var modes = {
+                rgba: {
+                    inputs: [['r', 255, 'int'], ['g', 255, 'int'], ['b', 255, 'int'], ['a', 1, 'float']],
+                    from: _util__WEBPACK_IMPORTED_MODULE_5__["fromRGBA"]
+                },
+                hsla: {
+                    inputs: [['h', 360, 'int'], ['s', 1, 'float'], ['l', 1, 'float'], ['a', 1, 'float']],
+                    from: _util__WEBPACK_IMPORTED_MODULE_5__["fromHSLA"]
+                },
+                hexa: {
+                    from: _util__WEBPACK_IMPORTED_MODULE_5__["fromHexa"]
+                }
+            };
+            /* harmony default export */ __webpack_exports__["default"] = (vue__WEBPACK_IMPORTED_MODULE_4___default.a.extend({
+                name: 'v-color-picker-edit',
+                props: {
+                    color: Object,
+                    disabled: Boolean,
+                    hideAlpha: Boolean,
+                    hideModeSwitch: Boolean,
+                    mode: {
+                        type: String,
+                        default: 'rgba',
+                        validator: function validator(v) {
+                            return Object.keys(modes).includes(v);
+                        }
+                    }
+                },
+                data: function data() {
+                    return {
+                        modes: modes,
+                        internalMode: this.mode
+                    };
+                },
+                computed: {
+                    currentMode: function currentMode() {
+                        return this.modes[this.internalMode];
+                    }
+                },
+                watch: {
+                    mode: function mode(_mode) {
+                        this.internalMode = _mode;
+                    }
+                },
+                created: function created() {
+                    this.internalMode = this.mode;
+                },
+                methods: {
+                    getValue: function getValue(v, type) {
+                        if (type === 'float') return Math.round(v * 100) / 100;else if (type === 'int') return Math.round(v);else return 0;
+                    },
+                    parseValue: function parseValue(v, type) {
+                        if (type === 'float') return parseFloat(v);else if (type === 'int') return parseInt(v, 10) || 0;else return 0;
+                    },
+                    changeMode: function changeMode() {
+                        var modes = Object.keys(this.modes);
+                        var index = modes.indexOf(this.internalMode);
+                        var newMode = modes[(index + 1) % modes.length];
+                        this.internalMode = newMode;
+                        this.$emit('update:mode', newMode);
+                    },
+                    genInput: function genInput(target, attrs, value, on) {
+                        return this.$createElement('div', {
+                            staticClass: 'v-color-picker__input'
+                        }, [this.$createElement('input', {
+                            key: target,
+                            attrs: attrs,
+                            domProps: {
+                                value: value
+                            },
+                            on: on
+                        }), this.$createElement('span', target.toUpperCase())]);
+                    },
+                    genInputs: function genInputs() {
+                        var _this = this;
+
+                        if (this.internalMode === 'hexa') {
+                            var hex = this.color.hexa;
+                            var value = this.hideAlpha && hex.endsWith('FF') ? hex.substr(0, 7) : hex;
+                            return this.genInput('hex', {
+                                maxlength: this.hideAlpha ? 7 : 9,
+                                disabled: this.disabled
+                            }, value, {
+                                change: function change(e) {
+                                    var el = e.target;
+
+                                    _this.$emit('update:color', _this.currentMode.from(Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_3__["parseHex"])(el.value)));
+                                }
+                            });
+                        } else {
+                            var inputs = this.hideAlpha ? this.currentMode.inputs.slice(0, -1) : this.currentMode.inputs;
+                            return inputs.map(function (_a) {
+                                var _b = __read(_a, 3),
+                                    target = _b[0],
+                                    max = _b[1],
+                                    type = _b[2];
+
+                                var value = _this.color[_this.internalMode];
+                                return _this.genInput(target, {
+                                    type: 'number',
+                                    min: 0,
+                                    max: max,
+                                    step: type === 'float' ? '0.01' : type === 'int' ? '1' : undefined,
+                                    disabled: _this.disabled
+                                }, _this.getValue(value[target], type), {
+                                    input: function input(e) {
+                                        var _a;
+
+                                        var el = e.target;
+
+                                        var newVal = _this.parseValue(el.value || '0', type);
+
+                                        _this.$emit('update:color', _this.currentMode.from(Object.assign({}, value, (_a = {}, _a[target] = newVal, _a)), _this.color.alpha));
+                                    }
+                                });
+                            });
+                        }
+                    },
+                    genSwitch: function genSwitch() {
+                        return this.$createElement(_VBtn__WEBPACK_IMPORTED_MODULE_1__["default"], {
+                            props: {
+                                small: true,
+                                icon: true,
+                                disabled: this.disabled
+                            },
+                            on: {
+                                click: this.changeMode
+                            }
+                        }, [this.$createElement(_VIcon__WEBPACK_IMPORTED_MODULE_2__["default"], '$unfold')]);
+                    }
+                },
+                render: function render(h) {
+                    return h('div', {
+                        staticClass: 'v-color-picker__edit'
+                    }, [this.genInputs(), !this.hideModeSwitch && this.genSwitch()]);
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VColorPicker/VColorPickerPreview.sass":
+        /*!**************************************************************!*\
+  !*** ./src/components/VColorPicker/VColorPickerPreview.sass ***!
+  \**************************************************************/
+        /*! no static exports found */
+        /***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+            /***/ }),
+
+        /***/ "./src/components/VColorPicker/VColorPickerPreview.ts":
+        /*!************************************************************!*\
+  !*** ./src/components/VColorPicker/VColorPickerPreview.ts ***!
+  \************************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VColorPickerPreview_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VColorPickerPreview.sass */ "./src/components/VColorPicker/VColorPickerPreview.sass");
+            /* harmony import */ var _VColorPickerPreview_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VColorPickerPreview_sass__WEBPACK_IMPORTED_MODULE_0__);
+            /* harmony import */ var _VSlider_VSlider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../VSlider/VSlider */ "./src/components/VSlider/VSlider.ts");
+            /* harmony import */ var _util_colorUtils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../util/colorUtils */ "./src/util/colorUtils.ts");
+            /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "vue");
+            /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_3__);
+            /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./util */ "./src/components/VColorPicker/util/index.ts");
+            var __assign = undefined && undefined.__assign || function () {
+                __assign = Object.assign || function (t) {
+                    for (var s, i = 1, n = arguments.length; i < n; i++) {
+                        s = arguments[i];
+
+                        for (var p in s) {
+                            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+                        }
+                    }
+
+                    return t;
+                };
+
+                return __assign.apply(this, arguments);
+            }; // Styles
+
+
+            // Components
+
+            // Utilities
+
+            // Types
+
+
+
+            /* harmony default export */ __webpack_exports__["default"] = (vue__WEBPACK_IMPORTED_MODULE_3___default.a.extend({
+                name: 'v-color-picker-preview',
+                props: {
+                    color: Object,
+                    disabled: Boolean,
+                    hideAlpha: Boolean
+                },
+                methods: {
+                    genAlpha: function genAlpha() {
+                        var _this = this;
+
+                        return this.genTrack({
+                            staticClass: 'v-color-picker__alpha',
+                            props: {
+                                thumbColor: 'grey lighten-2',
+                                hideDetails: true,
+                                value: this.color.alpha,
+                                step: 0,
+                                min: 0,
+                                max: 1
+                            },
+                            style: {
+                                backgroundImage: this.disabled ? undefined : "linear-gradient(to " + (this.$vuetify.rtl ? 'left' : 'right') + ", transparent, " + Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_2__["RGBtoCSS"])(this.color.rgba) + ")"
+                            },
+                            on: {
+                                input: function input(val) {
+                                    return _this.color.alpha !== val && _this.$emit('update:color', Object(_util__WEBPACK_IMPORTED_MODULE_4__["fromHSVA"])(__assign(__assign({}, _this.color.hsva), {
+                                        a: val
+                                    })));
+                                }
+                            }
+                        });
+                    },
+                    genSliders: function genSliders() {
+                        return this.$createElement('div', {
+                            staticClass: 'v-color-picker__sliders'
+                        }, [this.genHue(), !this.hideAlpha && this.genAlpha()]);
+                    },
+                    genDot: function genDot() {
+                        return this.$createElement('div', {
+                            staticClass: 'v-color-picker__dot'
+                        }, [this.$createElement('div', {
+                            style: {
+                                background: Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_2__["RGBAtoCSS"])(this.color.rgba)
+                            }
+                        })]);
+                    },
+                    genHue: function genHue() {
+                        var _this = this;
+
+                        return this.genTrack({
+                            staticClass: 'v-color-picker__hue',
+                            props: {
+                                thumbColor: 'grey lighten-2',
+                                hideDetails: true,
+                                value: this.color.hue,
+                                step: 0,
+                                min: 0,
+                                max: 360
+                            },
+                            on: {
+                                input: function input(val) {
+                                    return _this.color.hue !== val && _this.$emit('update:color', Object(_util__WEBPACK_IMPORTED_MODULE_4__["fromHSVA"])(__assign(__assign({}, _this.color.hsva), {
+                                        h: val
+                                    })));
+                                }
+                            }
+                        });
+                    },
+                    genTrack: function genTrack(options) {
+                        return this.$createElement(_VSlider_VSlider__WEBPACK_IMPORTED_MODULE_1__["default"], __assign(__assign({
+                            class: 'v-color-picker__track'
+                        }, options), {
+                            props: __assign({
+                                disabled: this.disabled
+                            }, options.props)
+                        }));
+                    }
+                },
+                render: function render(h) {
+                    return h('div', {
+                        staticClass: 'v-color-picker__preview',
+                        class: {
+                            'v-color-picker__preview--hide-alpha': this.hideAlpha
+                        }
+                    }, [this.genDot(), this.genSliders()]);
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VColorPicker/VColorPickerSwatches.sass":
+        /*!***************************************************************!*\
+  !*** ./src/components/VColorPicker/VColorPickerSwatches.sass ***!
+  \***************************************************************/
+        /*! no static exports found */
+        /***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+            /***/ }),
+
+        /***/ "./src/components/VColorPicker/VColorPickerSwatches.ts":
+        /*!*************************************************************!*\
+  !*** ./src/components/VColorPicker/VColorPickerSwatches.ts ***!
+  \*************************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VColorPickerSwatches_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VColorPickerSwatches.sass */ "./src/components/VColorPicker/VColorPickerSwatches.sass");
+            /* harmony import */ var _VColorPickerSwatches_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VColorPickerSwatches_sass__WEBPACK_IMPORTED_MODULE_0__);
+            /* harmony import */ var _VIcon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../VIcon */ "./src/components/VIcon/index.ts");
+            /* harmony import */ var _util_colors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../util/colors */ "./src/util/colors.ts");
+            /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./util */ "./src/components/VColorPicker/util/index.ts");
+            /* harmony import */ var _util_helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../util/helpers */ "./src/util/helpers.ts");
+            /* harmony import */ var _util_mixins__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../util/mixins */ "./src/util/mixins.ts");
+            /* harmony import */ var _mixins_themeable__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../mixins/themeable */ "./src/mixins/themeable/index.ts");
+            /* harmony import */ var _util_colorUtils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../util/colorUtils */ "./src/util/colorUtils.ts");
+// Styles
+            // Components
+
+            // Helpers
+
+
+
+
+
+
+
+
+            function parseDefaultColors(colors) {
+                return Object.keys(colors).map(function (key) {
+                    var color = colors[key];
+                    return color.base ? [color.base, color.darken4, color.darken3, color.darken2, color.darken1, color.lighten1, color.lighten2, color.lighten3, color.lighten4, color.lighten5] : [color.black, color.white, color.transparent];
+                });
+            }
+
+            var white = Object(_util__WEBPACK_IMPORTED_MODULE_3__["fromHex"])('#FFFFFF').rgba;
+            var black = Object(_util__WEBPACK_IMPORTED_MODULE_3__["fromHex"])('#000000').rgba;
+            /* harmony default export */ __webpack_exports__["default"] = (Object(_util_mixins__WEBPACK_IMPORTED_MODULE_5__["default"])(_mixins_themeable__WEBPACK_IMPORTED_MODULE_6__["default"]).extend({
+                name: 'v-color-picker-swatches',
+                props: {
+                    swatches: {
+                        type: Array,
+                        default: function _default() {
+                            return parseDefaultColors(_util_colors__WEBPACK_IMPORTED_MODULE_2__["default"]);
+                        }
+                    },
+                    color: Object,
+                    maxWidth: [Number, String],
+                    maxHeight: [Number, String]
+                },
+                methods: {
+                    genColor: function genColor(color) {
+                        var _this = this;
+
+                        var content = this.$createElement('div', {
+                            style: {
+                                background: color
+                            }
+                        }, [Object(_util_helpers__WEBPACK_IMPORTED_MODULE_4__["deepEqual"])(this.color, Object(_util__WEBPACK_IMPORTED_MODULE_3__["parseColor"])(color, null)) && this.$createElement(_VIcon__WEBPACK_IMPORTED_MODULE_1__["default"], {
+                            props: {
+                                small: true,
+                                dark: Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_7__["contrastRatio"])(this.color.rgba, white) > 2 && this.color.alpha > 0.5,
+                                light: Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_7__["contrastRatio"])(this.color.rgba, black) > 2 && this.color.alpha > 0.5
+                            }
+                        }, '$success')]);
+                        return this.$createElement('div', {
+                            staticClass: 'v-color-picker__color',
+                            on: {
+                                // TODO: Less hacky way of catching transparent
+                                click: function click() {
+                                    return _this.$emit('update:color', Object(_util__WEBPACK_IMPORTED_MODULE_3__["fromHex"])(color === 'transparent' ? '#00000000' : color));
+                                }
+                            }
+                        }, [content]);
+                    },
+                    genSwatches: function genSwatches() {
+                        var _this = this;
+
+                        return this.swatches.map(function (swatch) {
+                            var colors = swatch.map(_this.genColor);
+                            return _this.$createElement('div', {
+                                staticClass: 'v-color-picker__swatch'
+                            }, colors);
+                        });
+                    }
+                },
+                render: function render(h) {
+                    return h('div', {
+                        staticClass: 'v-color-picker__swatches',
+                        style: {
+                            maxWidth: Object(_util_helpers__WEBPACK_IMPORTED_MODULE_4__["convertToUnit"])(this.maxWidth),
+                            maxHeight: Object(_util_helpers__WEBPACK_IMPORTED_MODULE_4__["convertToUnit"])(this.maxHeight)
+                        }
+                    }, [this.$createElement('div', this.genSwatches())]);
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VColorPicker/index.ts":
+        /*!**********************************************!*\
+  !*** ./src/components/VColorPicker/index.ts ***!
+  \**********************************************/
+        /*! exports provided: VColorPicker, VColorPickerSwatches, VColorPickerCanvas, default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VColorPicker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VColorPicker */ "./src/components/VColorPicker/VColorPicker.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VColorPicker", function() { return _VColorPicker__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+            /* harmony import */ var _VColorPickerSwatches__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VColorPickerSwatches */ "./src/components/VColorPicker/VColorPickerSwatches.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VColorPickerSwatches", function() { return _VColorPickerSwatches__WEBPACK_IMPORTED_MODULE_1__["default"]; });
+
+            /* harmony import */ var _VColorPickerCanvas__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./VColorPickerCanvas */ "./src/components/VColorPicker/VColorPickerCanvas.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VColorPickerCanvas", function() { return _VColorPickerCanvas__WEBPACK_IMPORTED_MODULE_2__["default"]; });
+
+
+
+
+
+            /* harmony default export */ __webpack_exports__["default"] = (_VColorPicker__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+            /***/ }),
+
+        /***/ "./src/components/VColorPicker/util/index.ts":
+        /*!***************************************************!*\
+  !*** ./src/components/VColorPicker/util/index.ts ***!
+  \***************************************************/
+        /*! exports provided: fromHSVA, fromHSLA, fromRGBA, fromHexa, fromHex, parseColor, extractColor, hasAlpha */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromHSVA", function() { return fromHSVA; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromHSLA", function() { return fromHSLA; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromRGBA", function() { return fromRGBA; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromHexa", function() { return fromHexa; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromHex", function() { return fromHex; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseColor", function() { return parseColor; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "extractColor", function() { return extractColor; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hasAlpha", function() { return hasAlpha; });
+            /* harmony import */ var _util_colorUtils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../util/colorUtils */ "./src/util/colorUtils.ts");
+            function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+            var __assign = undefined && undefined.__assign || function () {
+                __assign = Object.assign || function (t) {
+                    for (var s, i = 1, n = arguments.length; i < n; i++) {
+                        s = arguments[i];
+
+                        for (var p in s) {
+                            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+                        }
+                    }
+
+                    return t;
+                };
+
+                return __assign.apply(this, arguments);
+            };
+
+            var __rest = undefined && undefined.__rest || function (s, e) {
+                var t = {};
+
+                for (var p in s) {
+                    if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+                }
+
+                if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+                    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
+                }
+                return t;
+            }; // Utilities
+
+
+
+            function fromHSVA(hsva) {
+                hsva = __assign({}, hsva);
+                var hexa = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSVAtoHex"])(hsva);
+                var hsla = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSVAtoHSLA"])(hsva);
+                var rgba = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSVAtoRGBA"])(hsva);
+                return {
+                    alpha: hsva.a,
+                    hex: hexa.substr(0, 7),
+                    hexa: hexa,
+                    hsla: hsla,
+                    hsva: hsva,
+                    hue: hsva.h,
+                    rgba: rgba
+                };
+            }
+            function fromHSLA(hsla) {
+                var hsva = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSLAtoHSVA"])(hsla);
+                var hexa = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSVAtoHex"])(hsva);
+                var rgba = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSVAtoRGBA"])(hsva);
+                return {
+                    alpha: hsva.a,
+                    hex: hexa.substr(0, 7),
+                    hexa: hexa,
+                    hsla: hsla,
+                    hsva: hsva,
+                    hue: hsva.h,
+                    rgba: rgba
+                };
+            }
+            function fromRGBA(rgba) {
+                var hsva = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["RGBAtoHSVA"])(rgba);
+                var hexa = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["RGBAtoHex"])(rgba);
+                var hsla = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSVAtoHSLA"])(hsva);
+                return {
+                    alpha: hsva.a,
+                    hex: hexa.substr(0, 7),
+                    hexa: hexa,
+                    hsla: hsla,
+                    hsva: hsva,
+                    hue: hsva.h,
+                    rgba: rgba
+                };
+            }
+            function fromHexa(hexa) {
+                var hsva = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HexToHSVA"])(hexa);
+                var hsla = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSVAtoHSLA"])(hsva);
+                var rgba = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSVAtoRGBA"])(hsva);
+                return {
+                    alpha: hsva.a,
+                    hex: hexa.substr(0, 7),
+                    hexa: hexa,
+                    hsla: hsla,
+                    hsva: hsva,
+                    hue: hsva.h,
+                    rgba: rgba
+                };
+            }
+            function fromHex(hex) {
+                return fromHexa(Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["parseHex"])(hex));
+            }
+
+            function has(obj, key) {
+                return key.every(function (k) {
+                    return obj.hasOwnProperty(k);
+                });
+            }
+
+            function parseColor(color, oldColor) {
+                if (!color) return fromRGBA({
+                    r: 255,
+                    g: 0,
+                    b: 0,
+                    a: 1
+                });
+
+                if (typeof color === 'string') {
+                    if (color === 'transparent') return fromHexa('#00000000');
+                    var hex = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["parseHex"])(color);
+                    if (oldColor && hex === oldColor.hexa) return oldColor;else return fromHexa(hex);
+                }
+
+                if (_typeof(color) === 'object') {
+                    if (color.hasOwnProperty('alpha')) return color;
+                    var a = color.hasOwnProperty('a') ? parseFloat(color.a) : 1;
+
+                    if (has(color, ['r', 'g', 'b'])) {
+                        if (oldColor && color === oldColor.rgba) return oldColor;else return fromRGBA(__assign(__assign({}, color), {
+                            a: a
+                        }));
+                    } else if (has(color, ['h', 's', 'l'])) {
+                        if (oldColor && color === oldColor.hsla) return oldColor;else return fromHSLA(__assign(__assign({}, color), {
+                            a: a
+                        }));
+                    } else if (has(color, ['h', 's', 'v'])) {
+                        if (oldColor && color === oldColor.hsva) return oldColor;else return fromHSVA(__assign(__assign({}, color), {
+                            a: a
+                        }));
+                    }
+                }
+
+                return fromRGBA({
+                    r: 255,
+                    g: 0,
+                    b: 0,
+                    a: 1
+                });
+            }
+
+            function stripAlpha(color, stripAlpha) {
+                if (stripAlpha) {
+                    var a = color.a,
+                        rest = __rest(color, ["a"]);
+
+                    return rest;
+                }
+
+                return color;
+            }
+
+            function extractColor(color, input) {
+                if (input == null) return color;
+
+                if (typeof input === 'string') {
+                    return input.length === 7 ? color.hex : color.hexa;
+                }
+
+                if (_typeof(input) === 'object') {
+                    var shouldStrip = typeof input.a === 'number' && input.a === 0 ? !!input.a : !input.a;
+                    if (has(input, ['r', 'g', 'b'])) return stripAlpha(color.rgba, shouldStrip);else if (has(input, ['h', 's', 'l'])) return stripAlpha(color.hsla, shouldStrip);else if (has(input, ['h', 's', 'v'])) return stripAlpha(color.hsva, shouldStrip);
+                }
+
+                return color;
+            }
+            function hasAlpha(color) {
+                if (!color) return false;
+
+                if (typeof color === 'string') {
+                    return color.length > 7;
+                }
+
+                if (_typeof(color) === 'object') {
+                    return has(color, ['a']) || has(color, ['alpha']);
+                }
+
+                return false;
+            }
+
+            /***/ }),
+
         /***/ "./src/components/VCombobox/VCombobox.ts":
         /*!***********************************************!*\
   !*** ./src/components/VCombobox/VCombobox.ts ***!
@@ -8252,1093 +9842,6 @@
 
 
             /* harmony default export */ __webpack_exports__["default"] = (_VData__WEBPACK_IMPORTED_MODULE_0__["default"]);
-
-            /***/ }),
-        /***/ "./src/components/VColorPicker/VColorPicker.sass":
-        /*!*******************************************************!*\
-          !*** ./src/components/VColorPicker/VColorPicker.sass ***!
-          \*******************************************************/
-        /*! no static exports found */
-        /***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-            /***/ }),
-
-        /***/ "./src/components/VColorPicker/VColorPicker.ts":
-        /*!*****************************************************!*\
-          !*** ./src/components/VColorPicker/VColorPicker.ts ***!
-          \*****************************************************/
-        /*! exports provided: default */
-        /***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-            "use strict";
-            __webpack_require__.r(__webpack_exports__);
-            /* harmony import */ var _VColorPicker_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VColorPicker.sass */ "./src/components/VColorPicker/VColorPicker.sass");
-            /* harmony import */ var _VColorPicker_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VColorPicker_sass__WEBPACK_IMPORTED_MODULE_0__);
-            /* harmony import */ var _VSheet_VSheet__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../VSheet/VSheet */ "./src/components/VSheet/VSheet.ts");
-            /* harmony import */ var _VColorPickerPreview__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./VColorPickerPreview */ "./src/components/VColorPicker/VColorPickerPreview.ts");
-            /* harmony import */ var _VColorPickerCanvas__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./VColorPickerCanvas */ "./src/components/VColorPicker/VColorPickerCanvas.ts");
-            /* harmony import */ var _VColorPickerEdit__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./VColorPickerEdit */ "./src/components/VColorPicker/VColorPickerEdit.ts");
-            /* harmony import */ var _VColorPickerSwatches__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./VColorPickerSwatches */ "./src/components/VColorPicker/VColorPickerSwatches.ts");
-            /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./util */ "./src/components/VColorPicker/util/index.ts");
-            /* harmony import */ var _util_mixins__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../util/mixins */ "./src/util/mixins.ts");
-            /* harmony import */ var _util_helpers__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../util/helpers */ "./src/util/helpers.ts");
-            /* harmony import */ var _mixins_elevatable__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../mixins/elevatable */ "./src/mixins/elevatable/index.ts");
-            /* harmony import */ var _mixins_themeable__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../mixins/themeable */ "./src/mixins/themeable/index.ts");
-            var __assign = undefined && undefined.__assign || function () {
-                __assign = Object.assign || function (t) {
-                    for (var s, i = 1, n = arguments.length; i < n; i++) {
-                        s = arguments[i];
-
-                        for (var p in s) {
-                            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
-                        }
-                    }
-
-                    return t;
-                };
-
-                return __assign.apply(this, arguments);
-            }; // Styles
-
-
-            // Components
-
-
-
-
-
-            // Helpers
-
-
-
-            // Mixins
-
-
-
-            /* harmony default export */ __webpack_exports__["default"] = (Object(_util_mixins__WEBPACK_IMPORTED_MODULE_7__["default"])(_mixins_elevatable__WEBPACK_IMPORTED_MODULE_9__["default"], _mixins_themeable__WEBPACK_IMPORTED_MODULE_10__["default"]).extend({
-                name: 'v-color-picker',
-                props: {
-                    canvasHeight: {
-                        type: [String, Number],
-                        default: 150
-                    },
-                    disabled: Boolean,
-                    dotSize: {
-                        type: [Number, String],
-                        default: 10
-                    },
-                    flat: Boolean,
-                    hideCanvas: Boolean,
-                    hideSliders: Boolean,
-                    hideInputs: Boolean,
-                    hideModeSwitch: Boolean,
-                    mode: {
-                        type: String,
-                        default: 'rgba',
-                        validator: function validator(v) {
-                            return Object.keys(_VColorPickerEdit__WEBPACK_IMPORTED_MODULE_4__["modes"]).includes(v);
-                        }
-                    },
-                    showSwatches: Boolean,
-                    swatches: Array,
-                    swatchesMaxHeight: {
-                        type: [Number, String],
-                        default: 150
-                    },
-                    value: {
-                        type: [Object, String]
-                    },
-                    width: {
-                        type: [Number, String],
-                        default: 300
-                    }
-                },
-                data: function data() {
-                    return {
-                        internalValue: Object(_util__WEBPACK_IMPORTED_MODULE_6__["fromRGBA"])({
-                            r: 255,
-                            g: 0,
-                            b: 0,
-                            a: 1
-                        })
-                    };
-                },
-                computed: {
-                    hideAlpha: function hideAlpha() {
-                        if (!this.value) return false;
-                        return !Object(_util__WEBPACK_IMPORTED_MODULE_6__["hasAlpha"])(this.value);
-                    }
-                },
-                watch: {
-                    value: {
-                        handler: function handler(color) {
-                            this.updateColor(Object(_util__WEBPACK_IMPORTED_MODULE_6__["parseColor"])(color, this.internalValue));
-                        },
-                        immediate: true
-                    }
-                },
-                methods: {
-                    updateColor: function updateColor(color) {
-                        this.internalValue = color;
-                        var value = Object(_util__WEBPACK_IMPORTED_MODULE_6__["extractColor"])(this.internalValue, this.value);
-
-                        if (!Object(_util_helpers__WEBPACK_IMPORTED_MODULE_8__["deepEqual"])(value, this.value)) {
-                            this.$emit('input', value);
-                            this.$emit('update:color', this.internalValue);
-                        }
-                    },
-                    genCanvas: function genCanvas() {
-                        return this.$createElement(_VColorPickerCanvas__WEBPACK_IMPORTED_MODULE_3__["default"], {
-                            props: {
-                                color: this.internalValue,
-                                disabled: this.disabled,
-                                dotSize: this.dotSize,
-                                width: this.width,
-                                height: this.canvasHeight
-                            },
-                            on: {
-                                'update:color': this.updateColor
-                            }
-                        });
-                    },
-                    genControls: function genControls() {
-                        return this.$createElement('div', {
-                            staticClass: 'v-color-picker__controls'
-                        }, [!this.hideSliders && this.genPreview(), !this.hideInputs && this.genEdit()]);
-                    },
-                    genEdit: function genEdit() {
-                        var _this = this;
-
-                        return this.$createElement(_VColorPickerEdit__WEBPACK_IMPORTED_MODULE_4__["default"], {
-                            props: {
-                                color: this.internalValue,
-                                disabled: this.disabled,
-                                hideAlpha: this.hideAlpha,
-                                hideModeSwitch: this.hideModeSwitch,
-                                mode: this.mode
-                            },
-                            on: {
-                                'update:color': this.updateColor,
-                                'update:mode': function updateMode(v) {
-                                    return _this.$emit('update:mode', v);
-                                }
-                            }
-                        });
-                    },
-                    genPreview: function genPreview() {
-                        return this.$createElement(_VColorPickerPreview__WEBPACK_IMPORTED_MODULE_2__["default"], {
-                            props: {
-                                color: this.internalValue,
-                                disabled: this.disabled,
-                                hideAlpha: this.hideAlpha
-                            },
-                            on: {
-                                'update:color': this.updateColor
-                            }
-                        });
-                    },
-                    genSwatches: function genSwatches() {
-                        return this.$createElement(_VColorPickerSwatches__WEBPACK_IMPORTED_MODULE_5__["default"], {
-                            props: {
-                                dark: this.dark,
-                                light: this.light,
-                                swatches: this.swatches,
-                                color: this.internalValue,
-                                maxHeight: this.swatchesMaxHeight
-                            },
-                            on: {
-                                'update:color': this.updateColor
-                            }
-                        });
-                    }
-                },
-                render: function render(h) {
-                    return h(_VSheet_VSheet__WEBPACK_IMPORTED_MODULE_1__["default"], {
-                        staticClass: 'v-color-picker',
-                        class: __assign(__assign({
-                            'v-color-picker--flat': this.flat
-                        }, this.themeClasses), this.elevationClasses),
-                        props: {
-                            maxWidth: this.width
-                        }
-                    }, [!this.hideCanvas && this.genCanvas(), (!this.hideSliders || !this.hideInputs) && this.genControls(), this.showSwatches && this.genSwatches()]);
-                }
-            }));
-
-            /***/ }),
-
-        /***/ "./src/components/VColorPicker/VColorPickerCanvas.sass":
-        /*!*************************************************************!*\
-          !*** ./src/components/VColorPicker/VColorPickerCanvas.sass ***!
-          \*************************************************************/
-        /*! no static exports found */
-        /***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-            /***/ }),
-
-        /***/ "./src/components/VColorPicker/VColorPickerCanvas.ts":
-        /*!***********************************************************!*\
-          !*** ./src/components/VColorPicker/VColorPickerCanvas.ts ***!
-          \***********************************************************/
-        /*! exports provided: default */
-        /***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-            "use strict";
-            __webpack_require__.r(__webpack_exports__);
-            /* harmony import */ var _VColorPickerCanvas_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VColorPickerCanvas.sass */ "./src/components/VColorPicker/VColorPickerCanvas.sass");
-            /* harmony import */ var _VColorPickerCanvas_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VColorPickerCanvas_sass__WEBPACK_IMPORTED_MODULE_0__);
-            /* harmony import */ var _util_helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util/helpers */ "./src/util/helpers.ts");
-            /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./util */ "./src/components/VColorPicker/util/index.ts");
-            /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "vue");
-            /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_3__);
-// Styles
-            // Helpers
-
-
-            // Types
-
-
-            /* harmony default export */ __webpack_exports__["default"] = (vue__WEBPACK_IMPORTED_MODULE_3___default.a.extend({
-                name: 'v-color-picker-canvas',
-                props: {
-                    color: {
-                        type: Object,
-                        default: function _default() {
-                            return Object(_util__WEBPACK_IMPORTED_MODULE_2__["fromRGBA"])({
-                                r: 255,
-                                g: 0,
-                                b: 0,
-                                a: 1
-                            });
-                        }
-                    },
-                    disabled: Boolean,
-                    dotSize: {
-                        type: [Number, String],
-                        default: 10
-                    },
-                    height: {
-                        type: [Number, String],
-                        default: 150
-                    },
-                    width: {
-                        type: [Number, String],
-                        default: 300
-                    }
-                },
-                data: function data() {
-                    return {
-                        boundingRect: {
-                            width: 0,
-                            height: 0,
-                            left: 0,
-                            top: 0
-                        }
-                    };
-                },
-                computed: {
-                    dot: function dot() {
-                        if (!this.color) return {
-                            x: 0,
-                            y: 0
-                        };
-                        return {
-                            x: this.color.hsva.s * parseInt(this.width, 10),
-                            y: (1 - this.color.hsva.v) * parseInt(this.height, 10)
-                        };
-                    }
-                },
-                watch: {
-                    'color.hue': 'updateCanvas'
-                },
-                mounted: function mounted() {
-                    this.updateCanvas();
-                },
-                methods: {
-                    emitColor: function emitColor(x, y) {
-                        var _a = this.boundingRect,
-                            left = _a.left,
-                            top = _a.top,
-                            width = _a.width,
-                            height = _a.height;
-                        this.$emit('update:color', Object(_util__WEBPACK_IMPORTED_MODULE_2__["fromHSVA"])({
-                            h: this.color.hue,
-                            s: Object(_util_helpers__WEBPACK_IMPORTED_MODULE_1__["clamp"])(x - left, 0, width) / width,
-                            v: 1 - Object(_util_helpers__WEBPACK_IMPORTED_MODULE_1__["clamp"])(y - top, 0, height) / height,
-                            a: this.color.alpha
-                        }));
-                    },
-                    updateCanvas: function updateCanvas() {
-                        if (!this.color) return;
-                        var canvas = this.$refs.canvas;
-                        var ctx = canvas.getContext('2d');
-                        if (!ctx) return;
-                        var saturationGradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
-                        saturationGradient.addColorStop(0, 'hsla(0, 0%, 100%, 1)'); // white
-
-                        saturationGradient.addColorStop(1, "hsla(" + this.color.hue + ", 100%, 50%, 1)");
-                        ctx.fillStyle = saturationGradient;
-                        ctx.fillRect(0, 0, canvas.width, canvas.height);
-                        var valueGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-                        valueGradient.addColorStop(0, 'hsla(0, 0%, 100%, 0)'); // transparent
-
-                        valueGradient.addColorStop(1, 'hsla(0, 0%, 0%, 1)'); // black
-
-                        ctx.fillStyle = valueGradient;
-                        ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    },
-                    handleClick: function handleClick(e) {
-                        if (this.disabled) return;
-                        this.boundingRect = this.$el.getBoundingClientRect();
-                        this.emitColor(e.clientX, e.clientY);
-                    },
-                    handleMouseDown: function handleMouseDown(e) {
-                        // To prevent selection while moving cursor
-                        e.preventDefault();
-                        if (this.disabled) return;
-                        this.boundingRect = this.$el.getBoundingClientRect();
-                        window.addEventListener('mousemove', this.handleMouseMove);
-                        window.addEventListener('mouseup', this.handleMouseUp);
-                    },
-                    handleMouseMove: function handleMouseMove(e) {
-                        if (this.disabled) return;
-                        this.emitColor(e.clientX, e.clientY);
-                    },
-                    handleMouseUp: function handleMouseUp() {
-                        window.removeEventListener('mousemove', this.handleMouseMove);
-                        window.removeEventListener('mouseup', this.handleMouseUp);
-                    },
-                    genCanvas: function genCanvas() {
-                        return this.$createElement('canvas', {
-                            ref: 'canvas',
-                            attrs: {
-                                width: this.width,
-                                height: this.height
-                            }
-                        });
-                    },
-                    genDot: function genDot() {
-                        var radius = parseInt(this.dotSize, 10) / 2;
-                        var x = Object(_util_helpers__WEBPACK_IMPORTED_MODULE_1__["convertToUnit"])(this.dot.x - radius);
-                        var y = Object(_util_helpers__WEBPACK_IMPORTED_MODULE_1__["convertToUnit"])(this.dot.y - radius);
-                        return this.$createElement('div', {
-                            staticClass: 'v-color-picker__canvas-dot',
-                            class: {
-                                'v-color-picker__canvas-dot--disabled': this.disabled
-                            },
-                            style: {
-                                width: Object(_util_helpers__WEBPACK_IMPORTED_MODULE_1__["convertToUnit"])(this.dotSize),
-                                height: Object(_util_helpers__WEBPACK_IMPORTED_MODULE_1__["convertToUnit"])(this.dotSize),
-                                transform: "translate(" + x + ", " + y + ")"
-                            }
-                        });
-                    }
-                },
-                render: function render(h) {
-                    return h('div', {
-                        staticClass: 'v-color-picker__canvas',
-                        style: {
-                            width: Object(_util_helpers__WEBPACK_IMPORTED_MODULE_1__["convertToUnit"])(this.width),
-                            height: Object(_util_helpers__WEBPACK_IMPORTED_MODULE_1__["convertToUnit"])(this.height)
-                        },
-                        on: {
-                            click: this.handleClick,
-                            mousedown: this.handleMouseDown
-                        }
-                    }, [this.genCanvas(), this.genDot()]);
-                }
-            }));
-
-            /***/ }),
-
-        /***/ "./src/components/VColorPicker/VColorPickerEdit.sass":
-        /*!***********************************************************!*\
-          !*** ./src/components/VColorPicker/VColorPickerEdit.sass ***!
-          \***********************************************************/
-        /*! no static exports found */
-        /***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-            /***/ }),
-
-        /***/ "./src/components/VColorPicker/VColorPickerEdit.ts":
-        /*!*********************************************************!*\
-          !*** ./src/components/VColorPicker/VColorPickerEdit.ts ***!
-          \*********************************************************/
-        /*! exports provided: modes, default */
-        /***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-            "use strict";
-            __webpack_require__.r(__webpack_exports__);
-            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modes", function() { return modes; });
-            /* harmony import */ var _VColorPickerEdit_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VColorPickerEdit.sass */ "./src/components/VColorPicker/VColorPickerEdit.sass");
-            /* harmony import */ var _VColorPickerEdit_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VColorPickerEdit_sass__WEBPACK_IMPORTED_MODULE_0__);
-            /* harmony import */ var _VBtn__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../VBtn */ "./src/components/VBtn/index.ts");
-            /* harmony import */ var _VIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../VIcon */ "./src/components/VIcon/index.ts");
-            /* harmony import */ var _util_colorUtils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../util/colorUtils */ "./src/util/colorUtils.ts");
-            /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue */ "vue");
-            /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_4__);
-            /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./util */ "./src/components/VColorPicker/util/index.ts");
-            var __read = undefined && undefined.__read || function (o, n) {
-                var m = typeof Symbol === "function" && o[Symbol.iterator];
-                if (!m) return o;
-                var i = m.call(o),
-                    r,
-                    ar = [],
-                    e;
-
-                try {
-                    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
-                        ar.push(r.value);
-                    }
-                } catch (error) {
-                    e = {
-                        error: error
-                    };
-                } finally {
-                    try {
-                        if (r && !r.done && (m = i["return"])) m.call(i);
-                    } finally {
-                        if (e) throw e.error;
-                    }
-                }
-
-                return ar;
-            }; // Styles
-
-
-            // Components
-
-
-            // Helpers
-
-            // Types
-
-
-
-            var modes = {
-                rgba: {
-                    inputs: [['r', 255, 'int'], ['g', 255, 'int'], ['b', 255, 'int'], ['a', 1, 'float']],
-                    from: _util__WEBPACK_IMPORTED_MODULE_5__["fromRGBA"]
-                },
-                hsla: {
-                    inputs: [['h', 360, 'int'], ['s', 1, 'float'], ['l', 1, 'float'], ['a', 1, 'float']],
-                    from: _util__WEBPACK_IMPORTED_MODULE_5__["fromHSLA"]
-                },
-                hexa: {
-                    from: _util__WEBPACK_IMPORTED_MODULE_5__["fromHexa"]
-                }
-            };
-            /* harmony default export */ __webpack_exports__["default"] = (vue__WEBPACK_IMPORTED_MODULE_4___default.a.extend({
-                name: 'v-color-picker-edit',
-                props: {
-                    color: Object,
-                    disabled: Boolean,
-                    hideAlpha: Boolean,
-                    hideModeSwitch: Boolean,
-                    mode: {
-                        type: String,
-                        default: 'rgba',
-                        validator: function validator(v) {
-                            return Object.keys(modes).includes(v);
-                        }
-                    }
-                },
-                data: function data() {
-                    return {
-                        modes: modes,
-                        internalMode: this.mode
-                    };
-                },
-                computed: {
-                    currentMode: function currentMode() {
-                        return this.modes[this.internalMode];
-                    }
-                },
-                watch: {
-                    mode: function mode(_mode) {
-                        this.internalMode = _mode;
-                    }
-                },
-                created: function created() {
-                    this.internalMode = this.mode;
-                },
-                methods: {
-                    getValue: function getValue(v, type) {
-                        if (type === 'float') return Math.round(v * 100) / 100;else if (type === 'int') return Math.round(v);else return 0;
-                    },
-                    parseValue: function parseValue(v, type) {
-                        if (type === 'float') return parseFloat(v);else if (type === 'int') return parseInt(v, 10) || 0;else return 0;
-                    },
-                    changeMode: function changeMode() {
-                        var modes = Object.keys(this.modes);
-                        var index = modes.indexOf(this.internalMode);
-                        var newMode = modes[(index + 1) % modes.length];
-                        this.internalMode = newMode;
-                        this.$emit('update:mode', newMode);
-                    },
-                    genInput: function genInput(target, attrs, value, on) {
-                        return this.$createElement('div', {
-                            staticClass: 'v-color-picker__input'
-                        }, [this.$createElement('input', {
-                            key: target,
-                            attrs: attrs,
-                            domProps: {
-                                value: value
-                            },
-                            on: on
-                        }), this.$createElement('span', target.toUpperCase())]);
-                    },
-                    genInputs: function genInputs() {
-                        var _this = this;
-
-                        if (this.internalMode === 'hexa') {
-                            var hex = this.color.hexa;
-                            var value = this.hideAlpha && hex.endsWith('FF') ? hex.substr(0, 7) : hex;
-                            return this.genInput('hex', {
-                                maxlength: this.hideAlpha ? 7 : 9,
-                                disabled: this.disabled
-                            }, value, {
-                                change: function change(e) {
-                                    var el = e.target;
-
-                                    _this.$emit('update:color', _this.currentMode.from(Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_3__["parseHex"])(el.value)));
-                                }
-                            });
-                        } else {
-                            var inputs = this.hideAlpha ? this.currentMode.inputs.slice(0, -1) : this.currentMode.inputs;
-                            return inputs.map(function (_a) {
-                                var _b = __read(_a, 3),
-                                    target = _b[0],
-                                    max = _b[1],
-                                    type = _b[2];
-
-                                var value = _this.color[_this.internalMode];
-                                return _this.genInput(target, {
-                                    type: 'number',
-                                    min: 0,
-                                    max: max,
-                                    step: type === 'float' ? '0.01' : type === 'int' ? '1' : undefined,
-                                    disabled: _this.disabled
-                                }, _this.getValue(value[target], type), {
-                                    input: function input(e) {
-                                        var _a;
-
-                                        var el = e.target;
-
-                                        var newVal = _this.parseValue(el.value || '0', type);
-
-                                        _this.$emit('update:color', _this.currentMode.from(Object.assign({}, value, (_a = {}, _a[target] = newVal, _a)), _this.color.alpha));
-                                    }
-                                });
-                            });
-                        }
-                    },
-                    genSwitch: function genSwitch() {
-                        return this.$createElement(_VBtn__WEBPACK_IMPORTED_MODULE_1__["default"], {
-                            props: {
-                                small: true,
-                                icon: true,
-                                disabled: this.disabled
-                            },
-                            on: {
-                                click: this.changeMode
-                            }
-                        }, [this.$createElement(_VIcon__WEBPACK_IMPORTED_MODULE_2__["default"], '$unfold')]);
-                    }
-                },
-                render: function render(h) {
-                    return h('div', {
-                        staticClass: 'v-color-picker__edit'
-                    }, [this.genInputs(), !this.hideModeSwitch && this.genSwitch()]);
-                }
-            }));
-
-            /***/ }),
-
-        /***/ "./src/components/VColorPicker/VColorPickerPreview.sass":
-        /*!**************************************************************!*\
-          !*** ./src/components/VColorPicker/VColorPickerPreview.sass ***!
-          \**************************************************************/
-        /*! no static exports found */
-        /***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-            /***/ }),
-
-        /***/ "./src/components/VColorPicker/VColorPickerPreview.ts":
-        /*!************************************************************!*\
-          !*** ./src/components/VColorPicker/VColorPickerPreview.ts ***!
-          \************************************************************/
-        /*! exports provided: default */
-        /***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-            "use strict";
-            __webpack_require__.r(__webpack_exports__);
-            /* harmony import */ var _VColorPickerPreview_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VColorPickerPreview.sass */ "./src/components/VColorPicker/VColorPickerPreview.sass");
-            /* harmony import */ var _VColorPickerPreview_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VColorPickerPreview_sass__WEBPACK_IMPORTED_MODULE_0__);
-            /* harmony import */ var _VSlider_VSlider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../VSlider/VSlider */ "./src/components/VSlider/VSlider.ts");
-            /* harmony import */ var _util_colorUtils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../util/colorUtils */ "./src/util/colorUtils.ts");
-            /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "vue");
-            /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_3__);
-            /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./util */ "./src/components/VColorPicker/util/index.ts");
-            var __assign = undefined && undefined.__assign || function () {
-                __assign = Object.assign || function (t) {
-                    for (var s, i = 1, n = arguments.length; i < n; i++) {
-                        s = arguments[i];
-
-                        for (var p in s) {
-                            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
-                        }
-                    }
-
-                    return t;
-                };
-
-                return __assign.apply(this, arguments);
-            }; // Styles
-
-
-            // Components
-
-            // Utilities
-
-            // Types
-
-
-
-            /* harmony default export */ __webpack_exports__["default"] = (vue__WEBPACK_IMPORTED_MODULE_3___default.a.extend({
-                name: 'v-color-picker-preview',
-                props: {
-                    color: Object,
-                    disabled: Boolean,
-                    hideAlpha: Boolean
-                },
-                methods: {
-                    genAlpha: function genAlpha() {
-                        var _this = this;
-
-                        return this.genTrack({
-                            staticClass: 'v-color-picker__alpha',
-                            props: {
-                                thumbColor: 'grey lighten-2',
-                                hideDetails: true,
-                                value: this.color.alpha,
-                                step: 0,
-                                min: 0,
-                                max: 1
-                            },
-                            style: {
-                                backgroundImage: this.disabled ? undefined : "linear-gradient(to " + (this.$vuetify.rtl ? 'left' : 'right') + ", transparent, " + Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_2__["RGBtoCSS"])(this.color.rgba) + ")"
-                            },
-                            on: {
-                                input: function input(val) {
-                                    return _this.color.alpha !== val && _this.$emit('update:color', Object(_util__WEBPACK_IMPORTED_MODULE_4__["fromHSVA"])(__assign(__assign({}, _this.color.hsva), {
-                                        a: val
-                                    })));
-                                }
-                            }
-                        });
-                    },
-                    genSliders: function genSliders() {
-                        return this.$createElement('div', {
-                            staticClass: 'v-color-picker__sliders'
-                        }, [this.genHue(), !this.hideAlpha && this.genAlpha()]);
-                    },
-                    genDot: function genDot() {
-                        return this.$createElement('div', {
-                            staticClass: 'v-color-picker__dot'
-                        }, [this.$createElement('div', {
-                            style: {
-                                background: Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_2__["RGBAtoCSS"])(this.color.rgba)
-                            }
-                        })]);
-                    },
-                    genHue: function genHue() {
-                        var _this = this;
-
-                        return this.genTrack({
-                            staticClass: 'v-color-picker__hue',
-                            props: {
-                                thumbColor: 'grey lighten-2',
-                                hideDetails: true,
-                                value: this.color.hue,
-                                step: 0,
-                                min: 0,
-                                max: 360
-                            },
-                            on: {
-                                input: function input(val) {
-                                    return _this.color.hue !== val && _this.$emit('update:color', Object(_util__WEBPACK_IMPORTED_MODULE_4__["fromHSVA"])(__assign(__assign({}, _this.color.hsva), {
-                                        h: val
-                                    })));
-                                }
-                            }
-                        });
-                    },
-                    genTrack: function genTrack(options) {
-                        return this.$createElement(_VSlider_VSlider__WEBPACK_IMPORTED_MODULE_1__["default"], __assign(__assign({
-                            class: 'v-color-picker__track'
-                        }, options), {
-                            props: __assign({
-                                disabled: this.disabled
-                            }, options.props)
-                        }));
-                    }
-                },
-                render: function render(h) {
-                    return h('div', {
-                        staticClass: 'v-color-picker__preview',
-                        class: {
-                            'v-color-picker__preview--hide-alpha': this.hideAlpha
-                        }
-                    }, [this.genDot(), this.genSliders()]);
-                }
-            }));
-
-            /***/ }),
-
-        /***/ "./src/components/VColorPicker/VColorPickerSwatches.sass":
-        /*!***************************************************************!*\
-          !*** ./src/components/VColorPicker/VColorPickerSwatches.sass ***!
-          \***************************************************************/
-        /*! no static exports found */
-        /***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-            /***/ }),
-
-        /***/ "./src/components/VColorPicker/VColorPickerSwatches.ts":
-        /*!*************************************************************!*\
-          !*** ./src/components/VColorPicker/VColorPickerSwatches.ts ***!
-          \*************************************************************/
-        /*! exports provided: default */
-        /***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-            "use strict";
-            __webpack_require__.r(__webpack_exports__);
-            /* harmony import */ var _VColorPickerSwatches_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VColorPickerSwatches.sass */ "./src/components/VColorPicker/VColorPickerSwatches.sass");
-            /* harmony import */ var _VColorPickerSwatches_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VColorPickerSwatches_sass__WEBPACK_IMPORTED_MODULE_0__);
-            /* harmony import */ var _VIcon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../VIcon */ "./src/components/VIcon/index.ts");
-            /* harmony import */ var _util_colors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../util/colors */ "./src/util/colors.ts");
-            /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./util */ "./src/components/VColorPicker/util/index.ts");
-            /* harmony import */ var _util_helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../util/helpers */ "./src/util/helpers.ts");
-            /* harmony import */ var _util_mixins__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../util/mixins */ "./src/util/mixins.ts");
-            /* harmony import */ var _mixins_themeable__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../mixins/themeable */ "./src/mixins/themeable/index.ts");
-            /* harmony import */ var _util_colorUtils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../util/colorUtils */ "./src/util/colorUtils.ts");
-// Styles
-            // Components
-
-            // Helpers
-
-
-
-
-
-
-
-
-            function parseDefaultColors(colors) {
-                return Object.keys(colors).map(function (key) {
-                    var color = colors[key];
-                    return color.base ? [color.base, color.darken4, color.darken3, color.darken2, color.darken1, color.lighten1, color.lighten2, color.lighten3, color.lighten4, color.lighten5] : [color.black, color.white, color.transparent];
-                });
-            }
-
-            var white = Object(_util__WEBPACK_IMPORTED_MODULE_3__["fromHex"])('#FFFFFF').rgba;
-            var black = Object(_util__WEBPACK_IMPORTED_MODULE_3__["fromHex"])('#000000').rgba;
-            /* harmony default export */ __webpack_exports__["default"] = (Object(_util_mixins__WEBPACK_IMPORTED_MODULE_5__["default"])(_mixins_themeable__WEBPACK_IMPORTED_MODULE_6__["default"]).extend({
-                name: 'v-color-picker-swatches',
-                props: {
-                    swatches: {
-                        type: Array,
-                        default: function _default() {
-                            return parseDefaultColors(_util_colors__WEBPACK_IMPORTED_MODULE_2__["default"]);
-                        }
-                    },
-                    color: Object,
-                    maxWidth: [Number, String],
-                    maxHeight: [Number, String]
-                },
-                methods: {
-                    genColor: function genColor(color) {
-                        var _this = this;
-
-                        var content = this.$createElement('div', {
-                            style: {
-                                background: color
-                            }
-                        }, [Object(_util_helpers__WEBPACK_IMPORTED_MODULE_4__["deepEqual"])(this.color, Object(_util__WEBPACK_IMPORTED_MODULE_3__["parseColor"])(color, null)) && this.$createElement(_VIcon__WEBPACK_IMPORTED_MODULE_1__["default"], {
-                            props: {
-                                small: true,
-                                dark: Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_7__["contrastRatio"])(this.color.rgba, white) > 2 && this.color.alpha > 0.5,
-                                light: Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_7__["contrastRatio"])(this.color.rgba, black) > 2 && this.color.alpha > 0.5
-                            }
-                        }, '$success')]);
-                        return this.$createElement('div', {
-                            staticClass: 'v-color-picker__color',
-                            on: {
-                                // TODO: Less hacky way of catching transparent
-                                click: function click() {
-                                    return _this.$emit('update:color', Object(_util__WEBPACK_IMPORTED_MODULE_3__["fromHex"])(color === 'transparent' ? '#00000000' : color));
-                                }
-                            }
-                        }, [content]);
-                    },
-                    genSwatches: function genSwatches() {
-                        var _this = this;
-
-                        return this.swatches.map(function (swatch) {
-                            var colors = swatch.map(_this.genColor);
-                            return _this.$createElement('div', {
-                                staticClass: 'v-color-picker__swatch'
-                            }, colors);
-                        });
-                    }
-                },
-                render: function render(h) {
-                    return h('div', {
-                        staticClass: 'v-color-picker__swatches',
-                        style: {
-                            maxWidth: Object(_util_helpers__WEBPACK_IMPORTED_MODULE_4__["convertToUnit"])(this.maxWidth),
-                            maxHeight: Object(_util_helpers__WEBPACK_IMPORTED_MODULE_4__["convertToUnit"])(this.maxHeight)
-                        }
-                    }, [this.$createElement('div', this.genSwatches())]);
-                }
-            }));
-
-            /***/ }),
-
-        /***/ "./src/components/VColorPicker/index.ts":
-        /*!**********************************************!*\
-          !*** ./src/components/VColorPicker/index.ts ***!
-          \**********************************************/
-        /*! exports provided: VColorPicker, VColorPickerSwatches, VColorPickerCanvas, default */
-        /***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-            "use strict";
-            __webpack_require__.r(__webpack_exports__);
-            /* harmony import */ var _VColorPicker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VColorPicker */ "./src/components/VColorPicker/VColorPicker.ts");
-            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VColorPicker", function() { return _VColorPicker__WEBPACK_IMPORTED_MODULE_0__["default"]; });
-
-            /* harmony import */ var _VColorPickerSwatches__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VColorPickerSwatches */ "./src/components/VColorPicker/VColorPickerSwatches.ts");
-            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VColorPickerSwatches", function() { return _VColorPickerSwatches__WEBPACK_IMPORTED_MODULE_1__["default"]; });
-
-            /* harmony import */ var _VColorPickerCanvas__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./VColorPickerCanvas */ "./src/components/VColorPicker/VColorPickerCanvas.ts");
-            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VColorPickerCanvas", function() { return _VColorPickerCanvas__WEBPACK_IMPORTED_MODULE_2__["default"]; });
-
-
-
-
-
-            /* harmony default export */ __webpack_exports__["default"] = (_VColorPicker__WEBPACK_IMPORTED_MODULE_0__["default"]);
-
-            /***/ }),
-
-        /***/ "./src/components/VColorPicker/util/index.ts":
-        /*!***************************************************!*\
-          !*** ./src/components/VColorPicker/util/index.ts ***!
-          \***************************************************/
-        /*! exports provided: fromHSVA, fromHSLA, fromRGBA, fromHexa, fromHex, parseColor, extractColor, hasAlpha */
-        /***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-            "use strict";
-            __webpack_require__.r(__webpack_exports__);
-            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromHSVA", function() { return fromHSVA; });
-            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromHSLA", function() { return fromHSLA; });
-            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromRGBA", function() { return fromRGBA; });
-            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromHexa", function() { return fromHexa; });
-            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromHex", function() { return fromHex; });
-            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseColor", function() { return parseColor; });
-            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "extractColor", function() { return extractColor; });
-            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hasAlpha", function() { return hasAlpha; });
-            /* harmony import */ var _util_colorUtils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../util/colorUtils */ "./src/util/colorUtils.ts");
-            function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-            var __assign = undefined && undefined.__assign || function () {
-                __assign = Object.assign || function (t) {
-                    for (var s, i = 1, n = arguments.length; i < n; i++) {
-                        s = arguments[i];
-
-                        for (var p in s) {
-                            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
-                        }
-                    }
-
-                    return t;
-                };
-
-                return __assign.apply(this, arguments);
-            };
-
-            var __rest = undefined && undefined.__rest || function (s, e) {
-                var t = {};
-
-                for (var p in s) {
-                    if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
-                }
-
-                if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-                    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
-                }
-                return t;
-            }; // Utilities
-
-
-
-            function fromHSVA(hsva) {
-                hsva = __assign({}, hsva);
-                var hexa = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSVAtoHex"])(hsva);
-                var hsla = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSVAtoHSLA"])(hsva);
-                var rgba = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSVAtoRGBA"])(hsva);
-                return {
-                    alpha: hsva.a,
-                    hex: hexa.substr(0, 7),
-                    hexa: hexa,
-                    hsla: hsla,
-                    hsva: hsva,
-                    hue: hsva.h,
-                    rgba: rgba
-                };
-            }
-            function fromHSLA(hsla) {
-                var hsva = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSLAtoHSVA"])(hsla);
-                var hexa = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSVAtoHex"])(hsva);
-                var rgba = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSVAtoRGBA"])(hsva);
-                return {
-                    alpha: hsva.a,
-                    hex: hexa.substr(0, 7),
-                    hexa: hexa,
-                    hsla: hsla,
-                    hsva: hsva,
-                    hue: hsva.h,
-                    rgba: rgba
-                };
-            }
-            function fromRGBA(rgba) {
-                var hsva = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["RGBAtoHSVA"])(rgba);
-                var hexa = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["RGBAtoHex"])(rgba);
-                var hsla = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSVAtoHSLA"])(hsva);
-                return {
-                    alpha: hsva.a,
-                    hex: hexa.substr(0, 7),
-                    hexa: hexa,
-                    hsla: hsla,
-                    hsva: hsva,
-                    hue: hsva.h,
-                    rgba: rgba
-                };
-            }
-            function fromHexa(hexa) {
-                var hsva = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HexToHSVA"])(hexa);
-                var hsla = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSVAtoHSLA"])(hsva);
-                var rgba = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSVAtoRGBA"])(hsva);
-                return {
-                    alpha: hsva.a,
-                    hex: hexa.substr(0, 7),
-                    hexa: hexa,
-                    hsla: hsla,
-                    hsva: hsva,
-                    hue: hsva.h,
-                    rgba: rgba
-                };
-            }
-            function fromHex(hex) {
-                return fromHexa(Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["parseHex"])(hex));
-            }
-
-            function has(obj, key) {
-                return key.every(function (k) {
-                    return obj.hasOwnProperty(k);
-                });
-            }
-
-            function parseColor(color, oldColor) {
-                if (!color) return fromRGBA({
-                    r: 255,
-                    g: 0,
-                    b: 0,
-                    a: 1
-                });
-
-                if (typeof color === 'string') {
-                    if (color === 'transparent') return fromHexa('#00000000');
-                    var hex = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["parseHex"])(color);
-                    if (oldColor && hex === oldColor.hexa) return oldColor;else return fromHexa(hex);
-                }
-
-                if (_typeof(color) === 'object') {
-                    if (color.hasOwnProperty('alpha')) return color;
-                    var a = color.hasOwnProperty('a') ? parseFloat(color.a) : 1;
-
-                    if (has(color, ['r', 'g', 'b'])) {
-                        if (oldColor && color === oldColor.rgba) return oldColor;else return fromRGBA(__assign(__assign({}, color), {
-                            a: a
-                        }));
-                    } else if (has(color, ['h', 's', 'l'])) {
-                        if (oldColor && color === oldColor.hsla) return oldColor;else return fromHSLA(__assign(__assign({}, color), {
-                            a: a
-                        }));
-                    } else if (has(color, ['h', 's', 'v'])) {
-                        if (oldColor && color === oldColor.hsva) return oldColor;else return fromHSVA(__assign(__assign({}, color), {
-                            a: a
-                        }));
-                    }
-                }
-
-                return fromRGBA({
-                    r: 255,
-                    g: 0,
-                    b: 0,
-                    a: 1
-                });
-            }
-
-            function stripAlpha(color, stripAlpha) {
-                if (stripAlpha) {
-                    var a = color.a,
-                        rest = __rest(color, ["a"]);
-
-                    return rest;
-                }
-
-                return color;
-            }
-
-            function extractColor(color, input) {
-                if (input == null) return color;
-
-                if (typeof input === 'string') {
-                    return input.length === 7 ? color.hex : color.hexa;
-                }
-
-                if (_typeof(input) === 'object') {
-                    var shouldStrip = typeof input.a === 'number' && input.a === 0 ? !!input.a : !input.a;
-                    if (has(input, ['r', 'g', 'b'])) return stripAlpha(color.rgba, shouldStrip);else if (has(input, ['h', 's', 'l'])) return stripAlpha(color.hsla, shouldStrip);else if (has(input, ['h', 's', 'v'])) return stripAlpha(color.hsva, shouldStrip);
-                }
-
-                return color;
-            }
-            function hasAlpha(color) {
-                if (!color) return false;
-
-                if (typeof color === 'string') {
-                    return color.length > 7;
-                }
-
-                if (_typeof(color) === 'object') {
-                    return has(color, ['a']) || has(color, ['alpha']);
-                }
-
-                return false;
-            }
 
             /***/ }),
 
@@ -21743,7 +22246,7 @@
                                 _this.isActive = true;
                                 _this.activeThumb = index;
 
-                                _this.onSliderMouseDown(e);
+                                _this.onThumbMouseDown(e);
                             };
 
                             var onFocus = function onFocus(e) {
@@ -21766,37 +22269,6 @@
                             return _this.genThumbContainer(value, valueWidth, isActive, isFocused, onDrag, onFocus, onBlur, "thumb_" + index);
                         })];
                     },
-                    reevaluateSelected: function reevaluateSelected(value) {
-                        this.activeThumb = this.getIndexOfClosestValue(this.internalValue, value);
-                        var refName = "thumb_" + this.activeThumb;
-                        var thumbRef = this.$refs[refName];
-                        thumbRef.focus();
-                    },
-                    onSliderMouseDown: function onSliderMouseDown(e) {
-                        var value = this.parseMouseMove(e).value;
-                        this.reevaluateSelected(value);
-                        this.oldValue = this.internalValue;
-                        this.keyPressed = 2;
-                        this.isActive = true;
-                        var mouseUpOptions = _util_helpers__WEBPACK_IMPORTED_MODULE_2__["passiveSupported"] ? {
-                            passive: true,
-                            capture: true
-                        } : true;
-                        var mouseMoveOptions = _util_helpers__WEBPACK_IMPORTED_MODULE_2__["passiveSupported"] ? {
-                            passive: true
-                        } : false;
-
-                        if ('touches' in e) {
-                            this.app.addEventListener('touchmove', this.onMouseMove, mouseMoveOptions);
-                            Object(_util_helpers__WEBPACK_IMPORTED_MODULE_2__["addOnceEventListener"])(this.app, 'touchend', this.onSliderMouseUp, mouseUpOptions);
-                        } else {
-                            this.onMouseMove(e);
-                            this.app.addEventListener('mousemove', this.onMouseMove, mouseMoveOptions);
-                            Object(_util_helpers__WEBPACK_IMPORTED_MODULE_2__["addOnceEventListener"])(this.app, 'mouseup', this.onSliderMouseUp, mouseUpOptions);
-                        }
-
-                        this.$emit('start', this.internalValue);
-                    },
                     onSliderClick: function onSliderClick(e) {
                         if (!this.isActive) {
                             if (this.noClick) {
@@ -21809,7 +22281,10 @@
                                 isInsideTrack = _a.isInsideTrack;
 
                             if (isInsideTrack) {
-                                this.reevaluateSelected(value);
+                                this.activeThumb = this.getIndexOfClosestValue(this.internalValue, value);
+                                var refName = "thumb_" + this.activeThumb;
+                                var thumbRef = this.$refs[refName];
+                                thumbRef.focus();
                             }
 
                             this.setInternalValue(value);
@@ -22559,7 +23034,6 @@
                         this.isMenuActive = false;
                         this.isFocused = false;
                         this.selectedIndex = -1;
-                        this.setMenuIndex(-1);
                     },
 
                     /** @public */
@@ -23937,17 +24411,17 @@
                             // This matches the default 2.2 behavior
 
                             case true:
-                                return this.isOverflowing || Math.abs(this.scrollOffset) > 0;
+                                return this.isOverflowing;
                             // Always show on mobile
 
                             case 'mobile':
-                                return this.isMobile || this.isOverflowing || Math.abs(this.scrollOffset) > 0;
+                                return this.isMobile || this.isOverflowing;
                             // https://material.io/components/tabs#scrollable-tabs
                             // Always show arrows when
                             // overflowed on desktop
 
                             default:
-                                return !this.isMobile && (this.isOverflowing || Math.abs(this.scrollOffset) > 0);
+                                return !this.isMobile && this.isOverflowing;
                         }
                     },
                     hasNext: function hasNext() {
@@ -24128,15 +24602,6 @@
                     scrollIntoView
                     /* istanbul ignore next */
                         : function scrollIntoView() {
-                        if (!this.selectedItem && this.items.length) {
-                            var lastItemPosition = this.items[this.items.length - 1].$el.getBoundingClientRect();
-                            var wrapperPosition = this.$refs.wrapper.getBoundingClientRect();
-
-                            if (this.$vuetify.rtl && wrapperPosition.right < lastItemPosition.right || !this.$vuetify.rtl && wrapperPosition.left > lastItemPosition.left) {
-                                this.scrollTo('prev');
-                            }
-                        }
-
                         if (!this.selectedItem) {
                             return;
                         }
@@ -24536,13 +25001,12 @@
                                 value: this.onBlur
                             }],
                             on: {
-                                click: this.onSliderClick,
-                                mousedown: this.onSliderMouseDown
+                                click: this.onSliderClick
                             }
                         }, this.genChildren());
                     },
                     genChildren: function genChildren() {
-                        return [this.genInput(), this.genTrackContainer(), this.genSteps(), this.genThumbContainer(this.internalValue, this.inputWidth, this.isActive, this.isFocused, this.onSliderMouseDown, this.onFocus, this.onBlur)];
+                        return [this.genInput(), this.genTrackContainer(), this.genSteps(), this.genThumbContainer(this.internalValue, this.inputWidth, this.isActive, this.isFocused, this.onThumbMouseDown, this.onFocus, this.onBlur)];
                     },
                     genInput: function genInput() {
                         return this.$createElement('input', {
@@ -24689,7 +25153,7 @@
                             transition: this.trackTransition
                         }, _a[direction] = value + "%", _a;
                     },
-                    onSliderMouseDown: function onSliderMouseDown(e) {
+                    onThumbMouseDown: function onThumbMouseDown(e) {
                         e.preventDefault();
                         this.oldValue = this.internalValue;
                         this.keyPressed = 2;
@@ -24706,7 +25170,6 @@
                             this.app.addEventListener('touchmove', this.onMouseMove, mouseMoveOptions);
                             Object(_util_helpers__WEBPACK_IMPORTED_MODULE_6__["addOnceEventListener"])(this.app, 'touchend', this.onSliderMouseUp, mouseUpOptions);
                         } else {
-                            this.onMouseMove(e);
                             this.app.addEventListener('mousemove', this.onMouseMove, mouseMoveOptions);
                             Object(_util_helpers__WEBPACK_IMPORTED_MODULE_6__["addOnceEventListener"])(this.app, 'mouseup', this.onSliderMouseUp, mouseUpOptions);
                         }
@@ -31562,11 +32025,24 @@
             /* harmony import */ var _VBanner__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./VBanner */ "./src/components/VBanner/index.ts");
             /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBanner", function() { return _VBanner__WEBPACK_IMPORTED_MODULE_6__["VBanner"]; });
 
+            /* harmony import */ var _VBottomNavigation__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./VBottomNavigation */ "./src/components/VBottomNavigation/index.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBottomNavigation", function() { return _VBottomNavigation__WEBPACK_IMPORTED_MODULE_7__["VBottomNavigation"]; });
+
             /* harmony import */ var _VBottomSheet__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./VBottomSheet */ "./src/components/VBottomSheet/index.ts");
             /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBottomSheet", function() { return _VBottomSheet__WEBPACK_IMPORTED_MODULE_8__["VBottomSheet"]; });
 
+            /* harmony import */ var _VBreadcrumbs__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./VBreadcrumbs */ "./src/components/VBreadcrumbs/index.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBreadcrumbs", function() { return _VBreadcrumbs__WEBPACK_IMPORTED_MODULE_9__["VBreadcrumbs"]; });
+
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBreadcrumbsItem", function() { return _VBreadcrumbs__WEBPACK_IMPORTED_MODULE_9__["VBreadcrumbsItem"]; });
+
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBreadcrumbsDivider", function() { return _VBreadcrumbs__WEBPACK_IMPORTED_MODULE_9__["VBreadcrumbsDivider"]; });
+
             /* harmony import */ var _VBtn__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./VBtn */ "./src/components/VBtn/index.ts");
             /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBtn", function() { return _VBtn__WEBPACK_IMPORTED_MODULE_10__["VBtn"]; });
+
+            /* harmony import */ var _VBtnToggle__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./VBtnToggle */ "./src/components/VBtnToggle/index.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBtnToggle", function() { return _VBtnToggle__WEBPACK_IMPORTED_MODULE_11__["VBtnToggle"]; });
 
             /* harmony import */ var _VCalendar__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./VCalendar */ "./src/components/VCalendar/index.ts");
             /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VCalendar", function() { return _VCalendar__WEBPACK_IMPORTED_MODULE_12__["VCalendar"]; });
@@ -33287,7 +33763,7 @@
 
                     Vuetify.install = _install__WEBPACK_IMPORTED_MODULE_0__["install"];
                     Vuetify.installed = false;
-                    Vuetify.version = "2.4.2";
+                    Vuetify.version = "2.4.0";
                     Vuetify.config = {
                         silent: false
                     };
@@ -33435,6 +33911,735 @@
 
             /***/ }),
 
+        /***/ "./src/locale/af.ts":
+        /*!**************************!*\
+  !*** ./src/locale/af.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'badge',
+                close: 'Close',
+                dataIterator: {
+                    noResultsText: 'Geen ooreenstemmende resultate is gevind nie',
+                    loadingText: 'Loading item...'
+                },
+                dataTable: {
+                    itemsPerPageText: 'Rye per bladsy:',
+                    ariaLabel: {
+                        sortDescending: 'Sorted descending.',
+                        sortAscending: 'Sorted ascending..',
+                        sortNone: 'Not sorted.',
+                        activateNone: 'Activate to remove sorting.',
+                        activateDescending: 'Activate to sort descending.',
+                        activateAscending: 'Activate to sort ascending.'
+                    },
+                    sortBy: 'Sort by'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'Aantal per bladsy:',
+                    itemsPerPageAll: 'Alles',
+                    nextPage: 'Volgende bladsy',
+                    prevPage: 'Vorige bladsy',
+                    firstPage: 'Eerste bladsy',
+                    lastPage: 'Laaste bladsy',
+                    pageText: '{0}-{1} van {2}'
+                },
+                datePicker: {
+                    itemsSelected: '{0} gekies',
+                    nextMonthAriaLabel: 'Volgende maand',
+                    nextYearAriaLabel: 'Volgende jaar',
+                    prevMonthAriaLabel: 'Vorige maand',
+                    prevYearAriaLabel: 'Vorige jaar'
+                },
+                noDataText: 'Geen data is beskikbaar nie',
+                carousel: {
+                    prev: 'Vorige visuele',
+                    next: 'Volgende visuele',
+                    ariaLabel: {
+                        delimiter: 'Carousel slide {0} of {1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: '{0} meer'
+                },
+                fileInput: {
+                    counter: '{0} files',
+                    counterSize: '{0} files ({1} in total)'
+                },
+                timePicker: {
+                    am: 'AM',
+                    pm: 'PM'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'Paginasie-navigasie',
+                        next: 'Volgende bladsy',
+                        previous: 'Vorige bladsy',
+                        page: 'Gaan na bladsy {0}',
+                        currentPage: 'Huidige bladsy, Bladsy {0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/ar.ts":
+        /*!**************************!*\
+  !*** ./src/locale/ar.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'شارة',
+                close: 'إغلاق',
+                dataIterator: {
+                    noResultsText: 'لا توجد سجلات مطابقة',
+                    loadingText: 'تحميل العنصر...'
+                },
+                dataTable: {
+                    itemsPerPageText: 'الصفوف لكل صفحة:',
+                    ariaLabel: {
+                        sortDescending: 'مفروز تنازلي. تنشيط لإزالة الفرز.',
+                        sortAscending: 'مفروز تصاعدي. تنشيط للفرز التنازلي.',
+                        sortNone: 'غير مفروزة. تفعيل لفرز تصاعدي.',
+                        activateNone: 'Activate to remove sorting.',
+                        activateDescending: 'Activate to sort descending.',
+                        activateAscending: 'Activate to sort ascending.'
+                    },
+                    sortBy: 'مفروزة حسب'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'العناصر لكل صفحة:',
+                    itemsPerPageAll: 'الكل',
+                    nextPage: 'الصفحة التالية',
+                    prevPage: 'الصفحة السابقة',
+                    firstPage: 'الصفحة الأولى',
+                    lastPage: 'الصفحة الأخيرة',
+                    pageText: '{0}-{1} من {2}'
+                },
+                datePicker: {
+                    itemsSelected: '{0} مختارة',
+                    nextMonthAriaLabel: 'الشهر القادم',
+                    nextYearAriaLabel: 'العام القادم',
+                    prevMonthAriaLabel: 'الشهر الماضى',
+                    prevYearAriaLabel: 'السنة الماضية'
+                },
+                noDataText: 'لا توجد بيانات متاحة',
+                carousel: {
+                    prev: 'البصري السابق',
+                    next: 'البصري التالي',
+                    ariaLabel: {
+                        delimiter: 'Carousel slide {0} of {1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: '{0} أكثر'
+                },
+                fileInput: {
+                    counter: '{0} ملفات',
+                    counterSize: '{0} ملفات ({1} في المجموع)'
+                },
+                timePicker: {
+                    am: 'صباحاً',
+                    pm: 'مساءً'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'ترقيم الصفحات الملاحة',
+                        next: 'الصفحة التالية',
+                        previous: 'الصفحة السابقة',
+                        page: '{0} انتقل إلى صفحة',
+                        currentPage: '{0} الصفحة الحالية ، الصفحة'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/az.ts":
+        /*!**************************!*\
+  !*** ./src/locale/az.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'nişan',
+                close: 'Bağla',
+                dataIterator: {
+                    noResultsText: 'Uyğun məlumat tapılmadı',
+                    loadingText: 'Yüklənir... Zəhmət olmasa, gözləyin.'
+                },
+                dataTable: {
+                    itemsPerPageText: 'Səhifə başı sətir sayı:',
+                    ariaLabel: {
+                        sortDescending: 'Azalan sıra ilə düzülmüş.',
+                        sortAscending: 'Artan sıra ilə düzülmüş.',
+                        sortNone: 'Sıralanmamışdır. ',
+                        activateNone: 'Sıralamanı yığışdır.',
+                        activateDescending: 'Azalan sıra ilə düz.',
+                        activateAscending: 'Artan sıra ilə düz.'
+                    },
+                    sortBy: 'Sırala'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'Səhifə başı sətir sayı:',
+                    itemsPerPageAll: 'Hamısı',
+                    nextPage: 'Növbəti səhifə',
+                    prevPage: 'Əvvəlki səhifə',
+                    firstPage: 'İlk səhifə',
+                    lastPage: 'Son səhifə',
+                    pageText: '{0} - {1} arası, Cəmi: {2} qeydiyyat'
+                },
+                datePicker: {
+                    itemsSelected: '{0} element seçildi',
+                    nextMonthAriaLabel: 'Növbəti ay',
+                    nextYearAriaLabel: 'Növbəti yıl',
+                    prevMonthAriaLabel: 'Keçən ay',
+                    prevYearAriaLabel: 'Keçən yıl'
+                },
+                noDataText: 'Bu görüntüdə məlumat yoxdur.',
+                carousel: {
+                    prev: 'Əvvəlki görüntü',
+                    next: 'Növbəti görüntü',
+                    ariaLabel: {
+                        delimiter: 'Galereya səhifə {0} / {1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: '{0} ədad daha'
+                },
+                fileInput: {
+                    counter: '{0} fayl',
+                    counterSize: '{0} fayl (cəmi {1})'
+                },
+                timePicker: {
+                    am: 'AM',
+                    pm: 'PM'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'Səhifələmə Naviqasiyası',
+                        next: 'Növbəti səhifə',
+                        previous: 'Əvəvlki səhifə',
+                        page: 'Səhifəyə get {0}',
+                        currentPage: 'Cari səhifə, Səhifə {0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/bg.ts":
+        /*!**************************!*\
+  !*** ./src/locale/bg.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'Значка',
+                close: 'Затвори',
+                dataIterator: {
+                    noResultsText: 'Не са намерени записи',
+                    loadingText: 'Зареждане на елементи...'
+                },
+                dataTable: {
+                    itemsPerPageText: 'Редове на страница:',
+                    ariaLabel: {
+                        sortDescending: 'Подреди в намаляващ ред.',
+                        sortAscending: 'Подреди в нарастващ ред.',
+                        sortNone: 'Без подредба.',
+                        activateNone: 'Активирай за премахване на подредбата.',
+                        activateDescending: 'Активирай за подредба в намаляващ ред.',
+                        activateAscending: 'Активирай за подредба в нарастващ ред.'
+                    },
+                    sortBy: 'Сортирай по'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'Елементи на страница:',
+                    itemsPerPageAll: 'Всички',
+                    nextPage: 'Следваща страница',
+                    prevPage: 'Предишна страница',
+                    firstPage: 'Първа страница',
+                    lastPage: 'Последна страница',
+                    pageText: '{0}-{1} от {2}'
+                },
+                datePicker: {
+                    itemsSelected: '{0} избрани',
+                    nextMonthAriaLabel: 'Следващ месец',
+                    nextYearAriaLabel: 'Следващата година',
+                    prevMonthAriaLabel: 'Предишен месец',
+                    prevYearAriaLabel: 'Предишна година'
+                },
+                noDataText: 'Няма налични данни',
+                carousel: {
+                    prev: 'Предишна визуализация',
+                    next: 'Следваща визуализация',
+                    ariaLabel: {
+                        delimiter: 'Кадър {0} от {1} на въртележката'
+                    }
+                },
+                calendar: {
+                    moreEvents: 'Още {0}'
+                },
+                fileInput: {
+                    counter: '{0} файла',
+                    counterSize: '{0} файла ({1} общо)'
+                },
+                timePicker: {
+                    am: 'AM',
+                    pm: 'PM'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'Странициране',
+                        next: 'Следваща страница',
+                        previous: 'Предишна страница',
+                        page: 'Отиди на страница {0}',
+                        currentPage: 'Текуща страница, Страница {0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/ca.ts":
+        /*!**************************!*\
+  !*** ./src/locale/ca.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'Insígnia',
+                close: 'Tancar',
+                dataIterator: {
+                    noResultsText: 'Sense dades per mostrar',
+                    loadingText: 'Carregant...'
+                },
+                dataTable: {
+                    itemsPerPageText: 'Files per pàgina:',
+                    ariaLabel: {
+                        sortDescending: 'Ordre descendent. Premi per treure la ordenació.',
+                        sortAscending: 'Ordre ascendent. Premi per ordenar descendent.',
+                        sortNone: 'Sense ordenar. Premi per ordenar ascendent.',
+                        activateNone: 'Activate to remove sorting.',
+                        activateDescending: 'Activate to sort descending.',
+                        activateAscending: 'Activate to sort ascending.'
+                    },
+                    sortBy: 'Ordenat per'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'Elements per pàgina:',
+                    itemsPerPageAll: 'Tot',
+                    nextPage: 'Pàgina següent',
+                    prevPage: 'Pàgina anterior',
+                    firstPage: 'Primera pàgina',
+                    lastPage: 'Última pàgina',
+                    pageText: '{0}-{1} de {2}'
+                },
+                datePicker: {
+                    itemsSelected: '{0} seleccionats',
+                    nextMonthAriaLabel: 'El mes que ve',
+                    nextYearAriaLabel: "L'any que ve",
+                    prevMonthAriaLabel: 'Mes anterior',
+                    prevYearAriaLabel: 'Any anterior'
+                },
+                noDataText: 'Sense dades',
+                carousel: {
+                    prev: 'Visualització prèvia',
+                    next: 'Visualització següent',
+                    ariaLabel: {
+                        delimiter: 'Diapositiva {0} of {1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: '{0} més'
+                },
+                fileInput: {
+                    counter: '{0} fitxers',
+                    counterSize: '{0} fitxers ({1} en total)'
+                },
+                timePicker: {
+                    am: 'AM',
+                    pm: 'PM'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'Navegació de la pàgina',
+                        next: 'Pàgina següent',
+                        previous: 'Pàgina anterior',
+                        page: 'Ves a la pàgina {0}',
+                        currentPage: 'Pàgina actual, pàgina {0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/ckb.ts":
+        /*!***************************!*\
+  !*** ./src/locale/ckb.ts ***!
+  \***************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'باج',
+                close: 'داخستن',
+                dataIterator: {
+                    noResultsText: 'هیچ تۆمارێکی هاوتا نەدۆزرایەوە',
+                    loadingText: 'بارکردنی ئایتمەکان...'
+                },
+                dataTable: {
+                    itemsPerPageText: 'ڕیزەکان بۆ هەر پەڕەیەک:',
+                    ariaLabel: {
+                        sortDescending: '.سەر بەرەو خوار ڕیزکراوە',
+                        sortAscending: '.سەر بەرەو ژوور ڕیزکراوە',
+                        sortNone: 'ڕیزنەکراوە.',
+                        activateNone: 'چالاککردن بۆ لابردنی ڕیزکردن.',
+                        activateDescending: 'چالاککردن بۆ ڕیزکردنی سەربەرەوخوار.',
+                        activateAscending: 'چالاککردن بۆ ڕیزکردنی سەر بەرەو ژوور.'
+                    },
+                    sortBy: 'ڕیزکردن بەپێی'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'ئایتمەکان بۆ هەر پەڕەیەک:',
+                    itemsPerPageAll: 'هەمووی',
+                    nextPage: 'پەڕەی دواتر',
+                    prevPage: 'پەڕەی پێشوو',
+                    firstPage: 'پەڕەی یەکەم',
+                    lastPage: 'پەڕەی کۆتایی',
+                    pageText: '{0}-{1} لە {2}'
+                },
+                datePicker: {
+                    itemsSelected: '{0} دەسنیشانکراوە',
+                    nextMonthAriaLabel: 'مانگی داهاتوو',
+                    nextYearAriaLabel: 'ساڵی داهاتوو',
+                    prevMonthAriaLabel: 'مانگی پێشوو',
+                    prevYearAriaLabel: 'ساڵی پێشوو'
+                },
+                noDataText: 'هیچ داتایەک بەردەست نیە',
+                carousel: {
+                    prev: 'بینراوی پێشوو',
+                    next: 'بینراوی داهاتوو',
+                    ariaLabel: {
+                        delimiter: 'سلایدی کارۆسێل {0} لە {1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: '{0} زیاتر'
+                },
+                fileInput: {
+                    counter: '{0} فایل',
+                    counterSize: '{0} فایل ({1} لە کۆی گشتی)'
+                },
+                timePicker: {
+                    am: 'پێش نیوەڕۆژ',
+                    pm: 'دوای نیوەڕۆژ'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'ڕێنیشاندەری پەڕەگۆڕکێ',
+                        next: 'پەڕەی دواتر',
+                        previous: 'پەڕەی پێشوو',
+                        page: 'بڕۆ بۆ پەڕەی {0}',
+                        currentPage: 'پەڕەی ئێستا، پەڕە{0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/cs.ts":
+        /*!**************************!*\
+  !*** ./src/locale/cs.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'Odznak',
+                close: 'Zavřít',
+                dataIterator: {
+                    noResultsText: 'Nenalezeny žádné záznamy',
+                    loadingText: 'Načítám položky...'
+                },
+                dataTable: {
+                    itemsPerPageText: 'Řádků na stránku:',
+                    ariaLabel: {
+                        sortDescending: 'Řazeno sestupně.',
+                        sortAscending: 'Řazeno vzestupně.',
+                        sortNone: 'Neseřazeno.',
+                        activateNone: 'Aktivováním vypnete řazení.',
+                        activateDescending: 'Aktivováním se bude řadit sestupně.',
+                        activateAscending: 'Aktivováním se bude řadit vzestupně.'
+                    },
+                    sortBy: 'Řadit dle'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'Položek na stránku:',
+                    itemsPerPageAll: 'Vše',
+                    nextPage: 'Další strana',
+                    prevPage: 'Předchozí strana',
+                    firstPage: 'První strana',
+                    lastPage: 'Poslední strana',
+                    pageText: '{0}-{1} z {2}'
+                },
+                datePicker: {
+                    itemsSelected: '{0} vybráno',
+                    nextMonthAriaLabel: 'Příští měsíc',
+                    nextYearAriaLabel: 'Příští rok',
+                    prevMonthAriaLabel: 'Předchozí měsíc',
+                    prevYearAriaLabel: 'Předchozí rok'
+                },
+                noDataText: 'Nejsou dostupná žádná data',
+                carousel: {
+                    prev: 'Předchozí obrázek',
+                    next: 'Další obrázek',
+                    ariaLabel: {
+                        delimiter: 'Carousel slide {0} of {1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: '{0} dalších'
+                },
+                fileInput: {
+                    counter: '{0} souborů',
+                    counterSize: '{0} souborů ({1} celkem)'
+                },
+                timePicker: {
+                    am: 'AM',
+                    pm: 'PM'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'Navigace stránkování',
+                        next: 'Další strana',
+                        previous: 'Předchozí strana',
+                        page: 'Přejít na stránku {0}',
+                        currentPage: 'Aktuální stránka, stránka {0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/de.ts":
+        /*!**************************!*\
+  !*** ./src/locale/de.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'Abzeichen',
+                close: 'Schließen',
+                dataIterator: {
+                    noResultsText: 'Keine Elemente gefunden',
+                    loadingText: 'Lade Elemente...'
+                },
+                dataTable: {
+                    itemsPerPageText: 'Zeilen pro Seite:',
+                    ariaLabel: {
+                        sortDescending: 'Absteigend sortiert.',
+                        sortAscending: 'Aufsteigend sortiert.',
+                        sortNone: 'Nicht sortiert.',
+                        activateNone: 'Aktivieren um Sortierung zu entfernen.',
+                        activateDescending: 'Aktivieren um absteigend zu sortieren.',
+                        activateAscending: 'Aktivieren um aufsteigend zu sortieren.'
+                    },
+                    sortBy: 'Sortiere nach'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'Elemente pro Seite:',
+                    itemsPerPageAll: 'Alle',
+                    nextPage: 'Nächste Seite',
+                    prevPage: 'Vorherige Seite',
+                    firstPage: 'Erste Seite',
+                    lastPage: 'Letzte Seite',
+                    pageText: '{0}-{1} von {2}'
+                },
+                datePicker: {
+                    itemsSelected: '{0} ausgewählt',
+                    nextMonthAriaLabel: 'Nächsten Monat',
+                    nextYearAriaLabel: 'Nächstes Jahr',
+                    prevMonthAriaLabel: 'Vorheriger Monat',
+                    prevYearAriaLabel: 'Vorheriges Jahr'
+                },
+                noDataText: 'Keine Daten vorhanden',
+                carousel: {
+                    prev: 'Vorheriges Bild',
+                    next: 'Nächstes Bild',
+                    ariaLabel: {
+                        delimiter: 'Element {0} von {1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: '{0} mehr'
+                },
+                fileInput: {
+                    counter: '{0} Dateien',
+                    counterSize: '{0} Dateien ({1} gesamt)'
+                },
+                timePicker: {
+                    am: 'AM',
+                    pm: 'PM'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'Seitennavigation',
+                        next: 'Nächste Seite',
+                        previous: 'Vorherige Seite',
+                        page: 'Gehe zu Seite {0}',
+                        currentPage: 'Aktuelle Seite, Seite {0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/el.ts":
+        /*!**************************!*\
+  !*** ./src/locale/el.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'Σήμα',
+                close: 'Close',
+                dataIterator: {
+                    noResultsText: 'Δε βρέθηκαν αποτελέσματα',
+                    loadingText: 'Loading item...'
+                },
+                dataTable: {
+                    itemsPerPageText: 'Γραμμές ανά σελίδα:',
+                    ariaLabel: {
+                        sortDescending: 'Sorted descending.',
+                        sortAscending: 'Sorted ascending.',
+                        sortNone: 'Not sorted.',
+                        activateNone: 'Activate to remove sorting.',
+                        activateDescending: 'Activate to sort descending.',
+                        activateAscending: 'Activate to sort ascending.'
+                    },
+                    sortBy: 'Sort by'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'Αντικείμενα ανά σελίδα:',
+                    itemsPerPageAll: 'Όλα',
+                    nextPage: 'Επόμενη σελίδα',
+                    prevPage: 'Προηγούμενη σελίδα',
+                    firstPage: 'Πρώτη σελίδα',
+                    lastPage: 'Τελευταία σελίδα',
+                    pageText: '{0}-{1} από {2}'
+                },
+                datePicker: {
+                    itemsSelected: '{0} επιλεγμένα',
+                    nextMonthAriaLabel: 'Τον επόμενο μήνα',
+                    nextYearAriaLabel: 'Του χρόνου',
+                    prevMonthAriaLabel: 'Προηγούμενος μήνας',
+                    prevYearAriaLabel: 'Προηγούμενο έτος'
+                },
+                noDataText: 'Χωρίς δεδομένα',
+                carousel: {
+                    prev: 'הקודם חזותי',
+                    next: 'הבא חזותי',
+                    ariaLabel: {
+                        delimiter: 'Carousel slide {0} of {1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: '{0} ακόμη'
+                },
+                fileInput: {
+                    counter: '{0} files',
+                    counterSize: '{0} files ({1} in total)'
+                },
+                timePicker: {
+                    am: 'AM',
+                    pm: 'PM'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'Πλοήγηση με προορισμούς',
+                        next: 'Επόμενη σελίδα',
+                        previous: 'Προηγούμενη σελίδα',
+                        page: 'Πήγαινε στην σελίδα {0}',
+                        currentPage: 'Τρέχουσα σελίδα, σελίδα {0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
         /***/ "./src/locale/en.ts":
         /*!**************************!*\
   !*** ./src/locale/en.ts ***!
@@ -33516,6 +34721,735 @@
 
             /***/ }),
 
+        /***/ "./src/locale/es.ts":
+        /*!**************************!*\
+  !*** ./src/locale/es.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'Placa',
+                close: 'Cerrar',
+                dataIterator: {
+                    noResultsText: 'Ningún elemento coincide con la búsqueda',
+                    loadingText: 'Cargando...'
+                },
+                dataTable: {
+                    itemsPerPageText: 'Filas por página:',
+                    ariaLabel: {
+                        sortDescending: 'Orden descendente.',
+                        sortAscending: 'Orden ascendente.',
+                        sortNone: 'Sin ordenar.',
+                        activateNone: 'Pulse para quitar orden.',
+                        activateDescending: 'Pulse para ordenar descendente.',
+                        activateAscending: 'Pulse para ordenar ascendente.'
+                    },
+                    sortBy: 'Ordenado por'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'Elementos por página:',
+                    itemsPerPageAll: 'Todos',
+                    nextPage: 'Página siguiente',
+                    prevPage: 'Página anterior',
+                    firstPage: 'Primer página',
+                    lastPage: 'Última página',
+                    pageText: '{0}-{1} de {2}'
+                },
+                datePicker: {
+                    itemsSelected: '{0} seleccionados',
+                    nextMonthAriaLabel: 'Próximo mes',
+                    nextYearAriaLabel: 'Próximo año',
+                    prevMonthAriaLabel: 'Mes anterior',
+                    prevYearAriaLabel: 'Año anterior'
+                },
+                noDataText: 'No hay datos disponibles',
+                carousel: {
+                    prev: 'Visual anterior',
+                    next: 'Visual siguiente',
+                    ariaLabel: {
+                        delimiter: 'Carousel slide {0} of {1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: '{0} más'
+                },
+                fileInput: {
+                    counter: '{0} archivos',
+                    counterSize: '{0} archivos ({1} en total)'
+                },
+                timePicker: {
+                    am: 'AM',
+                    pm: 'PM'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'Navegación de paginación',
+                        next: 'Página siguiente',
+                        previous: 'Página anterior',
+                        page: 'Ir a la página {0}',
+                        currentPage: 'Página actual, página {0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/et.ts":
+        /*!**************************!*\
+  !*** ./src/locale/et.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'Märk',
+                close: 'Sulge',
+                dataIterator: {
+                    noResultsText: 'Vastavaid kirjeid ei leitud',
+                    loadingText: 'Andmeid laaditakse...'
+                },
+                dataTable: {
+                    itemsPerPageText: 'Ridu leheküljel:',
+                    ariaLabel: {
+                        sortDescending: 'Kahanevalt sorteeritud.',
+                        sortAscending: 'Kasvavalt sorteeritud.',
+                        sortNone: 'Ei ole sorteeritud.',
+                        activateNone: 'Vajuta uuesti sorteerimise eemaldamiseks.',
+                        activateDescending: 'Vajuta uuesti, et sorteerida kahanevalt.',
+                        activateAscending: 'Vajuta kasvavalt sorteerimiseks.'
+                    },
+                    sortBy: 'Sorteerimise alus'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'Kirjeid leheküljel:',
+                    itemsPerPageAll: 'Kõik',
+                    nextPage: 'Järgmine lehekülg',
+                    prevPage: 'Eelmine lehekülg',
+                    firstPage: 'Esimene lehekülg',
+                    lastPage: 'Viimane lehekülg',
+                    pageText: '{0}-{1} {2}st'
+                },
+                datePicker: {
+                    itemsSelected: '{0} valitud',
+                    nextMonthAriaLabel: 'Järgmine kuu',
+                    nextYearAriaLabel: 'Järgmine aasta',
+                    prevMonthAriaLabel: 'Eelmine kuu',
+                    prevYearAriaLabel: 'Eelmine aasta'
+                },
+                noDataText: 'Andmed puuduvad',
+                carousel: {
+                    prev: 'Eelmine visuaalne',
+                    next: 'Järgmine visuaalne',
+                    ariaLabel: {
+                        delimiter: 'Carousel slide {0} of {1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: '{0} veel'
+                },
+                fileInput: {
+                    counter: '{0} faili',
+                    counterSize: '{0} faili (kokku {1})'
+                },
+                timePicker: {
+                    am: 'AM',
+                    pm: 'PM'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'Pagination Navigation',
+                        next: 'Järgmine lehekülg',
+                        previous: 'Eelmine lehekülg',
+                        page: 'Mine lehele {0}',
+                        currentPage: 'Praegune leht, leht {0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/fa.ts":
+        /*!**************************!*\
+  !*** ./src/locale/fa.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'نشان',
+                close: 'بستن',
+                dataIterator: {
+                    noResultsText: 'نتیجه‌ای یافت نشد',
+                    loadingText: 'در حال بارگذاری...'
+                },
+                dataTable: {
+                    itemsPerPageText: 'ردیف در صفحه:',
+                    ariaLabel: {
+                        sortDescending: 'مرتب‌سازی نزولی',
+                        sortAscending: 'مرتب‌سازی صعودی',
+                        sortNone: 'بدون مرتب‌سازی',
+                        activateNone: 'غیرفعال‌سازی مرتب‌سازی',
+                        activateDescending: 'غیرفعال‌سازی مرتب‌سازی نزولی',
+                        activateAscending: 'غیرفعال‌سازی مرتب‌سازی صعودی'
+                    },
+                    sortBy: 'مرتب‌سازی براساس'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'ردیف در صفحه:',
+                    itemsPerPageAll: 'همه',
+                    nextPage: 'صفحه‌ی بعد',
+                    prevPage: 'صفحه‌ی قبل',
+                    firstPage: 'صفحه‌ی یکم',
+                    lastPage: 'صفحه‌ی آخر',
+                    pageText: '{0} تا {1} از {2}'
+                },
+                datePicker: {
+                    itemsSelected: '{0} انتخاب شده',
+                    nextMonthAriaLabel: 'ماه بعد',
+                    nextYearAriaLabel: 'سال بعد',
+                    prevMonthAriaLabel: 'ماه قبل',
+                    prevYearAriaLabel: 'سال قبل'
+                },
+                noDataText: 'داده‌ای موجود نیست',
+                carousel: {
+                    prev: 'اسلاید قبلی',
+                    next: 'اسلاید بعدی',
+                    ariaLabel: {
+                        delimiter: 'اسلاید {0} از {1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: '{بیشتر {0'
+                },
+                fileInput: {
+                    counter: '{0} پرونده',
+                    counterSize: '{0} پرونده ({1} در کل)'
+                },
+                timePicker: {
+                    am: 'قبل از ظهر',
+                    pm: 'بعد از ظهر'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'جهت یابی صفحه',
+                        next: 'صفحه بعد',
+                        previous: 'صفحه قبلی',
+                        page: 'برو صفحه {0}',
+                        currentPage: '{0} صفحه فعلی ، صفحه'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/fi.ts":
+        /*!**************************!*\
+  !*** ./src/locale/fi.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'Infopiste',
+                close: 'Sulje',
+                dataIterator: {
+                    noResultsText: 'Ei osumia',
+                    loadingText: 'Ladataan kohteita...'
+                },
+                dataTable: {
+                    itemsPerPageText: 'Rivejä sivulla:',
+                    ariaLabel: {
+                        sortDescending: ': Järjestetty laskevasti. Poista järjestäminen aktivoimalla.',
+                        sortAscending: ': Järjestetty nousevasti. Järjestä laskevasti aktivoimalla.',
+                        sortNone: ': Ei järjestetty. Järjestä nousevasti aktivoimalla.',
+                        activateNone: 'Aktivoi lajittelun poistamiseksi.',
+                        activateDescending: 'Aktivoi laskevien laskevien lajittelemiseksi.',
+                        activateAscending: 'Aktivoi lajitella nouseva.'
+                    },
+                    sortBy: 'Järjestä'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'Kohteita sivulla:',
+                    itemsPerPageAll: 'Kaikki',
+                    nextPage: 'Seuraava sivu',
+                    prevPage: 'Edellinen sivu',
+                    firstPage: 'Ensimmäinen sivu',
+                    lastPage: 'Viimeinen sivu',
+                    pageText: '{0}-{1} ({2})'
+                },
+                datePicker: {
+                    itemsSelected: '{0} valittu',
+                    nextMonthAriaLabel: 'Seuraava kuukausi',
+                    nextYearAriaLabel: 'Ensi vuosi',
+                    prevMonthAriaLabel: 'Edellinen kuukausi',
+                    prevYearAriaLabel: 'Edellinen vuosi'
+                },
+                noDataText: 'Ei dataa',
+                carousel: {
+                    prev: 'Edellinen kuva',
+                    next: 'Seuraava kuva',
+                    ariaLabel: {
+                        delimiter: 'Karusellin kuva {0}/{1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: '{0} lisää'
+                },
+                fileInput: {
+                    counter: '{0} tiedostoa',
+                    counterSize: '{0} tiedostoa ({1} yhteensä)'
+                },
+                timePicker: {
+                    am: 'ap.',
+                    pm: 'ip.'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'Pagination Navigation',
+                        next: 'Next page',
+                        previous: 'Previous page',
+                        page: 'Goto Page {0}',
+                        currentPage: 'Current Page, Page {0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/fr.ts":
+        /*!**************************!*\
+  !*** ./src/locale/fr.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'Badge',
+                close: 'Fermer',
+                dataIterator: {
+                    noResultsText: 'Aucun enregistrement correspondant trouvé',
+                    loadingText: "Chargement de l'\xE9l\xE9ment..."
+                },
+                dataTable: {
+                    itemsPerPageText: 'Lignes par page :',
+                    ariaLabel: {
+                        sortDescending: 'Tri décroissant.',
+                        sortAscending: 'Tri croissant.',
+                        sortNone: 'Non trié.',
+                        activateNone: 'Activer pour supprimer le tri.',
+                        activateDescending: 'Activer pour trier par ordre décroissant.',
+                        activateAscending: 'Activer pour trier par ordre croissant.'
+                    },
+                    sortBy: 'Trier par'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'Élements par page :',
+                    itemsPerPageAll: 'Tous',
+                    nextPage: 'Page suivante',
+                    prevPage: 'Page précédente',
+                    firstPage: 'Première page',
+                    lastPage: 'Dernière page',
+                    pageText: '{0}-{1} de {2}'
+                },
+                datePicker: {
+                    itemsSelected: '{0} sélectionné(s)',
+                    nextMonthAriaLabel: 'Le mois prochain',
+                    nextYearAriaLabel: "L'ann\xE9e prochaine",
+                    prevMonthAriaLabel: 'Le mois précédent',
+                    prevYearAriaLabel: 'Année précédente'
+                },
+                noDataText: 'Aucune donnée disponible',
+                carousel: {
+                    prev: 'Visuel précédent',
+                    next: 'Visuel suivant',
+                    ariaLabel: {
+                        delimiter: 'Diapositive {0} de {1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: '{0} de plus'
+                },
+                fileInput: {
+                    counter: '{0} fichier(s)',
+                    counterSize: '{0} fichier(s) ({1} au total)'
+                },
+                timePicker: {
+                    am: 'AM',
+                    pm: 'PM'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'Navigation de pagination',
+                        next: 'Page suivante',
+                        previous: 'Page précédente',
+                        page: 'Aller à la page {0}',
+                        currentPage: 'Page actuelle, Page {0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/he.ts":
+        /*!**************************!*\
+  !*** ./src/locale/he.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'תג',
+                close: 'סגור',
+                dataIterator: {
+                    noResultsText: 'לא נמצאו תוצאות מתאימות',
+                    loadingText: 'טוען פריט...'
+                },
+                dataTable: {
+                    itemsPerPageText: 'שורות לעמוד:',
+                    ariaLabel: {
+                        sortDescending: 'ממוין לפי סדר עולה. לחץ להספקת המיון.',
+                        sortAscending: 'ממוין לפי סדר יורד. לחץ למיון לפי סדר עולה.',
+                        sortNone: 'לא ממוין. לחץ למיון לפי סדר עולה.',
+                        activateNone: 'הפעל להסרת המיון.',
+                        activateDescending: 'הפעל למיון יורד.',
+                        activateAscending: 'הפעל למיון עולה.'
+                    },
+                    sortBy: 'סדר לפי'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'פריטים לדף:',
+                    itemsPerPageAll: 'הכל',
+                    nextPage: 'עמוד הבא',
+                    prevPage: 'עמוד הקודם',
+                    firstPage: 'עמוד ראשון',
+                    lastPage: 'עמוד אחרון',
+                    pageText: '{0}-{1} מתוך {2}'
+                },
+                datePicker: {
+                    itemsSelected: '{0} נבחרו',
+                    nextMonthAriaLabel: 'חודש הבא',
+                    nextYearAriaLabel: 'שנה הבאה',
+                    prevMonthAriaLabel: 'חודש שעבר',
+                    prevYearAriaLabel: 'שנה שעברה'
+                },
+                noDataText: 'אין נתונים זמינים',
+                carousel: {
+                    prev: 'מצג קודם',
+                    next: 'מצג הבא',
+                    ariaLabel: {
+                        delimiter: 'Carousel slide {0} of {1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: '{0} נוספים'
+                },
+                fileInput: {
+                    counter: '{0} קבצים',
+                    counterSize: '{0} קבצים ({1} בסך הכל)'
+                },
+                timePicker: {
+                    am: 'AM',
+                    pm: 'PM'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'ניווט עימוד',
+                        next: 'עמוד הבא',
+                        previous: 'עמוד הקודם',
+                        page: '{0} לך לעמוד',
+                        currentPage: '{0} עמוד נוכחי, עמוד'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/hr.ts":
+        /*!**************************!*\
+  !*** ./src/locale/hr.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'Bedž',
+                close: 'Zatvori',
+                dataIterator: {
+                    noResultsText: 'Nisu pronađene odgovarajuće stavke',
+                    loadingText: 'Učitavanje...'
+                },
+                dataTable: {
+                    itemsPerPageText: 'Redaka po stranici:',
+                    ariaLabel: {
+                        sortDescending: 'Sortirano silazno.',
+                        sortAscending: 'Sortirano uzlazno.',
+                        sortNone: 'Nije sortirano.',
+                        activateNone: 'Odaberite za uklanjanje sortiranja.',
+                        activateDescending: 'Odaberite za silazno sortiranje.',
+                        activateAscending: 'Odaberite za uzlazno sortiranje.'
+                    },
+                    sortBy: 'Sortirajte po'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'Stavki po stranici:',
+                    itemsPerPageAll: 'Sve',
+                    nextPage: 'Sljedeća stranica',
+                    prevPage: 'Prethodna stranica',
+                    firstPage: 'Prva stranica',
+                    lastPage: 'Posljednja stranica',
+                    pageText: '{0}-{1} od {2}'
+                },
+                datePicker: {
+                    itemsSelected: '{0} odabrano',
+                    nextMonthAriaLabel: 'Sljedeći mjesec',
+                    nextYearAriaLabel: 'Slijedeće godine',
+                    prevMonthAriaLabel: 'Prethodni mjesec',
+                    prevYearAriaLabel: 'Prošla godina'
+                },
+                noDataText: 'Nema dostupnih podataka',
+                carousel: {
+                    prev: 'Prethodno',
+                    next: 'Sljedeće',
+                    ariaLabel: {
+                        delimiter: 'Carousel slide {0} of {1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: 'Još {0}'
+                },
+                fileInput: {
+                    counter: 'Odabranih datoteka: {0}',
+                    counterSize: 'Odabranih datoteka: {0} ({1} ukupno)'
+                },
+                timePicker: {
+                    am: 'AM',
+                    pm: 'PM'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'Navigacija stranicama',
+                        next: 'Sljedeća stranica',
+                        previous: 'Prethodna stranica',
+                        page: 'Idi na stranicu {0}',
+                        currentPage: 'Trenutna stranica, stranica {0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/hu.ts":
+        /*!**************************!*\
+  !*** ./src/locale/hu.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'Jelvény',
+                close: 'Bezárás',
+                dataIterator: {
+                    noResultsText: 'Nincs egyező találat',
+                    loadingText: 'Betöltés...'
+                },
+                dataTable: {
+                    itemsPerPageText: 'Elem oldalanként:',
+                    ariaLabel: {
+                        sortDescending: 'Csökkenő sorrendbe rendezve.',
+                        sortAscending: 'Növekvő sorrendbe rendezve.',
+                        sortNone: 'Rendezetlen.',
+                        activateNone: 'Rendezés törlése.',
+                        activateDescending: 'Aktiváld a csökkenő rendezésért.',
+                        activateAscending: 'Aktiváld a növekvő rendezésért.'
+                    },
+                    sortBy: 'Rendezés'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'Elem oldalanként:',
+                    itemsPerPageAll: 'Mind',
+                    nextPage: 'Következő oldal',
+                    prevPage: 'Előző oldal',
+                    firstPage: 'Első oldal',
+                    lastPage: 'Utolsó oldal',
+                    pageText: '{0}-{1} / {2}'
+                },
+                datePicker: {
+                    itemsSelected: '{0} kiválasztva',
+                    nextMonthAriaLabel: 'Következő hónap',
+                    nextYearAriaLabel: 'Következő év',
+                    prevMonthAriaLabel: 'Előző hónap',
+                    prevYearAriaLabel: 'Előző év'
+                },
+                noDataText: 'Nincs elérhető adat',
+                carousel: {
+                    prev: 'Előző',
+                    next: 'Következő',
+                    ariaLabel: {
+                        delimiter: 'Dia {0}/{1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: '{0} további'
+                },
+                fileInput: {
+                    counter: '{0} fájl',
+                    counterSize: '{0} fájl ({1} összesen)'
+                },
+                timePicker: {
+                    am: 'de',
+                    pm: 'du'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'Oldal navigáció',
+                        next: 'Következő oldal',
+                        previous: 'Előző oldal',
+                        page: 'Menj a(z) {0}. oldalra',
+                        currentPage: 'Aktuális oldal: {0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/id.ts":
+        /*!**************************!*\
+  !*** ./src/locale/id.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'Lencana',
+                close: 'Tutup',
+                dataIterator: {
+                    noResultsText: 'Tidak ditemukan catatan yang cocok',
+                    loadingText: 'Memuat data...'
+                },
+                dataTable: {
+                    itemsPerPageText: 'Baris per halaman:',
+                    ariaLabel: {
+                        sortDescending: 'Diurutkan kebawah.',
+                        sortAscending: 'Diurutkan keatas.',
+                        sortNone: 'Tidak diurutkan.',
+                        activateNone: 'Aktifkan untuk menghapus penyortiran.',
+                        activateDescending: 'Aktifkan untuk mengurutkan kebawah.',
+                        activateAscending: 'Aktifkan untuk mengurutkan keatas.'
+                    },
+                    sortBy: 'Urutkan berdasar'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'Item per halaman:',
+                    itemsPerPageAll: 'Semua',
+                    nextPage: 'Halaman selanjutnya',
+                    prevPage: 'Halaman sebelumnya',
+                    firstPage: 'Halaman pertama',
+                    lastPage: 'Halaman terakhir',
+                    pageText: '{0}-{1} dari {2}'
+                },
+                datePicker: {
+                    itemsSelected: '{0} dipilih',
+                    nextMonthAriaLabel: 'Bulan depan',
+                    nextYearAriaLabel: 'Tahun depan',
+                    prevMonthAriaLabel: 'Bulan sebelumnya',
+                    prevYearAriaLabel: 'Tahun sebelumnya'
+                },
+                noDataText: 'Tidak ada data tersedia',
+                carousel: {
+                    prev: 'Visual sebelumnya',
+                    next: 'Visual selanjutnya',
+                    ariaLabel: {
+                        delimiter: 'Carousel slide {0} of {1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: '{0} lagi'
+                },
+                fileInput: {
+                    counter: '{0} berkas',
+                    counterSize: '{0} berkas (dari total {1})'
+                },
+                timePicker: {
+                    am: 'AM',
+                    pm: 'PM'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'Navigasi Pagination',
+                        next: 'Halaman selanjutnya',
+                        previous: 'Halaman sebelumnya',
+                        page: 'Buka halaman {0}',
+                        currentPage: 'Halaman Saat Ini, Halaman {0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
         /***/ "./src/locale/index.ts":
         /*!*****************************!*\
   !*** ./src/locale/index.ts ***!
@@ -33525,13 +35459,1784 @@
 
             "use strict";
             __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _af__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./af */ "./src/locale/af.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "af", function() { return _af__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+            /* harmony import */ var _ar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ar */ "./src/locale/ar.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ar", function() { return _ar__WEBPACK_IMPORTED_MODULE_1__["default"]; });
+
+            /* harmony import */ var _bg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./bg */ "./src/locale/bg.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "bg", function() { return _bg__WEBPACK_IMPORTED_MODULE_2__["default"]; });
+
+            /* harmony import */ var _ca__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ca */ "./src/locale/ca.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ca", function() { return _ca__WEBPACK_IMPORTED_MODULE_3__["default"]; });
+
+            /* harmony import */ var _ckb__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ckb */ "./src/locale/ckb.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ckb", function() { return _ckb__WEBPACK_IMPORTED_MODULE_4__["default"]; });
+
+            /* harmony import */ var _cs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./cs */ "./src/locale/cs.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "cs", function() { return _cs__WEBPACK_IMPORTED_MODULE_5__["default"]; });
+
+            /* harmony import */ var _de__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./de */ "./src/locale/de.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "de", function() { return _de__WEBPACK_IMPORTED_MODULE_6__["default"]; });
+
+            /* harmony import */ var _el__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./el */ "./src/locale/el.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "el", function() { return _el__WEBPACK_IMPORTED_MODULE_7__["default"]; });
 
             /* harmony import */ var _en__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./en */ "./src/locale/en.ts");
             /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "en", function() { return _en__WEBPACK_IMPORTED_MODULE_8__["default"]; });
 
+            /* harmony import */ var _es__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./es */ "./src/locale/es.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "es", function() { return _es__WEBPACK_IMPORTED_MODULE_9__["default"]; });
+
+            /* harmony import */ var _et__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./et */ "./src/locale/et.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "et", function() { return _et__WEBPACK_IMPORTED_MODULE_10__["default"]; });
+
+            /* harmony import */ var _fa__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./fa */ "./src/locale/fa.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "fa", function() { return _fa__WEBPACK_IMPORTED_MODULE_11__["default"]; });
+
+            /* harmony import */ var _fi__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./fi */ "./src/locale/fi.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "fi", function() { return _fi__WEBPACK_IMPORTED_MODULE_12__["default"]; });
+
+            /* harmony import */ var _fr__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./fr */ "./src/locale/fr.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "fr", function() { return _fr__WEBPACK_IMPORTED_MODULE_13__["default"]; });
+
+            /* harmony import */ var _hr__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./hr */ "./src/locale/hr.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "hr", function() { return _hr__WEBPACK_IMPORTED_MODULE_14__["default"]; });
+
+            /* harmony import */ var _hu__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./hu */ "./src/locale/hu.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "hu", function() { return _hu__WEBPACK_IMPORTED_MODULE_15__["default"]; });
+
+            /* harmony import */ var _he__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./he */ "./src/locale/he.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "he", function() { return _he__WEBPACK_IMPORTED_MODULE_16__["default"]; });
+
+            /* harmony import */ var _id__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./id */ "./src/locale/id.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "id", function() { return _id__WEBPACK_IMPORTED_MODULE_17__["default"]; });
+
+            /* harmony import */ var _it__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./it */ "./src/locale/it.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "it", function() { return _it__WEBPACK_IMPORTED_MODULE_18__["default"]; });
+
+            /* harmony import */ var _ja__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./ja */ "./src/locale/ja.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ja", function() { return _ja__WEBPACK_IMPORTED_MODULE_19__["default"]; });
+
+            /* harmony import */ var _ko__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./ko */ "./src/locale/ko.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ko", function() { return _ko__WEBPACK_IMPORTED_MODULE_20__["default"]; });
+
+            /* harmony import */ var _lv__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./lv */ "./src/locale/lv.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "lv", function() { return _lv__WEBPACK_IMPORTED_MODULE_21__["default"]; });
+
+            /* harmony import */ var _lt__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./lt */ "./src/locale/lt.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "lt", function() { return _lt__WEBPACK_IMPORTED_MODULE_22__["default"]; });
+
+            /* harmony import */ var _nl__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./nl */ "./src/locale/nl.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "nl", function() { return _nl__WEBPACK_IMPORTED_MODULE_23__["default"]; });
+
+            /* harmony import */ var _no__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./no */ "./src/locale/no.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "no", function() { return _no__WEBPACK_IMPORTED_MODULE_24__["default"]; });
+
+            /* harmony import */ var _pl__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./pl */ "./src/locale/pl.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "pl", function() { return _pl__WEBPACK_IMPORTED_MODULE_25__["default"]; });
+
+            /* harmony import */ var _pt__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./pt */ "./src/locale/pt.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "pt", function() { return _pt__WEBPACK_IMPORTED_MODULE_26__["default"]; });
+
+            /* harmony import */ var _ro__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./ro */ "./src/locale/ro.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ro", function() { return _ro__WEBPACK_IMPORTED_MODULE_27__["default"]; });
+
+            /* harmony import */ var _ru__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./ru */ "./src/locale/ru.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ru", function() { return _ru__WEBPACK_IMPORTED_MODULE_28__["default"]; });
+
+            /* harmony import */ var _sk__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./sk */ "./src/locale/sk.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sk", function() { return _sk__WEBPACK_IMPORTED_MODULE_29__["default"]; });
+
+            /* harmony import */ var _sl__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./sl */ "./src/locale/sl.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sl", function() { return _sl__WEBPACK_IMPORTED_MODULE_30__["default"]; });
+
+            /* harmony import */ var _sr_Cyrl__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./sr-Cyrl */ "./src/locale/sr-Cyrl.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "srCyrl", function() { return _sr_Cyrl__WEBPACK_IMPORTED_MODULE_31__["default"]; });
+
+            /* harmony import */ var _sv__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./sv */ "./src/locale/sv.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "sv", function() { return _sv__WEBPACK_IMPORTED_MODULE_32__["default"]; });
+
+            /* harmony import */ var _th__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./th */ "./src/locale/th.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "th", function() { return _th__WEBPACK_IMPORTED_MODULE_33__["default"]; });
+
+            /* harmony import */ var _tr__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./tr */ "./src/locale/tr.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "tr", function() { return _tr__WEBPACK_IMPORTED_MODULE_34__["default"]; });
+
+            /* harmony import */ var _az__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ./az */ "./src/locale/az.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "az", function() { return _az__WEBPACK_IMPORTED_MODULE_35__["default"]; });
+
+            /* harmony import */ var _uk__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./uk */ "./src/locale/uk.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "uk", function() { return _uk__WEBPACK_IMPORTED_MODULE_36__["default"]; });
+
+            /* harmony import */ var _zh_Hans__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./zh-Hans */ "./src/locale/zh-Hans.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "zhHans", function() { return _zh_Hans__WEBPACK_IMPORTED_MODULE_37__["default"]; });
+
+            /* harmony import */ var _zh_Hant__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./zh-Hant */ "./src/locale/zh-Hant.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "zhHant", function() { return _zh_Hant__WEBPACK_IMPORTED_MODULE_38__["default"]; });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             /***/ }),
 
+        /***/ "./src/locale/it.ts":
+        /*!**************************!*\
+  !*** ./src/locale/it.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'Distintivo',
+                close: 'Chiudi',
+                dataIterator: {
+                    noResultsText: 'Nessun risultato trovato',
+                    loadingText: 'Caricamento in corso...'
+                },
+                dataTable: {
+                    itemsPerPageText: 'Righe per pagina:',
+                    ariaLabel: {
+                        sortDescending: 'Ordinati in ordine decrescente.',
+                        sortAscending: 'Ordinati in ordine crescente.',
+                        sortNone: 'Non ordinato.',
+                        activateNone: "Attiva per rimuovere l'ordinamento.",
+                        activateDescending: 'Attiva per ordinare in ordine decrescente.',
+                        activateAscending: 'Attiva per ordinare in ordine crescente.'
+                    },
+                    sortBy: 'Ordina per'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'Elementi per pagina:',
+                    itemsPerPageAll: 'Tutti',
+                    nextPage: 'Pagina seguente',
+                    prevPage: 'Pagina precedente',
+                    firstPage: 'Pagina prima',
+                    lastPage: 'Pagina ultima',
+                    pageText: '{0}-{1} di {2}'
+                },
+                datePicker: {
+                    itemsSelected: '{0} selezionati',
+                    nextMonthAriaLabel: 'Il prossimo mese',
+                    nextYearAriaLabel: "L'anno prossimo",
+                    prevMonthAriaLabel: 'Il mese scorso',
+                    prevYearAriaLabel: "L'anno scorso"
+                },
+                noDataText: 'Nessun elemento disponibile',
+                carousel: {
+                    prev: 'Vista precedente',
+                    next: 'Prossima vista',
+                    ariaLabel: {
+                        delimiter: 'Carousel slide {0} of {1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: '{0} di più'
+                },
+                fileInput: {
+                    counter: '{0} files',
+                    counterSize: '{0} files ({1} in totale)'
+                },
+                timePicker: {
+                    am: 'AM',
+                    pm: 'PM'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'Navigazione impaginazione',
+                        next: 'Pagina seguente',
+                        previous: 'Pagina precedente',
+                        page: 'Vai alla pagina {0}',
+                        currentPage: 'Pagina corrente, pagina {0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/ja.ts":
+        /*!**************************!*\
+  !*** ./src/locale/ja.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'バッジ',
+                close: '閉じる',
+                dataIterator: {
+                    noResultsText: '検索結果が見つかりません。',
+                    loadingText: '項目をロード中です...'
+                },
+                dataTable: {
+                    itemsPerPageText: '1ページあたりの行数：',
+                    ariaLabel: {
+                        sortDescending: '降順の並び替え。',
+                        sortAscending: '昇順の並び替え。',
+                        sortNone: 'ソートされていません。',
+                        activateNone: 'ソートを削除するには有効にしてください。',
+                        activateDescending: '降順の並び替えのためには有効にしてください。',
+                        activateAscending: '昇順のソートのためには有効にしてください。'
+                    },
+                    sortBy: 'ソート方式'
+                },
+                dataFooter: {
+                    itemsPerPageText: '1ページあたりの件数：',
+                    itemsPerPageAll: 'すべて',
+                    nextPage: '次のページ',
+                    prevPage: '前のページ',
+                    firstPage: '最初のページ',
+                    lastPage: '最後のページ',
+                    pageText: '{0}-{1} 件目 / {2}件'
+                },
+                datePicker: {
+                    itemsSelected: '{0}日付選択',
+                    nextMonthAriaLabel: '来月',
+                    nextYearAriaLabel: '来年',
+                    prevMonthAriaLabel: '前月',
+                    prevYearAriaLabel: '前年'
+                },
+                noDataText: 'データはありません。',
+                carousel: {
+                    prev: '前のビジュアル',
+                    next: '次のビジュアル',
+                    ariaLabel: {
+                        delimiter: 'カルーセルのスライド {0}件目 / {1}件'
+                    }
+                },
+                calendar: {
+                    moreEvents: 'さらに{0}'
+                },
+                fileInput: {
+                    counter: '{0} ファイル',
+                    counterSize: '{0} ファイル (合計 {1})'
+                },
+                timePicker: {
+                    am: 'AM',
+                    pm: 'PM'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'ページネーションナビゲーション',
+                        next: '次のページ',
+                        previous: '前のページ',
+                        page: '{0}ページ目に移動',
+                        currentPage: '現在のページ、ページ {0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/ko.ts":
+        /*!**************************!*\
+  !*** ./src/locale/ko.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: '배지',
+                close: '닫기',
+                dataIterator: {
+                    noResultsText: '일치하는 항목이 없습니다.',
+                    loadingText: '불러오는 중...'
+                },
+                dataTable: {
+                    itemsPerPageText: '페이지 당 행 수:',
+                    ariaLabel: {
+                        sortDescending: '내림차순 정렬.',
+                        sortAscending: '오름차순 정렬.',
+                        sortNone: '정렬하지 않음.',
+                        activateNone: '정렬을 취소하려면 활성화하세요.',
+                        activateDescending: '내림차순 정렬을 위해 활성화하세요.',
+                        activateAscending: '오름차순 정렬을 위해 활성화하세요.'
+                    },
+                    sortBy: 'Sort by'
+                },
+                dataFooter: {
+                    itemsPerPageText: '페이지 당 항목 수:',
+                    itemsPerPageAll: '전체',
+                    nextPage: '다음 페이지',
+                    prevPage: '이전 페이지',
+                    firstPage: '첫 페이지',
+                    lastPage: '마지막 페이지',
+                    pageText: '{2} 중 {0}-{1}'
+                },
+                datePicker: {
+                    itemsSelected: '{0} 선택됨',
+                    nextMonthAriaLabel: '다음 달',
+                    nextYearAriaLabel: '내년',
+                    prevMonthAriaLabel: '지난달',
+                    prevYearAriaLabel: '전년도'
+                },
+                noDataText: '데이터가 없습니다.',
+                carousel: {
+                    prev: '이전 화면',
+                    next: '다음 화면',
+                    ariaLabel: {
+                        delimiter: 'Carousel slide {0} of {1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: '{0} 더보기'
+                },
+                fileInput: {
+                    counter: '{0} files',
+                    counterSize: '{0} files ({1} in total)'
+                },
+                timePicker: {
+                    am: '오전',
+                    pm: '오후'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'Pagination Navigation',
+                        next: '다음 페이지',
+                        previous: '이전 페이지',
+                        page: '고토 페이지 {0}',
+                        currentPage: '현재 페이지, 페이지 {0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/lt.ts":
+        /*!**************************!*\
+  !*** ./src/locale/lt.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'Ženklelis',
+                close: 'Uždaryti',
+                dataIterator: {
+                    noResultsText: 'Nerasta atitinkančių įrašų',
+                    loadingText: 'Kraunama...'
+                },
+                dataTable: {
+                    itemsPerPageText: 'Eilutės per puslapį:',
+                    ariaLabel: {
+                        sortDescending: 'Išrikiuota mažėjimo tvarka.',
+                        sortAscending: 'Išrikiuota didėjimo tvarka.',
+                        sortNone: 'Nerikiuota.',
+                        activateNone: 'Suaktyvinkite, jei norite rikiavimą pašalinti.',
+                        activateDescending: 'Suaktyvinkite, jei norite rikiuoti mažėjimo tvarka.',
+                        activateAscending: 'Suaktyvinkite, jei norite rikiuoti didėjimo tvarka.'
+                    },
+                    sortBy: 'Sort by'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'Įrašai per puslapį:',
+                    itemsPerPageAll: 'Visi',
+                    nextPage: 'Kitas puslapis',
+                    prevPage: 'Ankstesnis puslapis',
+                    firstPage: 'Pirmas puslapis',
+                    lastPage: 'Paskutinis puslapis',
+                    pageText: '{0}-{1} iš {2}'
+                },
+                datePicker: {
+                    itemsSelected: '{0} pasirinkta',
+                    nextMonthAriaLabel: 'Kitą mėnesį',
+                    nextYearAriaLabel: 'Kitais metais',
+                    prevMonthAriaLabel: 'Praeita mėnesį',
+                    prevYearAriaLabel: 'Praeiti metai'
+                },
+                noDataText: 'Nėra duomenų',
+                carousel: {
+                    prev: 'Ankstesnioji skaidrė',
+                    next: 'Kita skaidrė',
+                    ariaLabel: {
+                        delimiter: 'Carousel slide {0} of {1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: 'Daugiau {0}'
+                },
+                fileInput: {
+                    counter: '{0} failų',
+                    counterSize: '{0} failų ({1} iš viso)'
+                },
+                timePicker: {
+                    am: 'AM',
+                    pm: 'PM'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'Puslapio naršymas',
+                        next: 'Kitas puslapis',
+                        previous: 'Ankstesnis puslapis',
+                        page: 'Eiti į puslapį {0}',
+                        currentPage: 'Dabartinis puslapis, puslapis {0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/lv.ts":
+        /*!**************************!*\
+  !*** ./src/locale/lv.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'Žetons',
+                close: 'Aizvērt',
+                dataIterator: {
+                    noResultsText: 'Nekas netika atrasts',
+                    loadingText: 'Ielādē...'
+                },
+                dataTable: {
+                    itemsPerPageText: 'Rādīt lapā:',
+                    ariaLabel: {
+                        sortDescending: 'Sakārtots dilstošā secībā.',
+                        sortAscending: 'Sakārtots augošā secībā.',
+                        sortNone: 'Nav sakārtots.',
+                        activateNone: 'Aktivizēt, lai noņemtu kārtošanu.',
+                        activateDescending: 'Aktivizēt, lai sakārtotu dilstošā secībā.',
+                        activateAscending: 'Aktivizēt, lai sakārtotu augošā secībā.'
+                    },
+                    sortBy: 'Sort by'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'Rādīt lapā:',
+                    itemsPerPageAll: 'Visu',
+                    nextPage: 'Nākamā lapa',
+                    prevPage: 'Iepriekšējā lapa',
+                    firstPage: 'Pirmā lapa',
+                    lastPage: 'Pēdējā lapa',
+                    pageText: '{0}-{1} no {2}'
+                },
+                datePicker: {
+                    itemsSelected: '{0} izvēlēts',
+                    nextMonthAriaLabel: 'Nākammēnes',
+                    nextYearAriaLabel: 'Nākamgad',
+                    prevMonthAriaLabel: 'Iepriekšējais mēnesis',
+                    prevYearAriaLabel: 'Iepriekšējais gads'
+                },
+                noDataText: 'Nav pieejamu datu',
+                carousel: {
+                    prev: 'Iepriekšējais slaids',
+                    next: 'Nākamais slaids',
+                    ariaLabel: {
+                        delimiter: 'Carousel slide {0} of {1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: 'Vēl {0}'
+                },
+                fileInput: {
+                    counter: '{0} files',
+                    counterSize: '{0} files ({1} in total)'
+                },
+                timePicker: {
+                    am: 'AM',
+                    pm: 'PM'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'Navigācija paginationā',
+                        next: 'Nākamā lapa',
+                        previous: 'Iepriekšējā lapa',
+                        page: 'Iet uz lapu {0}',
+                        currentPage: 'Pašreizējā lapa, lapa {0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/nl.ts":
+        /*!**************************!*\
+  !*** ./src/locale/nl.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'insigne',
+                close: 'Sluiten',
+                dataIterator: {
+                    noResultsText: 'Geen overeenkomende resultaten gevonden',
+                    loadingText: 'Items aan het laden...'
+                },
+                dataTable: {
+                    itemsPerPageText: 'Rijen per pagina:',
+                    ariaLabel: {
+                        sortDescending: 'Aflopend gesorteerd.',
+                        sortAscending: 'Oplopend gesorteerd.',
+                        sortNone: 'Niet gesorteerd.',
+                        activateNone: 'Activeer om de sortering te verwijderen.',
+                        activateDescending: 'Activeer om aflopend te sorteren.',
+                        activateAscending: 'Activeer om oplopend te sorteren.'
+                    },
+                    sortBy: 'Sorteer volgens'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'Aantal per pagina:',
+                    itemsPerPageAll: 'Alles',
+                    nextPage: 'Volgende pagina',
+                    prevPage: 'Vorige pagina',
+                    firstPage: 'Eerste pagina',
+                    lastPage: 'Laatste pagina',
+                    pageText: '{0}-{1} van {2}'
+                },
+                datePicker: {
+                    itemsSelected: '{0} geselecteerd',
+                    nextMonthAriaLabel: 'Volgende maand',
+                    nextYearAriaLabel: 'Volgend jaar',
+                    prevMonthAriaLabel: 'Vorige maand',
+                    prevYearAriaLabel: 'Vorig jaar'
+                },
+                noDataText: 'Geen gegevens beschikbaar',
+                carousel: {
+                    prev: 'Vorig beeld',
+                    next: 'Volgend beeld',
+                    ariaLabel: {
+                        delimiter: 'Carousel slide {0} of {1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: '{0} meer'
+                },
+                fileInput: {
+                    counter: '{0} bestanden',
+                    counterSize: '{0} bestanden ({1} in totaal)'
+                },
+                timePicker: {
+                    am: 'AM',
+                    pm: 'PM'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'Paginanavigatie',
+                        next: 'Volgende pagina',
+                        previous: 'Vorige pagina',
+                        page: 'Ga naar pagina {0}',
+                        currentPage: 'Huidige pagina, pagina {0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/no.ts":
+        /*!**************************!*\
+  !*** ./src/locale/no.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'Skilt',
+                close: 'Lukk',
+                dataIterator: {
+                    noResultsText: 'Fant ingen matchende elementer.',
+                    loadingText: 'Laster elementer...'
+                },
+                dataTable: {
+                    itemsPerPageText: 'Rader per side:',
+                    ariaLabel: {
+                        sortDescending: 'Sortert synkende.',
+                        sortAscending: 'Sortert stigende.',
+                        sortNone: 'Ikke sortert.',
+                        activateNone: 'Aktiver for å fjerne sortering.',
+                        activateDescending: 'Aktiver for å sortere synkende.',
+                        activateAscending: 'Aktiver for å sortere stigende.'
+                    },
+                    sortBy: 'Sorter etter'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'Elementer per side:',
+                    itemsPerPageAll: 'Alle',
+                    nextPage: 'Neste side',
+                    prevPage: 'Forrige side',
+                    firstPage: 'Første side',
+                    lastPage: 'Siste side',
+                    pageText: '{0}-{1} av {2}'
+                },
+                datePicker: {
+                    itemsSelected: '{0} valgt',
+                    nextMonthAriaLabel: 'Neste måned',
+                    nextYearAriaLabel: 'Neste år',
+                    prevMonthAriaLabel: 'Forrige måned',
+                    prevYearAriaLabel: 'Forrige år'
+                },
+                noDataText: 'Ingen data er tilgjengelig',
+                carousel: {
+                    prev: 'Forrige bilde',
+                    next: 'Neste bilde',
+                    ariaLabel: {
+                        delimiter: 'Karusellbilde {0} av {1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: '{0} flere'
+                },
+                fileInput: {
+                    counter: '{0} filer',
+                    counterSize: '{0} filer ({1} totalt)'
+                },
+                timePicker: {
+                    am: 'AM',
+                    pm: 'PM'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'Paginasjonsnavigasjon',
+                        next: 'Neste side',
+                        previous: 'Forrige side',
+                        page: 'Gå til side {0}',
+                        currentPage: 'Gjeldende side, side {0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/pl.ts":
+        /*!**************************!*\
+  !*** ./src/locale/pl.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'Odznaka',
+                close: 'Zamknij',
+                dataIterator: {
+                    noResultsText: 'Nie znaleziono danych odpowiadających wyszukiwaniu',
+                    loadingText: 'Wczytywanie danych...'
+                },
+                dataTable: {
+                    itemsPerPageText: 'Wierszy na stronie:',
+                    ariaLabel: {
+                        sortDescending: 'Sortowanie malejąco. Kliknij aby zmienić.',
+                        sortAscending: 'Sortowanie rosnąco. Kliknij aby zmienić.',
+                        sortNone: 'Bez sortowania. Kliknij aby posortować rosnąco.',
+                        activateNone: 'Kliknij aby usunąć sortowanie.',
+                        activateDescending: 'Kliknij aby posortować malejąco.',
+                        activateAscending: 'Kliknij aby posortować rosnąco.'
+                    },
+                    sortBy: 'Sortuj według'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'Pozycji na stronie:',
+                    itemsPerPageAll: 'Wszystkie',
+                    nextPage: 'Następna strona',
+                    prevPage: 'Poprzednia strona',
+                    firstPage: 'Pierwsza strona',
+                    lastPage: 'Ostatnia strona',
+                    pageText: '{0}-{1} z {2}'
+                },
+                datePicker: {
+                    itemsSelected: '{0} dat(y)',
+                    nextMonthAriaLabel: 'Następny miesiąc',
+                    nextYearAriaLabel: 'Następny rok',
+                    prevMonthAriaLabel: 'Poprzedni miesiąc',
+                    prevYearAriaLabel: 'Poprzedni rok'
+                },
+                noDataText: 'Brak danych',
+                carousel: {
+                    prev: 'Poprzedni obraz',
+                    next: 'Następny obraz',
+                    ariaLabel: {
+                        delimiter: 'Carousel slide {0} of {1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: '{0} więcej'
+                },
+                fileInput: {
+                    counter: 'Liczba plików: {0}',
+                    counterSize: 'Liczba plików: {0} (łącznie {1})'
+                },
+                timePicker: {
+                    am: 'AM',
+                    pm: 'PM'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'Nawigacja paginacyjna',
+                        next: 'Następna strona',
+                        previous: 'Poprzednia strona',
+                        page: 'Idź do strony {0}',
+                        currentPage: 'Bieżąca strona, strona {0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/pt.ts":
+        /*!**************************!*\
+  !*** ./src/locale/pt.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'Distintivo',
+                close: 'Fechar',
+                dataIterator: {
+                    noResultsText: 'Nenhum dado encontrado',
+                    loadingText: 'Carregando itens...'
+                },
+                dataTable: {
+                    itemsPerPageText: 'Linhas por página:',
+                    ariaLabel: {
+                        sortDescending: 'Ordenado decrescente.',
+                        sortAscending: 'Ordenado crescente.',
+                        sortNone: 'Não ordenado.',
+                        activateNone: 'Ative para remover a ordenação.',
+                        activateDescending: 'Ative para ordenar decrescente.',
+                        activateAscending: 'Ative para ordenar crescente.'
+                    },
+                    sortBy: 'Ordenar por'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'Itens por página:',
+                    itemsPerPageAll: 'Todos',
+                    nextPage: 'Próxima página',
+                    prevPage: 'Página anterior',
+                    firstPage: 'Primeira página',
+                    lastPage: 'Última página',
+                    pageText: '{0}-{1} de {2}'
+                },
+                datePicker: {
+                    itemsSelected: '{0} selecionado(s)',
+                    nextMonthAriaLabel: 'Próximo mês',
+                    nextYearAriaLabel: 'Próximo ano',
+                    prevMonthAriaLabel: 'Mês anterior',
+                    prevYearAriaLabel: 'Ano anterior'
+                },
+                noDataText: 'Não há dados disponíveis',
+                carousel: {
+                    prev: 'Visão anterior',
+                    next: 'Próxima visão',
+                    ariaLabel: {
+                        delimiter: 'Slide {0} de {1} do carrossel'
+                    }
+                },
+                calendar: {
+                    moreEvents: 'Mais {0}'
+                },
+                fileInput: {
+                    counter: '{0} arquivo(s)',
+                    counterSize: '{0} arquivo(s) ({1} no total)'
+                },
+                timePicker: {
+                    am: 'AM',
+                    pm: 'PM'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'Navegação de paginação',
+                        next: 'Próxima página',
+                        previous: 'Página anterior',
+                        page: 'Ir à página {0}',
+                        currentPage: 'Página atual, página {0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/ro.ts":
+        /*!**************************!*\
+  !*** ./src/locale/ro.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'Insignă',
+                close: 'Close',
+                dataIterator: {
+                    noResultsText: 'Nu au fost găsite înregistrări care să se potrivească',
+                    loadingText: 'Loading item...'
+                },
+                dataTable: {
+                    itemsPerPageText: 'Rânduri pe pagină:',
+                    ariaLabel: {
+                        sortDescending: 'Sorted descending.',
+                        sortAscending: 'Sorted ascending.',
+                        sortNone: 'Not sorted.',
+                        activateNone: 'Activate to remove sorting.',
+                        activateDescending: 'Activate to sort descending.',
+                        activateAscending: 'Activate to sort ascending.'
+                    },
+                    sortBy: 'Sort by'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'Articole pe pagină:',
+                    itemsPerPageAll: 'Toate',
+                    nextPage: 'Pagina următoare',
+                    prevPage: 'Pagina anterioară',
+                    firstPage: 'Pagina prima',
+                    lastPage: 'Pagina ultima',
+                    pageText: '{0}-{1} din {2}'
+                },
+                datePicker: {
+                    itemsSelected: '{0} selectate',
+                    nextMonthAriaLabel: 'Luna viitoare',
+                    nextYearAriaLabel: 'Anul urmator',
+                    prevMonthAriaLabel: 'Luna trecută',
+                    prevYearAriaLabel: 'Anul precedent'
+                },
+                noDataText: 'Nu există date disponibile',
+                carousel: {
+                    prev: 'Anterior vizual',
+                    next: 'Următorul vizual',
+                    ariaLabel: {
+                        delimiter: 'Carousel slide {0} of {1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: '{0} mai mult'
+                },
+                fileInput: {
+                    counter: '{0} files',
+                    counterSize: '{0} files ({1} in total)'
+                },
+                timePicker: {
+                    am: 'AM',
+                    pm: 'PM'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'Navigare prin paginare',
+                        next: 'Pagina următoare',
+                        previous: 'Pagina anterioară',
+                        page: 'Mergi la pagina {0}',
+                        currentPage: 'Pagina curentă, pagina {0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/ru.ts":
+        /*!**************************!*\
+  !*** ./src/locale/ru.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'знак',
+                close: 'Закрыть',
+                dataIterator: {
+                    noResultsText: 'Не найдено подходящих записей',
+                    loadingText: 'Запись загружается...'
+                },
+                dataTable: {
+                    itemsPerPageText: 'Строк на странице:',
+                    ariaLabel: {
+                        sortDescending: 'Упорядочено по убыванию.',
+                        sortAscending: 'Упорядочено по возрастанию.',
+                        sortNone: 'Не упорядочено.',
+                        activateNone: 'Активируйте, чтобы убрать сортировку.',
+                        activateDescending: 'Активируйте для упорядочивания убыванию.',
+                        activateAscending: 'Активируйте для упорядочивания по возрастанию.'
+                    },
+                    sortBy: 'Сортировать по'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'Записей на странице:',
+                    itemsPerPageAll: 'Все',
+                    nextPage: 'Следующая страница',
+                    prevPage: 'Предыдущая страница',
+                    firstPage: 'Первая страница',
+                    lastPage: 'Последняя страница',
+                    pageText: '{0}-{1} из {2}'
+                },
+                datePicker: {
+                    itemsSelected: '{0} выбран',
+                    nextMonthAriaLabel: 'Следующий месяц',
+                    nextYearAriaLabel: 'Следующий год',
+                    prevMonthAriaLabel: 'Прошлый месяц',
+                    prevYearAriaLabel: 'Предыдущий год'
+                },
+                noDataText: 'Отсутствуют данные',
+                carousel: {
+                    prev: 'Предыдущий слайд',
+                    next: 'Следующий слайд',
+                    ariaLabel: {
+                        delimiter: 'Слайд {0} из {1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: 'Еще {0}'
+                },
+                fileInput: {
+                    counter: 'Файлов: {0}',
+                    counterSize: 'Файлов: {0} (всего {1})'
+                },
+                timePicker: {
+                    am: 'AM',
+                    pm: 'PM'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'Навигация по страницам',
+                        next: 'Следующая страница',
+                        previous: 'Предыдущая страница',
+                        page: 'Перейти на страницу {0}',
+                        currentPage: 'Текущая страница, Страница {0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/sk.ts":
+        /*!**************************!*\
+  !*** ./src/locale/sk.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'Odznak',
+                close: 'Zavrieť',
+                dataIterator: {
+                    noResultsText: 'Neboli nájdené žiadne záznamy',
+                    loadingText: 'Načítavam položky...'
+                },
+                dataTable: {
+                    itemsPerPageText: 'Počet riadkov na stránku:',
+                    ariaLabel: {
+                        sortDescending: 'Zoradené zostupne.',
+                        sortAscending: 'Zoradené vzostupne.',
+                        sortNone: 'Nezoradené.',
+                        activateNone: 'Aktivujte na zrušenie triedenia.',
+                        activateDescending: 'Aktivujte na zoradenie zostupne.',
+                        activateAscending: 'Aktivujte na zoradenie vzostupne.'
+                    },
+                    sortBy: 'Zoradiť podľa'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'Počet položiek na stránku:',
+                    itemsPerPageAll: 'Všetko',
+                    nextPage: 'Ďalšia stránka',
+                    prevPage: 'Predchádzajúca stránka',
+                    firstPage: 'Prvá stránka',
+                    lastPage: 'Posledná stránka',
+                    pageText: '{0}–{1} z {2}'
+                },
+                datePicker: {
+                    itemsSelected: '{0} vybrané',
+                    nextMonthAriaLabel: 'Ďalší mesiac',
+                    nextYearAriaLabel: 'Ďalší rok',
+                    prevMonthAriaLabel: 'Predchádzajúci mesiac',
+                    prevYearAriaLabel: 'Predchádzajúci rok'
+                },
+                noDataText: 'Nie sú dostupné žiadne dáta',
+                carousel: {
+                    prev: 'Predchádzajúci obrázok',
+                    next: 'Další obrázok',
+                    ariaLabel: {
+                        delimiter: 'Snímka {0} z {1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: '{0} ďalších'
+                },
+                fileInput: {
+                    counter: '{0} súborov',
+                    counterSize: '{0} súborov ({1} celkom)'
+                },
+                timePicker: {
+                    am: 'AM',
+                    pm: 'PM'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'Navigácia stránkovania',
+                        next: 'Ďalšia stránka',
+                        previous: 'Predchádzajúca stránka',
+                        page: 'Ísť na stránku {0}',
+                        currentPage: 'Aktuálna stránka, stránka {0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/sl.ts":
+        /*!**************************!*\
+  !*** ./src/locale/sl.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'Značka',
+                close: 'Zapri',
+                dataIterator: {
+                    noResultsText: 'Ni iskanega zapisa',
+                    loadingText: 'Nalaganje...'
+                },
+                dataTable: {
+                    itemsPerPageText: 'Vrstic na stran:',
+                    ariaLabel: {
+                        sortDescending: 'Razvrščeno padajoče.',
+                        sortAscending: 'Razvrščeno naraščajoče.',
+                        sortNone: 'Ni razvrščeno.',
+                        activateNone: 'Aktivirajte za odstranitev razvrščanja.',
+                        activateDescending: 'Aktivirajte za padajoče razvrščanje.',
+                        activateAscending: 'Aktivirajte za naraščajoče razvrščanje.'
+                    },
+                    sortBy: 'Razvrsti po'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'Predmetov na stran:',
+                    itemsPerPageAll: 'Vse',
+                    nextPage: 'Naslednja stran',
+                    prevPage: 'Prejšnja stran',
+                    firstPage: 'Prva stran',
+                    lastPage: 'Zadnja stran',
+                    pageText: '{0}-{1} od {2}'
+                },
+                datePicker: {
+                    itemsSelected: '{0} izbrano/-ih',
+                    nextMonthAriaLabel: 'Naslednji mesec',
+                    nextYearAriaLabel: 'Naslednje leto',
+                    prevMonthAriaLabel: 'Prejšnji mesec',
+                    prevYearAriaLabel: 'Prejšnje leto'
+                },
+                noDataText: 'Ni podatkov',
+                carousel: {
+                    prev: 'Prejšnji prikaz',
+                    next: 'Naslednji prikaz',
+                    ariaLabel: {
+                        delimiter: 'Carousel slide {0} of {1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: 'Še {0}'
+                },
+                fileInput: {
+                    counter: '{0} datotek',
+                    counterSize: '{0} datotek ({1} skupno)'
+                },
+                timePicker: {
+                    am: 'AM',
+                    pm: 'PM'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'Navigacija po strani po strani',
+                        next: 'Naslednja stran',
+                        previous: 'Prejšnja stran',
+                        page: 'Pojdi na stran {0}',
+                        currentPage: 'Trenutna stran, stran {0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/sr-Cyrl.ts":
+        /*!*******************************!*\
+  !*** ./src/locale/sr-Cyrl.ts ***!
+  \*******************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'Значка',
+                close: 'Close',
+                dataIterator: {
+                    noResultsText: 'Ни један запис није пронађен',
+                    loadingText: 'Loading item...'
+                },
+                dataTable: {
+                    itemsPerPageText: 'Редова по страници:',
+                    ariaLabel: {
+                        sortDescending: 'Sorted descending.',
+                        sortAscending: 'Sorted ascending.',
+                        sortNone: 'Not sorted.',
+                        activateNone: 'Activate to remove sorting.',
+                        activateDescending: 'Activate to sort descending.',
+                        activateAscending: 'Activate to sort ascending.'
+                    },
+                    sortBy: 'Sort by'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'Ставки по страници:',
+                    itemsPerPageAll: 'Све',
+                    nextPage: 'Следећа страница',
+                    prevPage: 'Претходна страница',
+                    firstPage: 'Прва страница',
+                    lastPage: 'Последња страница',
+                    pageText: '{0}-{1} од {2}'
+                },
+                datePicker: {
+                    itemsSelected: '{0} одабрано',
+                    nextMonthAriaLabel: 'Следећег месеца',
+                    nextYearAriaLabel: 'Следеће године',
+                    prevMonthAriaLabel: 'Претходни мјесец',
+                    prevYearAriaLabel: 'Претходна година'
+                },
+                noDataText: 'Нема доступних података',
+                carousel: {
+                    prev: 'Превиоус висуал',
+                    next: 'Нект висуал',
+                    ariaLabel: {
+                        delimiter: 'Carousel slide {0} of {1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: '{0} море'
+                },
+                fileInput: {
+                    counter: '{0} files',
+                    counterSize: '{0} files ({1} in total)'
+                },
+                timePicker: {
+                    am: 'AM',
+                    pm: 'PM'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'Навигација страницама',
+                        next: 'Следећа страница',
+                        previous: 'Претходна страница',
+                        page: 'Иди на страну {0}',
+                        currentPage: 'Тренутна страница, страница {0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/sv.ts":
+        /*!**************************!*\
+  !*** ./src/locale/sv.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'Bricka',
+                close: 'Stäng',
+                dataIterator: {
+                    noResultsText: 'Inga poster funna',
+                    loadingText: 'Laddar data...'
+                },
+                dataTable: {
+                    itemsPerPageText: 'Rader per sida:',
+                    ariaLabel: {
+                        sortDescending: 'Sorterat fallande.',
+                        sortAscending: 'Sorterat stigande.',
+                        sortNone: 'Osorterat.',
+                        activateNone: 'Aktivera för att ta bort sortering.',
+                        activateDescending: 'Aktivera för sortering fallande.',
+                        activateAscending: 'Aktivera för sortering stigande.'
+                    },
+                    sortBy: 'Sortera efter'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'Objekt per sida:',
+                    itemsPerPageAll: 'Alla',
+                    nextPage: 'Nästa sida',
+                    prevPage: 'Föregående sida',
+                    firstPage: 'Första sidan',
+                    lastPage: 'Sista sidan',
+                    pageText: '{0}-{1} av {2}'
+                },
+                datePicker: {
+                    itemsSelected: '{0} markerade',
+                    nextMonthAriaLabel: 'Nästa månad',
+                    nextYearAriaLabel: 'Nästa år',
+                    prevMonthAriaLabel: 'Förra månaden',
+                    prevYearAriaLabel: 'Förra året'
+                },
+                noDataText: 'Ingen data tillgänglig',
+                carousel: {
+                    prev: 'Föregående vy',
+                    next: 'Nästa vy',
+                    ariaLabel: {
+                        delimiter: 'Carousel slide {0} of {1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: '{0} fler'
+                },
+                fileInput: {
+                    counter: '{0} filer',
+                    counterSize: '{0} filer (av {1} totalt)'
+                },
+                timePicker: {
+                    am: 'AM',
+                    pm: 'PM'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'Pagination Navigation',
+                        next: 'Nästa sida',
+                        previous: 'Föregående sida',
+                        page: 'Gå till sidan {0}',
+                        currentPage: 'Aktuell sida, sida {0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/th.ts":
+        /*!**************************!*\
+  !*** ./src/locale/th.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'สัญลักษณ์',
+                close: 'ปิด',
+                dataIterator: {
+                    noResultsText: 'ไม่พบข้อมูลที่ค้นหา',
+                    loadingText: 'กำลังโหลดข้อมูล...'
+                },
+                dataTable: {
+                    itemsPerPageText: 'แถวต่อหน้า:',
+                    ariaLabel: {
+                        sortDescending: 'เรียงจากมากไปน้อยอยู่',
+                        sortAscending: 'เรียงจากน้อยไปมากอยู่',
+                        sortNone: 'ไม่ได้เรียงลำดับ',
+                        activateNone: 'กดเพื่อปิดการเรียงลำดับ',
+                        activateDescending: 'กดเพื่อเรียงจากมากไปน้อย',
+                        activateAscending: 'กดเพื่อเรียงจากน้อยไปมาก'
+                    },
+                    sortBy: 'เรียงตาม'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'รายการต่อหน้า:',
+                    itemsPerPageAll: 'ทั้งหมด',
+                    nextPage: 'หน้าต่อไป',
+                    prevPage: 'หน้าที่แล้ว',
+                    firstPage: 'หน้าแรก',
+                    lastPage: 'หน้าสุดท้าย',
+                    pageText: '{0}-{1} จาก {2}'
+                },
+                datePicker: {
+                    itemsSelected: 'เลือก {0} วัน',
+                    nextMonthAriaLabel: 'เดือนถัดไป',
+                    nextYearAriaLabel: 'ปีถัดไป',
+                    prevMonthAriaLabel: 'เดือนก่อนหน้า',
+                    prevYearAriaLabel: 'ปีก่อนหน้า'
+                },
+                noDataText: 'ไม่มีข้อมูล',
+                carousel: {
+                    prev: 'ภาพก่อนหน้า',
+                    next: 'ภาพถัดไป',
+                    ariaLabel: {
+                        delimiter: 'ภาพสไลด์ที่ {0} จาก {1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: 'มีอีก {0}'
+                },
+                fileInput: {
+                    counter: '{0} ไฟล์',
+                    counterSize: '{0} ไฟล์ (รวม {1})'
+                },
+                timePicker: {
+                    am: 'AM',
+                    pm: 'PM'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'การนำทางไปยังหน้า',
+                        next: 'หน้าต่อไป',
+                        previous: 'หน้าที่แล้ว',
+                        page: 'ไปที่หน้า {0}',
+                        currentPage: 'หน้าปัจจุบัน (หน้า {0})'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/tr.ts":
+        /*!**************************!*\
+  !*** ./src/locale/tr.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'rozet',
+                close: 'Kapat',
+                dataIterator: {
+                    noResultsText: 'Eşleşen veri bulunamadı',
+                    loadingText: 'Yükleniyor... Lütfen bekleyin.'
+                },
+                dataTable: {
+                    itemsPerPageText: 'Sayfa başına satır:',
+                    ariaLabel: {
+                        sortDescending: 'Z den A ya sıralı.',
+                        sortAscending: 'A dan Z ye sıralı.',
+                        sortNone: 'Sıralı değil. ',
+                        activateNone: 'Sıralamayı kaldırmak için etkinleştir.',
+                        activateDescending: 'Z den A ya sıralamak için etkinleştir.',
+                        activateAscending: 'A dan Z ye sıralamak için etkinleştir.'
+                    },
+                    sortBy: 'Sırala'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'Sayfa başına satır:',
+                    itemsPerPageAll: 'Hepsi',
+                    nextPage: 'Sonraki sayfa',
+                    prevPage: 'Önceki sayfa',
+                    firstPage: 'İlk sayfa',
+                    lastPage: 'Son sayfa',
+                    pageText: '{0} - {1} arası, Toplam: {2} kayıt'
+                },
+                datePicker: {
+                    itemsSelected: '{0} öge seçildi',
+                    nextMonthAriaLabel: 'Gelecek ay',
+                    nextYearAriaLabel: 'Gelecek yıl',
+                    prevMonthAriaLabel: 'Geçtiğimiz ay',
+                    prevYearAriaLabel: 'Geçen yıl'
+                },
+                noDataText: 'Bu görünümde veri yok.',
+                carousel: {
+                    prev: 'Önceki görsel',
+                    next: 'Sonraki görsel',
+                    ariaLabel: {
+                        delimiter: 'Galeri sayfa {0} / {1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: '{0} tane daha'
+                },
+                fileInput: {
+                    counter: '{0} dosya',
+                    counterSize: '{0} dosya (toplamda {1})'
+                },
+                timePicker: {
+                    am: 'AM',
+                    pm: 'PM'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'Sayfalandırma Navigasyonu',
+                        next: 'Sonraki sayfa',
+                        previous: 'Önceki sayfa',
+                        page: 'Sayfaya git {0}',
+                        currentPage: 'Geçerli Sayfa, Sayfa {0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/uk.ts":
+        /*!**************************!*\
+  !*** ./src/locale/uk.ts ***!
+  \**************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: 'Знак',
+                close: 'Закрити',
+                dataIterator: {
+                    noResultsText: 'В результаті пошуку нічого не знайдено',
+                    loadingText: 'Завантаження...'
+                },
+                dataTable: {
+                    itemsPerPageText: 'Рядків на сторінці:',
+                    ariaLabel: {
+                        sortDescending: 'Відсортовано за спаданням.',
+                        sortAscending: 'Відсортовано за зростанням.',
+                        sortNone: 'Не відсортовано.',
+                        activateNone: 'Активувати, щоб видалити сортування.',
+                        activateDescending: 'Активувати, щоб відсортувати за спаданням.',
+                        activateAscending: 'Активувати, щоб відсортувати за зростанням.'
+                    },
+                    sortBy: 'Відсортувати за'
+                },
+                dataFooter: {
+                    itemsPerPageText: 'Елементів на сторінці:',
+                    itemsPerPageAll: 'Всі',
+                    nextPage: 'Наступна сторінка',
+                    prevPage: 'Попередня сторінка',
+                    firstPage: 'Перша сторінка',
+                    lastPage: 'Остання сторінка',
+                    pageText: '{0}-{1} з {2}'
+                },
+                datePicker: {
+                    itemsSelected: '{0} вибрано',
+                    nextMonthAriaLabel: 'Наступного місяця',
+                    nextYearAriaLabel: 'Наступного року',
+                    prevMonthAriaLabel: 'Попередній місяць',
+                    prevYearAriaLabel: 'Попередній рік'
+                },
+                noDataText: 'Немає даних для відображення',
+                carousel: {
+                    prev: 'Попередній слайд',
+                    next: 'Наступий слайд',
+                    ariaLabel: {
+                        delimiter: 'Слайд {0} з {1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: 'Ще {0}'
+                },
+                fileInput: {
+                    counter: '{0} файлів',
+                    counterSize: '{0} файлів ({1} загалом)'
+                },
+                timePicker: {
+                    am: 'AM',
+                    pm: 'PM'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: 'Навігація по сторінках',
+                        next: 'Наступна сторінка',
+                        previous: 'Попередня сторінка',
+                        page: 'Перейти на сторінку {0}',
+                        currentPage: 'Поточна сторінка, Сторінка {0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/zh-Hans.ts":
+        /*!*******************************!*\
+  !*** ./src/locale/zh-Hans.ts ***!
+  \*******************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: '徽章',
+                close: '关闭',
+                dataIterator: {
+                    noResultsText: '没有符合条件的结果',
+                    loadingText: '加载中……'
+                },
+                dataTable: {
+                    itemsPerPageText: '每页数目：',
+                    ariaLabel: {
+                        sortDescending: '：降序排列。',
+                        sortAscending: '：升序排列。',
+                        sortNone: '：未排序。',
+                        activateNone: '点击以移除排序。',
+                        activateDescending: '点击以降序排列。',
+                        activateAscending: '点击以升序排列。'
+                    },
+                    sortBy: '排序方式'
+                },
+                dataFooter: {
+                    itemsPerPageText: '每页数目：',
+                    itemsPerPageAll: '全部',
+                    nextPage: '下一页',
+                    prevPage: '上一页',
+                    firstPage: '首页',
+                    lastPage: '尾页',
+                    pageText: '{0}-{1} 共 {2}'
+                },
+                datePicker: {
+                    itemsSelected: '已选择 {0}',
+                    nextMonthAriaLabel: '下个月',
+                    nextYearAriaLabel: '明年',
+                    prevMonthAriaLabel: '前一个月',
+                    prevYearAriaLabel: '前一年'
+                },
+                noDataText: '没有数据',
+                carousel: {
+                    prev: '上一张',
+                    next: '下一张',
+                    ariaLabel: {
+                        delimiter: 'Carousel slide {0} of {1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: '还有 {0} 项'
+                },
+                fileInput: {
+                    counter: '{0} 个文件',
+                    counterSize: '{0} 个文件（共 {1}）'
+                },
+                timePicker: {
+                    am: 'AM',
+                    pm: 'PM'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: '分页导航',
+                        next: '下一页',
+                        previous: '上一页',
+                        page: '转到页面 {0}',
+                        currentPage: '当前页 {0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/locale/zh-Hant.ts":
+        /*!*******************************!*\
+  !*** ./src/locale/zh-Hant.ts ***!
+  \*******************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                badge: '徽章',
+                close: '關閉',
+                dataIterator: {
+                    noResultsText: '沒有符合條件的結果',
+                    loadingText: '讀取中...'
+                },
+                dataTable: {
+                    itemsPerPageText: '每頁列數：',
+                    ariaLabel: {
+                        sortDescending: '：降序排列。',
+                        sortAscending: '：升序排列。',
+                        sortNone: '無排序方式。點擊以升序排列。',
+                        activateNone: '點擊以移除排序方式。',
+                        activateDescending: '點擊以降序排列。',
+                        activateAscending: '點擊以移除排序方式。'
+                    },
+                    sortBy: '排序方式'
+                },
+                dataFooter: {
+                    itemsPerPageText: '每頁項目：',
+                    itemsPerPageAll: '全部',
+                    nextPage: '下一頁',
+                    prevPage: '上一頁',
+                    firstPage: '第一頁',
+                    lastPage: '最後頁',
+                    pageText: '{2} 條中的 {0}~{1} 條'
+                },
+                datePicker: {
+                    itemsSelected: '已選擇 {0}',
+                    nextMonthAriaLabel: '下個月',
+                    nextYearAriaLabel: '明年',
+                    prevMonthAriaLabel: '前一個月',
+                    prevYearAriaLabel: '前一年'
+                },
+                noDataText: '沒有資料',
+                carousel: {
+                    prev: '上一張',
+                    next: '下一張',
+                    ariaLabel: {
+                        delimiter: 'Carousel slide {0} of {1}'
+                    }
+                },
+                calendar: {
+                    moreEvents: '還有其他 {0} 項'
+                },
+                fileInput: {
+                    counter: '{0} 個檔案',
+                    counterSize: '{0} 個檔案（共 {1}）'
+                },
+                timePicker: {
+                    am: 'AM',
+                    pm: 'PM'
+                },
+                pagination: {
+                    ariaLabel: {
+                        wrapper: '分頁導航',
+                        next: '下一頁',
+                        previous: '上一頁',
+                        page: '轉到頁面 {0}',
+                        currentPage: '當前頁 {0}'
+                    }
+                },
+                rating: {
+                    ariaLabel: {
+                        icon: 'Rating {0} of {1}'
+                    }
+                }
+            });
+
+            /***/ }),
 
         /***/ "./src/mixins/activatable/index.ts":
         /*!*****************************************!*\
