@@ -1960,7 +1960,6 @@
 
             /***/ }),
 
-
         /***/ "./src/components/VBtn/VBtn.sass":
         /*!***************************************!*\
   !*** ./src/components/VBtn/VBtn.sass ***!
@@ -1987,11 +1986,12 @@
             /* harmony import */ var _VProgressCircular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../VProgressCircular */ "./src/components/VProgressCircular/index.ts");
             /* harmony import */ var _mixins_groupable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../mixins/groupable */ "./src/mixins/groupable/index.ts");
             /* harmony import */ var _mixins_toggleable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../mixins/toggleable */ "./src/mixins/toggleable/index.ts");
-            /* harmony import */ var _mixins_positionable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../mixins/positionable */ "./src/mixins/positionable/index.ts");
-            /* harmony import */ var _mixins_routable__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../mixins/routable */ "./src/mixins/routable/index.ts");
-            /* harmony import */ var _mixins_sizeable__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../mixins/sizeable */ "./src/mixins/sizeable/index.ts");
-            /* harmony import */ var _util_mixins__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../util/mixins */ "./src/util/mixins.ts");
-            /* harmony import */ var _util_console__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../util/console */ "./src/util/console.ts");
+            /* harmony import */ var _mixins_elevatable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../mixins/elevatable */ "./src/mixins/elevatable/index.ts");
+            /* harmony import */ var _mixins_positionable__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../mixins/positionable */ "./src/mixins/positionable/index.ts");
+            /* harmony import */ var _mixins_routable__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../mixins/routable */ "./src/mixins/routable/index.ts");
+            /* harmony import */ var _mixins_sizeable__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../mixins/sizeable */ "./src/mixins/sizeable/index.ts");
+            /* harmony import */ var _util_mixins__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../util/mixins */ "./src/util/mixins.ts");
+            /* harmony import */ var _util_console__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../util/console */ "./src/util/console.ts");
             function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
             var __assign = undefined && undefined.__assign || function () {
@@ -2048,11 +2048,12 @@
 
 
 
+
             // Utilities
 
 
 
-            var baseMixins = Object(_util_mixins__WEBPACK_IMPORTED_MODULE_8__["default"])(_VSheet__WEBPACK_IMPORTED_MODULE_1__["default"], _mixins_routable__WEBPACK_IMPORTED_MODULE_6__["default"], _mixins_positionable__WEBPACK_IMPORTED_MODULE_5__["default"], _mixins_sizeable__WEBPACK_IMPORTED_MODULE_7__["default"], Object(_mixins_groupable__WEBPACK_IMPORTED_MODULE_3__["factory"])('btnToggle'), Object(_mixins_toggleable__WEBPACK_IMPORTED_MODULE_4__["factory"])('inputValue')
+            var baseMixins = Object(_util_mixins__WEBPACK_IMPORTED_MODULE_9__["default"])(_VSheet__WEBPACK_IMPORTED_MODULE_1__["default"], _mixins_routable__WEBPACK_IMPORTED_MODULE_7__["default"], _mixins_positionable__WEBPACK_IMPORTED_MODULE_6__["default"], _mixins_sizeable__WEBPACK_IMPORTED_MODULE_8__["default"], Object(_mixins_groupable__WEBPACK_IMPORTED_MODULE_3__["factory"])('btnToggle'), Object(_mixins_toggleable__WEBPACK_IMPORTED_MODULE_4__["factory"])('inputValue')
                 /* @vue/component */
             );
             /* harmony default export */ __webpack_exports__["default"] = (baseMixins.extend().extend({
@@ -2095,17 +2096,14 @@
                     classes: function classes() {
                         return __assign(__assign(__assign(__assign(__assign(__assign({
                             'v-btn': true
-                        }, _mixins_routable__WEBPACK_IMPORTED_MODULE_6__["default"].options.computed.classes.call(this)), {
+                        }, _mixins_routable__WEBPACK_IMPORTED_MODULE_7__["default"].options.computed.classes.call(this)), {
                             'v-btn--absolute': this.absolute,
                             'v-btn--block': this.block,
                             'v-btn--bottom': this.bottom,
-                            'v-btn--contained': this.isElevated,
-                            'v-btn--depressed': this.depressed || this.outlined,
                             'v-btn--disabled': this.disabled,
                             'v-btn--is-elevated': this.isElevated,
                             'v-btn--fab': this.fab,
                             'v-btn--fixed': this.fixed,
-                            'v-btn--flat': !this.isElevated,
                             'v-btn--has-bg': this.hasBg,
                             'v-btn--icon': this.icon,
                             'v-btn--left': this.left,
@@ -2121,6 +2119,10 @@
                             'v-btn--top': this.top
                         }), this.themeClasses), this.groupClasses), this.elevationClasses), this.sizeableClasses);
                     },
+                    computedElevation: function computedElevation() {
+                        if (this.disabled) return undefined;
+                        return _mixins_elevatable__WEBPACK_IMPORTED_MODULE_5__["default"].options.computed.computedElevation.call(this);
+                    },
                     computedRipple: function computedRipple() {
                         var _a;
 
@@ -2130,10 +2132,10 @@
                         if (this.disabled) return false;else return (_a = this.ripple) !== null && _a !== void 0 ? _a : defaultRipple;
                     },
                     hasBg: function hasBg() {
-                        return this.isElevated || this.depressed;
+                        return !this.text && !this.plain && !this.outlined && !this.icon;
                     },
                     isElevated: function isElevated() {
-                        return Boolean(!this.icon && !this.text && !this.outlined && !this.depressed && !this.disabled && !this.plain) || Number(this.elevation) > 0;
+                        return Boolean(!this.icon && !this.text && !this.outlined && !this.depressed && !this.disabled && !this.plain && (this.elevation == null || Number(this.elevation) > 0));
                     },
                     isRound: function isRound() {
                         return Boolean(this.icon || this.fab);
@@ -2153,7 +2155,7 @@
                             original = _b[0],
                             replacement = _b[1];
 
-                        if (_this.$attrs.hasOwnProperty(original)) Object(_util_console__WEBPACK_IMPORTED_MODULE_9__["breaking"])(original, replacement, _this);
+                        if (_this.$attrs.hasOwnProperty(original)) Object(_util_console__WEBPACK_IMPORTED_MODULE_10__["breaking"])(original, replacement, _this);
                     });
                 },
                 methods: {
@@ -2187,7 +2189,7 @@
                         tag = _a.tag,
                         data = _a.data;
 
-                    var setColor = this.isElevated || this.depressed ? this.setBackgroundColor : this.setTextColor;
+                    var setColor = this.hasBg ? this.setBackgroundColor : this.setTextColor;
 
                     if (tag === 'button') {
                         data.attrs.type = this.type;
@@ -2216,6 +2218,4105 @@
 
 
             /* harmony default export */ __webpack_exports__["default"] = (_VBtn__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+            /***/ }),
+
+
+        /***/ "./src/components/VBtnToggle/VBtnToggle.sass":
+        /*!***************************************************!*\
+          !*** ./src/components/VBtnToggle/VBtnToggle.sass ***!
+          \***************************************************/
+        /*! no static exports found */
+        /***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+            /***/ }),
+
+        /***/ "./src/components/VBtnToggle/VBtnToggle.ts":
+        /*!*************************************************!*\
+          !*** ./src/components/VBtnToggle/VBtnToggle.ts ***!
+          \*************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VBtnToggle_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VBtnToggle.sass */ "./src/components/VBtnToggle/VBtnToggle.sass");
+            /* harmony import */ var _VBtnToggle_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VBtnToggle_sass__WEBPACK_IMPORTED_MODULE_0__);
+            /* harmony import */ var _mixins_button_group__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins/button-group */ "./src/mixins/button-group/index.ts");
+            /* harmony import */ var _mixins_colorable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../mixins/colorable */ "./src/mixins/colorable/index.ts");
+            /* harmony import */ var _util_mixins__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../util/mixins */ "./src/util/mixins.ts");
+            var __assign = undefined && undefined.__assign || function () {
+                __assign = Object.assign || function (t) {
+                    for (var s, i = 1, n = arguments.length; i < n; i++) {
+                        s = arguments[i];
+
+                        for (var p in s) {
+                            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+                        }
+                    }
+
+                    return t;
+                };
+
+                return __assign.apply(this, arguments);
+            }; // Styles
+
+
+            // Mixins
+
+
+            // Utilities
+
+
+            /* @vue/component */
+
+            /* harmony default export */ __webpack_exports__["default"] = (Object(_util_mixins__WEBPACK_IMPORTED_MODULE_3__["default"])(_mixins_button_group__WEBPACK_IMPORTED_MODULE_1__["default"], _mixins_colorable__WEBPACK_IMPORTED_MODULE_2__["default"]).extend({
+                name: 'v-btn-toggle',
+                props: {
+                    backgroundColor: String,
+                    borderless: Boolean,
+                    dense: Boolean,
+                    group: Boolean,
+                    rounded: Boolean,
+                    shaped: Boolean,
+                    tile: Boolean
+                },
+                computed: {
+                    classes: function classes() {
+                        return __assign(__assign(__assign({}, _mixins_button_group__WEBPACK_IMPORTED_MODULE_1__["default"].options.computed.classes.call(this)), {
+                            'v-btn-toggle': true,
+                            'v-btn-toggle--borderless': this.borderless,
+                            'v-btn-toggle--dense': this.dense,
+                            'v-btn-toggle--group': this.group,
+                            'v-btn-toggle--rounded': this.rounded,
+                            'v-btn-toggle--shaped': this.shaped,
+                            'v-btn-toggle--tile': this.tile
+                        }), this.themeClasses);
+                    }
+                },
+                methods: {
+                    genData: function genData() {
+                        var data = this.setTextColor(this.color, __assign({}, _mixins_button_group__WEBPACK_IMPORTED_MODULE_1__["default"].options.methods.genData.call(this)));
+                        if (this.group) return data;
+                        return this.setBackgroundColor(this.backgroundColor, data);
+                    }
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VBtnToggle/index.ts":
+        /*!********************************************!*\
+          !*** ./src/components/VBtnToggle/index.ts ***!
+          \********************************************/
+        /*! exports provided: VBtnToggle, default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VBtnToggle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VBtnToggle */ "./src/components/VBtnToggle/VBtnToggle.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBtnToggle", function() { return _VBtnToggle__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+            /* harmony default export */ __webpack_exports__["default"] = (_VBtnToggle__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+            /***/ }),
+
+        /***/ "./src/components/VCalendar/VCalendar.ts":
+        /*!***********************************************!*\
+  !*** ./src/components/VCalendar/VCalendar.ts ***!
+  \***********************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _mixins_calendar_with_events__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mixins/calendar-with-events */ "./src/components/VCalendar/mixins/calendar-with-events.ts");
+            /* harmony import */ var _util_props__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./util/props */ "./src/components/VCalendar/util/props.ts");
+            /* harmony import */ var _util_timestamp__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./util/timestamp */ "./src/components/VCalendar/util/timestamp.ts");
+            /* harmony import */ var _VCalendarMonthly__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./VCalendarMonthly */ "./src/components/VCalendar/VCalendarMonthly.ts");
+            /* harmony import */ var _VCalendarDaily__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./VCalendarDaily */ "./src/components/VCalendar/VCalendarDaily.ts");
+            /* harmony import */ var _VCalendarWeekly__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./VCalendarWeekly */ "./src/components/VCalendar/VCalendarWeekly.ts");
+            /* harmony import */ var _VCalendarCategory__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./VCalendarCategory */ "./src/components/VCalendar/VCalendarCategory.ts");
+            /* harmony import */ var _util_parser__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./util/parser */ "./src/components/VCalendar/util/parser.ts");
+            function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+// Styles
+// import '../../stylus/components/_calendar-daily.styl'
+            var __assign = undefined && undefined.__assign || function () {
+                __assign = Object.assign || function (t) {
+                    for (var s, i = 1, n = arguments.length; i < n; i++) {
+                        s = arguments[i];
+
+                        for (var p in s) {
+                            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+                        }
+                    }
+
+                    return t;
+                };
+
+                return __assign.apply(this, arguments);
+            }; // Mixins
+
+
+            // Util
+
+
+            // Calendars
+
+
+
+
+
+
+            /* @vue/component */
+
+            /* harmony default export */ __webpack_exports__["default"] = (_mixins_calendar_with_events__WEBPACK_IMPORTED_MODULE_0__["default"].extend({
+                name: 'v-calendar',
+                props: __assign(__assign(__assign(__assign({}, _util_props__WEBPACK_IMPORTED_MODULE_1__["default"].calendar), _util_props__WEBPACK_IMPORTED_MODULE_1__["default"].weeks), _util_props__WEBPACK_IMPORTED_MODULE_1__["default"].intervals), _util_props__WEBPACK_IMPORTED_MODULE_1__["default"].category),
+                data: function data() {
+                    return {
+                        lastStart: null,
+                        lastEnd: null
+                    };
+                },
+                computed: {
+                    parsedValue: function parsedValue() {
+                        return Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["validateTimestamp"])(this.value) ? Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["parseTimestamp"])(this.value, true) : this.parsedStart || this.times.today;
+                    },
+                    parsedCategoryDays: function parsedCategoryDays() {
+                        return parseInt(this.categoryDays) || 1;
+                    },
+                    renderProps: function renderProps() {
+                        var around = this.parsedValue;
+                        var component = null;
+                        var maxDays = this.maxDays;
+                        var weekdays = this.parsedWeekdays;
+                        var categories = this.parsedCategories;
+                        var start = around;
+                        var end = around;
+
+                        switch (this.type) {
+                            case 'month':
+                                component = _VCalendarMonthly__WEBPACK_IMPORTED_MODULE_3__["default"];
+                                start = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["getStartOfMonth"])(around);
+                                end = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["getEndOfMonth"])(around);
+                                break;
+
+                            case 'week':
+                                component = _VCalendarDaily__WEBPACK_IMPORTED_MODULE_4__["default"];
+                                start = this.getStartOfWeek(around);
+                                end = this.getEndOfWeek(around);
+                                maxDays = 7;
+                                break;
+
+                            case 'day':
+                                component = _VCalendarDaily__WEBPACK_IMPORTED_MODULE_4__["default"];
+                                maxDays = 1;
+                                weekdays = [start.weekday];
+                                break;
+
+                            case '4day':
+                                component = _VCalendarDaily__WEBPACK_IMPORTED_MODULE_4__["default"];
+                                end = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["relativeDays"])(Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["copyTimestamp"])(end), _util_timestamp__WEBPACK_IMPORTED_MODULE_2__["nextDay"], 3);
+                                Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["updateFormatted"])(end);
+                                maxDays = 4;
+                                weekdays = [start.weekday, (start.weekday + 1) % 7, (start.weekday + 2) % 7, (start.weekday + 3) % 7];
+                                break;
+
+                            case 'custom-weekly':
+                                component = _VCalendarWeekly__WEBPACK_IMPORTED_MODULE_5__["default"];
+                                start = this.parsedStart || around;
+                                end = this.parsedEnd;
+                                break;
+
+                            case 'custom-daily':
+                                component = _VCalendarDaily__WEBPACK_IMPORTED_MODULE_4__["default"];
+                                start = this.parsedStart || around;
+                                end = this.parsedEnd;
+                                break;
+
+                            case 'category':
+                                var days = this.parsedCategoryDays;
+                                component = _VCalendarCategory__WEBPACK_IMPORTED_MODULE_6__["default"];
+                                end = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["relativeDays"])(Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["copyTimestamp"])(end), _util_timestamp__WEBPACK_IMPORTED_MODULE_2__["nextDay"], days);
+                                Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["updateFormatted"])(end);
+                                maxDays = days;
+                                weekdays = [];
+
+                                for (var i = 0; i < days; i++) {
+                                    weekdays.push((start.weekday + i) % 7);
+                                }
+
+                                categories = this.getCategoryList(categories);
+                                break;
+
+                            default:
+                                throw new Error(this.type + ' is not a valid Calendar type');
+                        }
+
+                        return {
+                            component: component,
+                            start: start,
+                            end: end,
+                            maxDays: maxDays,
+                            weekdays: weekdays,
+                            categories: categories
+                        };
+                    },
+                    eventWeekdays: function eventWeekdays() {
+                        return this.renderProps.weekdays;
+                    },
+                    categoryMode: function categoryMode() {
+                        return this.type === 'category';
+                    },
+                    title: function title() {
+                        var _a = this.renderProps,
+                            start = _a.start,
+                            end = _a.end;
+                        var spanYears = start.year !== end.year;
+                        var spanMonths = spanYears || start.month !== end.month;
+
+                        if (spanYears) {
+                            return this.monthShortFormatter(start, true) + ' ' + start.year + ' - ' + this.monthShortFormatter(end, true) + ' ' + end.year;
+                        }
+
+                        if (spanMonths) {
+                            return this.monthShortFormatter(start, true) + ' - ' + this.monthShortFormatter(end, true) + ' ' + end.year;
+                        } else {
+                            return this.monthLongFormatter(start, false) + ' ' + start.year;
+                        }
+                    },
+                    monthLongFormatter: function monthLongFormatter() {
+                        return this.getFormatter({
+                            timeZone: 'UTC',
+                            month: 'long'
+                        });
+                    },
+                    monthShortFormatter: function monthShortFormatter() {
+                        return this.getFormatter({
+                            timeZone: 'UTC',
+                            month: 'short'
+                        });
+                    },
+                    parsedCategories: function parsedCategories() {
+                        return Object(_util_parser__WEBPACK_IMPORTED_MODULE_7__["getParsedCategories"])(this.categories, this.categoryText);
+                    }
+                },
+                watch: {
+                    renderProps: 'checkChange'
+                },
+                mounted: function mounted() {
+                    this.updateEventVisibility();
+                    this.checkChange();
+                },
+                updated: function updated() {
+                    window.requestAnimationFrame(this.updateEventVisibility);
+                },
+                methods: {
+                    checkChange: function checkChange() {
+                        var _a = this,
+                            lastStart = _a.lastStart,
+                            lastEnd = _a.lastEnd;
+
+                        var _b = this.renderProps,
+                            start = _b.start,
+                            end = _b.end;
+
+                        if (!lastStart || !lastEnd || start.date !== lastStart.date || end.date !== lastEnd.date) {
+                            this.lastStart = start;
+                            this.lastEnd = end;
+                            this.$emit('change', {
+                                start: start,
+                                end: end
+                            });
+                        }
+                    },
+                    move: function move(amount) {
+                        if (amount === void 0) {
+                            amount = 1;
+                        }
+
+                        var moved = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["copyTimestamp"])(this.parsedValue);
+                        var forward = amount > 0;
+                        var mover = forward ? _util_timestamp__WEBPACK_IMPORTED_MODULE_2__["nextDay"] : _util_timestamp__WEBPACK_IMPORTED_MODULE_2__["prevDay"];
+                        var limit = forward ? _util_timestamp__WEBPACK_IMPORTED_MODULE_2__["DAYS_IN_MONTH_MAX"] : _util_timestamp__WEBPACK_IMPORTED_MODULE_2__["DAY_MIN"];
+                        var times = forward ? amount : -amount;
+
+                        while (--times >= 0) {
+                            switch (this.type) {
+                                case 'month':
+                                    moved.day = limit;
+                                    mover(moved);
+                                    break;
+
+                                case 'week':
+                                    Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["relativeDays"])(moved, mover, _util_timestamp__WEBPACK_IMPORTED_MODULE_2__["DAYS_IN_WEEK"]);
+                                    break;
+
+                                case 'day':
+                                    Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["relativeDays"])(moved, mover, 1);
+                                    break;
+
+                                case '4day':
+                                    Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["relativeDays"])(moved, mover, 4);
+                                    break;
+
+                                case 'category':
+                                    Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["relativeDays"])(moved, mover, this.parsedCategoryDays);
+                                    break;
+                            }
+                        }
+
+                        Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["updateWeekday"])(moved);
+                        Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["updateFormatted"])(moved);
+                        Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["updateRelative"])(moved, this.times.now);
+
+                        if (this.value instanceof Date) {
+                            this.$emit('input', Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["timestampToDate"])(moved));
+                        } else if (typeof this.value === 'number') {
+                            this.$emit('input', Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["timestampToDate"])(moved).getTime());
+                        } else {
+                            this.$emit('input', moved.date);
+                        }
+
+                        this.$emit('moved', moved);
+                    },
+                    next: function next(amount) {
+                        if (amount === void 0) {
+                            amount = 1;
+                        }
+
+                        this.move(amount);
+                    },
+                    prev: function prev(amount) {
+                        if (amount === void 0) {
+                            amount = 1;
+                        }
+
+                        this.move(-amount);
+                    },
+                    timeToY: function timeToY(time, clamp) {
+                        if (clamp === void 0) {
+                            clamp = true;
+                        }
+
+                        var c = this.$children[0];
+
+                        if (c && c.timeToY) {
+                            return c.timeToY(time, clamp);
+                        } else {
+                            return false;
+                        }
+                    },
+                    timeDelta: function timeDelta(time) {
+                        var c = this.$children[0];
+
+                        if (c && c.timeDelta) {
+                            return c.timeDelta(time);
+                        } else {
+                            return false;
+                        }
+                    },
+                    minutesToPixels: function minutesToPixels(minutes) {
+                        var c = this.$children[0];
+
+                        if (c && c.minutesToPixels) {
+                            return c.minutesToPixels(minutes);
+                        } else {
+                            return -1;
+                        }
+                    },
+                    scrollToTime: function scrollToTime(time) {
+                        var c = this.$children[0];
+
+                        if (c && c.scrollToTime) {
+                            return c.scrollToTime(time);
+                        } else {
+                            return false;
+                        }
+                    },
+                    parseTimestamp: function parseTimestamp(input, required) {
+                        return Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["parseTimestamp"])(input, required, this.times.now);
+                    },
+                    timestampToDate: function timestampToDate(timestamp) {
+                        return Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["timestampToDate"])(timestamp);
+                    },
+                    getCategoryList: function getCategoryList(categories) {
+                        var _this = this;
+
+                        if (!this.noEvents) {
+                            var categoryMap_1 = categories.reduce(function (map, category, index) {
+                                if (_typeof(category) === 'object' && category.categoryName) map[category.categoryName] = {
+                                    index: index,
+                                    count: 0
+                                };
+                                return map;
+                            }, {});
+
+                            if (!this.categoryHideDynamic || !this.categoryShowAll) {
+                                var categoryLength_1 = categories.length;
+                                this.parsedEvents.forEach(function (ev) {
+                                    var category = ev.category;
+
+                                    if (typeof category !== 'string') {
+                                        category = _this.categoryForInvalid;
+                                    }
+
+                                    if (!category) {
+                                        return;
+                                    }
+
+                                    if (category in categoryMap_1) {
+                                        categoryMap_1[category].count++;
+                                    } else if (!_this.categoryHideDynamic) {
+                                        categoryMap_1[category] = {
+                                            index: categoryLength_1++,
+                                            count: 1
+                                        };
+                                    }
+                                });
+                            }
+
+                            if (!this.categoryShowAll) {
+                                for (var category in categoryMap_1) {
+                                    if (categoryMap_1[category].count === 0) {
+                                        delete categoryMap_1[category];
+                                    }
+                                }
+                            }
+
+                            categories = categories.filter(function (category) {
+                                if (_typeof(category) === 'object' && category.categoryName) {
+                                    return categoryMap_1.hasOwnProperty(category.categoryName);
+                                }
+
+                                return false;
+                            });
+                        }
+
+                        return categories;
+                    }
+                },
+                render: function render(h) {
+                    var _this = this;
+
+                    var _a = this.renderProps,
+                        start = _a.start,
+                        end = _a.end,
+                        maxDays = _a.maxDays,
+                        component = _a.component,
+                        weekdays = _a.weekdays,
+                        categories = _a.categories;
+                    return h(component, {
+                        staticClass: 'v-calendar',
+                        class: {
+                            'v-calendar-events': !this.noEvents
+                        },
+                        props: __assign(__assign({}, this.$props), {
+                            start: start.date,
+                            end: end.date,
+                            maxDays: maxDays,
+                            weekdays: weekdays,
+                            categories: categories
+                        }),
+                        directives: [{
+                            modifiers: {
+                                quiet: true
+                            },
+                            name: 'resize',
+                            value: this.updateEventVisibility
+                        }],
+                        on: __assign(__assign({}, this.$listeners), {
+                            'click:date': function clickDate(day) {
+                                if (_this.$listeners.input) {
+                                    _this.$emit('input', day.date);
+                                }
+
+                                if (_this.$listeners['click:date']) {
+                                    _this.$emit('click:date', day);
+                                }
+                            }
+                        }),
+                        scopedSlots: this.getScopedSlots()
+                    });
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VCalendar/VCalendarCategory.sass":
+        /*!*********************************************************!*\
+  !*** ./src/components/VCalendar/VCalendarCategory.sass ***!
+  \*********************************************************/
+        /*! no static exports found */
+        /***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+            /***/ }),
+
+        /***/ "./src/components/VCalendar/VCalendarCategory.ts":
+        /*!*******************************************************!*\
+  !*** ./src/components/VCalendar/VCalendarCategory.ts ***!
+  \*******************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VCalendarCategory_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VCalendarCategory.sass */ "./src/components/VCalendar/VCalendarCategory.sass");
+            /* harmony import */ var _VCalendarCategory_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VCalendarCategory_sass__WEBPACK_IMPORTED_MODULE_0__);
+            /* harmony import */ var _VCalendarDaily__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VCalendarDaily */ "./src/components/VCalendar/VCalendarDaily.ts");
+            /* harmony import */ var _util_helpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../util/helpers */ "./src/util/helpers.ts");
+            /* harmony import */ var _util_props__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./util/props */ "./src/components/VCalendar/util/props.ts");
+            /* harmony import */ var _util_parser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./util/parser */ "./src/components/VCalendar/util/parser.ts");
+            function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+            var __assign = undefined && undefined.__assign || function () {
+                __assign = Object.assign || function (t) {
+                    for (var s, i = 1, n = arguments.length; i < n; i++) {
+                        s = arguments[i];
+
+                        for (var p in s) {
+                            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+                        }
+                    }
+
+                    return t;
+                };
+
+                return __assign.apply(this, arguments);
+            };
+
+            var __read = undefined && undefined.__read || function (o, n) {
+                var m = typeof Symbol === "function" && o[Symbol.iterator];
+                if (!m) return o;
+                var i = m.call(o),
+                    r,
+                    ar = [],
+                    e;
+
+                try {
+                    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
+                        ar.push(r.value);
+                    }
+                } catch (error) {
+                    e = {
+                        error: error
+                    };
+                } finally {
+                    try {
+                        if (r && !r.done && (m = i["return"])) m.call(i);
+                    } finally {
+                        if (e) throw e.error;
+                    }
+                }
+
+                return ar;
+            };
+
+            var __spread = undefined && undefined.__spread || function () {
+                for (var ar = [], i = 0; i < arguments.length; i++) {
+                    ar = ar.concat(__read(arguments[i]));
+                }
+
+                return ar;
+            }; // Styles
+
+
+            // Mixins
+
+            // Util
+
+
+
+
+            /* @vue/component */
+
+            /* harmony default export */ __webpack_exports__["default"] = (_VCalendarDaily__WEBPACK_IMPORTED_MODULE_1__["default"].extend({
+                name: 'v-calendar-category',
+                props: _util_props__WEBPACK_IMPORTED_MODULE_3__["default"].category,
+                computed: {
+                    classes: function classes() {
+                        return __assign({
+                            'v-calendar-daily': true,
+                            'v-calendar-category': true
+                        }, this.themeClasses);
+                    },
+                    parsedCategories: function parsedCategories() {
+                        return Object(_util_parser__WEBPACK_IMPORTED_MODULE_4__["getParsedCategories"])(this.categories, this.categoryText);
+                    }
+                },
+                methods: {
+                    genDayHeader: function genDayHeader(day, index) {
+                        var _this = this;
+
+                        var data = {
+                            staticClass: 'v-calendar-category__columns'
+                        };
+
+                        var scope = __assign(__assign({
+                            week: this.days
+                        }, day), {
+                            index: index
+                        });
+
+                        var children = this.parsedCategories.map(function (category) {
+                            return _this.genDayHeaderCategory(day, _this.getCategoryScope(scope, category));
+                        });
+                        return [this.$createElement('div', data, children)];
+                    },
+                    getCategoryScope: function getCategoryScope(scope, category) {
+                        var cat = _typeof(category) === 'object' && category && category.categoryName === this.categoryForInvalid ? null : category;
+                        return __assign(__assign({}, scope), {
+                            category: cat
+                        });
+                    },
+                    genDayHeaderCategory: function genDayHeaderCategory(day, scope) {
+                        var _this = this;
+
+                        return this.$createElement('div', {
+                            staticClass: 'v-calendar-category__column-header',
+                            on: this.getDefaultMouseEventHandlers(':day-category', function (e) {
+                                return _this.getCategoryScope(_this.getSlotScope(day), scope.category);
+                            })
+                        }, [Object(_util_helpers__WEBPACK_IMPORTED_MODULE_2__["getSlot"])(this, 'category', scope) || this.genDayHeaderCategoryTitle(scope.category && scope.category.categoryName), Object(_util_helpers__WEBPACK_IMPORTED_MODULE_2__["getSlot"])(this, 'day-header', scope)]);
+                    },
+                    genDayHeaderCategoryTitle: function genDayHeaderCategoryTitle(categoryName) {
+                        return this.$createElement('div', {
+                            staticClass: 'v-calendar-category__category'
+                        }, categoryName === null ? this.categoryForInvalid : categoryName);
+                    },
+                    genDays: function genDays() {
+                        var _this = this;
+
+                        var d = this.days[0];
+                        var days = this.days.slice();
+                        days = new Array(this.parsedCategories.length);
+                        days.fill(d);
+                        return days.map(function (v, i) {
+                            return _this.genDay(v, 0, i);
+                        });
+                    },
+                    genDay: function genDay(day, index, categoryIndex) {
+                        var _this = this;
+
+                        var category = this.parsedCategories[categoryIndex];
+                        return this.$createElement('div', {
+                            key: day.date + '-' + categoryIndex,
+                            staticClass: 'v-calendar-daily__day',
+                            class: this.getRelativeClasses(day),
+                            on: this.getDefaultMouseEventHandlers(':time', function (e) {
+                                return _this.getSlotScope(_this.getTimestampAtEvent(e, day));
+                            })
+                        }, __spread(this.genDayIntervals(index, category), this.genDayBody(day, category)));
+                    },
+                    genDayIntervals: function genDayIntervals(index, category) {
+                        var _this = this;
+
+                        return this.intervals[index].map(function (v) {
+                            return _this.genDayInterval(v, category);
+                        });
+                    },
+                    genDayInterval: function genDayInterval(interval, category) {
+                        var _this = this;
+
+                        var height = Object(_util_helpers__WEBPACK_IMPORTED_MODULE_2__["convertToUnit"])(this.intervalHeight);
+                        var styler = this.intervalStyle || this.intervalStyleDefault;
+                        var data = {
+                            key: interval.time,
+                            staticClass: 'v-calendar-daily__day-interval',
+                            style: __assign({
+                                height: height
+                            }, styler(__assign(__assign({}, interval), {
+                                category: category
+                            })))
+                        };
+                        var children = Object(_util_helpers__WEBPACK_IMPORTED_MODULE_2__["getSlot"])(this, 'interval', function () {
+                            return _this.getCategoryScope(_this.getSlotScope(interval), category);
+                        });
+                        return this.$createElement('div', data, children);
+                    },
+                    genDayBody: function genDayBody(day, category) {
+                        var data = {
+                            staticClass: 'v-calendar-category__columns'
+                        };
+                        var children = [this.genDayBodyCategory(day, category)];
+                        return [this.$createElement('div', data, children)];
+                    },
+                    genDayBodyCategory: function genDayBodyCategory(day, category) {
+                        var _this = this;
+
+                        var data = {
+                            staticClass: 'v-calendar-category__column',
+                            on: this.getDefaultMouseEventHandlers(':time-category', function (e) {
+                                return _this.getCategoryScope(_this.getSlotScope(_this.getTimestampAtEvent(e, day)), category);
+                            })
+                        };
+                        var children = Object(_util_helpers__WEBPACK_IMPORTED_MODULE_2__["getSlot"])(this, 'day-body', function () {
+                            return _this.getCategoryScope(_this.getSlotScope(day), category);
+                        });
+                        return this.$createElement('div', data, children);
+                    }
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VCalendar/VCalendarDaily.sass":
+        /*!******************************************************!*\
+  !*** ./src/components/VCalendar/VCalendarDaily.sass ***!
+  \******************************************************/
+        /*! no static exports found */
+        /***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+            /***/ }),
+
+        /***/ "./src/components/VCalendar/VCalendarDaily.ts":
+        /*!****************************************************!*\
+  !*** ./src/components/VCalendar/VCalendarDaily.ts ***!
+  \****************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VCalendarDaily_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VCalendarDaily.sass */ "./src/components/VCalendar/VCalendarDaily.sass");
+            /* harmony import */ var _VCalendarDaily_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VCalendarDaily_sass__WEBPACK_IMPORTED_MODULE_0__);
+            /* harmony import */ var _directives_resize__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../directives/resize */ "./src/directives/resize/index.ts");
+            /* harmony import */ var _VBtn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../VBtn */ "./src/components/VBtn/index.ts");
+            /* harmony import */ var _mixins_calendar_with_intervals__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./mixins/calendar-with-intervals */ "./src/components/VCalendar/mixins/calendar-with-intervals.ts");
+            /* harmony import */ var _util_helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../util/helpers */ "./src/util/helpers.ts");
+            var __assign = undefined && undefined.__assign || function () {
+                __assign = Object.assign || function (t) {
+                    for (var s, i = 1, n = arguments.length; i < n; i++) {
+                        s = arguments[i];
+
+                        for (var p in s) {
+                            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+                        }
+                    }
+
+                    return t;
+                };
+
+                return __assign.apply(this, arguments);
+            };
+
+            var __read = undefined && undefined.__read || function (o, n) {
+                var m = typeof Symbol === "function" && o[Symbol.iterator];
+                if (!m) return o;
+                var i = m.call(o),
+                    r,
+                    ar = [],
+                    e;
+
+                try {
+                    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
+                        ar.push(r.value);
+                    }
+                } catch (error) {
+                    e = {
+                        error: error
+                    };
+                } finally {
+                    try {
+                        if (r && !r.done && (m = i["return"])) m.call(i);
+                    } finally {
+                        if (e) throw e.error;
+                    }
+                }
+
+                return ar;
+            };
+
+            var __spread = undefined && undefined.__spread || function () {
+                for (var ar = [], i = 0; i < arguments.length; i++) {
+                    ar = ar.concat(__read(arguments[i]));
+                }
+
+                return ar;
+            }; // Styles
+
+
+            // Directives
+
+            // Components
+
+            // Mixins
+
+            // Util
+
+
+            /* @vue/component */
+
+            /* harmony default export */ __webpack_exports__["default"] = (_mixins_calendar_with_intervals__WEBPACK_IMPORTED_MODULE_3__["default"].extend({
+                name: 'v-calendar-daily',
+                directives: {
+                    Resize: _directives_resize__WEBPACK_IMPORTED_MODULE_1__["default"]
+                },
+                data: function data() {
+                    return {
+                        scrollPush: 0
+                    };
+                },
+                computed: {
+                    classes: function classes() {
+                        return __assign({
+                            'v-calendar-daily': true
+                        }, this.themeClasses);
+                    }
+                },
+                mounted: function mounted() {
+                    this.init();
+                },
+                methods: {
+                    init: function init() {
+                        this.$nextTick(this.onResize);
+                    },
+                    onResize: function onResize() {
+                        this.scrollPush = this.getScrollPush();
+                    },
+                    getScrollPush: function getScrollPush() {
+                        var area = this.$refs.scrollArea;
+                        var pane = this.$refs.pane;
+                        return area && pane ? area.offsetWidth - pane.offsetWidth : 0;
+                    },
+                    genHead: function genHead() {
+                        return this.$createElement('div', {
+                            staticClass: 'v-calendar-daily__head',
+                            style: {
+                                marginRight: this.scrollPush + 'px'
+                            }
+                        }, __spread([this.genHeadIntervals()], this.genHeadDays()));
+                    },
+                    genHeadIntervals: function genHeadIntervals() {
+                        var width = Object(_util_helpers__WEBPACK_IMPORTED_MODULE_4__["convertToUnit"])(this.intervalWidth);
+                        return this.$createElement('div', {
+                            staticClass: 'v-calendar-daily__intervals-head',
+                            style: {
+                                width: width
+                            }
+                        }, Object(_util_helpers__WEBPACK_IMPORTED_MODULE_4__["getSlot"])(this, 'interval-header'));
+                    },
+                    genHeadDays: function genHeadDays() {
+                        return this.days.map(this.genHeadDay);
+                    },
+                    genHeadDay: function genHeadDay(day, index) {
+                        var _this = this;
+
+                        return this.$createElement('div', {
+                            key: day.date,
+                            staticClass: 'v-calendar-daily_head-day',
+                            class: this.getRelativeClasses(day),
+                            on: this.getDefaultMouseEventHandlers(':day', function (_e) {
+                                return _this.getSlotScope(day);
+                            })
+                        }, __spread([this.genHeadWeekday(day), this.genHeadDayLabel(day)], this.genDayHeader(day, index)));
+                    },
+                    genDayHeader: function genDayHeader(day, index) {
+                        var _this = this;
+
+                        return Object(_util_helpers__WEBPACK_IMPORTED_MODULE_4__["getSlot"])(this, 'day-header', function () {
+                            return __assign(__assign({
+                                week: _this.days
+                            }, day), {
+                                index: index
+                            });
+                        }) || [];
+                    },
+                    genHeadWeekday: function genHeadWeekday(day) {
+                        var color = day.present ? this.color : undefined;
+                        return this.$createElement('div', this.setTextColor(color, {
+                            staticClass: 'v-calendar-daily_head-weekday'
+                        }), this.weekdayFormatter(day, this.shortWeekdays));
+                    },
+                    genHeadDayLabel: function genHeadDayLabel(day) {
+                        return this.$createElement('div', {
+                            staticClass: 'v-calendar-daily_head-day-label'
+                        }, Object(_util_helpers__WEBPACK_IMPORTED_MODULE_4__["getSlot"])(this, 'day-label-header', day) || [this.genHeadDayButton(day)]);
+                    },
+                    genHeadDayButton: function genHeadDayButton(day) {
+                        var color = day.present ? this.color : 'transparent';
+                        return this.$createElement(_VBtn__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                            props: {
+                                color: color,
+                                fab: true,
+                                depressed: true
+                            },
+                            on: this.getMouseEventHandlers({
+                                'click:date': {
+                                    event: 'click',
+                                    stop: true
+                                },
+                                'contextmenu:date': {
+                                    event: 'contextmenu',
+                                    stop: true,
+                                    prevent: true,
+                                    result: false
+                                }
+                            }, function (_e) {
+                                return day;
+                            })
+                        }, this.dayFormatter(day, false));
+                    },
+                    genBody: function genBody() {
+                        return this.$createElement('div', {
+                            staticClass: 'v-calendar-daily__body'
+                        }, [this.genScrollArea()]);
+                    },
+                    genScrollArea: function genScrollArea() {
+                        return this.$createElement('div', {
+                            ref: 'scrollArea',
+                            staticClass: 'v-calendar-daily__scroll-area'
+                        }, [this.genPane()]);
+                    },
+                    genPane: function genPane() {
+                        return this.$createElement('div', {
+                            ref: 'pane',
+                            staticClass: 'v-calendar-daily__pane',
+                            style: {
+                                height: Object(_util_helpers__WEBPACK_IMPORTED_MODULE_4__["convertToUnit"])(this.bodyHeight)
+                            }
+                        }, [this.genDayContainer()]);
+                    },
+                    genDayContainer: function genDayContainer() {
+                        return this.$createElement('div', {
+                            staticClass: 'v-calendar-daily__day-container'
+                        }, __spread([this.genBodyIntervals()], this.genDays()));
+                    },
+                    genDays: function genDays() {
+                        return this.days.map(this.genDay);
+                    },
+                    genDay: function genDay(day, index) {
+                        var _this = this;
+
+                        return this.$createElement('div', {
+                            key: day.date,
+                            staticClass: 'v-calendar-daily__day',
+                            class: this.getRelativeClasses(day),
+                            on: this.getDefaultMouseEventHandlers(':time', function (e) {
+                                return _this.getSlotScope(_this.getTimestampAtEvent(e, day));
+                            })
+                        }, __spread(this.genDayIntervals(index), this.genDayBody(day)));
+                    },
+                    genDayBody: function genDayBody(day) {
+                        var _this = this;
+
+                        return Object(_util_helpers__WEBPACK_IMPORTED_MODULE_4__["getSlot"])(this, 'day-body', function () {
+                            return _this.getSlotScope(day);
+                        }) || [];
+                    },
+                    genDayIntervals: function genDayIntervals(index) {
+                        return this.intervals[index].map(this.genDayInterval);
+                    },
+                    genDayInterval: function genDayInterval(interval) {
+                        var _this = this;
+
+                        var height = Object(_util_helpers__WEBPACK_IMPORTED_MODULE_4__["convertToUnit"])(this.intervalHeight);
+                        var styler = this.intervalStyle || this.intervalStyleDefault;
+                        var data = {
+                            key: interval.time,
+                            staticClass: 'v-calendar-daily__day-interval',
+                            style: __assign({
+                                height: height
+                            }, styler(interval))
+                        };
+                        var children = Object(_util_helpers__WEBPACK_IMPORTED_MODULE_4__["getSlot"])(this, 'interval', function () {
+                            return _this.getSlotScope(interval);
+                        });
+                        return this.$createElement('div', data, children);
+                    },
+                    genBodyIntervals: function genBodyIntervals() {
+                        var _this = this;
+
+                        var width = Object(_util_helpers__WEBPACK_IMPORTED_MODULE_4__["convertToUnit"])(this.intervalWidth);
+                        var data = {
+                            staticClass: 'v-calendar-daily__intervals-body',
+                            style: {
+                                width: width
+                            },
+                            on: this.getDefaultMouseEventHandlers(':interval', function (e) {
+                                return _this.getTimestampAtEvent(e, _this.parsedStart);
+                            })
+                        };
+                        return this.$createElement('div', data, this.genIntervalLabels());
+                    },
+                    genIntervalLabels: function genIntervalLabels() {
+                        if (!this.intervals.length) return null;
+                        return this.intervals[0].map(this.genIntervalLabel);
+                    },
+                    genIntervalLabel: function genIntervalLabel(interval) {
+                        var height = Object(_util_helpers__WEBPACK_IMPORTED_MODULE_4__["convertToUnit"])(this.intervalHeight);
+                        var short = this.shortIntervals;
+                        var shower = this.showIntervalLabel || this.showIntervalLabelDefault;
+                        var show = shower(interval);
+                        var label = show ? this.intervalFormatter(interval, short) : undefined;
+                        return this.$createElement('div', {
+                            key: interval.time,
+                            staticClass: 'v-calendar-daily__interval',
+                            style: {
+                                height: height
+                            }
+                        }, [this.$createElement('div', {
+                            staticClass: 'v-calendar-daily__interval-text'
+                        }, label)]);
+                    }
+                },
+                render: function render(h) {
+                    return h('div', {
+                        class: this.classes,
+                        on: {
+                            dragstart: function dragstart(e) {
+                                e.preventDefault();
+                            }
+                        },
+                        directives: [{
+                            modifiers: {
+                                quiet: true
+                            },
+                            name: 'resize',
+                            value: this.onResize
+                        }]
+                    }, [!this.hideHeader ? this.genHead() : '', this.genBody()]);
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VCalendar/VCalendarMonthly.ts":
+        /*!******************************************************!*\
+  !*** ./src/components/VCalendar/VCalendarMonthly.ts ***!
+  \******************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VCalendarWeekly_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VCalendarWeekly.sass */ "./src/components/VCalendar/VCalendarWeekly.sass");
+            /* harmony import */ var _VCalendarWeekly_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VCalendarWeekly_sass__WEBPACK_IMPORTED_MODULE_0__);
+            /* harmony import */ var _VCalendarWeekly__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VCalendarWeekly */ "./src/components/VCalendar/VCalendarWeekly.ts");
+            /* harmony import */ var _util_timestamp__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./util/timestamp */ "./src/components/VCalendar/util/timestamp.ts");
+// Styles
+            // Mixins
+
+            // Util
+
+
+            /* @vue/component */
+
+            /* harmony default export */ __webpack_exports__["default"] = (_VCalendarWeekly__WEBPACK_IMPORTED_MODULE_1__["default"].extend({
+                name: 'v-calendar-monthly',
+                computed: {
+                    staticClass: function staticClass() {
+                        return 'v-calendar-monthly v-calendar-weekly';
+                    },
+                    parsedStart: function parsedStart() {
+                        return Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["getStartOfMonth"])(Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["parseTimestamp"])(this.start, true));
+                    },
+                    parsedEnd: function parsedEnd() {
+                        return Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["getEndOfMonth"])(Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["parseTimestamp"])(this.end, true));
+                    }
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VCalendar/VCalendarWeekly.sass":
+        /*!*******************************************************!*\
+  !*** ./src/components/VCalendar/VCalendarWeekly.sass ***!
+  \*******************************************************/
+        /*! no static exports found */
+        /***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+            /***/ }),
+
+        /***/ "./src/components/VCalendar/VCalendarWeekly.ts":
+        /*!*****************************************************!*\
+  !*** ./src/components/VCalendar/VCalendarWeekly.ts ***!
+  \*****************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VCalendarWeekly_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VCalendarWeekly.sass */ "./src/components/VCalendar/VCalendarWeekly.sass");
+            /* harmony import */ var _VCalendarWeekly_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VCalendarWeekly_sass__WEBPACK_IMPORTED_MODULE_0__);
+            /* harmony import */ var _VBtn__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../VBtn */ "./src/components/VBtn/index.ts");
+            /* harmony import */ var _mixins_calendar_base__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mixins/calendar-base */ "./src/components/VCalendar/mixins/calendar-base.ts");
+            /* harmony import */ var _util_helpers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../util/helpers */ "./src/util/helpers.ts");
+            /* harmony import */ var _util_dateTimeUtils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../util/dateTimeUtils */ "./src/util/dateTimeUtils.ts");
+            /* harmony import */ var _util_props__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./util/props */ "./src/components/VCalendar/util/props.ts");
+            /* harmony import */ var _util_timestamp__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./util/timestamp */ "./src/components/VCalendar/util/timestamp.ts");
+            var __assign = undefined && undefined.__assign || function () {
+                __assign = Object.assign || function (t) {
+                    for (var s, i = 1, n = arguments.length; i < n; i++) {
+                        s = arguments[i];
+
+                        for (var p in s) {
+                            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+                        }
+                    }
+
+                    return t;
+                };
+
+                return __assign.apply(this, arguments);
+            };
+
+            var __read = undefined && undefined.__read || function (o, n) {
+                var m = typeof Symbol === "function" && o[Symbol.iterator];
+                if (!m) return o;
+                var i = m.call(o),
+                    r,
+                    ar = [],
+                    e;
+
+                try {
+                    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
+                        ar.push(r.value);
+                    }
+                } catch (error) {
+                    e = {
+                        error: error
+                    };
+                } finally {
+                    try {
+                        if (r && !r.done && (m = i["return"])) m.call(i);
+                    } finally {
+                        if (e) throw e.error;
+                    }
+                }
+
+                return ar;
+            };
+
+            var __spread = undefined && undefined.__spread || function () {
+                for (var ar = [], i = 0; i < arguments.length; i++) {
+                    ar = ar.concat(__read(arguments[i]));
+                }
+
+                return ar;
+            }; // Styles
+
+
+            // Components
+
+            // Mixins
+
+            // Util
+
+
+
+
+
+            /* @vue/component */
+
+            /* harmony default export */ __webpack_exports__["default"] = (_mixins_calendar_base__WEBPACK_IMPORTED_MODULE_2__["default"].extend({
+                name: 'v-calendar-weekly',
+                props: _util_props__WEBPACK_IMPORTED_MODULE_5__["default"].weeks,
+                computed: {
+                    staticClass: function staticClass() {
+                        return 'v-calendar-weekly';
+                    },
+                    classes: function classes() {
+                        return this.themeClasses;
+                    },
+                    parsedMinWeeks: function parsedMinWeeks() {
+                        return parseInt(this.minWeeks);
+                    },
+                    days: function days() {
+                        var minDays = this.parsedMinWeeks * this.parsedWeekdays.length;
+                        var start = this.getStartOfWeek(this.parsedStart);
+                        var end = this.getEndOfWeek(this.parsedEnd);
+                        return Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_6__["createDayList"])(start, end, this.times.today, this.weekdaySkips, Number.MAX_SAFE_INTEGER, minDays);
+                    },
+                    todayWeek: function todayWeek() {
+                        var today = this.times.today;
+                        var start = this.getStartOfWeek(today);
+                        var end = this.getEndOfWeek(today);
+                        return Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_6__["createDayList"])(start, end, today, this.weekdaySkips, this.parsedWeekdays.length, this.parsedWeekdays.length);
+                    },
+                    monthFormatter: function monthFormatter() {
+                        if (this.monthFormat) {
+                            return this.monthFormat;
+                        }
+
+                        var longOptions = {
+                            timeZone: 'UTC',
+                            month: 'long'
+                        };
+                        var shortOptions = {
+                            timeZone: 'UTC',
+                            month: 'short'
+                        };
+                        return Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_6__["createNativeLocaleFormatter"])(this.currentLocale, function (_tms, short) {
+                            return short ? shortOptions : longOptions;
+                        });
+                    }
+                },
+                methods: {
+                    isOutside: function isOutside(day) {
+                        var dayIdentifier = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_6__["getDayIdentifier"])(day);
+                        return dayIdentifier < Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_6__["getDayIdentifier"])(this.parsedStart) || dayIdentifier > Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_6__["getDayIdentifier"])(this.parsedEnd);
+                    },
+                    genHead: function genHead() {
+                        return this.$createElement('div', {
+                            staticClass: 'v-calendar-weekly__head'
+                        }, this.genHeadDays());
+                    },
+                    genHeadDays: function genHeadDays() {
+                        var header = this.todayWeek.map(this.genHeadDay);
+
+                        if (this.showWeek) {
+                            header.unshift(this.$createElement('div', {
+                                staticClass: 'v-calendar-weekly__head-weeknumber'
+                            }));
+                        }
+
+                        return header;
+                    },
+                    genHeadDay: function genHeadDay(day, index) {
+                        var outside = this.isOutside(this.days[index]);
+                        var color = day.present ? this.color : undefined;
+                        return this.$createElement('div', this.setTextColor(color, {
+                            key: day.date,
+                            staticClass: 'v-calendar-weekly__head-weekday',
+                            class: this.getRelativeClasses(day, outside)
+                        }), this.weekdayFormatter(day, this.shortWeekdays));
+                    },
+                    genWeeks: function genWeeks() {
+                        var days = this.days;
+                        var weekDays = this.parsedWeekdays.length;
+                        var weeks = [];
+
+                        for (var i = 0; i < days.length; i += weekDays) {
+                            weeks.push(this.genWeek(days.slice(i, i + weekDays), this.getWeekNumber(days[i])));
+                        }
+
+                        return weeks;
+                    },
+                    genWeek: function genWeek(week, weekNumber) {
+                        var _this = this;
+
+                        var weekNodes = week.map(function (day, index) {
+                            return _this.genDay(day, index, week);
+                        });
+
+                        if (this.showWeek) {
+                            weekNodes.unshift(this.genWeekNumber(weekNumber));
+                        }
+
+                        return this.$createElement('div', {
+                            key: week[0].date,
+                            staticClass: 'v-calendar-weekly__week'
+                        }, weekNodes);
+                    },
+                    getWeekNumber: function getWeekNumber(determineDay) {
+                        return Object(_util_dateTimeUtils__WEBPACK_IMPORTED_MODULE_4__["weekNumber"])(determineDay.year, determineDay.month - 1, determineDay.day, this.parsedWeekdays[0], parseInt(this.localeFirstDayOfYear));
+                    },
+                    genWeekNumber: function genWeekNumber(weekNumber) {
+                        return this.$createElement('div', {
+                            staticClass: 'v-calendar-weekly__weeknumber'
+                        }, [this.$createElement('small', String(weekNumber))]);
+                    },
+                    genDay: function genDay(day, index, week) {
+                        var outside = this.isOutside(day);
+                        return this.$createElement('div', {
+                            key: day.date,
+                            staticClass: 'v-calendar-weekly__day',
+                            class: this.getRelativeClasses(day, outside),
+                            on: this.getDefaultMouseEventHandlers(':day', function (_e) {
+                                return day;
+                            })
+                        }, __spread([this.genDayLabel(day)], Object(_util_helpers__WEBPACK_IMPORTED_MODULE_3__["getSlot"])(this, 'day', function () {
+                            return __assign({
+                                outside: outside,
+                                index: index,
+                                week: week
+                            }, day);
+                        }) || []));
+                    },
+                    genDayLabel: function genDayLabel(day) {
+                        return this.$createElement('div', {
+                            staticClass: 'v-calendar-weekly__day-label'
+                        }, Object(_util_helpers__WEBPACK_IMPORTED_MODULE_3__["getSlot"])(this, 'day-label', day) || [this.genDayLabelButton(day)]);
+                    },
+                    genDayLabelButton: function genDayLabelButton(day) {
+                        var color = day.present ? this.color : 'transparent';
+                        var hasMonth = day.day === 1 && this.showMonthOnFirst;
+                        return this.$createElement(_VBtn__WEBPACK_IMPORTED_MODULE_1__["default"], {
+                            props: {
+                                color: color,
+                                fab: true,
+                                depressed: true,
+                                small: true
+                            },
+                            on: this.getMouseEventHandlers({
+                                'click:date': {
+                                    event: 'click',
+                                    stop: true
+                                },
+                                'contextmenu:date': {
+                                    event: 'contextmenu',
+                                    stop: true,
+                                    prevent: true,
+                                    result: false
+                                }
+                            }, function (_e) {
+                                return day;
+                            })
+                        }, hasMonth ? this.monthFormatter(day, this.shortMonths) + ' ' + this.dayFormatter(day, false) : this.dayFormatter(day, false));
+                    },
+                    genDayMonth: function genDayMonth(day) {
+                        var color = day.present ? this.color : undefined;
+                        return this.$createElement('div', this.setTextColor(color, {
+                            staticClass: 'v-calendar-weekly__day-month'
+                        }), Object(_util_helpers__WEBPACK_IMPORTED_MODULE_3__["getSlot"])(this, 'day-month', day) || this.monthFormatter(day, this.shortMonths));
+                    }
+                },
+                render: function render(h) {
+                    return h('div', {
+                        staticClass: this.staticClass,
+                        class: this.classes,
+                        on: {
+                            dragstart: function dragstart(e) {
+                                e.preventDefault();
+                            }
+                        }
+                    }, __spread([!this.hideHeader ? this.genHead() : ''], this.genWeeks()));
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VCalendar/index.ts":
+        /*!*******************************************!*\
+  !*** ./src/components/VCalendar/index.ts ***!
+  \*******************************************/
+        /*! exports provided: VCalendar, VCalendarCategory, VCalendarDaily, VCalendarWeekly, VCalendarMonthly, default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VCalendar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VCalendar */ "./src/components/VCalendar/VCalendar.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VCalendar", function() { return _VCalendar__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+            /* harmony import */ var _VCalendarDaily__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VCalendarDaily */ "./src/components/VCalendar/VCalendarDaily.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VCalendarDaily", function() { return _VCalendarDaily__WEBPACK_IMPORTED_MODULE_1__["default"]; });
+
+            /* harmony import */ var _VCalendarWeekly__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./VCalendarWeekly */ "./src/components/VCalendar/VCalendarWeekly.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VCalendarWeekly", function() { return _VCalendarWeekly__WEBPACK_IMPORTED_MODULE_2__["default"]; });
+
+            /* harmony import */ var _VCalendarMonthly__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./VCalendarMonthly */ "./src/components/VCalendar/VCalendarMonthly.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VCalendarMonthly", function() { return _VCalendarMonthly__WEBPACK_IMPORTED_MODULE_3__["default"]; });
+
+            /* harmony import */ var _VCalendarCategory__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./VCalendarCategory */ "./src/components/VCalendar/VCalendarCategory.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VCalendarCategory", function() { return _VCalendarCategory__WEBPACK_IMPORTED_MODULE_4__["default"]; });
+
+
+
+
+
+
+
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                $_vuetify_subcomponents: {
+                    VCalendar: _VCalendar__WEBPACK_IMPORTED_MODULE_0__["default"],
+                    VCalendarCategory: _VCalendarCategory__WEBPACK_IMPORTED_MODULE_4__["default"],
+                    VCalendarDaily: _VCalendarDaily__WEBPACK_IMPORTED_MODULE_1__["default"],
+                    VCalendarWeekly: _VCalendarWeekly__WEBPACK_IMPORTED_MODULE_2__["default"],
+                    VCalendarMonthly: _VCalendarMonthly__WEBPACK_IMPORTED_MODULE_3__["default"]
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/components/VCalendar/mixins/calendar-base.ts":
+        /*!**********************************************************!*\
+  !*** ./src/components/VCalendar/mixins/calendar-base.ts ***!
+  \**********************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _util_mixins__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../util/mixins */ "./src/util/mixins.ts");
+            /* harmony import */ var _mixins_colorable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../mixins/colorable */ "./src/mixins/colorable/index.ts");
+            /* harmony import */ var _mixins_localable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../mixins/localable */ "./src/mixins/localable/index.ts");
+            /* harmony import */ var _mouse__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./mouse */ "./src/components/VCalendar/mixins/mouse.ts");
+            /* harmony import */ var _mixins_themeable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../mixins/themeable */ "./src/mixins/themeable/index.ts");
+            /* harmony import */ var _times__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./times */ "./src/components/VCalendar/mixins/times.ts");
+            /* harmony import */ var _directives_resize__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../directives/resize */ "./src/directives/resize/index.ts");
+            /* harmony import */ var _util_props__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../util/props */ "./src/components/VCalendar/util/props.ts");
+            /* harmony import */ var _util_timestamp__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../util/timestamp */ "./src/components/VCalendar/util/timestamp.ts");
+// Mixins
+
+
+
+
+
+            // Directives
+
+            // Util
+
+
+
+            /* harmony default export */ __webpack_exports__["default"] = (Object(_util_mixins__WEBPACK_IMPORTED_MODULE_0__["default"])(_mixins_colorable__WEBPACK_IMPORTED_MODULE_1__["default"], _mixins_localable__WEBPACK_IMPORTED_MODULE_2__["default"], _mouse__WEBPACK_IMPORTED_MODULE_3__["default"], _mixins_themeable__WEBPACK_IMPORTED_MODULE_4__["default"], _times__WEBPACK_IMPORTED_MODULE_5__["default"]
+                /* @vue/component */
+            ).extend({
+                name: 'calendar-base',
+                directives: {
+                    Resize: _directives_resize__WEBPACK_IMPORTED_MODULE_6__["default"]
+                },
+                props: _util_props__WEBPACK_IMPORTED_MODULE_7__["default"].base,
+                computed: {
+                    parsedWeekdays: function parsedWeekdays() {
+                        return Array.isArray(this.weekdays) ? this.weekdays : (this.weekdays || '').split(',').map(function (x) {
+                            return parseInt(x, 10);
+                        });
+                    },
+                    weekdaySkips: function weekdaySkips() {
+                        return Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_8__["getWeekdaySkips"])(this.parsedWeekdays);
+                    },
+                    weekdaySkipsReverse: function weekdaySkipsReverse() {
+                        var reversed = this.weekdaySkips.slice();
+                        reversed.reverse();
+                        return reversed;
+                    },
+                    parsedStart: function parsedStart() {
+                        return Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_8__["parseTimestamp"])(this.start, true);
+                    },
+                    parsedEnd: function parsedEnd() {
+                        var start = this.parsedStart;
+                        var end = this.end ? Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_8__["parseTimestamp"])(this.end) || start : start;
+                        return Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_8__["getTimestampIdentifier"])(end) < Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_8__["getTimestampIdentifier"])(start) ? start : end;
+                    },
+                    days: function days() {
+                        return Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_8__["createDayList"])(this.parsedStart, this.parsedEnd, this.times.today, this.weekdaySkips);
+                    },
+                    dayFormatter: function dayFormatter() {
+                        if (this.dayFormat) {
+                            return this.dayFormat;
+                        }
+
+                        var options = {
+                            timeZone: 'UTC',
+                            day: 'numeric'
+                        };
+                        return Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_8__["createNativeLocaleFormatter"])(this.currentLocale, function (_tms, _short) {
+                            return options;
+                        });
+                    },
+                    weekdayFormatter: function weekdayFormatter() {
+                        if (this.weekdayFormat) {
+                            return this.weekdayFormat;
+                        }
+
+                        var longOptions = {
+                            timeZone: 'UTC',
+                            weekday: 'long'
+                        };
+                        var shortOptions = {
+                            timeZone: 'UTC',
+                            weekday: 'short'
+                        };
+                        return Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_8__["createNativeLocaleFormatter"])(this.currentLocale, function (_tms, short) {
+                            return short ? shortOptions : longOptions;
+                        });
+                    }
+                },
+                methods: {
+                    getRelativeClasses: function getRelativeClasses(timestamp, outside) {
+                        if (outside === void 0) {
+                            outside = false;
+                        }
+
+                        return {
+                            'v-present': timestamp.present,
+                            'v-past': timestamp.past,
+                            'v-future': timestamp.future,
+                            'v-outside': outside
+                        };
+                    },
+                    getStartOfWeek: function getStartOfWeek(timestamp) {
+                        return Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_8__["getStartOfWeek"])(timestamp, this.parsedWeekdays, this.times.today);
+                    },
+                    getEndOfWeek: function getEndOfWeek(timestamp) {
+                        return Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_8__["getEndOfWeek"])(timestamp, this.parsedWeekdays, this.times.today);
+                    },
+                    getFormatter: function getFormatter(options) {
+                        return Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_8__["createNativeLocaleFormatter"])(this.locale, function (_tms, _short) {
+                            return options;
+                        });
+                    }
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VCalendar/mixins/calendar-with-events.sass":
+        /*!*******************************************************************!*\
+  !*** ./src/components/VCalendar/mixins/calendar-with-events.sass ***!
+  \*******************************************************************/
+        /*! no static exports found */
+        /***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+            /***/ }),
+
+        /***/ "./src/components/VCalendar/mixins/calendar-with-events.ts":
+        /*!*****************************************************************!*\
+  !*** ./src/components/VCalendar/mixins/calendar-with-events.ts ***!
+  \*****************************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _calendar_with_events_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./calendar-with-events.sass */ "./src/components/VCalendar/mixins/calendar-with-events.sass");
+            /* harmony import */ var _calendar_with_events_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_calendar_with_events_sass__WEBPACK_IMPORTED_MODULE_0__);
+            /* harmony import */ var _directives_ripple__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../directives/ripple */ "./src/directives/ripple/index.ts");
+            /* harmony import */ var _calendar_base__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./calendar-base */ "./src/components/VCalendar/mixins/calendar-base.ts");
+            /* harmony import */ var _util_helpers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../util/helpers */ "./src/util/helpers.ts");
+            /* harmony import */ var _util_props__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../util/props */ "./src/components/VCalendar/util/props.ts");
+            /* harmony import */ var _modes__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../modes */ "./src/components/VCalendar/modes/index.ts");
+            /* harmony import */ var _util_timestamp__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../util/timestamp */ "./src/components/VCalendar/util/timestamp.ts");
+            /* harmony import */ var _util_events__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../util/events */ "./src/components/VCalendar/util/events.ts");
+            function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+            var __assign = undefined && undefined.__assign || function () {
+                __assign = Object.assign || function (t) {
+                    for (var s, i = 1, n = arguments.length; i < n; i++) {
+                        s = arguments[i];
+
+                        for (var p in s) {
+                            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+                        }
+                    }
+
+                    return t;
+                };
+
+                return __assign.apply(this, arguments);
+            }; // Styles
+
+
+            // Directives
+
+            // Mixins
+
+            // Helpers
+
+            // Util
+
+
+
+
+
+            var WIDTH_FULL = 100;
+            var WIDTH_START = 95;
+            var MINUTES_IN_DAY = 1440;
+            /* @vue/component */
+
+            /* harmony default export */ __webpack_exports__["default"] = (_calendar_base__WEBPACK_IMPORTED_MODULE_2__["default"].extend({
+                name: 'calendar-with-events',
+                directives: {
+                    ripple: _directives_ripple__WEBPACK_IMPORTED_MODULE_1__["default"]
+                },
+                props: __assign(__assign(__assign({}, _util_props__WEBPACK_IMPORTED_MODULE_4__["default"].events), _util_props__WEBPACK_IMPORTED_MODULE_4__["default"].calendar), _util_props__WEBPACK_IMPORTED_MODULE_4__["default"].category),
+                computed: {
+                    noEvents: function noEvents() {
+                        return this.events.length === 0;
+                    },
+                    parsedEvents: function parsedEvents() {
+                        return this.events.map(this.parseEvent);
+                    },
+                    parsedEventOverlapThreshold: function parsedEventOverlapThreshold() {
+                        return parseInt(this.eventOverlapThreshold);
+                    },
+                    eventTimedFunction: function eventTimedFunction() {
+                        var _this = this;
+
+                        return typeof this.eventTimed === 'function' ? this.eventTimed : function (event) {
+                            return !!event[_this.eventTimed];
+                        };
+                    },
+                    eventCategoryFunction: function eventCategoryFunction() {
+                        var _this = this;
+
+                        return typeof this.eventCategory === 'function' ? this.eventCategory : function (event) {
+                            return event[_this.eventCategory];
+                        };
+                    },
+                    eventTextColorFunction: function eventTextColorFunction() {
+                        var _this = this;
+
+                        return typeof this.eventTextColor === 'function' ? this.eventTextColor : function () {
+                            return _this.eventTextColor;
+                        };
+                    },
+                    eventNameFunction: function eventNameFunction() {
+                        var _this = this;
+
+                        return typeof this.eventName === 'function' ? this.eventName : function (event, timedEvent) {
+                            return Object(_util_helpers__WEBPACK_IMPORTED_MODULE_3__["escapeHTML"])(event.input[_this.eventName] || '');
+                        };
+                    },
+                    eventModeFunction: function eventModeFunction() {
+                        return typeof this.eventOverlapMode === 'function' ? this.eventOverlapMode : _modes__WEBPACK_IMPORTED_MODULE_5__["CalendarEventOverlapModes"][this.eventOverlapMode];
+                    },
+                    eventWeekdays: function eventWeekdays() {
+                        return this.parsedWeekdays;
+                    },
+                    categoryMode: function categoryMode() {
+                        return this.type === 'category';
+                    }
+                },
+                methods: {
+                    eventColorFunction: function eventColorFunction(e) {
+                        return typeof this.eventColor === 'function' ? this.eventColor(e) : e.color || this.eventColor;
+                    },
+                    parseEvent: function parseEvent(input, index) {
+                        if (index === void 0) {
+                            index = 0;
+                        }
+
+                        return Object(_util_events__WEBPACK_IMPORTED_MODULE_7__["parseEvent"])(input, index, this.eventStart, this.eventEnd, this.eventTimedFunction(input), this.categoryMode ? this.eventCategoryFunction(input) : false);
+                    },
+                    formatTime: function formatTime(withTime, ampm) {
+                        var formatter = this.getFormatter({
+                            timeZone: 'UTC',
+                            hour: 'numeric',
+                            minute: withTime.minute > 0 ? 'numeric' : undefined
+                        });
+                        return formatter(withTime, true);
+                    },
+                    updateEventVisibility: function updateEventVisibility() {
+                        if (this.noEvents || !this.eventMore) {
+                            return;
+                        }
+
+                        var eventHeight = this.eventHeight;
+                        var eventsMap = this.getEventsMap();
+
+                        for (var date in eventsMap) {
+                            var _a = eventsMap[date],
+                                parent = _a.parent,
+                                events = _a.events,
+                                more = _a.more;
+
+                            if (!more) {
+                                break;
+                            }
+
+                            var parentBounds = parent.getBoundingClientRect();
+                            var last = events.length - 1;
+                            var hide = false;
+                            var hidden = 0;
+
+                            for (var i = 0; i <= last; i++) {
+                                if (!hide) {
+                                    var eventBounds = events[i].getBoundingClientRect();
+                                    hide = i === last ? eventBounds.bottom > parentBounds.bottom : eventBounds.bottom + eventHeight > parentBounds.bottom;
+                                }
+
+                                if (hide) {
+                                    events[i].style.display = 'none';
+                                    hidden++;
+                                }
+                            }
+
+                            if (hide) {
+                                more.style.display = '';
+                                more.innerHTML = this.$vuetify.lang.t(this.eventMoreText, hidden);
+                            } else {
+                                more.style.display = 'none';
+                            }
+                        }
+                    },
+                    getEventsMap: function getEventsMap() {
+                        var eventsMap = {};
+                        var elements = this.$refs.events;
+
+                        if (!elements || !elements.forEach) {
+                            return eventsMap;
+                        }
+
+                        elements.forEach(function (el) {
+                            var date = el.getAttribute('data-date');
+
+                            if (el.parentElement && date) {
+                                if (!(date in eventsMap)) {
+                                    eventsMap[date] = {
+                                        parent: el.parentElement,
+                                        more: null,
+                                        events: []
+                                    };
+                                }
+
+                                if (el.getAttribute('data-more')) {
+                                    eventsMap[date].more = el;
+                                } else {
+                                    eventsMap[date].events.push(el);
+                                    el.style.display = '';
+                                }
+                            }
+                        });
+                        return eventsMap;
+                    },
+                    genDayEvent: function genDayEvent(_a, day) {
+                        var event = _a.event;
+                        var eventHeight = this.eventHeight;
+                        var eventMarginBottom = this.eventMarginBottom;
+                        var dayIdentifier = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_6__["getDayIdentifier"])(day);
+                        var week = day.week;
+                        var start = dayIdentifier === event.startIdentifier;
+                        var end = dayIdentifier === event.endIdentifier;
+                        var width = WIDTH_START;
+
+                        if (!this.categoryMode) {
+                            for (var i = day.index + 1; i < week.length; i++) {
+                                var weekdayIdentifier = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_6__["getDayIdentifier"])(week[i]);
+
+                                if (event.endIdentifier >= weekdayIdentifier) {
+                                    width += WIDTH_FULL;
+                                    end = end || weekdayIdentifier === event.endIdentifier;
+                                } else {
+                                    end = true;
+                                    break;
+                                }
+                            }
+                        }
+
+                        var scope = {
+                            eventParsed: event,
+                            day: day,
+                            start: start,
+                            end: end,
+                            timed: false
+                        };
+                        return this.genEvent(event, scope, false, {
+                            staticClass: 'v-event',
+                            class: {
+                                'v-event-start': start,
+                                'v-event-end': end
+                            },
+                            style: {
+                                height: eventHeight + "px",
+                                width: width + "%",
+                                'margin-bottom': eventMarginBottom + "px"
+                            },
+                            attrs: {
+                                'data-date': day.date
+                            },
+                            key: event.index,
+                            ref: 'events',
+                            refInFor: true
+                        });
+                    },
+                    genTimedEvent: function genTimedEvent(_a, day) {
+                        var event = _a.event,
+                            left = _a.left,
+                            width = _a.width;
+
+                        if (day.timeDelta(event.end) <= 0 || day.timeDelta(event.start) >= 1) {
+                            return false;
+                        }
+
+                        var dayIdentifier = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_6__["getDayIdentifier"])(day);
+                        var start = event.startIdentifier >= dayIdentifier;
+                        var end = event.endIdentifier > dayIdentifier;
+                        var top = start ? day.timeToY(event.start) : 0;
+                        var bottom = end ? day.timeToY(MINUTES_IN_DAY) : day.timeToY(event.end);
+                        var height = Math.max(this.eventHeight, bottom - top);
+                        var scope = {
+                            eventParsed: event,
+                            day: day,
+                            start: start,
+                            end: end,
+                            timed: true
+                        };
+                        return this.genEvent(event, scope, true, {
+                            staticClass: 'v-event-timed',
+                            style: {
+                                top: top + "px",
+                                height: height + "px",
+                                left: left + "%",
+                                width: width + "%"
+                            }
+                        });
+                    },
+                    genEvent: function genEvent(event, scopeInput, timedEvent, data) {
+                        var _this = this;
+
+                        var _a;
+
+                        var slot = this.$scopedSlots.event;
+                        var text = this.eventTextColorFunction(event.input);
+                        var background = this.eventColorFunction(event.input);
+                        var overlapsNoon = event.start.hour < 12 && event.end.hour >= 12;
+                        var singline = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_6__["diffMinutes"])(event.start, event.end) <= this.parsedEventOverlapThreshold;
+                        var formatTime = this.formatTime;
+
+                        var timeSummary = function timeSummary() {
+                            return formatTime(event.start, overlapsNoon) + ' - ' + formatTime(event.end, true);
+                        };
+
+                        var eventSummary = function eventSummary() {
+                            var name = _this.eventNameFunction(event, timedEvent);
+
+                            if (event.start.hasTime) {
+                                if (timedEvent) {
+                                    var time = timeSummary();
+                                    var delimiter = singline ? ', ' : '<br>';
+                                    return "<strong>" + name + "</strong>" + delimiter + time;
+                                } else {
+                                    var time = formatTime(event.start, true);
+                                    return "<strong>" + time + "</strong> " + name;
+                                }
+                            }
+
+                            return name;
+                        };
+
+                        var scope = __assign(__assign({}, scopeInput), {
+                            event: event.input,
+                            outside: scopeInput.day.outside,
+                            singline: singline,
+                            overlapsNoon: overlapsNoon,
+                            formatTime: formatTime,
+                            timeSummary: timeSummary,
+                            eventSummary: eventSummary
+                        });
+
+                        return this.$createElement('div', this.setTextColor(text, this.setBackgroundColor(background, __assign({
+                            on: this.getDefaultMouseEventHandlers(':event', function (nativeEvent) {
+                                return __assign(__assign({}, scope), {
+                                    nativeEvent: nativeEvent
+                                });
+                            }),
+                            directives: [{
+                                name: 'ripple',
+                                value: (_a = this.eventRipple) !== null && _a !== void 0 ? _a : true
+                            }]
+                        }, data))), slot ? slot(scope) : [this.genName(eventSummary)]);
+                    },
+                    genName: function genName(eventSummary) {
+                        return this.$createElement('div', {
+                            staticClass: 'pl-1',
+                            domProps: {
+                                innerHTML: eventSummary()
+                            }
+                        });
+                    },
+                    genPlaceholder: function genPlaceholder(day) {
+                        var height = this.eventHeight + this.eventMarginBottom;
+                        return this.$createElement('div', {
+                            style: {
+                                height: height + "px"
+                            },
+                            attrs: {
+                                'data-date': day.date
+                            },
+                            ref: 'events',
+                            refInFor: true
+                        });
+                    },
+                    genMore: function genMore(day) {
+                        var _this = this;
+
+                        var _a;
+
+                        var eventHeight = this.eventHeight;
+                        var eventMarginBottom = this.eventMarginBottom;
+                        return this.$createElement('div', {
+                            staticClass: 'v-event-more pl-1',
+                            class: {
+                                'v-outside': day.outside
+                            },
+                            attrs: {
+                                'data-date': day.date,
+                                'data-more': 1
+                            },
+                            directives: [{
+                                name: 'ripple',
+                                value: (_a = this.eventRipple) !== null && _a !== void 0 ? _a : true
+                            }],
+                            on: {
+                                click: function click() {
+                                    return _this.$emit('click:more', day);
+                                }
+                            },
+                            style: {
+                                display: 'none',
+                                height: eventHeight + "px",
+                                'margin-bottom': eventMarginBottom + "px"
+                            },
+                            ref: 'events',
+                            refInFor: true
+                        });
+                    },
+                    getVisibleEvents: function getVisibleEvents() {
+                        var start = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_6__["getDayIdentifier"])(this.days[0]);
+                        var end = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_6__["getDayIdentifier"])(this.days[this.days.length - 1]);
+                        return this.parsedEvents.filter(function (event) {
+                            return Object(_util_events__WEBPACK_IMPORTED_MODULE_7__["isEventOverlapping"])(event, start, end);
+                        });
+                    },
+                    isEventForCategory: function isEventForCategory(event, category) {
+                        return !this.categoryMode || _typeof(category) === 'object' && category.categoryName && category.categoryName === event.category || typeof event.category !== 'string' && category === null;
+                    },
+                    getEventsForDay: function getEventsForDay(day) {
+                        var identifier = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_6__["getDayIdentifier"])(day);
+                        var firstWeekday = this.eventWeekdays[0];
+                        return this.parsedEvents.filter(function (event) {
+                            return Object(_util_events__WEBPACK_IMPORTED_MODULE_7__["isEventStart"])(event, day, identifier, firstWeekday);
+                        });
+                    },
+                    getEventsForDayAll: function getEventsForDayAll(day) {
+                        var _this = this;
+
+                        var identifier = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_6__["getDayIdentifier"])(day);
+                        var firstWeekday = this.eventWeekdays[0];
+                        return this.parsedEvents.filter(function (event) {
+                            return event.allDay && (_this.categoryMode ? Object(_util_events__WEBPACK_IMPORTED_MODULE_7__["isEventOn"])(event, identifier) : Object(_util_events__WEBPACK_IMPORTED_MODULE_7__["isEventStart"])(event, day, identifier, firstWeekday)) && _this.isEventForCategory(event, day.category);
+                        });
+                    },
+                    getEventsForDayTimed: function getEventsForDayTimed(day) {
+                        var _this = this;
+
+                        var identifier = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_6__["getDayIdentifier"])(day);
+                        return this.parsedEvents.filter(function (event) {
+                            return !event.allDay && Object(_util_events__WEBPACK_IMPORTED_MODULE_7__["isEventOn"])(event, identifier) && _this.isEventForCategory(event, day.category);
+                        });
+                    },
+                    getScopedSlots: function getScopedSlots() {
+                        var _this = this;
+
+                        if (this.noEvents) {
+                            return __assign({}, this.$scopedSlots);
+                        }
+
+                        var mode = this.eventModeFunction(this.parsedEvents, this.eventWeekdays[0], this.parsedEventOverlapThreshold);
+
+                        var isNode = function isNode(input) {
+                            return !!input;
+                        };
+
+                        var getSlotChildren = function getSlotChildren(day, getter, mapper, timed) {
+                            var events = getter(day);
+                            var visuals = mode(day, events, timed, _this.categoryMode);
+
+                            if (timed) {
+                                return visuals.map(function (visual) {
+                                    return mapper(visual, day);
+                                }).filter(isNode);
+                            }
+
+                            var children = [];
+                            visuals.forEach(function (visual, index) {
+                                while (children.length < visual.column) {
+                                    children.push(_this.genPlaceholder(day));
+                                }
+
+                                var mapped = mapper(visual, day);
+
+                                if (mapped) {
+                                    children.push(mapped);
+                                }
+                            });
+                            return children;
+                        };
+
+                        var slots = this.$scopedSlots;
+                        var slotDay = slots.day;
+                        var slotDayHeader = slots['day-header'];
+                        var slotDayBody = slots['day-body'];
+                        return __assign(__assign({}, slots), {
+                            day: function day(_day) {
+                                var children = getSlotChildren(_day, _this.getEventsForDay, _this.genDayEvent, false);
+
+                                if (children && children.length > 0 && _this.eventMore) {
+                                    children.push(_this.genMore(_day));
+                                }
+
+                                if (slotDay) {
+                                    var slot = slotDay(_day);
+
+                                    if (slot) {
+                                        children = children ? children.concat(slot) : slot;
+                                    }
+                                }
+
+                                return children;
+                            },
+                            'day-header': function dayHeader(day) {
+                                var children = getSlotChildren(day, _this.getEventsForDayAll, _this.genDayEvent, false);
+
+                                if (slotDayHeader) {
+                                    var slot = slotDayHeader(day);
+
+                                    if (slot) {
+                                        children = children ? children.concat(slot) : slot;
+                                    }
+                                }
+
+                                return children;
+                            },
+                            'day-body': function dayBody(day) {
+                                var events = getSlotChildren(day, _this.getEventsForDayTimed, _this.genTimedEvent, true);
+                                var children = [_this.$createElement('div', {
+                                    staticClass: 'v-event-timed-container'
+                                }, events)];
+
+                                if (slotDayBody) {
+                                    var slot = slotDayBody(day);
+
+                                    if (slot) {
+                                        children = children.concat(slot);
+                                    }
+                                }
+
+                                return children;
+                            }
+                        });
+                    }
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VCalendar/mixins/calendar-with-intervals.ts":
+        /*!********************************************************************!*\
+  !*** ./src/components/VCalendar/mixins/calendar-with-intervals.ts ***!
+  \********************************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _calendar_base__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./calendar-base */ "./src/components/VCalendar/mixins/calendar-base.ts");
+            /* harmony import */ var _util_props__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/props */ "./src/components/VCalendar/util/props.ts");
+            /* harmony import */ var _util_timestamp__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/timestamp */ "./src/components/VCalendar/util/timestamp.ts");
+// Mixins
+            // Util
+
+
+
+            /* @vue/component */
+
+            /* harmony default export */ __webpack_exports__["default"] = (_calendar_base__WEBPACK_IMPORTED_MODULE_0__["default"].extend({
+                name: 'calendar-with-intervals',
+                props: _util_props__WEBPACK_IMPORTED_MODULE_1__["default"].intervals,
+                computed: {
+                    parsedFirstInterval: function parsedFirstInterval() {
+                        return parseInt(this.firstInterval);
+                    },
+                    parsedIntervalMinutes: function parsedIntervalMinutes() {
+                        return parseInt(this.intervalMinutes);
+                    },
+                    parsedIntervalCount: function parsedIntervalCount() {
+                        return parseInt(this.intervalCount);
+                    },
+                    parsedIntervalHeight: function parsedIntervalHeight() {
+                        return parseFloat(this.intervalHeight);
+                    },
+                    parsedFirstTime: function parsedFirstTime() {
+                        return Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["parseTime"])(this.firstTime);
+                    },
+                    firstMinute: function firstMinute() {
+                        var time = this.parsedFirstTime;
+                        return time !== false && time >= 0 && time <= _util_timestamp__WEBPACK_IMPORTED_MODULE_2__["MINUTES_IN_DAY"] ? time : this.parsedFirstInterval * this.parsedIntervalMinutes;
+                    },
+                    bodyHeight: function bodyHeight() {
+                        return this.parsedIntervalCount * this.parsedIntervalHeight;
+                    },
+                    days: function days() {
+                        return Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["createDayList"])(this.parsedStart, this.parsedEnd, this.times.today, this.weekdaySkips, this.maxDays);
+                    },
+                    intervals: function intervals() {
+                        var days = this.days;
+                        var first = this.firstMinute;
+                        var minutes = this.parsedIntervalMinutes;
+                        var count = this.parsedIntervalCount;
+                        var now = this.times.now;
+                        return days.map(function (d) {
+                            return Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["createIntervalList"])(d, first, minutes, count, now);
+                        });
+                    },
+                    intervalFormatter: function intervalFormatter() {
+                        if (this.intervalFormat) {
+                            return this.intervalFormat;
+                        }
+
+                        var longOptions = {
+                            timeZone: 'UTC',
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        };
+                        var shortOptions = {
+                            timeZone: 'UTC',
+                            hour: 'numeric',
+                            minute: '2-digit'
+                        };
+                        var shortHourOptions = {
+                            timeZone: 'UTC',
+                            hour: 'numeric'
+                        };
+                        return Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["createNativeLocaleFormatter"])(this.currentLocale, function (tms, short) {
+                            return short ? tms.minute === 0 ? shortHourOptions : shortOptions : longOptions;
+                        });
+                    }
+                },
+                methods: {
+                    showIntervalLabelDefault: function showIntervalLabelDefault(interval) {
+                        var first = this.intervals[0][0];
+                        var isFirst = first.hour === interval.hour && first.minute === interval.minute;
+                        return !isFirst;
+                    },
+                    intervalStyleDefault: function intervalStyleDefault(_interval) {
+                        return undefined;
+                    },
+                    getTimestampAtEvent: function getTimestampAtEvent(e, day) {
+                        var timestamp = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["copyTimestamp"])(day);
+                        var bounds = e.currentTarget.getBoundingClientRect();
+                        var baseMinutes = this.firstMinute;
+                        var touchEvent = e;
+                        var mouseEvent = e;
+                        var touches = touchEvent.changedTouches || touchEvent.touches;
+                        var clientY = touches && touches[0] ? touches[0].clientY : mouseEvent.clientY;
+                        var addIntervals = (clientY - bounds.top) / this.parsedIntervalHeight;
+                        var addMinutes = Math.floor(addIntervals * this.parsedIntervalMinutes);
+                        var minutes = baseMinutes + addMinutes;
+                        return Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["updateMinutes"])(timestamp, minutes, this.times.now);
+                    },
+                    getSlotScope: function getSlotScope(timestamp) {
+                        var scope = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["copyTimestamp"])(timestamp);
+                        scope.timeToY = this.timeToY;
+                        scope.timeDelta = this.timeDelta;
+                        scope.minutesToPixels = this.minutesToPixels;
+                        scope.week = this.days;
+                        return scope;
+                    },
+                    scrollToTime: function scrollToTime(time) {
+                        var y = this.timeToY(time);
+                        var pane = this.$refs.scrollArea;
+
+                        if (y === false || !pane) {
+                            return false;
+                        }
+
+                        pane.scrollTop = y;
+                        return true;
+                    },
+                    minutesToPixels: function minutesToPixels(minutes) {
+                        return minutes / this.parsedIntervalMinutes * this.parsedIntervalHeight;
+                    },
+                    timeToY: function timeToY(time, clamp) {
+                        if (clamp === void 0) {
+                            clamp = true;
+                        }
+
+                        var y = this.timeDelta(time);
+
+                        if (y !== false) {
+                            y *= this.bodyHeight;
+
+                            if (clamp) {
+                                if (y < 0) {
+                                    y = 0;
+                                }
+
+                                if (y > this.bodyHeight) {
+                                    y = this.bodyHeight;
+                                }
+                            }
+                        }
+
+                        return y;
+                    },
+                    timeDelta: function timeDelta(time) {
+                        var minutes = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_2__["parseTime"])(time);
+
+                        if (minutes === false) {
+                            return false;
+                        }
+
+                        var min = this.firstMinute;
+                        var gap = this.parsedIntervalCount * this.parsedIntervalMinutes;
+                        return (minutes - min) / gap;
+                    }
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VCalendar/mixins/mouse.ts":
+        /*!**************************************************!*\
+  !*** ./src/components/VCalendar/mixins/mouse.ts ***!
+  \**************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "vue");
+            /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+
+            /* harmony default export */ __webpack_exports__["default"] = (vue__WEBPACK_IMPORTED_MODULE_0___default.a.extend({
+                name: 'mouse',
+                methods: {
+                    getDefaultMouseEventHandlers: function getDefaultMouseEventHandlers(suffix, getEvent) {
+                        var _a;
+
+                        return this.getMouseEventHandlers((_a = {}, _a['click' + suffix] = {
+                            event: 'click'
+                        }, _a['contextmenu' + suffix] = {
+                            event: 'contextmenu',
+                            prevent: true,
+                            result: false
+                        }, _a['mousedown' + suffix] = {
+                            event: 'mousedown'
+                        }, _a['mousemove' + suffix] = {
+                            event: 'mousemove'
+                        }, _a['mouseup' + suffix] = {
+                            event: 'mouseup'
+                        }, _a['mouseenter' + suffix] = {
+                            event: 'mouseenter'
+                        }, _a['mouseleave' + suffix] = {
+                            event: 'mouseleave'
+                        }, _a['touchstart' + suffix] = {
+                            event: 'touchstart'
+                        }, _a['touchmove' + suffix] = {
+                            event: 'touchmove'
+                        }, _a['touchend' + suffix] = {
+                            event: 'touchend'
+                        }, _a), getEvent);
+                    },
+                    getMouseEventHandlers: function getMouseEventHandlers(events, getEvent) {
+                        var _this = this;
+
+                        var on = {};
+
+                        var _loop_1 = function _loop_1(event) {
+                            var eventOptions = events[event];
+                            if (!this_1.$listeners[event]) return "continue"; // TODO somehow pull in modifiers
+
+                            var prefix = eventOptions.passive ? '&' : (eventOptions.once ? '~' : '') + (eventOptions.capture ? '!' : '');
+                            var key = prefix + eventOptions.event;
+
+                            var handler = function handler(e) {
+                                var mouseEvent = e;
+
+                                if (eventOptions.button === undefined || mouseEvent.buttons > 0 && mouseEvent.button === eventOptions.button) {
+                                    if (eventOptions.prevent) {
+                                        e.preventDefault();
+                                    }
+
+                                    if (eventOptions.stop) {
+                                        e.stopPropagation();
+                                    }
+
+                                    _this.$emit(event, getEvent(e));
+                                }
+
+                                return eventOptions.result;
+                            };
+
+                            if (key in on) {
+                                /* istanbul ignore next */
+                                if (Array.isArray(on[key])) {
+                                    on[key].push(handler);
+                                } else {
+                                    on[key] = [on[key], handler];
+                                }
+                            } else {
+                                on[key] = handler;
+                            }
+                        };
+
+                        var this_1 = this;
+
+                        for (var event in events) {
+                            _loop_1(event);
+                        }
+
+                        return on;
+                    }
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VCalendar/mixins/times.ts":
+        /*!**************************************************!*\
+  !*** ./src/components/VCalendar/mixins/times.ts ***!
+  \**************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "vue");
+            /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+            /* harmony import */ var _util_timestamp__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/timestamp */ "./src/components/VCalendar/util/timestamp.ts");
+
+
+            /* harmony default export */ __webpack_exports__["default"] = (vue__WEBPACK_IMPORTED_MODULE_0___default.a.extend({
+                name: 'times',
+                props: {
+                    now: {
+                        type: String,
+                        validator: _util_timestamp__WEBPACK_IMPORTED_MODULE_1__["validateTimestamp"]
+                    }
+                },
+                data: function data() {
+                    return {
+                        times: {
+                            now: Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_1__["parseTimestamp"])('0000-00-00 00:00', true),
+                            today: Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_1__["parseTimestamp"])('0000-00-00', true)
+                        }
+                    };
+                },
+                computed: {
+                    parsedNow: function parsedNow() {
+                        return this.now ? Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_1__["parseTimestamp"])(this.now, true) : null;
+                    }
+                },
+                watch: {
+                    parsedNow: 'updateTimes'
+                },
+                created: function created() {
+                    this.updateTimes();
+                    this.setPresent();
+                },
+                methods: {
+                    setPresent: function setPresent() {
+                        this.times.now.present = this.times.today.present = true;
+                        this.times.now.past = this.times.today.past = false;
+                        this.times.now.future = this.times.today.future = false;
+                    },
+                    updateTimes: function updateTimes() {
+                        var now = this.parsedNow || this.getNow();
+                        this.updateDay(now, this.times.now);
+                        this.updateTime(now, this.times.now);
+                        this.updateDay(now, this.times.today);
+                    },
+                    getNow: function getNow() {
+                        return Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_1__["parseDate"])(new Date());
+                    },
+                    updateDay: function updateDay(now, target) {
+                        if (now.date !== target.date) {
+                            target.year = now.year;
+                            target.month = now.month;
+                            target.day = now.day;
+                            target.weekday = now.weekday;
+                            target.date = now.date;
+                        }
+                    },
+                    updateTime: function updateTime(now, target) {
+                        if (now.time !== target.time) {
+                            target.hour = now.hour;
+                            target.minute = now.minute;
+                            target.time = now.time;
+                        }
+                    }
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VCalendar/modes/column.ts":
+        /*!**************************************************!*\
+  !*** ./src/components/VCalendar/modes/column.ts ***!
+  \**************************************************/
+        /*! exports provided: column */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "column", function() { return column; });
+            /* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common */ "./src/components/VCalendar/modes/common.ts");
+
+            var FULL_WIDTH = 100;
+            var column = function column(events, firstWeekday, overlapThreshold) {
+                var handler = Object(_common__WEBPACK_IMPORTED_MODULE_0__["getOverlapGroupHandler"])(firstWeekday);
+                return function (day, dayEvents, timed, reset) {
+                    var visuals = handler.getVisuals(day, dayEvents, timed, reset);
+
+                    if (timed) {
+                        visuals.forEach(function (visual) {
+                            visual.left = visual.column * FULL_WIDTH / visual.columnCount;
+                            visual.width = FULL_WIDTH / visual.columnCount;
+                        });
+                    }
+
+                    return visuals;
+                };
+            };
+
+            /***/ }),
+
+        /***/ "./src/components/VCalendar/modes/common.ts":
+        /*!**************************************************!*\
+  !*** ./src/components/VCalendar/modes/common.ts ***!
+  \**************************************************/
+        /*! exports provided: getVisuals, hasOverlap, setColumnCount, getRange, getDayRange, getNormalizedRange, getOpenGroup, getOverlapGroupHandler */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getVisuals", function() { return _getVisuals; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hasOverlap", function() { return hasOverlap; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setColumnCount", function() { return setColumnCount; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getRange", function() { return getRange; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDayRange", function() { return getDayRange; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getNormalizedRange", function() { return getNormalizedRange; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getOpenGroup", function() { return getOpenGroup; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getOverlapGroupHandler", function() { return getOverlapGroupHandler; });
+            /* harmony import */ var _util_timestamp__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/timestamp */ "./src/components/VCalendar/util/timestamp.ts");
+            var __read = undefined && undefined.__read || function (o, n) {
+                var m = typeof Symbol === "function" && o[Symbol.iterator];
+                if (!m) return o;
+                var i = m.call(o),
+                    r,
+                    ar = [],
+                    e;
+
+                try {
+                    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
+                        ar.push(r.value);
+                    }
+                } catch (error) {
+                    e = {
+                        error: error
+                    };
+                } finally {
+                    try {
+                        if (r && !r.done && (m = i["return"])) m.call(i);
+                    } finally {
+                        if (e) throw e.error;
+                    }
+                }
+
+                return ar;
+            };
+
+
+            var MILLIS_IN_DAY = 86400000;
+
+            function _getVisuals(events, minStart) {
+                if (minStart === void 0) {
+                    minStart = 0;
+                }
+
+                var visuals = events.map(function (event) {
+                    return {
+                        event: event,
+                        columnCount: 0,
+                        column: 0,
+                        left: 0,
+                        width: 100
+                    };
+                });
+                visuals.sort(function (a, b) {
+                    return Math.max(minStart, a.event.startTimestampIdentifier) - Math.max(minStart, b.event.startTimestampIdentifier) || b.event.endTimestampIdentifier - a.event.endTimestampIdentifier;
+                });
+                return visuals;
+            }
+
+
+            function hasOverlap(s0, e0, s1, e1, exclude) {
+                if (exclude === void 0) {
+                    exclude = true;
+                }
+
+                return exclude ? !(s0 >= e1 || e0 <= s1) : !(s0 > e1 || e0 < s1);
+            }
+            function setColumnCount(groups) {
+                groups.forEach(function (group) {
+                    group.visuals.forEach(function (groupVisual) {
+                        groupVisual.columnCount = groups.length;
+                    });
+                });
+            }
+            function getRange(event) {
+                return [event.startTimestampIdentifier, event.endTimestampIdentifier];
+            }
+            function getDayRange(event) {
+                return [event.startIdentifier, event.endIdentifier];
+            }
+            function getNormalizedRange(event, dayStart) {
+                return [Math.max(dayStart, event.startTimestampIdentifier), Math.min(dayStart + MILLIS_IN_DAY, event.endTimestampIdentifier)];
+            }
+            function getOpenGroup(groups, start, end, timed) {
+                for (var i = 0; i < groups.length; i++) {
+                    var group = groups[i];
+                    var intersected = false;
+
+                    if (hasOverlap(start, end, group.start, group.end, timed)) {
+                        for (var k = 0; k < group.visuals.length; k++) {
+                            var groupVisual = group.visuals[k];
+
+                            var _a = __read(timed ? getRange(groupVisual.event) : getDayRange(groupVisual.event), 2),
+                                groupStart = _a[0],
+                                groupEnd = _a[1];
+
+                            if (hasOverlap(start, end, groupStart, groupEnd, timed)) {
+                                intersected = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (!intersected) {
+                        return i;
+                    }
+                }
+
+                return -1;
+            }
+            function getOverlapGroupHandler(firstWeekday) {
+                var handler = {
+                    groups: [],
+                    min: -1,
+                    max: -1,
+                    reset: function reset() {
+                        handler.groups = [];
+                        handler.min = handler.max = -1;
+                    },
+                    getVisuals: function getVisuals(day, dayEvents, timed, reset) {
+                        if (reset === void 0) {
+                            reset = false;
+                        }
+
+                        if (day.weekday === firstWeekday || reset) {
+                            handler.reset();
+                        }
+
+                        var dayStart = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_0__["getTimestampIdentifier"])(day);
+
+                        var visuals = _getVisuals(dayEvents, dayStart);
+
+                        visuals.forEach(function (visual) {
+                            var _a = __read(timed ? getRange(visual.event) : getDayRange(visual.event), 2),
+                                start = _a[0],
+                                end = _a[1];
+
+                            if (handler.groups.length > 0 && !hasOverlap(start, end, handler.min, handler.max, timed)) {
+                                setColumnCount(handler.groups);
+                                handler.reset();
+                            }
+
+                            var targetGroup = getOpenGroup(handler.groups, start, end, timed);
+
+                            if (targetGroup === -1) {
+                                targetGroup = handler.groups.length;
+                                handler.groups.push({
+                                    start: start,
+                                    end: end,
+                                    visuals: []
+                                });
+                            }
+
+                            var target = handler.groups[targetGroup];
+                            target.visuals.push(visual);
+                            target.start = Math.min(target.start, start);
+                            target.end = Math.max(target.end, end);
+                            visual.column = targetGroup;
+
+                            if (handler.min === -1) {
+                                handler.min = start;
+                                handler.max = end;
+                            } else {
+                                handler.min = Math.min(handler.min, start);
+                                handler.max = Math.max(handler.max, end);
+                            }
+                        });
+                        setColumnCount(handler.groups);
+
+                        if (timed) {
+                            handler.reset();
+                        }
+
+                        return visuals;
+                    }
+                };
+                return handler;
+            }
+
+            /***/ }),
+
+        /***/ "./src/components/VCalendar/modes/index.ts":
+        /*!*************************************************!*\
+  !*** ./src/components/VCalendar/modes/index.ts ***!
+  \*************************************************/
+        /*! exports provided: CalendarEventOverlapModes */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CalendarEventOverlapModes", function() { return CalendarEventOverlapModes; });
+            /* harmony import */ var _stack__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./stack */ "./src/components/VCalendar/modes/stack.ts");
+            /* harmony import */ var _column__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./column */ "./src/components/VCalendar/modes/column.ts");
+
+
+            var CalendarEventOverlapModes = {
+                stack: _stack__WEBPACK_IMPORTED_MODULE_0__["stack"],
+                column: _column__WEBPACK_IMPORTED_MODULE_1__["column"]
+            };
+
+            /***/ }),
+
+        /***/ "./src/components/VCalendar/modes/stack.ts":
+        /*!*************************************************!*\
+  !*** ./src/components/VCalendar/modes/stack.ts ***!
+  \*************************************************/
+        /*! exports provided: stack */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "stack", function() { return stack; });
+            /* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common */ "./src/components/VCalendar/modes/common.ts");
+            /* harmony import */ var _util_timestamp__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/timestamp */ "./src/components/VCalendar/util/timestamp.ts");
+            var __values = undefined && undefined.__values || function (o) {
+                var s = typeof Symbol === "function" && Symbol.iterator,
+                    m = s && o[s],
+                    i = 0;
+                if (m) return m.call(o);
+                if (o && typeof o.length === "number") return {
+                    next: function next() {
+                        if (o && i >= o.length) o = void 0;
+                        return {
+                            value: o && o[i++],
+                            done: !o
+                        };
+                    }
+                };
+                throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+            };
+
+            var __read = undefined && undefined.__read || function (o, n) {
+                var m = typeof Symbol === "function" && o[Symbol.iterator];
+                if (!m) return o;
+                var i = m.call(o),
+                    r,
+                    ar = [],
+                    e;
+
+                try {
+                    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
+                        ar.push(r.value);
+                    }
+                } catch (error) {
+                    e = {
+                        error: error
+                    };
+                } finally {
+                    try {
+                        if (r && !r.done && (m = i["return"])) m.call(i);
+                    } finally {
+                        if (e) throw e.error;
+                    }
+                }
+
+                return ar;
+            };
+
+
+
+            var FULL_WIDTH = 100;
+            var DEFAULT_OFFSET = 5;
+            var WIDTH_MULTIPLIER = 1.7;
+            /**
+             * Variation of column mode where events can be stacked. The priority of this
+             * mode is to stack events together taking up the least amount of space while
+             * trying to ensure the content of the event is always visible as well as its
+             * start and end. A sibling column has intersecting event content and must be
+             * placed beside each other. Non-sibling columns are offset by 5% from the
+             * previous column. The width is scaled by 1.7 so the events overlap and
+             * whitespace is reduced. If there is a hole in columns the event width is
+             * scaled up so it intersects with the next column. The columns have equal
+             * width in the space they are given. If the event doesn't have any to the
+             * right of it that intersect with it's content it's right side is extended
+             * to the right side.
+             */
+
+            var stack = function stack(events, firstWeekday, overlapThreshold) {
+                var handler = Object(_common__WEBPACK_IMPORTED_MODULE_0__["getOverlapGroupHandler"])(firstWeekday); // eslint-disable-next-line max-statements
+
+                return function (day, dayEvents, timed, reset) {
+                    var e_1, _a, e_2, _b, e_3, _c;
+
+                    if (!timed) {
+                        return handler.getVisuals(day, dayEvents, timed, reset);
+                    }
+
+                    var dayStart = Object(_util_timestamp__WEBPACK_IMPORTED_MODULE_1__["getTimestampIdentifier"])(day);
+                    var visuals = Object(_common__WEBPACK_IMPORTED_MODULE_0__["getVisuals"])(dayEvents, dayStart);
+                    var groups = getGroups(visuals, dayStart);
+
+                    try {
+                        for (var groups_1 = __values(groups), groups_1_1 = groups_1.next(); !groups_1_1.done; groups_1_1 = groups_1.next()) {
+                            var group = groups_1_1.value;
+                            var nodes = [];
+
+                            try {
+                                for (var _d = (e_2 = void 0, __values(group.visuals)), _e = _d.next(); !_e.done; _e = _d.next()) {
+                                    var visual = _e.value;
+                                    var child = getNode(visual, dayStart);
+                                    var index = getNextIndex(child, nodes);
+
+                                    if (index === false) {
+                                        var parent = getParent(child, nodes);
+
+                                        if (parent) {
+                                            child.parent = parent;
+                                            child.sibling = Object(_common__WEBPACK_IMPORTED_MODULE_0__["hasOverlap"])(child.start, child.end, parent.start, addTime(parent.start, overlapThreshold));
+                                            child.index = parent.index + 1;
+                                            parent.children.push(child);
+                                        }
+                                    } else {
+                                        var _f = __read(getOverlappingRange(child, nodes, index - 1, index - 1), 1),
+                                            parent = _f[0];
+
+                                        var children = getOverlappingRange(child, nodes, index + 1, index + nodes.length, true);
+                                        child.children = children;
+                                        child.index = index;
+
+                                        if (parent) {
+                                            child.parent = parent;
+                                            child.sibling = Object(_common__WEBPACK_IMPORTED_MODULE_0__["hasOverlap"])(child.start, child.end, parent.start, addTime(parent.start, overlapThreshold));
+                                            parent.children.push(child);
+                                        }
+
+                                        try {
+                                            for (var children_1 = (e_3 = void 0, __values(children)), children_1_1 = children_1.next(); !children_1_1.done; children_1_1 = children_1.next()) {
+                                                var grand = children_1_1.value;
+
+                                                if (grand.parent === parent) {
+                                                    grand.parent = child;
+                                                }
+
+                                                var grandNext = grand.index - child.index <= 1;
+
+                                                if (grandNext && child.sibling && Object(_common__WEBPACK_IMPORTED_MODULE_0__["hasOverlap"])(child.start, addTime(child.start, overlapThreshold), grand.start, grand.end)) {
+                                                    grand.sibling = true;
+                                                }
+                                            }
+                                        } catch (e_3_1) {
+                                            e_3 = {
+                                                error: e_3_1
+                                            };
+                                        } finally {
+                                            try {
+                                                if (children_1_1 && !children_1_1.done && (_c = children_1.return)) _c.call(children_1);
+                                            } finally {
+                                                if (e_3) throw e_3.error;
+                                            }
+                                        }
+                                    }
+
+                                    nodes.push(child);
+                                }
+                            } catch (e_2_1) {
+                                e_2 = {
+                                    error: e_2_1
+                                };
+                            } finally {
+                                try {
+                                    if (_e && !_e.done && (_b = _d.return)) _b.call(_d);
+                                } finally {
+                                    if (e_2) throw e_2.error;
+                                }
+                            }
+
+                            calculateBounds(nodes, overlapThreshold);
+                        }
+                    } catch (e_1_1) {
+                        e_1 = {
+                            error: e_1_1
+                        };
+                    } finally {
+                        try {
+                            if (groups_1_1 && !groups_1_1.done && (_a = groups_1.return)) _a.call(groups_1);
+                        } finally {
+                            if (e_1) throw e_1.error;
+                        }
+                    }
+
+                    visuals.sort(function (a, b) {
+                        return a.left - b.left || a.event.startTimestampIdentifier - b.event.startTimestampIdentifier;
+                    });
+                    return visuals;
+                };
+            };
+
+            function calculateBounds(nodes, overlapThreshold) {
+                var e_4, _a;
+
+                try {
+                    for (var nodes_1 = __values(nodes), nodes_1_1 = nodes_1.next(); !nodes_1_1.done; nodes_1_1 = nodes_1.next()) {
+                        var node = nodes_1_1.value;
+                        var visual = node.visual,
+                            parent = node.parent;
+                        var columns = getMaxChildIndex(node) + 1;
+                        var spaceLeft = parent ? parent.visual.left : 0;
+                        var spaceWidth = FULL_WIDTH - spaceLeft;
+                        var offset = Math.min(DEFAULT_OFFSET, FULL_WIDTH / columns);
+                        var columnWidthMultiplier = getColumnWidthMultiplier(node, nodes);
+                        var columnOffset = spaceWidth / (columns - node.index + 1);
+                        var columnWidth = spaceWidth / (columns - node.index + (node.sibling ? 1 : 0)) * columnWidthMultiplier;
+
+                        if (parent) {
+                            visual.left = node.sibling ? spaceLeft + columnOffset : spaceLeft + offset;
+                        }
+
+                        visual.width = hasFullWidth(node, nodes, overlapThreshold) ? FULL_WIDTH - visual.left : Math.min(FULL_WIDTH - visual.left, columnWidth * WIDTH_MULTIPLIER);
+                    }
+                } catch (e_4_1) {
+                    e_4 = {
+                        error: e_4_1
+                    };
+                } finally {
+                    try {
+                        if (nodes_1_1 && !nodes_1_1.done && (_a = nodes_1.return)) _a.call(nodes_1);
+                    } finally {
+                        if (e_4) throw e_4.error;
+                    }
+                }
+            }
+
+            function getColumnWidthMultiplier(node, nodes) {
+                if (!node.children.length) {
+                    return 1;
+                }
+
+                var maxColumn = node.index + nodes.length;
+                var minColumn = node.children.reduce(function (min, c) {
+                    return Math.min(min, c.index);
+                }, maxColumn);
+                return minColumn - node.index;
+            }
+
+            function getOverlappingIndices(node, nodes) {
+                var e_5, _a;
+
+                var indices = [];
+
+                try {
+                    for (var nodes_2 = __values(nodes), nodes_2_1 = nodes_2.next(); !nodes_2_1.done; nodes_2_1 = nodes_2.next()) {
+                        var other = nodes_2_1.value;
+
+                        if (Object(_common__WEBPACK_IMPORTED_MODULE_0__["hasOverlap"])(node.start, node.end, other.start, other.end)) {
+                            indices.push(other.index);
+                        }
+                    }
+                } catch (e_5_1) {
+                    e_5 = {
+                        error: e_5_1
+                    };
+                } finally {
+                    try {
+                        if (nodes_2_1 && !nodes_2_1.done && (_a = nodes_2.return)) _a.call(nodes_2);
+                    } finally {
+                        if (e_5) throw e_5.error;
+                    }
+                }
+
+                return indices;
+            }
+
+            function getNextIndex(node, nodes) {
+                var indices = getOverlappingIndices(node, nodes);
+                indices.sort();
+
+                for (var i = 0; i < indices.length; i++) {
+                    if (i < indices[i]) {
+                        return i;
+                    }
+                }
+
+                return false;
+            }
+
+            function getOverlappingRange(node, nodes, indexMin, indexMax, returnFirstColumn) {
+                var e_6, _a;
+
+                if (returnFirstColumn === void 0) {
+                    returnFirstColumn = false;
+                }
+
+                var overlapping = [];
+
+                try {
+                    for (var nodes_3 = __values(nodes), nodes_3_1 = nodes_3.next(); !nodes_3_1.done; nodes_3_1 = nodes_3.next()) {
+                        var other = nodes_3_1.value;
+
+                        if (other.index >= indexMin && other.index <= indexMax && Object(_common__WEBPACK_IMPORTED_MODULE_0__["hasOverlap"])(node.start, node.end, other.start, other.end)) {
+                            overlapping.push(other);
+                        }
+                    }
+                } catch (e_6_1) {
+                    e_6 = {
+                        error: e_6_1
+                    };
+                } finally {
+                    try {
+                        if (nodes_3_1 && !nodes_3_1.done && (_a = nodes_3.return)) _a.call(nodes_3);
+                    } finally {
+                        if (e_6) throw e_6.error;
+                    }
+                }
+
+                if (returnFirstColumn && overlapping.length > 0) {
+                    var first_1 = overlapping.reduce(function (min, n) {
+                        return Math.min(min, n.index);
+                    }, overlapping[0].index);
+                    return overlapping.filter(function (n) {
+                        return n.index === first_1;
+                    });
+                }
+
+                return overlapping;
+            }
+
+            function getParent(node, nodes) {
+                var e_7, _a;
+
+                var parent = null;
+
+                try {
+                    for (var nodes_4 = __values(nodes), nodes_4_1 = nodes_4.next(); !nodes_4_1.done; nodes_4_1 = nodes_4.next()) {
+                        var other = nodes_4_1.value;
+
+                        if (Object(_common__WEBPACK_IMPORTED_MODULE_0__["hasOverlap"])(node.start, node.end, other.start, other.end) && (parent === null || other.index > parent.index)) {
+                            parent = other;
+                        }
+                    }
+                } catch (e_7_1) {
+                    e_7 = {
+                        error: e_7_1
+                    };
+                } finally {
+                    try {
+                        if (nodes_4_1 && !nodes_4_1.done && (_a = nodes_4.return)) _a.call(nodes_4);
+                    } finally {
+                        if (e_7) throw e_7.error;
+                    }
+                }
+
+                return parent;
+            }
+
+            function hasFullWidth(node, nodes, overlapThreshold) {
+                var e_8, _a;
+
+                try {
+                    for (var nodes_5 = __values(nodes), nodes_5_1 = nodes_5.next(); !nodes_5_1.done; nodes_5_1 = nodes_5.next()) {
+                        var other = nodes_5_1.value;
+
+                        if (other !== node && other.index > node.index && Object(_common__WEBPACK_IMPORTED_MODULE_0__["hasOverlap"])(node.start, addTime(node.start, overlapThreshold), other.start, other.end)) {
+                            return false;
+                        }
+                    }
+                } catch (e_8_1) {
+                    e_8 = {
+                        error: e_8_1
+                    };
+                } finally {
+                    try {
+                        if (nodes_5_1 && !nodes_5_1.done && (_a = nodes_5.return)) _a.call(nodes_5);
+                    } finally {
+                        if (e_8) throw e_8.error;
+                    }
+                }
+
+                return true;
+            }
+
+            function getGroups(visuals, dayStart) {
+                var e_9, _a, e_10, _b;
+
+                var groups = [];
+
+                try {
+                    for (var visuals_1 = __values(visuals), visuals_1_1 = visuals_1.next(); !visuals_1_1.done; visuals_1_1 = visuals_1.next()) {
+                        var visual = visuals_1_1.value;
+
+                        var _c = __read(Object(_common__WEBPACK_IMPORTED_MODULE_0__["getNormalizedRange"])(visual.event, dayStart), 2),
+                            start = _c[0],
+                            end = _c[1];
+
+                        var added = false;
+
+                        try {
+                            for (var groups_2 = (e_10 = void 0, __values(groups)), groups_2_1 = groups_2.next(); !groups_2_1.done; groups_2_1 = groups_2.next()) {
+                                var group = groups_2_1.value;
+
+                                if (Object(_common__WEBPACK_IMPORTED_MODULE_0__["hasOverlap"])(start, end, group.start, group.end)) {
+                                    group.visuals.push(visual);
+                                    group.end = Math.max(group.end, end);
+                                    added = true;
+                                    break;
+                                }
+                            }
+                        } catch (e_10_1) {
+                            e_10 = {
+                                error: e_10_1
+                            };
+                        } finally {
+                            try {
+                                if (groups_2_1 && !groups_2_1.done && (_b = groups_2.return)) _b.call(groups_2);
+                            } finally {
+                                if (e_10) throw e_10.error;
+                            }
+                        }
+
+                        if (!added) {
+                            groups.push({
+                                start: start,
+                                end: end,
+                                visuals: [visual]
+                            });
+                        }
+                    }
+                } catch (e_9_1) {
+                    e_9 = {
+                        error: e_9_1
+                    };
+                } finally {
+                    try {
+                        if (visuals_1_1 && !visuals_1_1.done && (_a = visuals_1.return)) _a.call(visuals_1);
+                    } finally {
+                        if (e_9) throw e_9.error;
+                    }
+                }
+
+                return groups;
+            }
+
+            function getNode(visual, dayStart) {
+                var _a = __read(Object(_common__WEBPACK_IMPORTED_MODULE_0__["getNormalizedRange"])(visual.event, dayStart), 2),
+                    start = _a[0],
+                    end = _a[1];
+
+                return {
+                    parent: null,
+                    sibling: true,
+                    index: 0,
+                    visual: visual,
+                    start: start,
+                    end: end,
+                    children: []
+                };
+            }
+
+            function getMaxChildIndex(node) {
+                var e_11, _a;
+
+                var max = node.index;
+
+                try {
+                    for (var _b = __values(node.children), _c = _b.next(); !_c.done; _c = _b.next()) {
+                        var child = _c.value;
+                        var childMax = getMaxChildIndex(child);
+
+                        if (childMax > max) {
+                            max = childMax;
+                        }
+                    }
+                } catch (e_11_1) {
+                    e_11 = {
+                        error: e_11_1
+                    };
+                } finally {
+                    try {
+                        if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+                    } finally {
+                        if (e_11) throw e_11.error;
+                    }
+                }
+
+                return max;
+            }
+
+            function addTime(identifier, minutes) {
+                var removeMinutes = identifier % 100;
+                var totalMinutes = removeMinutes + minutes;
+                var addHours = Math.floor(totalMinutes / 60);
+                var addMinutes = totalMinutes % 60;
+                return identifier - removeMinutes + addHours * 100 + addMinutes;
+            }
+
+            /***/ }),
+
+        /***/ "./src/components/VCalendar/util/events.ts":
+        /*!*************************************************!*\
+  !*** ./src/components/VCalendar/util/events.ts ***!
+  \*************************************************/
+        /*! exports provided: parseEvent, isEventOn, isEventStart, isEventOverlapping */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseEvent", function() { return parseEvent; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isEventOn", function() { return isEventOn; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isEventStart", function() { return isEventStart; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isEventOverlapping", function() { return isEventOverlapping; });
+            /* harmony import */ var _timestamp__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./timestamp */ "./src/components/VCalendar/util/timestamp.ts");
+
+            function parseEvent(input, index, startProperty, endProperty, timed, category) {
+                if (timed === void 0) {
+                    timed = false;
+                }
+
+                if (category === void 0) {
+                    category = false;
+                }
+
+                var startInput = input[startProperty];
+                var endInput = input[endProperty];
+                var startParsed = Object(_timestamp__WEBPACK_IMPORTED_MODULE_0__["parseTimestamp"])(startInput, true);
+                var endParsed = endInput ? Object(_timestamp__WEBPACK_IMPORTED_MODULE_0__["parseTimestamp"])(endInput, true) : startParsed;
+                var start = Object(_timestamp__WEBPACK_IMPORTED_MODULE_0__["isTimedless"])(startInput) ? Object(_timestamp__WEBPACK_IMPORTED_MODULE_0__["updateHasTime"])(startParsed, timed) : startParsed;
+                var end = Object(_timestamp__WEBPACK_IMPORTED_MODULE_0__["isTimedless"])(endInput) ? Object(_timestamp__WEBPACK_IMPORTED_MODULE_0__["updateHasTime"])(endParsed, timed) : endParsed;
+                var startIdentifier = Object(_timestamp__WEBPACK_IMPORTED_MODULE_0__["getDayIdentifier"])(start);
+                var startTimestampIdentifier = Object(_timestamp__WEBPACK_IMPORTED_MODULE_0__["getTimestampIdentifier"])(start);
+                var endIdentifier = Object(_timestamp__WEBPACK_IMPORTED_MODULE_0__["getDayIdentifier"])(end);
+                var endOffset = start.hasTime ? 0 : 2359;
+                var endTimestampIdentifier = Object(_timestamp__WEBPACK_IMPORTED_MODULE_0__["getTimestampIdentifier"])(end) + endOffset;
+                var allDay = !start.hasTime;
+                return {
+                    input: input,
+                    start: start,
+                    startIdentifier: startIdentifier,
+                    startTimestampIdentifier: startTimestampIdentifier,
+                    end: end,
+                    endIdentifier: endIdentifier,
+                    endTimestampIdentifier: endTimestampIdentifier,
+                    allDay: allDay,
+                    index: index,
+                    category: category
+                };
+            }
+            function isEventOn(event, dayIdentifier) {
+                return dayIdentifier >= event.startIdentifier && dayIdentifier <= event.endIdentifier && dayIdentifier * _timestamp__WEBPACK_IMPORTED_MODULE_0__["OFFSET_TIME"] !== event.endTimestampIdentifier;
+            }
+            function isEventStart(event, day, dayIdentifier, firstWeekday) {
+                return dayIdentifier === event.startIdentifier || firstWeekday === day.weekday && isEventOn(event, dayIdentifier);
+            }
+            function isEventOverlapping(event, startIdentifier, endIdentifier) {
+                return startIdentifier <= event.endIdentifier && endIdentifier >= event.startIdentifier;
+            }
+
+            /***/ }),
+
+        /***/ "./src/components/VCalendar/util/parser.ts":
+        /*!*************************************************!*\
+  !*** ./src/components/VCalendar/util/parser.ts ***!
+  \*************************************************/
+        /*! exports provided: parsedCategoryText, getParsedCategories */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parsedCategoryText", function() { return parsedCategoryText; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getParsedCategories", function() { return getParsedCategories; });
+            function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+            var __assign = undefined && undefined.__assign || function () {
+                __assign = Object.assign || function (t) {
+                    for (var s, i = 1, n = arguments.length; i < n; i++) {
+                        s = arguments[i];
+
+                        for (var p in s) {
+                            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+                        }
+                    }
+
+                    return t;
+                };
+
+                return __assign.apply(this, arguments);
+            };
+
+            function parsedCategoryText(category, categoryText) {
+                return typeof categoryText === 'string' && _typeof(category) === 'object' && category ? category[categoryText] : typeof categoryText === 'function' ? categoryText(category) : category;
+            }
+            function getParsedCategories(categories, categoryText) {
+                if (typeof categories === 'string') return categories.split(/\s*,\s/);
+
+                if (Array.isArray(categories)) {
+                    return categories.map(function (category) {
+                        if (typeof category === 'string') return {
+                            categoryName: category
+                        };
+                        var categoryName = typeof category.categoryName === 'string' ? category.categoryName : parsedCategoryText(category, categoryText);
+                        return __assign(__assign({}, category), {
+                            categoryName: categoryName
+                        });
+                    });
+                }
+
+                return [];
+            }
+
+            /***/ }),
+
+        /***/ "./src/components/VCalendar/util/props.ts":
+        /*!************************************************!*\
+  !*** ./src/components/VCalendar/util/props.ts ***!
+  \************************************************/
+        /*! exports provided: default, validateNumber, validateWeekdays */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validateNumber", function() { return validateNumber; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validateWeekdays", function() { return validateWeekdays; });
+            /* harmony import */ var _timestamp__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./timestamp */ "./src/components/VCalendar/util/timestamp.ts");
+            /* harmony import */ var _modes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modes */ "./src/components/VCalendar/modes/index.ts");
+
+
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                base: {
+                    start: {
+                        type: [String, Number, Date],
+                        validate: _timestamp__WEBPACK_IMPORTED_MODULE_0__["validateTimestamp"],
+                        default: function _default() {
+                            return Object(_timestamp__WEBPACK_IMPORTED_MODULE_0__["parseDate"])(new Date()).date;
+                        }
+                    },
+                    end: {
+                        type: [String, Number, Date],
+                        validate: _timestamp__WEBPACK_IMPORTED_MODULE_0__["validateTimestamp"]
+                    },
+                    weekdays: {
+                        type: [Array, String],
+                        default: function _default() {
+                            return [0, 1, 2, 3, 4, 5, 6];
+                        },
+                        validate: validateWeekdays
+                    },
+                    hideHeader: {
+                        type: Boolean
+                    },
+                    shortWeekdays: {
+                        type: Boolean,
+                        default: true
+                    },
+                    weekdayFormat: {
+                        type: Function,
+                        default: null
+                    },
+                    dayFormat: {
+                        type: Function,
+                        default: null
+                    }
+                },
+                intervals: {
+                    maxDays: {
+                        type: Number,
+                        default: 7
+                    },
+                    shortIntervals: {
+                        type: Boolean,
+                        default: true
+                    },
+                    intervalHeight: {
+                        type: [Number, String],
+                        default: 48,
+                        validate: validateNumber
+                    },
+                    intervalWidth: {
+                        type: [Number, String],
+                        default: 60,
+                        validate: validateNumber
+                    },
+                    intervalMinutes: {
+                        type: [Number, String],
+                        default: 60,
+                        validate: validateNumber
+                    },
+                    firstInterval: {
+                        type: [Number, String],
+                        default: 0,
+                        validate: validateNumber
+                    },
+                    firstTime: {
+                        type: [Number, String, Object],
+                        validate: _timestamp__WEBPACK_IMPORTED_MODULE_0__["validateTime"]
+                    },
+                    intervalCount: {
+                        type: [Number, String],
+                        default: 24,
+                        validate: validateNumber
+                    },
+                    intervalFormat: {
+                        type: Function,
+                        default: null
+                    },
+                    intervalStyle: {
+                        type: Function,
+                        default: null
+                    },
+                    showIntervalLabel: {
+                        type: Function,
+                        default: null
+                    }
+                },
+                weeks: {
+                    localeFirstDayOfYear: {
+                        type: [String, Number],
+                        default: 0
+                    },
+                    minWeeks: {
+                        validate: validateNumber,
+                        default: 1
+                    },
+                    shortMonths: {
+                        type: Boolean,
+                        default: true
+                    },
+                    showMonthOnFirst: {
+                        type: Boolean,
+                        default: true
+                    },
+                    showWeek: Boolean,
+                    monthFormat: {
+                        type: Function,
+                        default: null
+                    }
+                },
+                calendar: {
+                    type: {
+                        type: String,
+                        default: 'month'
+                    },
+                    value: {
+                        type: [String, Number, Date],
+                        validate: _timestamp__WEBPACK_IMPORTED_MODULE_0__["validateTimestamp"]
+                    }
+                },
+                category: {
+                    categories: {
+                        type: [Array, String],
+                        default: ''
+                    },
+                    categoryText: {
+                        type: [String, Function]
+                    },
+                    categoryHideDynamic: {
+                        type: Boolean
+                    },
+                    categoryShowAll: {
+                        type: Boolean
+                    },
+                    categoryForInvalid: {
+                        type: String,
+                        default: ''
+                    },
+                    categoryDays: {
+                        type: [Number, String],
+                        default: 1,
+                        validate: function validate(x) {
+                            return isFinite(parseInt(x)) && parseInt(x) > 0;
+                        }
+                    }
+                },
+                events: {
+                    events: {
+                        type: Array,
+                        default: function _default() {
+                            return [];
+                        }
+                    },
+                    eventStart: {
+                        type: String,
+                        default: 'start'
+                    },
+                    eventEnd: {
+                        type: String,
+                        default: 'end'
+                    },
+                    eventTimed: {
+                        type: [String, Function],
+                        default: 'timed'
+                    },
+                    eventCategory: {
+                        type: [String, Function],
+                        default: 'category'
+                    },
+                    eventHeight: {
+                        type: Number,
+                        default: 20
+                    },
+                    eventColor: {
+                        type: [String, Function],
+                        default: 'primary'
+                    },
+                    eventTextColor: {
+                        type: [String, Function],
+                        default: 'white'
+                    },
+                    eventName: {
+                        type: [String, Function],
+                        default: 'name'
+                    },
+                    eventOverlapThreshold: {
+                        type: [String, Number],
+                        default: 60
+                    },
+                    eventOverlapMode: {
+                        type: [String, Function],
+                        default: 'stack',
+                        validate: function validate(mode) {
+                            return mode in _modes__WEBPACK_IMPORTED_MODULE_1__["CalendarEventOverlapModes"] || typeof mode === 'function';
+                        }
+                    },
+                    eventMore: {
+                        type: Boolean,
+                        default: true
+                    },
+                    eventMoreText: {
+                        type: String,
+                        default: '$vuetify.calendar.moreEvents'
+                    },
+                    eventRipple: {
+                        type: [Boolean, Object],
+                        default: null
+                    },
+                    eventMarginBottom: {
+                        type: Number,
+                        default: 1
+                    }
+                }
+            });
+            function validateNumber(input) {
+                return isFinite(parseInt(input));
+            }
+            function validateWeekdays(input) {
+                if (typeof input === 'string') {
+                    input = input.split(',');
+                }
+
+                if (Array.isArray(input)) {
+                    var ints = input.map(function (x) {
+                        return parseInt(x);
+                    });
+
+                    if (ints.length > _timestamp__WEBPACK_IMPORTED_MODULE_0__["DAYS_IN_WEEK"] || ints.length === 0) {
+                        return false;
+                    }
+
+                    var visited = {};
+                    var wrapped = false;
+
+                    for (var i = 0; i < ints.length; i++) {
+                        var x = ints[i];
+
+                        if (!isFinite(x) || x < 0 || x >= _timestamp__WEBPACK_IMPORTED_MODULE_0__["DAYS_IN_WEEK"]) {
+                            return false;
+                        }
+
+                        if (i > 0) {
+                            var d = x - ints[i - 1];
+
+                            if (d < 0) {
+                                if (wrapped) {
+                                    return false;
+                                }
+
+                                wrapped = true;
+                            } else if (d === 0) {
+                                return false;
+                            }
+                        }
+
+                        if (visited[x]) {
+                            return false;
+                        }
+
+                        visited[x] = true;
+                    }
+
+                    return true;
+                }
+
+                return false;
+            }
+
+            /***/ }),
+
+        /***/ "./src/components/VCalendar/util/timestamp.ts":
+        /*!****************************************************!*\
+  !*** ./src/components/VCalendar/util/timestamp.ts ***!
+  \****************************************************/
+        /*! exports provided: PARSE_REGEX, PARSE_TIME, DAYS_IN_MONTH, DAYS_IN_MONTH_LEAP, DAYS_IN_MONTH_MIN, DAYS_IN_MONTH_MAX, MONTH_MAX, MONTH_MIN, DAY_MIN, DAYS_IN_WEEK, MINUTES_IN_HOUR, MINUTE_MAX, MINUTES_IN_DAY, HOURS_IN_DAY, HOUR_MAX, FIRST_HOUR, OFFSET_YEAR, OFFSET_MONTH, OFFSET_HOUR, OFFSET_TIME, getStartOfWeek, getEndOfWeek, getStartOfMonth, getEndOfMonth, validateTime, parseTime, validateTimestamp, parseTimestamp, parseDate, getDayIdentifier, getTimeIdentifier, getTimestampIdentifier, updateRelative, isTimedless, updateHasTime, updateMinutes, updateWeekday, updateFormatted, getWeekday, daysInMonth, copyTimestamp, padNumber, getDate, getTime, nextMinutes, nextDay, prevDay, relativeDays, diffMinutes, findWeekday, getWeekdaySkips, timestampToDate, createDayList, createIntervalList, createNativeLocaleFormatter */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PARSE_REGEX", function() { return PARSE_REGEX; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PARSE_TIME", function() { return PARSE_TIME; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DAYS_IN_MONTH", function() { return DAYS_IN_MONTH; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DAYS_IN_MONTH_LEAP", function() { return DAYS_IN_MONTH_LEAP; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DAYS_IN_MONTH_MIN", function() { return DAYS_IN_MONTH_MIN; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DAYS_IN_MONTH_MAX", function() { return DAYS_IN_MONTH_MAX; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MONTH_MAX", function() { return MONTH_MAX; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MONTH_MIN", function() { return MONTH_MIN; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DAY_MIN", function() { return DAY_MIN; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DAYS_IN_WEEK", function() { return DAYS_IN_WEEK; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MINUTES_IN_HOUR", function() { return MINUTES_IN_HOUR; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MINUTE_MAX", function() { return MINUTE_MAX; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MINUTES_IN_DAY", function() { return MINUTES_IN_DAY; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HOURS_IN_DAY", function() { return HOURS_IN_DAY; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HOUR_MAX", function() { return HOUR_MAX; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FIRST_HOUR", function() { return FIRST_HOUR; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OFFSET_YEAR", function() { return OFFSET_YEAR; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OFFSET_MONTH", function() { return OFFSET_MONTH; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OFFSET_HOUR", function() { return OFFSET_HOUR; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OFFSET_TIME", function() { return OFFSET_TIME; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getStartOfWeek", function() { return getStartOfWeek; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getEndOfWeek", function() { return getEndOfWeek; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getStartOfMonth", function() { return getStartOfMonth; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getEndOfMonth", function() { return getEndOfMonth; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validateTime", function() { return validateTime; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseTime", function() { return parseTime; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validateTimestamp", function() { return validateTimestamp; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseTimestamp", function() { return parseTimestamp; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseDate", function() { return parseDate; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDayIdentifier", function() { return getDayIdentifier; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTimeIdentifier", function() { return getTimeIdentifier; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTimestampIdentifier", function() { return getTimestampIdentifier; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateRelative", function() { return updateRelative; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isTimedless", function() { return isTimedless; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateHasTime", function() { return updateHasTime; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateMinutes", function() { return updateMinutes; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateWeekday", function() { return updateWeekday; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateFormatted", function() { return updateFormatted; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getWeekday", function() { return getWeekday; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "daysInMonth", function() { return daysInMonth; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "copyTimestamp", function() { return copyTimestamp; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "padNumber", function() { return padNumber; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDate", function() { return getDate; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTime", function() { return getTime; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "nextMinutes", function() { return nextMinutes; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "nextDay", function() { return nextDay; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "prevDay", function() { return prevDay; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "relativeDays", function() { return relativeDays; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "diffMinutes", function() { return diffMinutes; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "findWeekday", function() { return findWeekday; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getWeekdaySkips", function() { return getWeekdaySkips; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "timestampToDate", function() { return timestampToDate; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createDayList", function() { return createDayList; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createIntervalList", function() { return createIntervalList; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNativeLocaleFormatter", function() { return createNativeLocaleFormatter; });
+            /* harmony import */ var _util_dateTimeUtils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../util/dateTimeUtils */ "./src/util/dateTimeUtils.ts");
+            function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+
+            var PARSE_REGEX = /^(\d{4})-(\d{1,2})(-(\d{1,2}))?([^\d]+(\d{1,2}))?(:(\d{1,2}))?(:(\d{1,2}))?$/;
+            var PARSE_TIME = /(\d\d?)(:(\d\d?)|)(:(\d\d?)|)/;
+            var DAYS_IN_MONTH = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            var DAYS_IN_MONTH_LEAP = [0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            var DAYS_IN_MONTH_MIN = 28;
+            var DAYS_IN_MONTH_MAX = 31;
+            var MONTH_MAX = 12;
+            var MONTH_MIN = 1;
+            var DAY_MIN = 1;
+            var DAYS_IN_WEEK = 7;
+            var MINUTES_IN_HOUR = 60;
+            var MINUTE_MAX = 59;
+            var MINUTES_IN_DAY = 24 * 60;
+            var HOURS_IN_DAY = 24;
+            var HOUR_MAX = 23;
+            var FIRST_HOUR = 0;
+            var OFFSET_YEAR = 10000;
+            var OFFSET_MONTH = 100;
+            var OFFSET_HOUR = 100;
+            var OFFSET_TIME = 10000;
+            function getStartOfWeek(timestamp, weekdays, today) {
+                var start = copyTimestamp(timestamp);
+                findWeekday(start, weekdays[0], prevDay);
+                updateFormatted(start);
+
+                if (today) {
+                    updateRelative(start, today, start.hasTime);
+                }
+
+                return start;
+            }
+            function getEndOfWeek(timestamp, weekdays, today) {
+                var end = copyTimestamp(timestamp);
+                findWeekday(end, weekdays[weekdays.length - 1]);
+                updateFormatted(end);
+
+                if (today) {
+                    updateRelative(end, today, end.hasTime);
+                }
+
+                return end;
+            }
+            function getStartOfMonth(timestamp) {
+                var start = copyTimestamp(timestamp);
+                start.day = DAY_MIN;
+                updateWeekday(start);
+                updateFormatted(start);
+                return start;
+            }
+            function getEndOfMonth(timestamp) {
+                var end = copyTimestamp(timestamp);
+                end.day = daysInMonth(end.year, end.month);
+                updateWeekday(end);
+                updateFormatted(end);
+                return end;
+            }
+            function validateTime(input) {
+                return typeof input === 'number' && isFinite(input) || !!PARSE_TIME.exec(input) || _typeof(input) === 'object' && isFinite(input.hour) && isFinite(input.minute);
+            }
+            function parseTime(input) {
+                if (typeof input === 'number') {
+                    // when a number is given, it's minutes since 12:00am
+                    return input;
+                } else if (typeof input === 'string') {
+                    // when a string is given, it's a hh:mm:ss format where seconds are optional
+                    var parts = PARSE_TIME.exec(input);
+
+                    if (!parts) {
+                        return false;
+                    }
+
+                    return parseInt(parts[1]) * 60 + parseInt(parts[3] || 0);
+                } else if (_typeof(input) === 'object') {
+                    // when an object is given, it must have hour and minute
+                    if (typeof input.hour !== 'number' || typeof input.minute !== 'number') {
+                        return false;
+                    }
+
+                    return input.hour * 60 + input.minute;
+                } else {
+                    // unsupported type
+                    return false;
+                }
+            }
+            function validateTimestamp(input) {
+                return typeof input === 'number' && isFinite(input) || typeof input === 'string' && !!PARSE_REGEX.exec(input) || input instanceof Date;
+            }
+            function parseTimestamp(input, required, now) {
+                if (required === void 0) {
+                    required = false;
+                }
+
+                if (typeof input === 'number' && isFinite(input)) {
+                    input = new Date(input);
+                }
+
+                if (input instanceof Date) {
+                    var date = parseDate(input);
+
+                    if (now) {
+                        updateRelative(date, now, date.hasTime);
+                    }
+
+                    return date;
+                }
+
+                if (typeof input !== 'string') {
+                    if (required) {
+                        throw new Error(input + " is not a valid timestamp. It must be a Date, number of seconds since Epoch, or a string in the format of YYYY-MM-DD or YYYY-MM-DD hh:mm. Zero-padding is optional and seconds are ignored.");
+                    }
+
+                    return null;
+                } // YYYY-MM-DD hh:mm:ss
+
+
+                var parts = PARSE_REGEX.exec(input);
+
+                if (!parts) {
+                    if (required) {
+                        throw new Error(input + " is not a valid timestamp. It must be a Date, number of seconds since Epoch, or a string in the format of YYYY-MM-DD or YYYY-MM-DD hh:mm. Zero-padding is optional and seconds are ignored.");
+                    }
+
+                    return null;
+                }
+
+                var timestamp = {
+                    date: input,
+                    time: '',
+                    year: parseInt(parts[1]),
+                    month: parseInt(parts[2]),
+                    day: parseInt(parts[4]) || 1,
+                    hour: parseInt(parts[6]) || 0,
+                    minute: parseInt(parts[8]) || 0,
+                    weekday: 0,
+                    hasDay: !!parts[4],
+                    hasTime: !!(parts[6] && parts[8]),
+                    past: false,
+                    present: false,
+                    future: false
+                };
+                updateWeekday(timestamp);
+                updateFormatted(timestamp);
+
+                if (now) {
+                    updateRelative(timestamp, now, timestamp.hasTime);
+                }
+
+                return timestamp;
+            }
+            function parseDate(date) {
+                return updateFormatted({
+                    date: '',
+                    time: '',
+                    year: date.getFullYear(),
+                    month: date.getMonth() + 1,
+                    day: date.getDate(),
+                    weekday: date.getDay(),
+                    hour: date.getHours(),
+                    minute: date.getMinutes(),
+                    hasDay: true,
+                    hasTime: true,
+                    past: false,
+                    present: true,
+                    future: false
+                });
+            }
+            function getDayIdentifier(timestamp) {
+                return timestamp.year * OFFSET_YEAR + timestamp.month * OFFSET_MONTH + timestamp.day;
+            }
+            function getTimeIdentifier(timestamp) {
+                return timestamp.hour * OFFSET_HOUR + timestamp.minute;
+            }
+            function getTimestampIdentifier(timestamp) {
+                return getDayIdentifier(timestamp) * OFFSET_TIME + getTimeIdentifier(timestamp);
+            }
+            function updateRelative(timestamp, now, time) {
+                if (time === void 0) {
+                    time = false;
+                }
+
+                var a = getDayIdentifier(now);
+                var b = getDayIdentifier(timestamp);
+                var present = a === b;
+
+                if (timestamp.hasTime && time && present) {
+                    a = getTimeIdentifier(now);
+                    b = getTimeIdentifier(timestamp);
+                    present = a === b;
+                }
+
+                timestamp.past = b < a;
+                timestamp.present = present;
+                timestamp.future = b > a;
+                return timestamp;
+            }
+            function isTimedless(input) {
+                return input instanceof Date || typeof input === 'number' && isFinite(input);
+            }
+            function updateHasTime(timestamp, hasTime, now) {
+                if (timestamp.hasTime !== hasTime) {
+                    timestamp.hasTime = hasTime;
+
+                    if (!hasTime) {
+                        timestamp.hour = HOUR_MAX;
+                        timestamp.minute = MINUTE_MAX;
+                        timestamp.time = getTime(timestamp);
+                    }
+
+                    if (now) {
+                        updateRelative(timestamp, now, timestamp.hasTime);
+                    }
+                }
+
+                return timestamp;
+            }
+            function updateMinutes(timestamp, minutes, now) {
+                timestamp.hasTime = true;
+                timestamp.hour = Math.floor(minutes / MINUTES_IN_HOUR);
+                timestamp.minute = minutes % MINUTES_IN_HOUR;
+                timestamp.time = getTime(timestamp);
+
+                if (now) {
+                    updateRelative(timestamp, now, true);
+                }
+
+                return timestamp;
+            }
+            function updateWeekday(timestamp) {
+                timestamp.weekday = getWeekday(timestamp);
+                return timestamp;
+            }
+            function updateFormatted(timestamp) {
+                timestamp.time = getTime(timestamp);
+                timestamp.date = getDate(timestamp);
+                return timestamp;
+            }
+            function getWeekday(timestamp) {
+                if (timestamp.hasDay) {
+                    var _ = Math.floor;
+                    var k = timestamp.day;
+                    var m = (timestamp.month + 9) % MONTH_MAX + 1;
+
+                    var C = _(timestamp.year / 100);
+
+                    var Y = timestamp.year % 100 - (timestamp.month <= 2 ? 1 : 0);
+                    return ((k + _(2.6 * m - 0.2) - 2 * C + Y + _(Y / 4) + _(C / 4)) % 7 + 7) % 7;
+                }
+
+                return timestamp.weekday;
+            }
+            function daysInMonth(year, month) {
+                return Object(_util_dateTimeUtils__WEBPACK_IMPORTED_MODULE_0__["isLeapYear"])(year) ? DAYS_IN_MONTH_LEAP[month] : DAYS_IN_MONTH[month];
+            }
+            function copyTimestamp(timestamp) {
+                var date = timestamp.date,
+                    time = timestamp.time,
+                    year = timestamp.year,
+                    month = timestamp.month,
+                    day = timestamp.day,
+                    weekday = timestamp.weekday,
+                    hour = timestamp.hour,
+                    minute = timestamp.minute,
+                    hasDay = timestamp.hasDay,
+                    hasTime = timestamp.hasTime,
+                    past = timestamp.past,
+                    present = timestamp.present,
+                    future = timestamp.future;
+                return {
+                    date: date,
+                    time: time,
+                    year: year,
+                    month: month,
+                    day: day,
+                    weekday: weekday,
+                    hour: hour,
+                    minute: minute,
+                    hasDay: hasDay,
+                    hasTime: hasTime,
+                    past: past,
+                    present: present,
+                    future: future
+                };
+            }
+            function padNumber(x, length) {
+                var padded = String(x);
+
+                while (padded.length < length) {
+                    padded = '0' + padded;
+                }
+
+                return padded;
+            }
+            function getDate(timestamp) {
+                var str = padNumber(timestamp.year, 4) + "-" + padNumber(timestamp.month, 2);
+                if (timestamp.hasDay) str += "-" + padNumber(timestamp.day, 2);
+                return str;
+            }
+            function getTime(timestamp) {
+                if (!timestamp.hasTime) {
+                    return '';
+                }
+
+                return padNumber(timestamp.hour, 2) + ":" + padNumber(timestamp.minute, 2);
+            }
+            function nextMinutes(timestamp, minutes) {
+                timestamp.minute += minutes;
+
+                while (timestamp.minute > MINUTES_IN_HOUR) {
+                    timestamp.minute -= MINUTES_IN_HOUR;
+                    timestamp.hour++;
+
+                    if (timestamp.hour >= HOURS_IN_DAY) {
+                        nextDay(timestamp);
+                        timestamp.hour = FIRST_HOUR;
+                    }
+                }
+
+                return timestamp;
+            }
+            function nextDay(timestamp) {
+                timestamp.day++;
+                timestamp.weekday = (timestamp.weekday + 1) % DAYS_IN_WEEK;
+
+                if (timestamp.day > DAYS_IN_MONTH_MIN && timestamp.day > daysInMonth(timestamp.year, timestamp.month)) {
+                    timestamp.day = DAY_MIN;
+                    timestamp.month++;
+
+                    if (timestamp.month > MONTH_MAX) {
+                        timestamp.month = MONTH_MIN;
+                        timestamp.year++;
+                    }
+                }
+
+                return timestamp;
+            }
+            function prevDay(timestamp) {
+                timestamp.day--;
+                timestamp.weekday = (timestamp.weekday + 6) % DAYS_IN_WEEK;
+
+                if (timestamp.day < DAY_MIN) {
+                    timestamp.month--;
+
+                    if (timestamp.month < MONTH_MIN) {
+                        timestamp.year--;
+                        timestamp.month = MONTH_MAX;
+                    }
+
+                    timestamp.day = daysInMonth(timestamp.year, timestamp.month);
+                }
+
+                return timestamp;
+            }
+            function relativeDays(timestamp, mover, days) {
+                if (mover === void 0) {
+                    mover = nextDay;
+                }
+
+                if (days === void 0) {
+                    days = 1;
+                }
+
+                while (--days >= 0) {
+                    mover(timestamp);
+                }
+
+                return timestamp;
+            }
+            function diffMinutes(min, max) {
+                var Y = (max.year - min.year) * 525600;
+                var M = (max.month - min.month) * 43800;
+                var D = (max.day - min.day) * 1440;
+                var h = (max.hour - min.hour) * 60;
+                var m = max.minute - min.minute;
+                return Y + M + D + h + m;
+            }
+            function findWeekday(timestamp, weekday, mover, maxDays) {
+                if (mover === void 0) {
+                    mover = nextDay;
+                }
+
+                if (maxDays === void 0) {
+                    maxDays = 6;
+                }
+
+                while (timestamp.weekday !== weekday && --maxDays >= 0) {
+                    mover(timestamp);
+                }
+
+                return timestamp;
+            }
+            function getWeekdaySkips(weekdays) {
+                var skips = [1, 1, 1, 1, 1, 1, 1];
+                var filled = [0, 0, 0, 0, 0, 0, 0];
+
+                for (var i = 0; i < weekdays.length; i++) {
+                    filled[weekdays[i]] = 1;
+                }
+
+                for (var k = 0; k < DAYS_IN_WEEK; k++) {
+                    var skip = 1;
+
+                    for (var j = 1; j < DAYS_IN_WEEK; j++) {
+                        var next = (k + j) % DAYS_IN_WEEK;
+
+                        if (filled[next]) {
+                            break;
+                        }
+
+                        skip++;
+                    }
+
+                    skips[k] = filled[k] * skip;
+                }
+
+                return skips;
+            }
+            function timestampToDate(timestamp) {
+                var time = padNumber(timestamp.hour, 2) + ":" + padNumber(timestamp.minute, 2);
+                var date = timestamp.date;
+                return new Date(date + "T" + time + ":00+00:00");
+            }
+            function createDayList(start, end, now, weekdaySkips, max, min) {
+                if (max === void 0) {
+                    max = 42;
+                }
+
+                if (min === void 0) {
+                    min = 0;
+                }
+
+                var stop = getDayIdentifier(end);
+                var days = [];
+                var current = copyTimestamp(start);
+                var currentIdentifier = 0;
+                var stopped = currentIdentifier === stop;
+
+                if (stop < getDayIdentifier(start)) {
+                    throw new Error('End date is earlier than start date.');
+                }
+
+                while ((!stopped || days.length < min) && days.length < max) {
+                    currentIdentifier = getDayIdentifier(current);
+                    stopped = stopped || currentIdentifier === stop;
+
+                    if (weekdaySkips[current.weekday] === 0) {
+                        current = nextDay(current);
+                        continue;
+                    }
+
+                    var day = copyTimestamp(current);
+                    updateFormatted(day);
+                    updateRelative(day, now);
+                    days.push(day);
+                    current = relativeDays(current, nextDay, weekdaySkips[current.weekday]);
+                }
+
+                if (!days.length) throw new Error('No dates found using specified start date, end date, and weekdays.');
+                return days;
+            }
+            function createIntervalList(timestamp, first, minutes, count, now) {
+                var intervals = [];
+
+                for (var i = 0; i < count; i++) {
+                    var mins = first + i * minutes;
+                    var int = copyTimestamp(timestamp);
+                    intervals.push(updateMinutes(int, mins, now));
+                }
+
+                return intervals;
+            }
+            function createNativeLocaleFormatter(locale, getOptions) {
+                var emptyFormatter = function emptyFormatter(_t, _s) {
+                    return '';
+                };
+
+                if (typeof Intl === 'undefined' || typeof Intl.DateTimeFormat === 'undefined') {
+                    return emptyFormatter;
+                }
+
+                return function (timestamp, short) {
+                    try {
+                        var intlFormatter = new Intl.DateTimeFormat(locale || undefined, getOptions(timestamp, short));
+                        return intlFormatter.format(timestampToDate(timestamp));
+                    } catch (e) {
+                        return '';
+                    }
+                };
+            }
 
             /***/ }),
 
@@ -4255,6 +8356,1093 @@
 
 
             /* harmony default export */ __webpack_exports__["default"] = (_VData__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+            /***/ }),
+        /***/ "./src/components/VColorPicker/VColorPicker.sass":
+        /*!*******************************************************!*\
+          !*** ./src/components/VColorPicker/VColorPicker.sass ***!
+          \*******************************************************/
+        /*! no static exports found */
+        /***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+            /***/ }),
+
+        /***/ "./src/components/VColorPicker/VColorPicker.ts":
+        /*!*****************************************************!*\
+          !*** ./src/components/VColorPicker/VColorPicker.ts ***!
+          \*****************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VColorPicker_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VColorPicker.sass */ "./src/components/VColorPicker/VColorPicker.sass");
+            /* harmony import */ var _VColorPicker_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VColorPicker_sass__WEBPACK_IMPORTED_MODULE_0__);
+            /* harmony import */ var _VSheet_VSheet__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../VSheet/VSheet */ "./src/components/VSheet/VSheet.ts");
+            /* harmony import */ var _VColorPickerPreview__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./VColorPickerPreview */ "./src/components/VColorPicker/VColorPickerPreview.ts");
+            /* harmony import */ var _VColorPickerCanvas__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./VColorPickerCanvas */ "./src/components/VColorPicker/VColorPickerCanvas.ts");
+            /* harmony import */ var _VColorPickerEdit__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./VColorPickerEdit */ "./src/components/VColorPicker/VColorPickerEdit.ts");
+            /* harmony import */ var _VColorPickerSwatches__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./VColorPickerSwatches */ "./src/components/VColorPicker/VColorPickerSwatches.ts");
+            /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./util */ "./src/components/VColorPicker/util/index.ts");
+            /* harmony import */ var _util_mixins__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../util/mixins */ "./src/util/mixins.ts");
+            /* harmony import */ var _util_helpers__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../util/helpers */ "./src/util/helpers.ts");
+            /* harmony import */ var _mixins_elevatable__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../mixins/elevatable */ "./src/mixins/elevatable/index.ts");
+            /* harmony import */ var _mixins_themeable__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../mixins/themeable */ "./src/mixins/themeable/index.ts");
+            var __assign = undefined && undefined.__assign || function () {
+                __assign = Object.assign || function (t) {
+                    for (var s, i = 1, n = arguments.length; i < n; i++) {
+                        s = arguments[i];
+
+                        for (var p in s) {
+                            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+                        }
+                    }
+
+                    return t;
+                };
+
+                return __assign.apply(this, arguments);
+            }; // Styles
+
+
+            // Components
+
+
+
+
+
+            // Helpers
+
+
+
+            // Mixins
+
+
+
+            /* harmony default export */ __webpack_exports__["default"] = (Object(_util_mixins__WEBPACK_IMPORTED_MODULE_7__["default"])(_mixins_elevatable__WEBPACK_IMPORTED_MODULE_9__["default"], _mixins_themeable__WEBPACK_IMPORTED_MODULE_10__["default"]).extend({
+                name: 'v-color-picker',
+                props: {
+                    canvasHeight: {
+                        type: [String, Number],
+                        default: 150
+                    },
+                    disabled: Boolean,
+                    dotSize: {
+                        type: [Number, String],
+                        default: 10
+                    },
+                    flat: Boolean,
+                    hideCanvas: Boolean,
+                    hideSliders: Boolean,
+                    hideInputs: Boolean,
+                    hideModeSwitch: Boolean,
+                    mode: {
+                        type: String,
+                        default: 'rgba',
+                        validator: function validator(v) {
+                            return Object.keys(_VColorPickerEdit__WEBPACK_IMPORTED_MODULE_4__["modes"]).includes(v);
+                        }
+                    },
+                    showSwatches: Boolean,
+                    swatches: Array,
+                    swatchesMaxHeight: {
+                        type: [Number, String],
+                        default: 150
+                    },
+                    value: {
+                        type: [Object, String]
+                    },
+                    width: {
+                        type: [Number, String],
+                        default: 300
+                    }
+                },
+                data: function data() {
+                    return {
+                        internalValue: Object(_util__WEBPACK_IMPORTED_MODULE_6__["fromRGBA"])({
+                            r: 255,
+                            g: 0,
+                            b: 0,
+                            a: 1
+                        })
+                    };
+                },
+                computed: {
+                    hideAlpha: function hideAlpha() {
+                        if (!this.value) return false;
+                        return !Object(_util__WEBPACK_IMPORTED_MODULE_6__["hasAlpha"])(this.value);
+                    }
+                },
+                watch: {
+                    value: {
+                        handler: function handler(color) {
+                            this.updateColor(Object(_util__WEBPACK_IMPORTED_MODULE_6__["parseColor"])(color, this.internalValue));
+                        },
+                        immediate: true
+                    }
+                },
+                methods: {
+                    updateColor: function updateColor(color) {
+                        this.internalValue = color;
+                        var value = Object(_util__WEBPACK_IMPORTED_MODULE_6__["extractColor"])(this.internalValue, this.value);
+
+                        if (!Object(_util_helpers__WEBPACK_IMPORTED_MODULE_8__["deepEqual"])(value, this.value)) {
+                            this.$emit('input', value);
+                            this.$emit('update:color', this.internalValue);
+                        }
+                    },
+                    genCanvas: function genCanvas() {
+                        return this.$createElement(_VColorPickerCanvas__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                            props: {
+                                color: this.internalValue,
+                                disabled: this.disabled,
+                                dotSize: this.dotSize,
+                                width: this.width,
+                                height: this.canvasHeight
+                            },
+                            on: {
+                                'update:color': this.updateColor
+                            }
+                        });
+                    },
+                    genControls: function genControls() {
+                        return this.$createElement('div', {
+                            staticClass: 'v-color-picker__controls'
+                        }, [!this.hideSliders && this.genPreview(), !this.hideInputs && this.genEdit()]);
+                    },
+                    genEdit: function genEdit() {
+                        var _this = this;
+
+                        return this.$createElement(_VColorPickerEdit__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                            props: {
+                                color: this.internalValue,
+                                disabled: this.disabled,
+                                hideAlpha: this.hideAlpha,
+                                hideModeSwitch: this.hideModeSwitch,
+                                mode: this.mode
+                            },
+                            on: {
+                                'update:color': this.updateColor,
+                                'update:mode': function updateMode(v) {
+                                    return _this.$emit('update:mode', v);
+                                }
+                            }
+                        });
+                    },
+                    genPreview: function genPreview() {
+                        return this.$createElement(_VColorPickerPreview__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                            props: {
+                                color: this.internalValue,
+                                disabled: this.disabled,
+                                hideAlpha: this.hideAlpha
+                            },
+                            on: {
+                                'update:color': this.updateColor
+                            }
+                        });
+                    },
+                    genSwatches: function genSwatches() {
+                        return this.$createElement(_VColorPickerSwatches__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                            props: {
+                                dark: this.dark,
+                                light: this.light,
+                                swatches: this.swatches,
+                                color: this.internalValue,
+                                maxHeight: this.swatchesMaxHeight
+                            },
+                            on: {
+                                'update:color': this.updateColor
+                            }
+                        });
+                    }
+                },
+                render: function render(h) {
+                    return h(_VSheet_VSheet__WEBPACK_IMPORTED_MODULE_1__["default"], {
+                        staticClass: 'v-color-picker',
+                        class: __assign(__assign({
+                            'v-color-picker--flat': this.flat
+                        }, this.themeClasses), this.elevationClasses),
+                        props: {
+                            maxWidth: this.width
+                        }
+                    }, [!this.hideCanvas && this.genCanvas(), (!this.hideSliders || !this.hideInputs) && this.genControls(), this.showSwatches && this.genSwatches()]);
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VColorPicker/VColorPickerCanvas.sass":
+        /*!*************************************************************!*\
+          !*** ./src/components/VColorPicker/VColorPickerCanvas.sass ***!
+          \*************************************************************/
+        /*! no static exports found */
+        /***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+            /***/ }),
+
+        /***/ "./src/components/VColorPicker/VColorPickerCanvas.ts":
+        /*!***********************************************************!*\
+          !*** ./src/components/VColorPicker/VColorPickerCanvas.ts ***!
+          \***********************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VColorPickerCanvas_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VColorPickerCanvas.sass */ "./src/components/VColorPicker/VColorPickerCanvas.sass");
+            /* harmony import */ var _VColorPickerCanvas_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VColorPickerCanvas_sass__WEBPACK_IMPORTED_MODULE_0__);
+            /* harmony import */ var _util_helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util/helpers */ "./src/util/helpers.ts");
+            /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./util */ "./src/components/VColorPicker/util/index.ts");
+            /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "vue");
+            /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_3__);
+// Styles
+            // Helpers
+
+
+            // Types
+
+
+            /* harmony default export */ __webpack_exports__["default"] = (vue__WEBPACK_IMPORTED_MODULE_3___default.a.extend({
+                name: 'v-color-picker-canvas',
+                props: {
+                    color: {
+                        type: Object,
+                        default: function _default() {
+                            return Object(_util__WEBPACK_IMPORTED_MODULE_2__["fromRGBA"])({
+                                r: 255,
+                                g: 0,
+                                b: 0,
+                                a: 1
+                            });
+                        }
+                    },
+                    disabled: Boolean,
+                    dotSize: {
+                        type: [Number, String],
+                        default: 10
+                    },
+                    height: {
+                        type: [Number, String],
+                        default: 150
+                    },
+                    width: {
+                        type: [Number, String],
+                        default: 300
+                    }
+                },
+                data: function data() {
+                    return {
+                        boundingRect: {
+                            width: 0,
+                            height: 0,
+                            left: 0,
+                            top: 0
+                        }
+                    };
+                },
+                computed: {
+                    dot: function dot() {
+                        if (!this.color) return {
+                            x: 0,
+                            y: 0
+                        };
+                        return {
+                            x: this.color.hsva.s * parseInt(this.width, 10),
+                            y: (1 - this.color.hsva.v) * parseInt(this.height, 10)
+                        };
+                    }
+                },
+                watch: {
+                    'color.hue': 'updateCanvas'
+                },
+                mounted: function mounted() {
+                    this.updateCanvas();
+                },
+                methods: {
+                    emitColor: function emitColor(x, y) {
+                        var _a = this.boundingRect,
+                            left = _a.left,
+                            top = _a.top,
+                            width = _a.width,
+                            height = _a.height;
+                        this.$emit('update:color', Object(_util__WEBPACK_IMPORTED_MODULE_2__["fromHSVA"])({
+                            h: this.color.hue,
+                            s: Object(_util_helpers__WEBPACK_IMPORTED_MODULE_1__["clamp"])(x - left, 0, width) / width,
+                            v: 1 - Object(_util_helpers__WEBPACK_IMPORTED_MODULE_1__["clamp"])(y - top, 0, height) / height,
+                            a: this.color.alpha
+                        }));
+                    },
+                    updateCanvas: function updateCanvas() {
+                        if (!this.color) return;
+                        var canvas = this.$refs.canvas;
+                        var ctx = canvas.getContext('2d');
+                        if (!ctx) return;
+                        var saturationGradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+                        saturationGradient.addColorStop(0, 'hsla(0, 0%, 100%, 1)'); // white
+
+                        saturationGradient.addColorStop(1, "hsla(" + this.color.hue + ", 100%, 50%, 1)");
+                        ctx.fillStyle = saturationGradient;
+                        ctx.fillRect(0, 0, canvas.width, canvas.height);
+                        var valueGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+                        valueGradient.addColorStop(0, 'hsla(0, 0%, 100%, 0)'); // transparent
+
+                        valueGradient.addColorStop(1, 'hsla(0, 0%, 0%, 1)'); // black
+
+                        ctx.fillStyle = valueGradient;
+                        ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    },
+                    handleClick: function handleClick(e) {
+                        if (this.disabled) return;
+                        this.boundingRect = this.$el.getBoundingClientRect();
+                        this.emitColor(e.clientX, e.clientY);
+                    },
+                    handleMouseDown: function handleMouseDown(e) {
+                        // To prevent selection while moving cursor
+                        e.preventDefault();
+                        if (this.disabled) return;
+                        this.boundingRect = this.$el.getBoundingClientRect();
+                        window.addEventListener('mousemove', this.handleMouseMove);
+                        window.addEventListener('mouseup', this.handleMouseUp);
+                    },
+                    handleMouseMove: function handleMouseMove(e) {
+                        if (this.disabled) return;
+                        this.emitColor(e.clientX, e.clientY);
+                    },
+                    handleMouseUp: function handleMouseUp() {
+                        window.removeEventListener('mousemove', this.handleMouseMove);
+                        window.removeEventListener('mouseup', this.handleMouseUp);
+                    },
+                    genCanvas: function genCanvas() {
+                        return this.$createElement('canvas', {
+                            ref: 'canvas',
+                            attrs: {
+                                width: this.width,
+                                height: this.height
+                            }
+                        });
+                    },
+                    genDot: function genDot() {
+                        var radius = parseInt(this.dotSize, 10) / 2;
+                        var x = Object(_util_helpers__WEBPACK_IMPORTED_MODULE_1__["convertToUnit"])(this.dot.x - radius);
+                        var y = Object(_util_helpers__WEBPACK_IMPORTED_MODULE_1__["convertToUnit"])(this.dot.y - radius);
+                        return this.$createElement('div', {
+                            staticClass: 'v-color-picker__canvas-dot',
+                            class: {
+                                'v-color-picker__canvas-dot--disabled': this.disabled
+                            },
+                            style: {
+                                width: Object(_util_helpers__WEBPACK_IMPORTED_MODULE_1__["convertToUnit"])(this.dotSize),
+                                height: Object(_util_helpers__WEBPACK_IMPORTED_MODULE_1__["convertToUnit"])(this.dotSize),
+                                transform: "translate(" + x + ", " + y + ")"
+                            }
+                        });
+                    }
+                },
+                render: function render(h) {
+                    return h('div', {
+                        staticClass: 'v-color-picker__canvas',
+                        style: {
+                            width: Object(_util_helpers__WEBPACK_IMPORTED_MODULE_1__["convertToUnit"])(this.width),
+                            height: Object(_util_helpers__WEBPACK_IMPORTED_MODULE_1__["convertToUnit"])(this.height)
+                        },
+                        on: {
+                            click: this.handleClick,
+                            mousedown: this.handleMouseDown
+                        }
+                    }, [this.genCanvas(), this.genDot()]);
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VColorPicker/VColorPickerEdit.sass":
+        /*!***********************************************************!*\
+          !*** ./src/components/VColorPicker/VColorPickerEdit.sass ***!
+          \***********************************************************/
+        /*! no static exports found */
+        /***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+            /***/ }),
+
+        /***/ "./src/components/VColorPicker/VColorPickerEdit.ts":
+        /*!*********************************************************!*\
+          !*** ./src/components/VColorPicker/VColorPickerEdit.ts ***!
+          \*********************************************************/
+        /*! exports provided: modes, default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "modes", function() { return modes; });
+            /* harmony import */ var _VColorPickerEdit_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VColorPickerEdit.sass */ "./src/components/VColorPicker/VColorPickerEdit.sass");
+            /* harmony import */ var _VColorPickerEdit_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VColorPickerEdit_sass__WEBPACK_IMPORTED_MODULE_0__);
+            /* harmony import */ var _VBtn__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../VBtn */ "./src/components/VBtn/index.ts");
+            /* harmony import */ var _VIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../VIcon */ "./src/components/VIcon/index.ts");
+            /* harmony import */ var _util_colorUtils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../util/colorUtils */ "./src/util/colorUtils.ts");
+            /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue */ "vue");
+            /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_4__);
+            /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./util */ "./src/components/VColorPicker/util/index.ts");
+            var __read = undefined && undefined.__read || function (o, n) {
+                var m = typeof Symbol === "function" && o[Symbol.iterator];
+                if (!m) return o;
+                var i = m.call(o),
+                    r,
+                    ar = [],
+                    e;
+
+                try {
+                    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
+                        ar.push(r.value);
+                    }
+                } catch (error) {
+                    e = {
+                        error: error
+                    };
+                } finally {
+                    try {
+                        if (r && !r.done && (m = i["return"])) m.call(i);
+                    } finally {
+                        if (e) throw e.error;
+                    }
+                }
+
+                return ar;
+            }; // Styles
+
+
+            // Components
+
+
+            // Helpers
+
+            // Types
+
+
+
+            var modes = {
+                rgba: {
+                    inputs: [['r', 255, 'int'], ['g', 255, 'int'], ['b', 255, 'int'], ['a', 1, 'float']],
+                    from: _util__WEBPACK_IMPORTED_MODULE_5__["fromRGBA"]
+                },
+                hsla: {
+                    inputs: [['h', 360, 'int'], ['s', 1, 'float'], ['l', 1, 'float'], ['a', 1, 'float']],
+                    from: _util__WEBPACK_IMPORTED_MODULE_5__["fromHSLA"]
+                },
+                hexa: {
+                    from: _util__WEBPACK_IMPORTED_MODULE_5__["fromHexa"]
+                }
+            };
+            /* harmony default export */ __webpack_exports__["default"] = (vue__WEBPACK_IMPORTED_MODULE_4___default.a.extend({
+                name: 'v-color-picker-edit',
+                props: {
+                    color: Object,
+                    disabled: Boolean,
+                    hideAlpha: Boolean,
+                    hideModeSwitch: Boolean,
+                    mode: {
+                        type: String,
+                        default: 'rgba',
+                        validator: function validator(v) {
+                            return Object.keys(modes).includes(v);
+                        }
+                    }
+                },
+                data: function data() {
+                    return {
+                        modes: modes,
+                        internalMode: this.mode
+                    };
+                },
+                computed: {
+                    currentMode: function currentMode() {
+                        return this.modes[this.internalMode];
+                    }
+                },
+                watch: {
+                    mode: function mode(_mode) {
+                        this.internalMode = _mode;
+                    }
+                },
+                created: function created() {
+                    this.internalMode = this.mode;
+                },
+                methods: {
+                    getValue: function getValue(v, type) {
+                        if (type === 'float') return Math.round(v * 100) / 100;else if (type === 'int') return Math.round(v);else return 0;
+                    },
+                    parseValue: function parseValue(v, type) {
+                        if (type === 'float') return parseFloat(v);else if (type === 'int') return parseInt(v, 10) || 0;else return 0;
+                    },
+                    changeMode: function changeMode() {
+                        var modes = Object.keys(this.modes);
+                        var index = modes.indexOf(this.internalMode);
+                        var newMode = modes[(index + 1) % modes.length];
+                        this.internalMode = newMode;
+                        this.$emit('update:mode', newMode);
+                    },
+                    genInput: function genInput(target, attrs, value, on) {
+                        return this.$createElement('div', {
+                            staticClass: 'v-color-picker__input'
+                        }, [this.$createElement('input', {
+                            key: target,
+                            attrs: attrs,
+                            domProps: {
+                                value: value
+                            },
+                            on: on
+                        }), this.$createElement('span', target.toUpperCase())]);
+                    },
+                    genInputs: function genInputs() {
+                        var _this = this;
+
+                        if (this.internalMode === 'hexa') {
+                            var hex = this.color.hexa;
+                            var value = this.hideAlpha && hex.endsWith('FF') ? hex.substr(0, 7) : hex;
+                            return this.genInput('hex', {
+                                maxlength: this.hideAlpha ? 7 : 9,
+                                disabled: this.disabled
+                            }, value, {
+                                change: function change(e) {
+                                    var el = e.target;
+
+                                    _this.$emit('update:color', _this.currentMode.from(Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_3__["parseHex"])(el.value)));
+                                }
+                            });
+                        } else {
+                            var inputs = this.hideAlpha ? this.currentMode.inputs.slice(0, -1) : this.currentMode.inputs;
+                            return inputs.map(function (_a) {
+                                var _b = __read(_a, 3),
+                                    target = _b[0],
+                                    max = _b[1],
+                                    type = _b[2];
+
+                                var value = _this.color[_this.internalMode];
+                                return _this.genInput(target, {
+                                    type: 'number',
+                                    min: 0,
+                                    max: max,
+                                    step: type === 'float' ? '0.01' : type === 'int' ? '1' : undefined,
+                                    disabled: _this.disabled
+                                }, _this.getValue(value[target], type), {
+                                    input: function input(e) {
+                                        var _a;
+
+                                        var el = e.target;
+
+                                        var newVal = _this.parseValue(el.value || '0', type);
+
+                                        _this.$emit('update:color', _this.currentMode.from(Object.assign({}, value, (_a = {}, _a[target] = newVal, _a)), _this.color.alpha));
+                                    }
+                                });
+                            });
+                        }
+                    },
+                    genSwitch: function genSwitch() {
+                        return this.$createElement(_VBtn__WEBPACK_IMPORTED_MODULE_1__["default"], {
+                            props: {
+                                small: true,
+                                icon: true,
+                                disabled: this.disabled
+                            },
+                            on: {
+                                click: this.changeMode
+                            }
+                        }, [this.$createElement(_VIcon__WEBPACK_IMPORTED_MODULE_2__["default"], '$unfold')]);
+                    }
+                },
+                render: function render(h) {
+                    return h('div', {
+                        staticClass: 'v-color-picker__edit'
+                    }, [this.genInputs(), !this.hideModeSwitch && this.genSwitch()]);
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VColorPicker/VColorPickerPreview.sass":
+        /*!**************************************************************!*\
+          !*** ./src/components/VColorPicker/VColorPickerPreview.sass ***!
+          \**************************************************************/
+        /*! no static exports found */
+        /***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+            /***/ }),
+
+        /***/ "./src/components/VColorPicker/VColorPickerPreview.ts":
+        /*!************************************************************!*\
+          !*** ./src/components/VColorPicker/VColorPickerPreview.ts ***!
+          \************************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VColorPickerPreview_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VColorPickerPreview.sass */ "./src/components/VColorPicker/VColorPickerPreview.sass");
+            /* harmony import */ var _VColorPickerPreview_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VColorPickerPreview_sass__WEBPACK_IMPORTED_MODULE_0__);
+            /* harmony import */ var _VSlider_VSlider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../VSlider/VSlider */ "./src/components/VSlider/VSlider.ts");
+            /* harmony import */ var _util_colorUtils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../util/colorUtils */ "./src/util/colorUtils.ts");
+            /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "vue");
+            /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_3__);
+            /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./util */ "./src/components/VColorPicker/util/index.ts");
+            var __assign = undefined && undefined.__assign || function () {
+                __assign = Object.assign || function (t) {
+                    for (var s, i = 1, n = arguments.length; i < n; i++) {
+                        s = arguments[i];
+
+                        for (var p in s) {
+                            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+                        }
+                    }
+
+                    return t;
+                };
+
+                return __assign.apply(this, arguments);
+            }; // Styles
+
+
+            // Components
+
+            // Utilities
+
+            // Types
+
+
+
+            /* harmony default export */ __webpack_exports__["default"] = (vue__WEBPACK_IMPORTED_MODULE_3___default.a.extend({
+                name: 'v-color-picker-preview',
+                props: {
+                    color: Object,
+                    disabled: Boolean,
+                    hideAlpha: Boolean
+                },
+                methods: {
+                    genAlpha: function genAlpha() {
+                        var _this = this;
+
+                        return this.genTrack({
+                            staticClass: 'v-color-picker__alpha',
+                            props: {
+                                thumbColor: 'grey lighten-2',
+                                hideDetails: true,
+                                value: this.color.alpha,
+                                step: 0,
+                                min: 0,
+                                max: 1
+                            },
+                            style: {
+                                backgroundImage: this.disabled ? undefined : "linear-gradient(to " + (this.$vuetify.rtl ? 'left' : 'right') + ", transparent, " + Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_2__["RGBtoCSS"])(this.color.rgba) + ")"
+                            },
+                            on: {
+                                input: function input(val) {
+                                    return _this.color.alpha !== val && _this.$emit('update:color', Object(_util__WEBPACK_IMPORTED_MODULE_4__["fromHSVA"])(__assign(__assign({}, _this.color.hsva), {
+                                        a: val
+                                    })));
+                                }
+                            }
+                        });
+                    },
+                    genSliders: function genSliders() {
+                        return this.$createElement('div', {
+                            staticClass: 'v-color-picker__sliders'
+                        }, [this.genHue(), !this.hideAlpha && this.genAlpha()]);
+                    },
+                    genDot: function genDot() {
+                        return this.$createElement('div', {
+                            staticClass: 'v-color-picker__dot'
+                        }, [this.$createElement('div', {
+                            style: {
+                                background: Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_2__["RGBAtoCSS"])(this.color.rgba)
+                            }
+                        })]);
+                    },
+                    genHue: function genHue() {
+                        var _this = this;
+
+                        return this.genTrack({
+                            staticClass: 'v-color-picker__hue',
+                            props: {
+                                thumbColor: 'grey lighten-2',
+                                hideDetails: true,
+                                value: this.color.hue,
+                                step: 0,
+                                min: 0,
+                                max: 360
+                            },
+                            on: {
+                                input: function input(val) {
+                                    return _this.color.hue !== val && _this.$emit('update:color', Object(_util__WEBPACK_IMPORTED_MODULE_4__["fromHSVA"])(__assign(__assign({}, _this.color.hsva), {
+                                        h: val
+                                    })));
+                                }
+                            }
+                        });
+                    },
+                    genTrack: function genTrack(options) {
+                        return this.$createElement(_VSlider_VSlider__WEBPACK_IMPORTED_MODULE_1__["default"], __assign(__assign({
+                            class: 'v-color-picker__track'
+                        }, options), {
+                            props: __assign({
+                                disabled: this.disabled
+                            }, options.props)
+                        }));
+                    }
+                },
+                render: function render(h) {
+                    return h('div', {
+                        staticClass: 'v-color-picker__preview',
+                        class: {
+                            'v-color-picker__preview--hide-alpha': this.hideAlpha
+                        }
+                    }, [this.genDot(), this.genSliders()]);
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VColorPicker/VColorPickerSwatches.sass":
+        /*!***************************************************************!*\
+          !*** ./src/components/VColorPicker/VColorPickerSwatches.sass ***!
+          \***************************************************************/
+        /*! no static exports found */
+        /***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+            /***/ }),
+
+        /***/ "./src/components/VColorPicker/VColorPickerSwatches.ts":
+        /*!*************************************************************!*\
+          !*** ./src/components/VColorPicker/VColorPickerSwatches.ts ***!
+          \*************************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VColorPickerSwatches_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VColorPickerSwatches.sass */ "./src/components/VColorPicker/VColorPickerSwatches.sass");
+            /* harmony import */ var _VColorPickerSwatches_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VColorPickerSwatches_sass__WEBPACK_IMPORTED_MODULE_0__);
+            /* harmony import */ var _VIcon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../VIcon */ "./src/components/VIcon/index.ts");
+            /* harmony import */ var _util_colors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../util/colors */ "./src/util/colors.ts");
+            /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./util */ "./src/components/VColorPicker/util/index.ts");
+            /* harmony import */ var _util_helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../util/helpers */ "./src/util/helpers.ts");
+            /* harmony import */ var _util_mixins__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../util/mixins */ "./src/util/mixins.ts");
+            /* harmony import */ var _mixins_themeable__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../mixins/themeable */ "./src/mixins/themeable/index.ts");
+            /* harmony import */ var _util_colorUtils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../util/colorUtils */ "./src/util/colorUtils.ts");
+// Styles
+            // Components
+
+            // Helpers
+
+
+
+
+
+
+
+
+            function parseDefaultColors(colors) {
+                return Object.keys(colors).map(function (key) {
+                    var color = colors[key];
+                    return color.base ? [color.base, color.darken4, color.darken3, color.darken2, color.darken1, color.lighten1, color.lighten2, color.lighten3, color.lighten4, color.lighten5] : [color.black, color.white, color.transparent];
+                });
+            }
+
+            var white = Object(_util__WEBPACK_IMPORTED_MODULE_3__["fromHex"])('#FFFFFF').rgba;
+            var black = Object(_util__WEBPACK_IMPORTED_MODULE_3__["fromHex"])('#000000').rgba;
+            /* harmony default export */ __webpack_exports__["default"] = (Object(_util_mixins__WEBPACK_IMPORTED_MODULE_5__["default"])(_mixins_themeable__WEBPACK_IMPORTED_MODULE_6__["default"]).extend({
+                name: 'v-color-picker-swatches',
+                props: {
+                    swatches: {
+                        type: Array,
+                        default: function _default() {
+                            return parseDefaultColors(_util_colors__WEBPACK_IMPORTED_MODULE_2__["default"]);
+                        }
+                    },
+                    color: Object,
+                    maxWidth: [Number, String],
+                    maxHeight: [Number, String]
+                },
+                methods: {
+                    genColor: function genColor(color) {
+                        var _this = this;
+
+                        var content = this.$createElement('div', {
+                            style: {
+                                background: color
+                            }
+                        }, [Object(_util_helpers__WEBPACK_IMPORTED_MODULE_4__["deepEqual"])(this.color, Object(_util__WEBPACK_IMPORTED_MODULE_3__["parseColor"])(color, null)) && this.$createElement(_VIcon__WEBPACK_IMPORTED_MODULE_1__["default"], {
+                            props: {
+                                small: true,
+                                dark: Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_7__["contrastRatio"])(this.color.rgba, white) > 2 && this.color.alpha > 0.5,
+                                light: Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_7__["contrastRatio"])(this.color.rgba, black) > 2 && this.color.alpha > 0.5
+                            }
+                        }, '$success')]);
+                        return this.$createElement('div', {
+                            staticClass: 'v-color-picker__color',
+                            on: {
+                                // TODO: Less hacky way of catching transparent
+                                click: function click() {
+                                    return _this.$emit('update:color', Object(_util__WEBPACK_IMPORTED_MODULE_3__["fromHex"])(color === 'transparent' ? '#00000000' : color));
+                                }
+                            }
+                        }, [content]);
+                    },
+                    genSwatches: function genSwatches() {
+                        var _this = this;
+
+                        return this.swatches.map(function (swatch) {
+                            var colors = swatch.map(_this.genColor);
+                            return _this.$createElement('div', {
+                                staticClass: 'v-color-picker__swatch'
+                            }, colors);
+                        });
+                    }
+                },
+                render: function render(h) {
+                    return h('div', {
+                        staticClass: 'v-color-picker__swatches',
+                        style: {
+                            maxWidth: Object(_util_helpers__WEBPACK_IMPORTED_MODULE_4__["convertToUnit"])(this.maxWidth),
+                            maxHeight: Object(_util_helpers__WEBPACK_IMPORTED_MODULE_4__["convertToUnit"])(this.maxHeight)
+                        }
+                    }, [this.$createElement('div', this.genSwatches())]);
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VColorPicker/index.ts":
+        /*!**********************************************!*\
+          !*** ./src/components/VColorPicker/index.ts ***!
+          \**********************************************/
+        /*! exports provided: VColorPicker, VColorPickerSwatches, VColorPickerCanvas, default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VColorPicker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VColorPicker */ "./src/components/VColorPicker/VColorPicker.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VColorPicker", function() { return _VColorPicker__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+            /* harmony import */ var _VColorPickerSwatches__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VColorPickerSwatches */ "./src/components/VColorPicker/VColorPickerSwatches.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VColorPickerSwatches", function() { return _VColorPickerSwatches__WEBPACK_IMPORTED_MODULE_1__["default"]; });
+
+            /* harmony import */ var _VColorPickerCanvas__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./VColorPickerCanvas */ "./src/components/VColorPicker/VColorPickerCanvas.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VColorPickerCanvas", function() { return _VColorPickerCanvas__WEBPACK_IMPORTED_MODULE_2__["default"]; });
+
+
+
+
+
+            /* harmony default export */ __webpack_exports__["default"] = (_VColorPicker__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+            /***/ }),
+
+        /***/ "./src/components/VColorPicker/util/index.ts":
+        /*!***************************************************!*\
+          !*** ./src/components/VColorPicker/util/index.ts ***!
+          \***************************************************/
+        /*! exports provided: fromHSVA, fromHSLA, fromRGBA, fromHexa, fromHex, parseColor, extractColor, hasAlpha */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromHSVA", function() { return fromHSVA; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromHSLA", function() { return fromHSLA; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromRGBA", function() { return fromRGBA; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromHexa", function() { return fromHexa; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fromHex", function() { return fromHex; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseColor", function() { return parseColor; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "extractColor", function() { return extractColor; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hasAlpha", function() { return hasAlpha; });
+            /* harmony import */ var _util_colorUtils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../util/colorUtils */ "./src/util/colorUtils.ts");
+            function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+            var __assign = undefined && undefined.__assign || function () {
+                __assign = Object.assign || function (t) {
+                    for (var s, i = 1, n = arguments.length; i < n; i++) {
+                        s = arguments[i];
+
+                        for (var p in s) {
+                            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+                        }
+                    }
+
+                    return t;
+                };
+
+                return __assign.apply(this, arguments);
+            };
+
+            var __rest = undefined && undefined.__rest || function (s, e) {
+                var t = {};
+
+                for (var p in s) {
+                    if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
+                }
+
+                if (s != null && typeof Object.getOwnPropertySymbols === "function") for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+                    if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i])) t[p[i]] = s[p[i]];
+                }
+                return t;
+            }; // Utilities
+
+
+
+            function fromHSVA(hsva) {
+                hsva = __assign({}, hsva);
+                var hexa = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSVAtoHex"])(hsva);
+                var hsla = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSVAtoHSLA"])(hsva);
+                var rgba = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSVAtoRGBA"])(hsva);
+                return {
+                    alpha: hsva.a,
+                    hex: hexa.substr(0, 7),
+                    hexa: hexa,
+                    hsla: hsla,
+                    hsva: hsva,
+                    hue: hsva.h,
+                    rgba: rgba
+                };
+            }
+            function fromHSLA(hsla) {
+                var hsva = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSLAtoHSVA"])(hsla);
+                var hexa = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSVAtoHex"])(hsva);
+                var rgba = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSVAtoRGBA"])(hsva);
+                return {
+                    alpha: hsva.a,
+                    hex: hexa.substr(0, 7),
+                    hexa: hexa,
+                    hsla: hsla,
+                    hsva: hsva,
+                    hue: hsva.h,
+                    rgba: rgba
+                };
+            }
+            function fromRGBA(rgba) {
+                var hsva = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["RGBAtoHSVA"])(rgba);
+                var hexa = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["RGBAtoHex"])(rgba);
+                var hsla = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSVAtoHSLA"])(hsva);
+                return {
+                    alpha: hsva.a,
+                    hex: hexa.substr(0, 7),
+                    hexa: hexa,
+                    hsla: hsla,
+                    hsva: hsva,
+                    hue: hsva.h,
+                    rgba: rgba
+                };
+            }
+            function fromHexa(hexa) {
+                var hsva = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HexToHSVA"])(hexa);
+                var hsla = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSVAtoHSLA"])(hsva);
+                var rgba = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["HSVAtoRGBA"])(hsva);
+                return {
+                    alpha: hsva.a,
+                    hex: hexa.substr(0, 7),
+                    hexa: hexa,
+                    hsla: hsla,
+                    hsva: hsva,
+                    hue: hsva.h,
+                    rgba: rgba
+                };
+            }
+            function fromHex(hex) {
+                return fromHexa(Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["parseHex"])(hex));
+            }
+
+            function has(obj, key) {
+                return key.every(function (k) {
+                    return obj.hasOwnProperty(k);
+                });
+            }
+
+            function parseColor(color, oldColor) {
+                if (!color) return fromRGBA({
+                    r: 255,
+                    g: 0,
+                    b: 0,
+                    a: 1
+                });
+
+                if (typeof color === 'string') {
+                    if (color === 'transparent') return fromHexa('#00000000');
+                    var hex = Object(_util_colorUtils__WEBPACK_IMPORTED_MODULE_0__["parseHex"])(color);
+                    if (oldColor && hex === oldColor.hexa) return oldColor;else return fromHexa(hex);
+                }
+
+                if (_typeof(color) === 'object') {
+                    if (color.hasOwnProperty('alpha')) return color;
+                    var a = color.hasOwnProperty('a') ? parseFloat(color.a) : 1;
+
+                    if (has(color, ['r', 'g', 'b'])) {
+                        if (oldColor && color === oldColor.rgba) return oldColor;else return fromRGBA(__assign(__assign({}, color), {
+                            a: a
+                        }));
+                    } else if (has(color, ['h', 's', 'l'])) {
+                        if (oldColor && color === oldColor.hsla) return oldColor;else return fromHSLA(__assign(__assign({}, color), {
+                            a: a
+                        }));
+                    } else if (has(color, ['h', 's', 'v'])) {
+                        if (oldColor && color === oldColor.hsva) return oldColor;else return fromHSVA(__assign(__assign({}, color), {
+                            a: a
+                        }));
+                    }
+                }
+
+                return fromRGBA({
+                    r: 255,
+                    g: 0,
+                    b: 0,
+                    a: 1
+                });
+            }
+
+            function stripAlpha(color, stripAlpha) {
+                if (stripAlpha) {
+                    var a = color.a,
+                        rest = __rest(color, ["a"]);
+
+                    return rest;
+                }
+
+                return color;
+            }
+
+            function extractColor(color, input) {
+                if (input == null) return color;
+
+                if (typeof input === 'string') {
+                    return input.length === 7 ? color.hex : color.hexa;
+                }
+
+                if (_typeof(input) === 'object') {
+                    var shouldStrip = typeof input.a === 'number' && input.a === 0 ? !!input.a : !input.a;
+                    if (has(input, ['r', 'g', 'b'])) return stripAlpha(color.rgba, shouldStrip);else if (has(input, ['h', 's', 'l'])) return stripAlpha(color.hsla, shouldStrip);else if (has(input, ['h', 's', 'v'])) return stripAlpha(color.hsva, shouldStrip);
+                }
+
+                return color;
+            }
+            function hasAlpha(color) {
+                if (!color) return false;
+
+                if (typeof color === 'string') {
+                    return color.length > 7;
+                }
+
+                if (_typeof(color) === 'object') {
+                    return has(color, ['a']) || has(color, ['alpha']);
+                }
+
+                return false;
+            }
 
             /***/ }),
 
@@ -6895,6 +12083,1886 @@
 
             /***/ }),
 
+        /***/ "./src/components/VDatePicker/VDatePicker.ts":
+        /*!***************************************************!*\
+  !*** ./src/components/VDatePicker/VDatePicker.ts ***!
+  \***************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VDatePickerTitle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VDatePickerTitle */ "./src/components/VDatePicker/VDatePickerTitle.ts");
+            /* harmony import */ var _VDatePickerHeader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VDatePickerHeader */ "./src/components/VDatePicker/VDatePickerHeader.ts");
+            /* harmony import */ var _VDatePickerDateTable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./VDatePickerDateTable */ "./src/components/VDatePicker/VDatePickerDateTable.ts");
+            /* harmony import */ var _VDatePickerMonthTable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./VDatePickerMonthTable */ "./src/components/VDatePicker/VDatePickerMonthTable.ts");
+            /* harmony import */ var _VDatePickerYears__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./VDatePickerYears */ "./src/components/VDatePicker/VDatePickerYears.ts");
+            /* harmony import */ var _mixins_localable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../mixins/localable */ "./src/mixins/localable/index.ts");
+            /* harmony import */ var _mixins_picker__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../mixins/picker */ "./src/mixins/picker/index.ts");
+            /* harmony import */ var _util_isDateAllowed__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./util/isDateAllowed */ "./src/components/VDatePicker/util/isDateAllowed.ts");
+            /* harmony import */ var _util_mixins__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../util/mixins */ "./src/util/mixins.ts");
+            /* harmony import */ var _util_helpers__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../util/helpers */ "./src/util/helpers.ts");
+            /* harmony import */ var _VCalendar_util_timestamp__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../VCalendar/util/timestamp */ "./src/components/VCalendar/util/timestamp.ts");
+            /* harmony import */ var _util_console__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../util/console */ "./src/util/console.ts");
+            /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./util */ "./src/components/VDatePicker/util/index.ts");
+            var __assign = undefined && undefined.__assign || function () {
+                __assign = Object.assign || function (t) {
+                    for (var s, i = 1, n = arguments.length; i < n; i++) {
+                        s = arguments[i];
+
+                        for (var p in s) {
+                            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+                        }
+                    }
+
+                    return t;
+                };
+
+                return __assign.apply(this, arguments);
+            };
+
+            var __read = undefined && undefined.__read || function (o, n) {
+                var m = typeof Symbol === "function" && o[Symbol.iterator];
+                if (!m) return o;
+                var i = m.call(o),
+                    r,
+                    ar = [],
+                    e;
+
+                try {
+                    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
+                        ar.push(r.value);
+                    }
+                } catch (error) {
+                    e = {
+                        error: error
+                    };
+                } finally {
+                    try {
+                        if (r && !r.done && (m = i["return"])) m.call(i);
+                    } finally {
+                        if (e) throw e.error;
+                    }
+                }
+
+                return ar;
+            }; // Components
+
+
+
+
+
+
+            // Mixins
+
+
+            // Utils
+
+
+
+
+
+
+            // Adds leading zero to month/day if necessary, returns 'YYYY' if type = 'year',
+// 'YYYY-MM' if 'month' and 'YYYY-MM-DD' if 'date'
+
+            function sanitizeDateString(dateString, type) {
+                var _a = __read(dateString.split('-'), 3),
+                    year = _a[0],
+                    _b = _a[1],
+                    month = _b === void 0 ? 1 : _b,
+                    _c = _a[2],
+                    date = _c === void 0 ? 1 : _c;
+
+                return (year + "-" + Object(_util__WEBPACK_IMPORTED_MODULE_12__["pad"])(month) + "-" + Object(_util__WEBPACK_IMPORTED_MODULE_12__["pad"])(date)).substr(0, {
+                    date: 10,
+                    month: 7,
+                    year: 4
+                }[type]);
+            }
+
+            /* harmony default export */ __webpack_exports__["default"] = (Object(_util_mixins__WEBPACK_IMPORTED_MODULE_8__["default"])(_mixins_localable__WEBPACK_IMPORTED_MODULE_5__["default"], _mixins_picker__WEBPACK_IMPORTED_MODULE_6__["default"]).extend({
+                name: 'v-date-picker',
+                props: {
+                    allowedDates: Function,
+                    // Function formatting the day in date picker table
+                    dayFormat: Function,
+                    disabled: Boolean,
+                    events: {
+                        type: [Array, Function, Object],
+                        default: function _default() {
+                            return null;
+                        }
+                    },
+                    eventColor: {
+                        type: [Array, Function, Object, String],
+                        default: function _default() {
+                            return 'warning';
+                        }
+                    },
+                    firstDayOfWeek: {
+                        type: [String, Number],
+                        default: 0
+                    },
+                    // Function formatting the tableDate in the day/month table header
+                    headerDateFormat: Function,
+                    localeFirstDayOfYear: {
+                        type: [String, Number],
+                        default: 0
+                    },
+                    max: String,
+                    min: String,
+                    // Function formatting month in the months table
+                    monthFormat: Function,
+                    multiple: Boolean,
+                    nextIcon: {
+                        type: String,
+                        default: '$next'
+                    },
+                    nextMonthAriaLabel: {
+                        type: String,
+                        default: '$vuetify.datePicker.nextMonthAriaLabel'
+                    },
+                    nextYearAriaLabel: {
+                        type: String,
+                        default: '$vuetify.datePicker.nextYearAriaLabel'
+                    },
+                    pickerDate: String,
+                    prevIcon: {
+                        type: String,
+                        default: '$prev'
+                    },
+                    prevMonthAriaLabel: {
+                        type: String,
+                        default: '$vuetify.datePicker.prevMonthAriaLabel'
+                    },
+                    prevYearAriaLabel: {
+                        type: String,
+                        default: '$vuetify.datePicker.prevYearAriaLabel'
+                    },
+                    range: Boolean,
+                    reactive: Boolean,
+                    readonly: Boolean,
+                    scrollable: Boolean,
+                    showCurrent: {
+                        type: [Boolean, String],
+                        default: true
+                    },
+                    selectedItemsText: {
+                        type: String,
+                        default: '$vuetify.datePicker.itemsSelected'
+                    },
+                    showAdjacentMonths: Boolean,
+                    showWeek: Boolean,
+                    // Function formatting currently selected date in the picker title
+                    titleDateFormat: Function,
+                    type: {
+                        type: String,
+                        default: 'date',
+                        validator: function validator(type) {
+                            return ['date', 'month'].includes(type);
+                        }
+                    },
+                    value: [Array, String],
+                    weekdayFormat: Function,
+                    // Function formatting the year in table header and pickup title
+                    yearFormat: Function,
+                    yearIcon: String
+                },
+                data: function data() {
+                    var _this = this;
+
+                    var now = new Date();
+                    return {
+                        activePicker: this.type.toUpperCase(),
+                        inputDay: null,
+                        inputMonth: null,
+                        inputYear: null,
+                        isReversing: false,
+                        now: now,
+                        // tableDate is a string in 'YYYY' / 'YYYY-M' format (leading zero for month is not required)
+                        tableDate: function () {
+                            if (_this.pickerDate) {
+                                return _this.pickerDate;
+                            }
+
+                            var multipleValue = Object(_util_helpers__WEBPACK_IMPORTED_MODULE_9__["wrapInArray"])(_this.value);
+                            var date = multipleValue[multipleValue.length - 1] || (typeof _this.showCurrent === 'string' ? _this.showCurrent : now.getFullYear() + "-" + (now.getMonth() + 1));
+                            return sanitizeDateString(date, _this.type === 'date' ? 'month' : 'year');
+                        }()
+                    };
+                },
+                computed: {
+                    multipleValue: function multipleValue() {
+                        return Object(_util_helpers__WEBPACK_IMPORTED_MODULE_9__["wrapInArray"])(this.value);
+                    },
+                    isMultiple: function isMultiple() {
+                        return this.multiple || this.range;
+                    },
+                    lastValue: function lastValue() {
+                        return this.isMultiple ? this.multipleValue[this.multipleValue.length - 1] : this.value;
+                    },
+                    selectedMonths: function selectedMonths() {
+                        if (!this.value || this.type === 'month') {
+                            return this.value;
+                        } else if (this.isMultiple) {
+                            return this.multipleValue.map(function (val) {
+                                return val.substr(0, 7);
+                            });
+                        } else {
+                            return this.value.substr(0, 7);
+                        }
+                    },
+                    current: function current() {
+                        if (this.showCurrent === true) {
+                            return sanitizeDateString(this.now.getFullYear() + "-" + (this.now.getMonth() + 1) + "-" + this.now.getDate(), this.type);
+                        }
+
+                        return this.showCurrent || null;
+                    },
+                    inputDate: function inputDate() {
+                        return this.type === 'date' ? this.inputYear + "-" + Object(_util__WEBPACK_IMPORTED_MODULE_12__["pad"])(this.inputMonth + 1) + "-" + Object(_util__WEBPACK_IMPORTED_MODULE_12__["pad"])(this.inputDay) : this.inputYear + "-" + Object(_util__WEBPACK_IMPORTED_MODULE_12__["pad"])(this.inputMonth + 1);
+                    },
+                    tableMonth: function tableMonth() {
+                        return Number((this.pickerDate || this.tableDate).split('-')[1]) - 1;
+                    },
+                    tableYear: function tableYear() {
+                        return Number((this.pickerDate || this.tableDate).split('-')[0]);
+                    },
+                    minMonth: function minMonth() {
+                        return this.min ? sanitizeDateString(this.min, 'month') : null;
+                    },
+                    maxMonth: function maxMonth() {
+                        return this.max ? sanitizeDateString(this.max, 'month') : null;
+                    },
+                    minYear: function minYear() {
+                        return this.min ? sanitizeDateString(this.min, 'year') : null;
+                    },
+                    maxYear: function maxYear() {
+                        return this.max ? sanitizeDateString(this.max, 'year') : null;
+                    },
+                    formatters: function formatters() {
+                        return {
+                            year: this.yearFormat || Object(_util__WEBPACK_IMPORTED_MODULE_12__["createNativeLocaleFormatter"])(this.currentLocale, {
+                                year: 'numeric',
+                                timeZone: 'UTC'
+                            }, {
+                                length: 4
+                            }),
+                            titleDate: this.titleDateFormat || (this.isMultiple ? this.defaultTitleMultipleDateFormatter : this.defaultTitleDateFormatter)
+                        };
+                    },
+                    defaultTitleMultipleDateFormatter: function defaultTitleMultipleDateFormatter() {
+                        var _this = this;
+
+                        return function (dates) {
+                            if (!dates.length) {
+                                return '-';
+                            }
+
+                            if (dates.length === 1) {
+                                return _this.defaultTitleDateFormatter(dates[0]);
+                            }
+
+                            return _this.$vuetify.lang.t(_this.selectedItemsText, dates.length);
+                        };
+                    },
+                    defaultTitleDateFormatter: function defaultTitleDateFormatter() {
+                        var titleFormats = {
+                            year: {
+                                year: 'numeric',
+                                timeZone: 'UTC'
+                            },
+                            month: {
+                                month: 'long',
+                                timeZone: 'UTC'
+                            },
+                            date: {
+                                weekday: 'short',
+                                month: 'short',
+                                day: 'numeric',
+                                timeZone: 'UTC'
+                            }
+                        };
+                        var titleDateFormatter = Object(_util__WEBPACK_IMPORTED_MODULE_12__["createNativeLocaleFormatter"])(this.currentLocale, titleFormats[this.type], {
+                            start: 0,
+                            length: {
+                                date: 10,
+                                month: 7,
+                                year: 4
+                            }[this.type]
+                        });
+
+                        var landscapeFormatter = function landscapeFormatter(date) {
+                            return titleDateFormatter(date).replace(/([^\d\s])([\d])/g, function (match, nonDigit, digit) {
+                                return nonDigit + " " + digit;
+                            }).replace(', ', ',<br>');
+                        };
+
+                        return this.landscape ? landscapeFormatter : titleDateFormatter;
+                    }
+                },
+                watch: {
+                    tableDate: function tableDate(val, prev) {
+                        // Make a ISO 8601 strings from val and prev for comparision, otherwise it will incorrectly
+                        // compare for example '2000-9' and '2000-10'
+                        var sanitizeType = this.type === 'month' ? 'year' : 'month';
+                        this.isReversing = sanitizeDateString(val, sanitizeType) < sanitizeDateString(prev, sanitizeType);
+                        this.$emit('update:picker-date', val);
+                    },
+                    pickerDate: function pickerDate(val) {
+                        if (val) {
+                            this.tableDate = val;
+                        } else if (this.lastValue && this.type === 'date') {
+                            this.tableDate = sanitizeDateString(this.lastValue, 'month');
+                        } else if (this.lastValue && this.type === 'month') {
+                            this.tableDate = sanitizeDateString(this.lastValue, 'year');
+                        }
+                    },
+                    value: function value(newValue, oldValue) {
+                        this.checkMultipleProp();
+                        this.setInputDate();
+
+                        if (!this.isMultiple && this.value && !this.pickerDate || this.isMultiple && this.multipleValue.length && (!oldValue || !oldValue.length) && !this.pickerDate) {
+                            this.tableDate = sanitizeDateString(this.inputDate, this.type === 'month' ? 'year' : 'month');
+                        }
+                    },
+                    type: function type(_type) {
+                        this.activePicker = _type.toUpperCase();
+
+                        if (this.value && this.value.length) {
+                            var output = this.multipleValue.map(function (val) {
+                                return sanitizeDateString(val, _type);
+                            }).filter(this.isDateAllowed);
+                            this.$emit('input', this.isMultiple ? output : output[0]);
+                        }
+                    }
+                },
+                created: function created() {
+                    this.checkMultipleProp();
+
+                    if (this.pickerDate !== this.tableDate) {
+                        this.$emit('update:picker-date', this.tableDate);
+                    }
+
+                    this.setInputDate();
+                },
+                methods: {
+                    emitInput: function emitInput(newInput) {
+                        if (this.range) {
+                            if (this.multipleValue.length !== 1) {
+                                this.$emit('input', [newInput]);
+                            } else {
+                                var output_1 = [this.multipleValue[0], newInput];
+                                this.$emit('input', output_1);
+                                this.$emit('change', output_1);
+                            }
+
+                            return;
+                        }
+
+                        var output = this.multiple ? this.multipleValue.indexOf(newInput) === -1 ? this.multipleValue.concat([newInput]) : this.multipleValue.filter(function (x) {
+                            return x !== newInput;
+                        }) : newInput;
+                        this.$emit('input', output);
+                        this.multiple || this.$emit('change', newInput);
+                    },
+                    checkMultipleProp: function checkMultipleProp() {
+                        if (this.value == null) return;
+                        var valueType = this.value.constructor.name;
+                        var expected = this.isMultiple ? 'Array' : 'String';
+
+                        if (valueType !== expected) {
+                            Object(_util_console__WEBPACK_IMPORTED_MODULE_11__["consoleWarn"])("Value must be " + (this.isMultiple ? 'an' : 'a') + " " + expected + ", got " + valueType, this);
+                        }
+                    },
+                    isDateAllowed: function isDateAllowed(value) {
+                        return Object(_util_isDateAllowed__WEBPACK_IMPORTED_MODULE_7__["default"])(value, this.min, this.max, this.allowedDates);
+                    },
+                    yearClick: function yearClick(value) {
+                        this.inputYear = value;
+
+                        if (this.type === 'month') {
+                            this.tableDate = "" + value;
+                        } else {
+                            this.tableDate = value + "-" + Object(_util__WEBPACK_IMPORTED_MODULE_12__["pad"])((this.tableMonth || 0) + 1);
+                        }
+
+                        this.activePicker = 'MONTH';
+
+                        if (this.reactive && !this.readonly && !this.isMultiple && this.isDateAllowed(this.inputDate)) {
+                            this.$emit('input', this.inputDate);
+                        }
+                    },
+                    monthClick: function monthClick(value) {
+                        this.inputYear = parseInt(value.split('-')[0], 10);
+                        this.inputMonth = parseInt(value.split('-')[1], 10) - 1;
+
+                        if (this.type === 'date') {
+                            if (this.inputDay) {
+                                this.inputDay = Math.min(this.inputDay, Object(_VCalendar_util_timestamp__WEBPACK_IMPORTED_MODULE_10__["daysInMonth"])(this.inputYear, this.inputMonth + 1));
+                            }
+
+                            this.tableDate = value;
+                            this.activePicker = 'DATE';
+
+                            if (this.reactive && !this.readonly && !this.isMultiple && this.isDateAllowed(this.inputDate)) {
+                                this.$emit('input', this.inputDate);
+                            }
+                        } else {
+                            this.emitInput(this.inputDate);
+                        }
+                    },
+                    dateClick: function dateClick(value) {
+                        this.inputYear = parseInt(value.split('-')[0], 10);
+                        this.inputMonth = parseInt(value.split('-')[1], 10) - 1;
+                        this.inputDay = parseInt(value.split('-')[2], 10);
+                        this.emitInput(this.inputDate);
+                    },
+                    genPickerTitle: function genPickerTitle() {
+                        var _this = this;
+
+                        return this.$createElement(_VDatePickerTitle__WEBPACK_IMPORTED_MODULE_0__["default"], {
+                            props: {
+                                date: this.value ? this.formatters.titleDate(this.isMultiple ? this.multipleValue : this.value) : '',
+                                disabled: this.disabled,
+                                readonly: this.readonly,
+                                selectingYear: this.activePicker === 'YEAR',
+                                year: this.formatters.year(this.multipleValue.length ? "" + this.inputYear : this.tableDate),
+                                yearIcon: this.yearIcon,
+                                value: this.multipleValue[0]
+                            },
+                            slot: 'title',
+                            on: {
+                                'update:selecting-year': function updateSelectingYear(value) {
+                                    return _this.activePicker = value ? 'YEAR' : _this.type.toUpperCase();
+                                }
+                            }
+                        });
+                    },
+                    genTableHeader: function genTableHeader() {
+                        var _this = this;
+
+                        return this.$createElement(_VDatePickerHeader__WEBPACK_IMPORTED_MODULE_1__["default"], {
+                            props: {
+                                nextIcon: this.nextIcon,
+                                color: this.color,
+                                dark: this.dark,
+                                disabled: this.disabled,
+                                format: this.headerDateFormat,
+                                light: this.light,
+                                locale: this.locale,
+                                min: this.activePicker === 'DATE' ? this.minMonth : this.minYear,
+                                max: this.activePicker === 'DATE' ? this.maxMonth : this.maxYear,
+                                nextAriaLabel: this.activePicker === 'DATE' ? this.nextMonthAriaLabel : this.nextYearAriaLabel,
+                                prevAriaLabel: this.activePicker === 'DATE' ? this.prevMonthAriaLabel : this.prevYearAriaLabel,
+                                prevIcon: this.prevIcon,
+                                readonly: this.readonly,
+                                value: this.activePicker === 'DATE' ? Object(_util__WEBPACK_IMPORTED_MODULE_12__["pad"])(this.tableYear, 4) + "-" + Object(_util__WEBPACK_IMPORTED_MODULE_12__["pad"])(this.tableMonth + 1) : "" + Object(_util__WEBPACK_IMPORTED_MODULE_12__["pad"])(this.tableYear, 4)
+                            },
+                            on: {
+                                toggle: function toggle() {
+                                    return _this.activePicker = _this.activePicker === 'DATE' ? 'MONTH' : 'YEAR';
+                                },
+                                input: function input(value) {
+                                    return _this.tableDate = value;
+                                }
+                            }
+                        });
+                    },
+                    genDateTable: function genDateTable() {
+                        var _this = this;
+
+                        return this.$createElement(_VDatePickerDateTable__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                            props: {
+                                allowedDates: this.allowedDates,
+                                color: this.color,
+                                current: this.current,
+                                dark: this.dark,
+                                disabled: this.disabled,
+                                events: this.events,
+                                eventColor: this.eventColor,
+                                firstDayOfWeek: this.firstDayOfWeek,
+                                format: this.dayFormat,
+                                light: this.light,
+                                locale: this.locale,
+                                localeFirstDayOfYear: this.localeFirstDayOfYear,
+                                min: this.min,
+                                max: this.max,
+                                range: this.range,
+                                readonly: this.readonly,
+                                scrollable: this.scrollable,
+                                showAdjacentMonths: this.showAdjacentMonths,
+                                showWeek: this.showWeek,
+                                tableDate: Object(_util__WEBPACK_IMPORTED_MODULE_12__["pad"])(this.tableYear, 4) + "-" + Object(_util__WEBPACK_IMPORTED_MODULE_12__["pad"])(this.tableMonth + 1),
+                                value: this.value,
+                                weekdayFormat: this.weekdayFormat
+                            },
+                            ref: 'table',
+                            on: __assign({
+                                input: this.dateClick,
+                                'update:table-date': function updateTableDate(value) {
+                                    return _this.tableDate = value;
+                                }
+                            }, Object(_util__WEBPACK_IMPORTED_MODULE_12__["createItemTypeListeners"])(this, ':date'))
+                        });
+                    },
+                    genMonthTable: function genMonthTable() {
+                        var _this = this;
+
+                        return this.$createElement(_VDatePickerMonthTable__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                            props: {
+                                allowedDates: this.type === 'month' ? this.allowedDates : null,
+                                color: this.color,
+                                current: this.current ? sanitizeDateString(this.current, 'month') : null,
+                                dark: this.dark,
+                                disabled: this.disabled,
+                                events: this.type === 'month' ? this.events : null,
+                                eventColor: this.type === 'month' ? this.eventColor : null,
+                                format: this.monthFormat,
+                                light: this.light,
+                                locale: this.locale,
+                                min: this.minMonth,
+                                max: this.maxMonth,
+                                range: this.range,
+                                readonly: this.readonly && this.type === 'month',
+                                scrollable: this.scrollable,
+                                value: this.selectedMonths,
+                                tableDate: "" + Object(_util__WEBPACK_IMPORTED_MODULE_12__["pad"])(this.tableYear, 4)
+                            },
+                            ref: 'table',
+                            on: __assign({
+                                input: this.monthClick,
+                                'update:table-date': function updateTableDate(value) {
+                                    return _this.tableDate = value;
+                                }
+                            }, Object(_util__WEBPACK_IMPORTED_MODULE_12__["createItemTypeListeners"])(this, ':month'))
+                        });
+                    },
+                    genYears: function genYears() {
+                        return this.$createElement(_VDatePickerYears__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                            props: {
+                                color: this.color,
+                                format: this.yearFormat,
+                                locale: this.locale,
+                                min: this.minYear,
+                                max: this.maxYear,
+                                value: this.tableYear
+                            },
+                            on: __assign({
+                                input: this.yearClick
+                            }, Object(_util__WEBPACK_IMPORTED_MODULE_12__["createItemTypeListeners"])(this, ':year'))
+                        });
+                    },
+                    genPickerBody: function genPickerBody() {
+                        var children = this.activePicker === 'YEAR' ? [this.genYears()] : [this.genTableHeader(), this.activePicker === 'DATE' ? this.genDateTable() : this.genMonthTable()];
+                        return this.$createElement('div', {
+                            key: this.activePicker
+                        }, children);
+                    },
+                    setInputDate: function setInputDate() {
+                        if (this.lastValue) {
+                            var array = this.lastValue.split('-');
+                            this.inputYear = parseInt(array[0], 10);
+                            this.inputMonth = parseInt(array[1], 10) - 1;
+
+                            if (this.type === 'date') {
+                                this.inputDay = parseInt(array[2], 10);
+                            }
+                        } else {
+                            this.inputYear = this.inputYear || this.now.getFullYear();
+                            this.inputMonth = this.inputMonth == null ? this.inputMonth : this.now.getMonth();
+                            this.inputDay = this.inputDay || this.now.getDate();
+                        }
+                    }
+                },
+                render: function render() {
+                    return this.genPicker('v-picker--date');
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VDatePicker/VDatePickerDateTable.ts":
+        /*!************************************************************!*\
+  !*** ./src/components/VDatePicker/VDatePickerDateTable.ts ***!
+  \************************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _mixins_date_picker_table__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mixins/date-picker-table */ "./src/components/VDatePicker/mixins/date-picker-table.ts");
+            /* harmony import */ var _util_dateTimeUtils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../util/dateTimeUtils */ "./src/util/dateTimeUtils.ts");
+            /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./util */ "./src/components/VDatePicker/util/index.ts");
+            /* harmony import */ var _util_helpers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../util/helpers */ "./src/util/helpers.ts");
+            /* harmony import */ var _util_mixins__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../util/mixins */ "./src/util/mixins.ts");
+// Mixins
+            // Utils
+
+
+
+
+
+            /* harmony default export */ __webpack_exports__["default"] = (Object(_util_mixins__WEBPACK_IMPORTED_MODULE_4__["default"])(_mixins_date_picker_table__WEBPACK_IMPORTED_MODULE_0__["default"]
+                /* @vue/component */
+            ).extend({
+                name: 'v-date-picker-date-table',
+                props: {
+                    firstDayOfWeek: {
+                        type: [String, Number],
+                        default: 0
+                    },
+                    localeFirstDayOfYear: {
+                        type: [String, Number],
+                        default: 0
+                    },
+                    showAdjacentMonths: Boolean,
+                    showWeek: Boolean,
+                    weekdayFormat: Function
+                },
+                computed: {
+                    formatter: function formatter() {
+                        return this.format || Object(_util__WEBPACK_IMPORTED_MODULE_2__["createNativeLocaleFormatter"])(this.currentLocale, {
+                            day: 'numeric',
+                            timeZone: 'UTC'
+                        }, {
+                            start: 8,
+                            length: 2
+                        });
+                    },
+                    weekdayFormatter: function weekdayFormatter() {
+                        return this.weekdayFormat || Object(_util__WEBPACK_IMPORTED_MODULE_2__["createNativeLocaleFormatter"])(this.currentLocale, {
+                            weekday: 'narrow',
+                            timeZone: 'UTC'
+                        });
+                    },
+                    weekDays: function weekDays() {
+                        var _this = this;
+
+                        var first = parseInt(this.firstDayOfWeek, 10);
+                        return this.weekdayFormatter ? Object(_util_helpers__WEBPACK_IMPORTED_MODULE_3__["createRange"])(7).map(function (i) {
+                                return _this.weekdayFormatter("2017-01-" + (first + i + 15));
+                            }) // 2017-01-15 is Sunday
+                            : Object(_util_helpers__WEBPACK_IMPORTED_MODULE_3__["createRange"])(7).map(function (i) {
+                                return ['S', 'M', 'T', 'W', 'T', 'F', 'S'][(i + first) % 7];
+                            });
+                    }
+                },
+                methods: {
+                    calculateTableDate: function calculateTableDate(delta) {
+                        return Object(_util__WEBPACK_IMPORTED_MODULE_2__["monthChange"])(this.tableDate, Math.sign(delta || 1));
+                    },
+                    genTHead: function genTHead() {
+                        var _this = this;
+
+                        var days = this.weekDays.map(function (day) {
+                            return _this.$createElement('th', day);
+                        });
+
+                        if (this.showWeek) {
+                            days.unshift(this.$createElement('th'));
+                        }
+
+                        return this.$createElement('thead', this.genTR(days));
+                    },
+                    // Returns number of the days from the firstDayOfWeek to the first day of the current month
+                    weekDaysBeforeFirstDayOfTheMonth: function weekDaysBeforeFirstDayOfTheMonth() {
+                        var firstDayOfTheMonth = new Date(this.displayedYear + "-" + Object(_util__WEBPACK_IMPORTED_MODULE_2__["pad"])(this.displayedMonth + 1) + "-01T00:00:00+00:00");
+                        var weekDay = firstDayOfTheMonth.getUTCDay();
+                        return (weekDay - parseInt(this.firstDayOfWeek) + 7) % 7;
+                    },
+                    getWeekNumber: function getWeekNumber(dayInMonth) {
+                        return Object(_util_dateTimeUtils__WEBPACK_IMPORTED_MODULE_1__["weekNumber"])(this.displayedYear, this.displayedMonth, dayInMonth, parseInt(this.firstDayOfWeek), parseInt(this.localeFirstDayOfYear));
+                    },
+                    genWeekNumber: function genWeekNumber(weekNumber) {
+                        return this.$createElement('td', [this.$createElement('small', {
+                            staticClass: 'v-date-picker-table--date__week'
+                        }, String(weekNumber).padStart(2, '0'))]);
+                    },
+                    // eslint-disable-next-line max-statements
+                    genTBody: function genTBody() {
+                        var children = [];
+                        var daysInMonth = new Date(this.displayedYear, this.displayedMonth + 1, 0).getDate();
+                        var rows = [];
+                        var day = this.weekDaysBeforeFirstDayOfTheMonth();
+
+                        if (this.showWeek) {
+                            rows.push(this.genWeekNumber(this.getWeekNumber(1)));
+                        }
+
+                        var prevMonthYear = this.displayedMonth ? this.displayedYear : this.displayedYear - 1;
+                        var prevMonth = (this.displayedMonth + 11) % 12;
+                        var firstDayFromPreviousMonth = new Date(this.displayedYear, this.displayedMonth, 0).getDate();
+
+                        while (day--) {
+                            var date = prevMonthYear + "-" + Object(_util__WEBPACK_IMPORTED_MODULE_2__["pad"])(prevMonth + 1) + "-" + Object(_util__WEBPACK_IMPORTED_MODULE_2__["pad"])(firstDayFromPreviousMonth - day);
+                            rows.push(this.$createElement('td', this.showAdjacentMonths ? [this.genButton(date, true, 'date', this.formatter, true)] : []));
+                        }
+
+                        for (day = 1; day <= daysInMonth; day++) {
+                            var date = this.displayedYear + "-" + Object(_util__WEBPACK_IMPORTED_MODULE_2__["pad"])(this.displayedMonth + 1) + "-" + Object(_util__WEBPACK_IMPORTED_MODULE_2__["pad"])(day);
+                            rows.push(this.$createElement('td', [this.genButton(date, true, 'date', this.formatter)]));
+
+                            if (rows.length % (this.showWeek ? 8 : 7) === 0) {
+                                children.push(this.genTR(rows));
+                                rows = [];
+
+                                if (this.showWeek && day < daysInMonth) {
+                                    rows.push(this.genWeekNumber(this.getWeekNumber(day + 7)));
+                                }
+                            }
+                        }
+
+                        var nextMonthYear = this.displayedMonth === 11 ? this.displayedYear + 1 : this.displayedYear;
+                        var nextMonth = (this.displayedMonth + 1) % 12;
+                        var nextMonthDay = 1;
+
+                        while (rows.length < 7) {
+                            var date = nextMonthYear + "-" + Object(_util__WEBPACK_IMPORTED_MODULE_2__["pad"])(nextMonth + 1) + "-" + Object(_util__WEBPACK_IMPORTED_MODULE_2__["pad"])(nextMonthDay++);
+                            rows.push(this.$createElement('td', this.showAdjacentMonths ? [this.genButton(date, true, 'date', this.formatter, true)] : []));
+                        }
+
+                        if (rows.length) {
+                            children.push(this.genTR(rows));
+                        }
+
+                        return this.$createElement('tbody', children);
+                    },
+                    genTR: function genTR(children) {
+                        return [this.$createElement('tr', children)];
+                    }
+                },
+                render: function render() {
+                    return this.genTable('v-date-picker-table v-date-picker-table--date', [this.genTHead(), this.genTBody()], this.calculateTableDate);
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VDatePicker/VDatePickerHeader.sass":
+        /*!***********************************************************!*\
+  !*** ./src/components/VDatePicker/VDatePickerHeader.sass ***!
+  \***********************************************************/
+        /*! no static exports found */
+        /***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+            /***/ }),
+
+        /***/ "./src/components/VDatePicker/VDatePickerHeader.ts":
+        /*!*********************************************************!*\
+  !*** ./src/components/VDatePicker/VDatePickerHeader.ts ***!
+  \*********************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VDatePickerHeader_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VDatePickerHeader.sass */ "./src/components/VDatePicker/VDatePickerHeader.sass");
+            /* harmony import */ var _VDatePickerHeader_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VDatePickerHeader_sass__WEBPACK_IMPORTED_MODULE_0__);
+            /* harmony import */ var _VBtn__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../VBtn */ "./src/components/VBtn/index.ts");
+            /* harmony import */ var _VIcon__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../VIcon */ "./src/components/VIcon/index.ts");
+            /* harmony import */ var _mixins_colorable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../mixins/colorable */ "./src/mixins/colorable/index.ts");
+            /* harmony import */ var _mixins_localable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../mixins/localable */ "./src/mixins/localable/index.ts");
+            /* harmony import */ var _mixins_themeable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../mixins/themeable */ "./src/mixins/themeable/index.ts");
+            /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./util */ "./src/components/VDatePicker/util/index.ts");
+            /* harmony import */ var _util_mixins__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../util/mixins */ "./src/util/mixins.ts");
+            var __assign = undefined && undefined.__assign || function () {
+                __assign = Object.assign || function (t) {
+                    for (var s, i = 1, n = arguments.length; i < n; i++) {
+                        s = arguments[i];
+
+                        for (var p in s) {
+                            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+                        }
+                    }
+
+                    return t;
+                };
+
+                return __assign.apply(this, arguments);
+            };
+
+            var __read = undefined && undefined.__read || function (o, n) {
+                var m = typeof Symbol === "function" && o[Symbol.iterator];
+                if (!m) return o;
+                var i = m.call(o),
+                    r,
+                    ar = [],
+                    e;
+
+                try {
+                    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
+                        ar.push(r.value);
+                    }
+                } catch (error) {
+                    e = {
+                        error: error
+                    };
+                } finally {
+                    try {
+                        if (r && !r.done && (m = i["return"])) m.call(i);
+                    } finally {
+                        if (e) throw e.error;
+                    }
+                }
+
+                return ar;
+            };
+
+            // Components
+
+
+            // Mixins
+
+
+
+            // Utils
+
+
+
+            /* harmony default export */ __webpack_exports__["default"] = (Object(_util_mixins__WEBPACK_IMPORTED_MODULE_7__["default"])(_mixins_colorable__WEBPACK_IMPORTED_MODULE_3__["default"], _mixins_localable__WEBPACK_IMPORTED_MODULE_4__["default"], _mixins_themeable__WEBPACK_IMPORTED_MODULE_5__["default"]
+                /* @vue/component */
+            ).extend({
+                name: 'v-date-picker-header',
+                props: {
+                    disabled: Boolean,
+                    format: Function,
+                    min: String,
+                    max: String,
+                    nextAriaLabel: String,
+                    nextIcon: {
+                        type: String,
+                        default: '$next'
+                    },
+                    prevAriaLabel: String,
+                    prevIcon: {
+                        type: String,
+                        default: '$prev'
+                    },
+                    readonly: Boolean,
+                    value: {
+                        type: [Number, String],
+                        required: true
+                    }
+                },
+                data: function data() {
+                    return {
+                        isReversing: false
+                    };
+                },
+                computed: {
+                    formatter: function formatter() {
+                        if (this.format) {
+                            return this.format;
+                        } else if (String(this.value).split('-')[1]) {
+                            return Object(_util__WEBPACK_IMPORTED_MODULE_6__["createNativeLocaleFormatter"])(this.currentLocale, {
+                                month: 'long',
+                                year: 'numeric',
+                                timeZone: 'UTC'
+                            }, {
+                                length: 7
+                            });
+                        } else {
+                            return Object(_util__WEBPACK_IMPORTED_MODULE_6__["createNativeLocaleFormatter"])(this.currentLocale, {
+                                year: 'numeric',
+                                timeZone: 'UTC'
+                            }, {
+                                length: 4
+                            });
+                        }
+                    }
+                },
+                watch: {
+                    value: function value(newVal, oldVal) {
+                        this.isReversing = newVal < oldVal;
+                    }
+                },
+                methods: {
+                    genBtn: function genBtn(change) {
+                        var _this = this;
+
+                        var ariaLabelId = change > 0 ? this.nextAriaLabel : this.prevAriaLabel;
+                        var ariaLabel = ariaLabelId ? this.$vuetify.lang.t(ariaLabelId) : undefined;
+                        var disabled = this.disabled || change < 0 && this.min && this.calculateChange(change) < this.min || change > 0 && this.max && this.calculateChange(change) > this.max;
+                        return this.$createElement(_VBtn__WEBPACK_IMPORTED_MODULE_1__["default"], {
+                            attrs: {
+                                'aria-label': ariaLabel
+                            },
+                            props: {
+                                dark: this.dark,
+                                disabled: disabled,
+                                icon: true,
+                                light: this.light
+                            },
+                            on: {
+                                click: function click(e) {
+                                    e.stopPropagation();
+
+                                    _this.$emit('input', _this.calculateChange(change));
+                                }
+                            }
+                        }, [this.$createElement(_VIcon__WEBPACK_IMPORTED_MODULE_2__["default"], change < 0 === !this.$vuetify.rtl ? this.prevIcon : this.nextIcon)]);
+                    },
+                    calculateChange: function calculateChange(sign) {
+                        var _a = __read(String(this.value).split('-').map(Number), 2),
+                            year = _a[0],
+                            month = _a[1];
+
+                        if (month == null) {
+                            return "" + (year + sign);
+                        } else {
+                            return Object(_util__WEBPACK_IMPORTED_MODULE_6__["monthChange"])(String(this.value), sign);
+                        }
+                    },
+                    genHeader: function genHeader() {
+                        var _this = this;
+
+                        var color = !this.disabled && (this.color || 'accent');
+                        var header = this.$createElement('div', this.setTextColor(color, {
+                            key: String(this.value)
+                        }), [this.$createElement('button', {
+                            attrs: {
+                                type: 'button'
+                            },
+                            on: {
+                                click: function click() {
+                                    return _this.$emit('toggle');
+                                }
+                            }
+                        }, [this.$slots.default || this.formatter(String(this.value))])]);
+                        var transition = this.$createElement('transition', {
+                            props: {
+                                name: this.isReversing === !this.$vuetify.rtl ? 'tab-reverse-transition' : 'tab-transition'
+                            }
+                        }, [header]);
+                        return this.$createElement('div', {
+                            staticClass: 'v-date-picker-header__value',
+                            class: {
+                                'v-date-picker-header__value--disabled': this.disabled
+                            }
+                        }, [transition]);
+                    }
+                },
+                render: function render() {
+                    return this.$createElement('div', {
+                        staticClass: 'v-date-picker-header',
+                        class: __assign({
+                            'v-date-picker-header--disabled': this.disabled
+                        }, this.themeClasses)
+                    }, [this.genBtn(-1), this.genHeader(), this.genBtn(+1)]);
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VDatePicker/VDatePickerMonthTable.ts":
+        /*!*************************************************************!*\
+  !*** ./src/components/VDatePicker/VDatePickerMonthTable.ts ***!
+  \*************************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _mixins_date_picker_table__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mixins/date-picker-table */ "./src/components/VDatePicker/mixins/date-picker-table.ts");
+            /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./util */ "./src/components/VDatePicker/util/index.ts");
+            /* harmony import */ var _util_mixins__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../util/mixins */ "./src/util/mixins.ts");
+// Mixins
+            // Utils
+
+
+
+            /* harmony default export */ __webpack_exports__["default"] = (Object(_util_mixins__WEBPACK_IMPORTED_MODULE_2__["default"])(_mixins_date_picker_table__WEBPACK_IMPORTED_MODULE_0__["default"]
+                /* @vue/component */
+            ).extend({
+                name: 'v-date-picker-month-table',
+                computed: {
+                    formatter: function formatter() {
+                        return this.format || Object(_util__WEBPACK_IMPORTED_MODULE_1__["createNativeLocaleFormatter"])(this.currentLocale, {
+                            month: 'short',
+                            timeZone: 'UTC'
+                        }, {
+                            start: 5,
+                            length: 2
+                        });
+                    }
+                },
+                methods: {
+                    calculateTableDate: function calculateTableDate(delta) {
+                        return "" + (parseInt(this.tableDate, 10) + Math.sign(delta || 1));
+                    },
+                    genTBody: function genTBody() {
+                        var _this = this;
+
+                        var children = [];
+                        var cols = Array(3).fill(null);
+                        var rows = 12 / cols.length;
+
+                        var _loop_1 = function _loop_1(row) {
+                            var tds = cols.map(function (_, col) {
+                                var month = row * cols.length + col;
+                                var date = _this.displayedYear + "-" + Object(_util__WEBPACK_IMPORTED_MODULE_1__["pad"])(month + 1);
+                                return _this.$createElement('td', {
+                                    key: month
+                                }, [_this.genButton(date, false, 'month', _this.formatter)]);
+                            });
+                            children.push(this_1.$createElement('tr', {
+                                key: row
+                            }, tds));
+                        };
+
+                        var this_1 = this;
+
+                        for (var row = 0; row < rows; row++) {
+                            _loop_1(row);
+                        }
+
+                        return this.$createElement('tbody', children);
+                    }
+                },
+                render: function render() {
+                    return this.genTable('v-date-picker-table v-date-picker-table--month', [this.genTBody()], this.calculateTableDate);
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VDatePicker/VDatePickerTable.sass":
+        /*!**********************************************************!*\
+  !*** ./src/components/VDatePicker/VDatePickerTable.sass ***!
+  \**********************************************************/
+        /*! no static exports found */
+        /***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+            /***/ }),
+
+        /***/ "./src/components/VDatePicker/VDatePickerTitle.sass":
+        /*!**********************************************************!*\
+  !*** ./src/components/VDatePicker/VDatePickerTitle.sass ***!
+  \**********************************************************/
+        /*! no static exports found */
+        /***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+            /***/ }),
+
+        /***/ "./src/components/VDatePicker/VDatePickerTitle.ts":
+        /*!********************************************************!*\
+  !*** ./src/components/VDatePicker/VDatePickerTitle.ts ***!
+  \********************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VDatePickerTitle_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VDatePickerTitle.sass */ "./src/components/VDatePicker/VDatePickerTitle.sass");
+            /* harmony import */ var _VDatePickerTitle_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VDatePickerTitle_sass__WEBPACK_IMPORTED_MODULE_0__);
+            /* harmony import */ var _VIcon__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../VIcon */ "./src/components/VIcon/index.ts");
+            /* harmony import */ var _mixins_picker_button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../mixins/picker-button */ "./src/mixins/picker-button/index.ts");
+            /* harmony import */ var _util_mixins__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../util/mixins */ "./src/util/mixins.ts");
+            // Components
+
+            // Mixins
+
+            // Utils
+
+
+            /* harmony default export */ __webpack_exports__["default"] = (Object(_util_mixins__WEBPACK_IMPORTED_MODULE_3__["default"])(_mixins_picker_button__WEBPACK_IMPORTED_MODULE_2__["default"]
+                /* @vue/component */
+            ).extend({
+                name: 'v-date-picker-title',
+                props: {
+                    date: {
+                        type: String,
+                        default: ''
+                    },
+                    disabled: Boolean,
+                    readonly: Boolean,
+                    selectingYear: Boolean,
+                    value: {
+                        type: String
+                    },
+                    year: {
+                        type: [Number, String],
+                        default: ''
+                    },
+                    yearIcon: {
+                        type: String
+                    }
+                },
+                data: function data() {
+                    return {
+                        isReversing: false
+                    };
+                },
+                computed: {
+                    computedTransition: function computedTransition() {
+                        return this.isReversing ? 'picker-reverse-transition' : 'picker-transition';
+                    }
+                },
+                watch: {
+                    value: function value(val, prev) {
+                        this.isReversing = val < prev;
+                    }
+                },
+                methods: {
+                    genYearIcon: function genYearIcon() {
+                        return this.$createElement(_VIcon__WEBPACK_IMPORTED_MODULE_1__["default"], {
+                            props: {
+                                dark: true
+                            }
+                        }, this.yearIcon);
+                    },
+                    getYearBtn: function getYearBtn() {
+                        return this.genPickerButton('selectingYear', true, [String(this.year), this.yearIcon ? this.genYearIcon() : null], false, 'v-date-picker-title__year');
+                    },
+                    genTitleText: function genTitleText() {
+                        return this.$createElement('transition', {
+                            props: {
+                                name: this.computedTransition
+                            }
+                        }, [this.$createElement('div', {
+                            domProps: {
+                                innerHTML: this.date || '&nbsp;'
+                            },
+                            key: this.value
+                        })]);
+                    },
+                    genTitleDate: function genTitleDate() {
+                        return this.genPickerButton('selectingYear', false, [this.genTitleText()], false, 'v-date-picker-title__date');
+                    }
+                },
+                render: function render(h) {
+                    return h('div', {
+                        staticClass: 'v-date-picker-title',
+                        class: {
+                            'v-date-picker-title--disabled': this.disabled
+                        }
+                    }, [this.getYearBtn(), this.genTitleDate()]);
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VDatePicker/VDatePickerYears.sass":
+        /*!**********************************************************!*\
+  !*** ./src/components/VDatePicker/VDatePickerYears.sass ***!
+  \**********************************************************/
+        /*! no static exports found */
+        /***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+            /***/ }),
+
+        /***/ "./src/components/VDatePicker/VDatePickerYears.ts":
+        /*!********************************************************!*\
+  !*** ./src/components/VDatePicker/VDatePickerYears.ts ***!
+  \********************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VDatePickerYears_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VDatePickerYears.sass */ "./src/components/VDatePicker/VDatePickerYears.sass");
+            /* harmony import */ var _VDatePickerYears_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VDatePickerYears_sass__WEBPACK_IMPORTED_MODULE_0__);
+            /* harmony import */ var _mixins_colorable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins/colorable */ "./src/mixins/colorable/index.ts");
+            /* harmony import */ var _mixins_localable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../mixins/localable */ "./src/mixins/localable/index.ts");
+            /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./util */ "./src/components/VDatePicker/util/index.ts");
+            /* harmony import */ var _util_mergeData__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../util/mergeData */ "./src/util/mergeData.ts");
+            /* harmony import */ var _util_mixins__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../util/mixins */ "./src/util/mixins.ts");
+            // Mixins
+
+
+            // Utils
+
+
+
+
+            /* harmony default export */ __webpack_exports__["default"] = (Object(_util_mixins__WEBPACK_IMPORTED_MODULE_5__["default"])(_mixins_colorable__WEBPACK_IMPORTED_MODULE_1__["default"], _mixins_localable__WEBPACK_IMPORTED_MODULE_2__["default"]
+                /* @vue/component */
+            ).extend({
+                name: 'v-date-picker-years',
+                props: {
+                    format: Function,
+                    min: [Number, String],
+                    max: [Number, String],
+                    readonly: Boolean,
+                    value: [Number, String]
+                },
+                data: function data() {
+                    return {
+                        defaultColor: 'primary'
+                    };
+                },
+                computed: {
+                    formatter: function formatter() {
+                        return this.format || Object(_util__WEBPACK_IMPORTED_MODULE_3__["createNativeLocaleFormatter"])(this.currentLocale, {
+                            year: 'numeric',
+                            timeZone: 'UTC'
+                        }, {
+                            length: 4
+                        });
+                    }
+                },
+                mounted: function mounted() {
+                    var _this = this;
+
+                    setTimeout(function () {
+                        var activeItem = _this.$el.getElementsByClassName('active')[0];
+
+                        if (activeItem) {
+                            _this.$el.scrollTop = activeItem.offsetTop - _this.$el.offsetHeight / 2 + activeItem.offsetHeight / 2;
+                        } else if (_this.min && !_this.max) {
+                            _this.$el.scrollTop = _this.$el.scrollHeight;
+                        } else if (!_this.min && _this.max) {
+                            _this.$el.scrollTop = 0;
+                        } else {
+                            _this.$el.scrollTop = _this.$el.scrollHeight / 2 - _this.$el.offsetHeight / 2;
+                        }
+                    });
+                },
+                methods: {
+                    genYearItem: function genYearItem(year) {
+                        var _this = this;
+
+                        var formatted = this.formatter("" + year);
+                        var active = parseInt(this.value, 10) === year;
+                        var color = active && (this.color || 'primary');
+                        return this.$createElement('li', this.setTextColor(color, {
+                            key: year,
+                            class: {
+                                active: active
+                            },
+                            on: Object(_util_mergeData__WEBPACK_IMPORTED_MODULE_4__["mergeListeners"])({
+                                click: function click() {
+                                    return _this.$emit('input', year);
+                                }
+                            }, Object(_util__WEBPACK_IMPORTED_MODULE_3__["createItemTypeNativeListeners"])(this, ':year', year))
+                        }), formatted);
+                    },
+                    genYearItems: function genYearItems() {
+                        var children = [];
+                        var selectedYear = this.value ? parseInt(this.value, 10) : new Date().getFullYear();
+                        var maxYear = this.max ? parseInt(this.max, 10) : selectedYear + 100;
+                        var minYear = Math.min(maxYear, this.min ? parseInt(this.min, 10) : selectedYear - 100);
+
+                        for (var year = maxYear; year >= minYear; year--) {
+                            children.push(this.genYearItem(year));
+                        }
+
+                        return children;
+                    }
+                },
+                render: function render() {
+                    return this.$createElement('ul', {
+                        staticClass: 'v-date-picker-years',
+                        ref: 'years'
+                    }, this.genYearItems());
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VDatePicker/index.ts":
+        /*!*********************************************!*\
+  !*** ./src/components/VDatePicker/index.ts ***!
+  \*********************************************/
+        /*! exports provided: VDatePicker, VDatePickerTitle, VDatePickerHeader, VDatePickerDateTable, VDatePickerMonthTable, VDatePickerYears, default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VDatePicker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VDatePicker */ "./src/components/VDatePicker/VDatePicker.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VDatePicker", function() { return _VDatePicker__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+            /* harmony import */ var _VDatePickerTitle__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VDatePickerTitle */ "./src/components/VDatePicker/VDatePickerTitle.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VDatePickerTitle", function() { return _VDatePickerTitle__WEBPACK_IMPORTED_MODULE_1__["default"]; });
+
+            /* harmony import */ var _VDatePickerHeader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./VDatePickerHeader */ "./src/components/VDatePicker/VDatePickerHeader.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VDatePickerHeader", function() { return _VDatePickerHeader__WEBPACK_IMPORTED_MODULE_2__["default"]; });
+
+            /* harmony import */ var _VDatePickerDateTable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./VDatePickerDateTable */ "./src/components/VDatePicker/VDatePickerDateTable.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VDatePickerDateTable", function() { return _VDatePickerDateTable__WEBPACK_IMPORTED_MODULE_3__["default"]; });
+
+            /* harmony import */ var _VDatePickerMonthTable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./VDatePickerMonthTable */ "./src/components/VDatePicker/VDatePickerMonthTable.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VDatePickerMonthTable", function() { return _VDatePickerMonthTable__WEBPACK_IMPORTED_MODULE_4__["default"]; });
+
+            /* harmony import */ var _VDatePickerYears__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./VDatePickerYears */ "./src/components/VDatePicker/VDatePickerYears.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VDatePickerYears", function() { return _VDatePickerYears__WEBPACK_IMPORTED_MODULE_5__["default"]; });
+
+
+
+
+
+
+
+
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                $_vuetify_subcomponents: {
+                    VDatePicker: _VDatePicker__WEBPACK_IMPORTED_MODULE_0__["default"],
+                    VDatePickerTitle: _VDatePickerTitle__WEBPACK_IMPORTED_MODULE_1__["default"],
+                    VDatePickerHeader: _VDatePickerHeader__WEBPACK_IMPORTED_MODULE_2__["default"],
+                    VDatePickerDateTable: _VDatePickerDateTable__WEBPACK_IMPORTED_MODULE_3__["default"],
+                    VDatePickerMonthTable: _VDatePickerMonthTable__WEBPACK_IMPORTED_MODULE_4__["default"],
+                    VDatePickerYears: _VDatePickerYears__WEBPACK_IMPORTED_MODULE_5__["default"]
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/components/VDatePicker/mixins/date-picker-table.ts":
+        /*!****************************************************************!*\
+  !*** ./src/components/VDatePicker/mixins/date-picker-table.ts ***!
+  \****************************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VDatePickerTable_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../VDatePickerTable.sass */ "./src/components/VDatePicker/VDatePickerTable.sass");
+            /* harmony import */ var _VDatePickerTable_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VDatePickerTable_sass__WEBPACK_IMPORTED_MODULE_0__);
+            /* harmony import */ var _directives_touch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../directives/touch */ "./src/directives/touch/index.ts");
+            /* harmony import */ var _mixins_colorable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../mixins/colorable */ "./src/mixins/colorable/index.ts");
+            /* harmony import */ var _mixins_localable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../mixins/localable */ "./src/mixins/localable/index.ts");
+            /* harmony import */ var _mixins_themeable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../mixins/themeable */ "./src/mixins/themeable/index.ts");
+            /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../util */ "./src/components/VDatePicker/util/index.ts");
+            /* harmony import */ var _util_isDateAllowed__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../util/isDateAllowed */ "./src/components/VDatePicker/util/isDateAllowed.ts");
+            /* harmony import */ var _util_mergeData__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../util/mergeData */ "./src/util/mergeData.ts");
+            /* harmony import */ var _util_mixins__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../util/mixins */ "./src/util/mixins.ts");
+            /* harmony import */ var _util_helpers__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../util/helpers */ "./src/util/helpers.ts");
+            var __assign = undefined && undefined.__assign || function () {
+                __assign = Object.assign || function (t) {
+                    for (var s, i = 1, n = arguments.length; i < n; i++) {
+                        s = arguments[i];
+
+                        for (var p in s) {
+                            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+                        }
+                    }
+
+                    return t;
+                };
+
+                return __assign.apply(this, arguments);
+            };
+
+            var __read = undefined && undefined.__read || function (o, n) {
+                var m = typeof Symbol === "function" && o[Symbol.iterator];
+                if (!m) return o;
+                var i = m.call(o),
+                    r,
+                    ar = [],
+                    e;
+
+                try {
+                    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
+                        ar.push(r.value);
+                    }
+                } catch (error) {
+                    e = {
+                        error: error
+                    };
+                } finally {
+                    try {
+                        if (r && !r.done && (m = i["return"])) m.call(i);
+                    } finally {
+                        if (e) throw e.error;
+                    }
+                }
+
+                return ar;
+            };
+
+            var __spread = undefined && undefined.__spread || function () {
+                for (var ar = [], i = 0; i < arguments.length; i++) {
+                    ar = ar.concat(__read(arguments[i]));
+                }
+
+                return ar;
+            };
+
+            // Directives
+
+            // Mixins
+
+
+
+            // Utils
+
+
+
+
+
+
+            /* harmony default export */ __webpack_exports__["default"] = (Object(_util_mixins__WEBPACK_IMPORTED_MODULE_8__["default"])(_mixins_colorable__WEBPACK_IMPORTED_MODULE_2__["default"], _mixins_localable__WEBPACK_IMPORTED_MODULE_3__["default"], _mixins_themeable__WEBPACK_IMPORTED_MODULE_4__["default"]
+                /* @vue/component */
+            ).extend({
+                directives: {
+                    Touch: _directives_touch__WEBPACK_IMPORTED_MODULE_1__["default"]
+                },
+                props: {
+                    allowedDates: Function,
+                    current: String,
+                    disabled: Boolean,
+                    format: Function,
+                    events: {
+                        type: [Array, Function, Object],
+                        default: function _default() {
+                            return null;
+                        }
+                    },
+                    eventColor: {
+                        type: [Array, Function, Object, String],
+                        default: function _default() {
+                            return 'warning';
+                        }
+                    },
+                    min: String,
+                    max: String,
+                    range: Boolean,
+                    readonly: Boolean,
+                    scrollable: Boolean,
+                    tableDate: {
+                        type: String,
+                        required: true
+                    },
+                    value: [String, Array]
+                },
+                data: function data() {
+                    return {
+                        isReversing: false,
+                        wheelThrottle: null
+                    };
+                },
+                computed: {
+                    computedTransition: function computedTransition() {
+                        return this.isReversing === !this.$vuetify.rtl ? 'tab-reverse-transition' : 'tab-transition';
+                    },
+                    displayedMonth: function displayedMonth() {
+                        return Number(this.tableDate.split('-')[1]) - 1;
+                    },
+                    displayedYear: function displayedYear() {
+                        return Number(this.tableDate.split('-')[0]);
+                    }
+                },
+                watch: {
+                    tableDate: function tableDate(newVal, oldVal) {
+                        this.isReversing = newVal < oldVal;
+                    }
+                },
+                mounted: function mounted() {
+                    this.wheelThrottle = Object(_util_helpers__WEBPACK_IMPORTED_MODULE_9__["throttle"])(this.wheel, 250);
+                },
+                methods: {
+                    genButtonClasses: function genButtonClasses(isAllowed, isFloating, isSelected, isCurrent) {
+                        return __assign({
+                            'v-size--default': !isFloating,
+                            'v-date-picker-table__current': isCurrent,
+                            'v-btn--active': isSelected,
+                            'v-btn--flat': !isAllowed || this.disabled,
+                            'v-btn--text': isSelected === isCurrent,
+                            'v-btn--rounded': isFloating,
+                            'v-btn--disabled': !isAllowed || this.disabled,
+                            'v-btn--outlined': isCurrent && !isSelected
+                        }, this.themeClasses);
+                    },
+                    genButtonEvents: function genButtonEvents(value, isAllowed, mouseEventType) {
+                        var _this = this;
+
+                        if (this.disabled) return undefined;
+                        return Object(_util_mergeData__WEBPACK_IMPORTED_MODULE_7__["mergeListeners"])({
+                            click: function click() {
+                                if (isAllowed && !_this.readonly) _this.$emit('input', value);
+                            }
+                        }, Object(_util__WEBPACK_IMPORTED_MODULE_5__["createItemTypeNativeListeners"])(this, ":" + mouseEventType, value));
+                    },
+                    genButton: function genButton(value, isFloating, mouseEventType, formatter, isOtherMonth) {
+                        if (isOtherMonth === void 0) {
+                            isOtherMonth = false;
+                        }
+
+                        var isAllowed = Object(_util_isDateAllowed__WEBPACK_IMPORTED_MODULE_6__["default"])(value, this.min, this.max, this.allowedDates);
+                        var isSelected = this.isSelected(value) && isAllowed;
+                        var isCurrent = value === this.current;
+                        var setColor = isSelected ? this.setBackgroundColor : this.setTextColor;
+                        var color = (isSelected || isCurrent) && (this.color || 'accent');
+                        return this.$createElement('button', setColor(color, {
+                            staticClass: 'v-btn',
+                            class: this.genButtonClasses(isAllowed && !isOtherMonth, isFloating, isSelected, isCurrent),
+                            attrs: {
+                                type: 'button'
+                            },
+                            domProps: {
+                                disabled: this.disabled || !isAllowed || isOtherMonth
+                            },
+                            on: this.genButtonEvents(value, isAllowed, mouseEventType)
+                        }), [this.$createElement('div', {
+                            staticClass: 'v-btn__content'
+                        }, [formatter(value)]), this.genEvents(value)]);
+                    },
+                    getEventColors: function getEventColors(date) {
+                        var arrayize = function arrayize(v) {
+                            return Array.isArray(v) ? v : [v];
+                        };
+
+                        var eventData;
+                        var eventColors = [];
+
+                        if (Array.isArray(this.events)) {
+                            eventData = this.events.includes(date);
+                        } else if (this.events instanceof Function) {
+                            eventData = this.events(date) || false;
+                        } else if (this.events) {
+                            eventData = this.events[date] || false;
+                        } else {
+                            eventData = false;
+                        }
+
+                        if (!eventData) {
+                            return [];
+                        } else if (eventData !== true) {
+                            eventColors = arrayize(eventData);
+                        } else if (typeof this.eventColor === 'string') {
+                            eventColors = [this.eventColor];
+                        } else if (typeof this.eventColor === 'function') {
+                            eventColors = arrayize(this.eventColor(date));
+                        } else if (Array.isArray(this.eventColor)) {
+                            eventColors = this.eventColor;
+                        } else {
+                            eventColors = arrayize(this.eventColor[date]);
+                        }
+
+                        return eventColors.filter(function (v) {
+                            return v;
+                        });
+                    },
+                    genEvents: function genEvents(date) {
+                        var _this = this;
+
+                        var eventColors = this.getEventColors(date);
+                        return eventColors.length ? this.$createElement('div', {
+                            staticClass: 'v-date-picker-table__events'
+                        }, eventColors.map(function (color) {
+                            return _this.$createElement('div', _this.setBackgroundColor(color));
+                        })) : null;
+                    },
+                    wheel: function wheel(e, calculateTableDate) {
+                        this.$emit('update:table-date', calculateTableDate(e.deltaY));
+                    },
+                    touch: function touch(value, calculateTableDate) {
+                        this.$emit('update:table-date', calculateTableDate(value));
+                    },
+                    genTable: function genTable(staticClass, children, calculateTableDate) {
+                        var _this = this;
+
+                        var transition = this.$createElement('transition', {
+                            props: {
+                                name: this.computedTransition
+                            }
+                        }, [this.$createElement('table', {
+                            key: this.tableDate
+                        }, children)]);
+                        var touchDirective = {
+                            name: 'touch',
+                            value: {
+                                left: function left(e) {
+                                    return e.offsetX < -15 && _this.touch(1, calculateTableDate);
+                                },
+                                right: function right(e) {
+                                    return e.offsetX > 15 && _this.touch(-1, calculateTableDate);
+                                }
+                            }
+                        };
+                        return this.$createElement('div', {
+                            staticClass: staticClass,
+                            class: __assign({
+                                'v-date-picker-table--disabled': this.disabled
+                            }, this.themeClasses),
+                            on: !this.disabled && this.scrollable ? {
+                                wheel: function wheel(e) {
+                                    e.preventDefault();
+
+                                    _this.wheelThrottle(e, calculateTableDate);
+                                }
+                            } : undefined,
+                            directives: [touchDirective]
+                        }, [transition]);
+                    },
+                    isSelected: function isSelected(value) {
+                        if (Array.isArray(this.value)) {
+                            if (this.range && this.value.length === 2) {
+                                var _a = __read(__spread(this.value).sort(), 2),
+                                    from = _a[0],
+                                    to = _a[1];
+
+                                return from <= value && value <= to;
+                            } else {
+                                return this.value.indexOf(value) !== -1;
+                            }
+                        }
+
+                        return value === this.value;
+                    }
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VDatePicker/util/createNativeLocaleFormatter.ts":
+        /*!************************************************************************!*\
+  !*** ./src/components/VDatePicker/util/createNativeLocaleFormatter.ts ***!
+  \************************************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _pad__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pad */ "./src/components/VDatePicker/util/pad.ts");
+            var __read = undefined && undefined.__read || function (o, n) {
+                var m = typeof Symbol === "function" && o[Symbol.iterator];
+                if (!m) return o;
+                var i = m.call(o),
+                    r,
+                    ar = [],
+                    e;
+
+                try {
+                    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
+                        ar.push(r.value);
+                    }
+                } catch (error) {
+                    e = {
+                        error: error
+                    };
+                } finally {
+                    try {
+                        if (r && !r.done && (m = i["return"])) m.call(i);
+                    } finally {
+                        if (e) throw e.error;
+                    }
+                }
+
+                return ar;
+            };
+
+
+
+            function createNativeLocaleFormatter(locale, options, substrOptions) {
+                if (substrOptions === void 0) {
+                    substrOptions = {
+                        start: 0,
+                        length: 0
+                    };
+                }
+
+                var makeIsoString = function makeIsoString(dateString) {
+                    var _a = __read(dateString.trim().split(' ')[0].split('-'), 3),
+                        year = _a[0],
+                        month = _a[1],
+                        date = _a[2];
+
+                    return [Object(_pad__WEBPACK_IMPORTED_MODULE_0__["default"])(year, 4), Object(_pad__WEBPACK_IMPORTED_MODULE_0__["default"])(month || 1), Object(_pad__WEBPACK_IMPORTED_MODULE_0__["default"])(date || 1)].join('-');
+                };
+
+                try {
+                    var intlFormatter_1 = new Intl.DateTimeFormat(locale || undefined, options);
+                    return function (dateString) {
+                        return intlFormatter_1.format(new Date(makeIsoString(dateString) + "T00:00:00+00:00"));
+                    };
+                } catch (e) {
+                    return substrOptions.start || substrOptions.length ? function (dateString) {
+                        return makeIsoString(dateString).substr(substrOptions.start || 0, substrOptions.length);
+                    } : undefined;
+                }
+            }
+
+            /* harmony default export */ __webpack_exports__["default"] = (createNativeLocaleFormatter);
+
+            /***/ }),
+
+        /***/ "./src/components/VDatePicker/util/eventHelpers.ts":
+        /*!*********************************************************!*\
+  !*** ./src/components/VDatePicker/util/eventHelpers.ts ***!
+  \*********************************************************/
+        /*! exports provided: createItemTypeNativeListeners, createItemTypeListeners */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createItemTypeNativeListeners", function() { return createItemTypeNativeListeners; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createItemTypeListeners", function() { return createItemTypeListeners; });
+            function createItemTypeNativeListeners(instance, itemTypeSuffix, value) {
+                return Object.keys(instance.$listeners).reduce(function (on, eventName) {
+                    if (eventName.endsWith(itemTypeSuffix)) {
+                        on[eventName.slice(0, -itemTypeSuffix.length)] = function (event) {
+                            return instance.$emit(eventName, value, event);
+                        };
+                    }
+
+                    return on;
+                }, {});
+            }
+            function createItemTypeListeners(instance, itemTypeSuffix) {
+                return Object.keys(instance.$listeners).reduce(function (on, eventName) {
+                    if (eventName.endsWith(itemTypeSuffix)) {
+                        on[eventName] = instance.$listeners[eventName];
+                    }
+
+                    return on;
+                }, {});
+            }
+
+            /***/ }),
+
+        /***/ "./src/components/VDatePicker/util/index.ts":
+        /*!**************************************************!*\
+  !*** ./src/components/VDatePicker/util/index.ts ***!
+  \**************************************************/
+        /*! exports provided: createItemTypeListeners, createItemTypeNativeListeners, createNativeLocaleFormatter, monthChange, pad */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _eventHelpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./eventHelpers */ "./src/components/VDatePicker/util/eventHelpers.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "createItemTypeListeners", function() { return _eventHelpers__WEBPACK_IMPORTED_MODULE_0__["createItemTypeListeners"]; });
+
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "createItemTypeNativeListeners", function() { return _eventHelpers__WEBPACK_IMPORTED_MODULE_0__["createItemTypeNativeListeners"]; });
+
+            /* harmony import */ var _createNativeLocaleFormatter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./createNativeLocaleFormatter */ "./src/components/VDatePicker/util/createNativeLocaleFormatter.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "createNativeLocaleFormatter", function() { return _createNativeLocaleFormatter__WEBPACK_IMPORTED_MODULE_1__["default"]; });
+
+            /* harmony import */ var _monthChange__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./monthChange */ "./src/components/VDatePicker/util/monthChange.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "monthChange", function() { return _monthChange__WEBPACK_IMPORTED_MODULE_2__["default"]; });
+
+            /* harmony import */ var _pad__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pad */ "./src/components/VDatePicker/util/pad.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "pad", function() { return _pad__WEBPACK_IMPORTED_MODULE_3__["default"]; });
+
+
+
+
+
+
+
+            /***/ }),
+
+        /***/ "./src/components/VDatePicker/util/isDateAllowed.ts":
+        /*!**********************************************************!*\
+  !*** ./src/components/VDatePicker/util/isDateAllowed.ts ***!
+  \**********************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return isDateAllowed; });
+            function isDateAllowed(date, min, max, allowedFn) {
+                return (!allowedFn || allowedFn(date)) && (!min || date >= min.substr(0, 10)) && (!max || date <= max);
+            }
+
+            /***/ }),
+
+        /***/ "./src/components/VDatePicker/util/monthChange.ts":
+        /*!********************************************************!*\
+  !*** ./src/components/VDatePicker/util/monthChange.ts ***!
+  \********************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _pad__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pad */ "./src/components/VDatePicker/util/pad.ts");
+            var __read = undefined && undefined.__read || function (o, n) {
+                var m = typeof Symbol === "function" && o[Symbol.iterator];
+                if (!m) return o;
+                var i = m.call(o),
+                    r,
+                    ar = [],
+                    e;
+
+                try {
+                    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
+                        ar.push(r.value);
+                    }
+                } catch (error) {
+                    e = {
+                        error: error
+                    };
+                } finally {
+                    try {
+                        if (r && !r.done && (m = i["return"])) m.call(i);
+                    } finally {
+                        if (e) throw e.error;
+                    }
+                }
+
+                return ar;
+            };
+
+
+            /**
+             * @param {String} value YYYY-MM format
+             * @param {Number} sign -1 or +1
+             */
+
+            /* harmony default export */ __webpack_exports__["default"] = (function (value, sign) {
+                var _a = __read(value.split('-').map(Number), 2),
+                    year = _a[0],
+                    month = _a[1];
+
+                if (month + sign === 0) {
+                    return year - 1 + "-12";
+                } else if (month + sign === 13) {
+                    return year + 1 + "-01";
+                } else {
+                    return year + "-" + Object(_pad__WEBPACK_IMPORTED_MODULE_0__["default"])(month + sign);
+                }
+            });
+
+            /***/ }),
+
+        /***/ "./src/components/VDatePicker/util/pad.ts":
+        /*!************************************************!*\
+  !*** ./src/components/VDatePicker/util/pad.ts ***!
+  \************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            var padStart = function padStart(string, targetLength, padString) {
+                targetLength = targetLength >> 0;
+                string = String(string);
+                padString = String(padString);
+
+                if (string.length > targetLength) {
+                    return String(string);
+                }
+
+                targetLength = targetLength - string.length;
+
+                if (targetLength > padString.length) {
+                    padString += padString.repeat(targetLength / padString.length);
+                }
+
+                return padString.slice(0, targetLength) + String(string);
+            };
+
+            /* harmony default export */ __webpack_exports__["default"] = (function (n, length) {
+                if (length === void 0) {
+                    length = 2;
+                }
+
+                return padStart(n, length, '0');
+            });
+
+            /***/ }),
 
         /***/ "./src/components/VDialog/VDialog.sass":
         /*!*********************************************!*\
@@ -9201,6 +16269,104 @@
                     VFlex: _VFlex__WEBPACK_IMPORTED_MODULE_5__["default"]
                 }
             });
+
+            /***/ }),
+
+        /***/ "./src/components/VHover/VHover.ts":
+        /*!*****************************************!*\
+  !*** ./src/components/VHover/VHover.ts ***!
+  \*****************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _mixins_delayable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/delayable */ "./src/mixins/delayable/index.ts");
+            /* harmony import */ var _mixins_toggleable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins/toggleable */ "./src/mixins/toggleable/index.ts");
+            /* harmony import */ var _util_mixins__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../util/mixins */ "./src/util/mixins.ts");
+            /* harmony import */ var _util_console__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../util/console */ "./src/util/console.ts");
+// Mixins
+
+            // Utilities
+
+
+
+            /* harmony default export */ __webpack_exports__["default"] = (Object(_util_mixins__WEBPACK_IMPORTED_MODULE_2__["default"])(_mixins_delayable__WEBPACK_IMPORTED_MODULE_0__["default"], _mixins_toggleable__WEBPACK_IMPORTED_MODULE_1__["default"]
+                /* @vue/component */
+            ).extend({
+                name: 'v-hover',
+                props: {
+                    disabled: {
+                        type: Boolean,
+                        default: false
+                    },
+                    value: {
+                        type: Boolean,
+                        default: undefined
+                    }
+                },
+                methods: {
+                    onMouseEnter: function onMouseEnter() {
+                        this.runDelay('open');
+                    },
+                    onMouseLeave: function onMouseLeave() {
+                        this.runDelay('close');
+                    }
+                },
+                render: function render() {
+                    if (!this.$scopedSlots.default && this.value === undefined) {
+                        Object(_util_console__WEBPACK_IMPORTED_MODULE_3__["consoleWarn"])('v-hover is missing a default scopedSlot or bound value', this);
+                        return null;
+                    }
+
+                    var element;
+                    /* istanbul ignore else */
+
+                    if (this.$scopedSlots.default) {
+                        element = this.$scopedSlots.default({
+                            hover: this.isActive
+                        });
+                    }
+
+                    if (Array.isArray(element) && element.length === 1) {
+                        element = element[0];
+                    }
+
+                    if (!element || Array.isArray(element) || !element.tag) {
+                        Object(_util_console__WEBPACK_IMPORTED_MODULE_3__["consoleWarn"])('v-hover should only contain a single element', this);
+                        return element;
+                    }
+
+                    if (!this.disabled) {
+                        element.data = element.data || {};
+
+                        this._g(element.data, {
+                            mouseenter: this.onMouseEnter,
+                            mouseleave: this.onMouseLeave
+                        });
+                    }
+
+                    return element;
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VHover/index.ts":
+        /*!****************************************!*\
+  !*** ./src/components/VHover/index.ts ***!
+  \****************************************/
+        /*! exports provided: VHover, default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VHover__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VHover */ "./src/components/VHover/VHover.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VHover", function() { return _VHover__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+            /* harmony default export */ __webpack_exports__["default"] = (_VHover__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
             /***/ }),
 
@@ -14460,6 +21626,348 @@
 
             /***/ }),
 
+        /***/ "./src/components/VRangeSlider/VRangeSlider.sass":
+        /*!*******************************************************!*\
+  !*** ./src/components/VRangeSlider/VRangeSlider.sass ***!
+  \*******************************************************/
+        /*! no static exports found */
+        /***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+            /***/ }),
+
+        /***/ "./src/components/VRangeSlider/VRangeSlider.ts":
+        /*!*****************************************************!*\
+  !*** ./src/components/VRangeSlider/VRangeSlider.ts ***!
+  \*****************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VRangeSlider_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VRangeSlider.sass */ "./src/components/VRangeSlider/VRangeSlider.sass");
+            /* harmony import */ var _VRangeSlider_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VRangeSlider_sass__WEBPACK_IMPORTED_MODULE_0__);
+            /* harmony import */ var _VSlider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../VSlider */ "./src/components/VSlider/index.ts");
+            /* harmony import */ var _util_helpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../util/helpers */ "./src/util/helpers.ts");
+            var __assign = undefined && undefined.__assign || function () {
+                __assign = Object.assign || function (t) {
+                    for (var s, i = 1, n = arguments.length; i < n; i++) {
+                        s = arguments[i];
+
+                        for (var p in s) {
+                            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+                        }
+                    }
+
+                    return t;
+                };
+
+                return __assign.apply(this, arguments);
+            };
+
+            var __read = undefined && undefined.__read || function (o, n) {
+                var m = typeof Symbol === "function" && o[Symbol.iterator];
+                if (!m) return o;
+                var i = m.call(o),
+                    r,
+                    ar = [],
+                    e;
+
+                try {
+                    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
+                        ar.push(r.value);
+                    }
+                } catch (error) {
+                    e = {
+                        error: error
+                    };
+                } finally {
+                    try {
+                        if (r && !r.done && (m = i["return"])) m.call(i);
+                    } finally {
+                        if (e) throw e.error;
+                    }
+                }
+
+                return ar;
+            };
+
+            var __spread = undefined && undefined.__spread || function () {
+                for (var ar = [], i = 0; i < arguments.length; i++) {
+                    ar = ar.concat(__read(arguments[i]));
+                }
+
+                return ar;
+            }; // Styles
+
+
+            // Components
+
+            // Helpers
+
+
+            /* @vue/component */
+
+            /* harmony default export */ __webpack_exports__["default"] = (_VSlider__WEBPACK_IMPORTED_MODULE_1__["default"].extend({
+                name: 'v-range-slider',
+                props: {
+                    value: {
+                        type: Array,
+                        default: function _default() {
+                            return [0, 0];
+                        }
+                    }
+                },
+                data: function data() {
+                    return {
+                        activeThumb: null,
+                        lazyValue: this.value
+                    };
+                },
+                computed: {
+                    classes: function classes() {
+                        return __assign(__assign({}, _VSlider__WEBPACK_IMPORTED_MODULE_1__["default"].options.computed.classes.call(this)), {
+                            'v-input--range-slider': true
+                        });
+                    },
+                    internalValue: {
+                        get: function get() {
+                            return this.lazyValue;
+                        },
+                        set: function set(val) {
+                            var _this = this; // Round value to ensure the
+                            // entire slider range can
+                            // be selected with step
+
+
+                            var value = val.map(function (v) {
+                                if (v === void 0) {
+                                    v = 0;
+                                }
+
+                                return _this.roundValue(Math.min(Math.max(v, _this.minValue), _this.maxValue));
+                            }); // Switch values if range and wrong order
+
+                            if (value[0] > value[1] || value[1] < value[0]) {
+                                if (this.activeThumb !== null) {
+                                    var toFocus = this.activeThumb === 1 ? 0 : 1;
+                                    var el = this.$refs["thumb_" + toFocus];
+                                    el.focus();
+                                }
+
+                                value = [value[1], value[0]];
+                            }
+
+                            this.lazyValue = value;
+                            if (!Object(_util_helpers__WEBPACK_IMPORTED_MODULE_2__["deepEqual"])(value, this.value)) this.$emit('input', value);
+                            this.validate();
+                        }
+                    },
+                    inputWidth: function inputWidth() {
+                        var _this = this;
+
+                        return this.internalValue.map(function (v) {
+                            return (_this.roundValue(v) - _this.minValue) / (_this.maxValue - _this.minValue) * 100;
+                        });
+                    }
+                },
+                methods: {
+                    getTrackStyle: function getTrackStyle(startLength, endLength, startPadding, endPadding) {
+                        var _a;
+
+                        if (startPadding === void 0) {
+                            startPadding = 0;
+                        }
+
+                        if (endPadding === void 0) {
+                            endPadding = 0;
+                        }
+
+                        var startDir = this.vertical ? this.$vuetify.rtl ? 'top' : 'bottom' : this.$vuetify.rtl ? 'right' : 'left';
+                        var endDir = this.vertical ? 'height' : 'width';
+                        var start = "calc(" + startLength + "% + " + startPadding + "px)";
+                        var end = "calc(" + endLength + "% + " + endPadding + "px)";
+                        return _a = {
+                            transition: this.trackTransition
+                        }, _a[startDir] = start, _a[endDir] = end, _a;
+                    },
+                    getIndexOfClosestValue: function getIndexOfClosestValue(arr, v) {
+                        if (Math.abs(arr[0] - v) < Math.abs(arr[1] - v)) return 0;else return 1;
+                    },
+                    genInput: function genInput() {
+                        var _this = this;
+
+                        return Object(_util_helpers__WEBPACK_IMPORTED_MODULE_2__["createRange"])(2).map(function (i) {
+                            var input = _VSlider__WEBPACK_IMPORTED_MODULE_1__["default"].options.methods.genInput.call(_this);
+                            input.data = input.data || {};
+                            input.data.attrs = input.data.attrs || {};
+                            input.data.attrs.value = _this.internalValue[i];
+                            input.data.attrs.id = "input-" + (i ? 'max' : 'min') + "-" + _this._uid;
+                            return input;
+                        });
+                    },
+                    genTrackContainer: function genTrackContainer() {
+                        var _this = this;
+
+                        var children = [];
+                        var padding = this.isDisabled ? 10 : 0;
+                        var sections = [{
+                            class: 'v-slider__track-background',
+                            color: this.computedTrackColor,
+                            styles: [0, this.inputWidth[0], 0, -padding]
+                        }, {
+                            class: this.isDisabled ? 'v-slider__track-background' : 'v-slider__track-fill',
+                            color: this.isDisabled ? this.computedTrackColor : this.computedTrackFillColor,
+                            styles: [this.inputWidth[0], Math.abs(this.inputWidth[1] - this.inputWidth[0]), padding, padding * -2]
+                        }, {
+                            class: 'v-slider__track-background',
+                            color: this.computedTrackColor,
+                            styles: [this.inputWidth[1], Math.abs(100 - this.inputWidth[1]), padding, -padding]
+                        }];
+                        if (this.$vuetify.rtl) sections.reverse();
+                        children.push.apply(children, __spread(sections.map(function (section) {
+                            return _this.$createElement('div', _this.setBackgroundColor(section.color, {
+                                staticClass: section.class,
+                                style: _this.getTrackStyle.apply(_this, __spread(section.styles))
+                            }));
+                        })));
+                        return this.$createElement('div', {
+                            staticClass: 'v-slider__track-container',
+                            ref: 'track'
+                        }, children);
+                    },
+                    genChildren: function genChildren() {
+                        var _this = this;
+
+                        return [this.genInput(), this.genTrackContainer(), this.genSteps(), Object(_util_helpers__WEBPACK_IMPORTED_MODULE_2__["createRange"])(2).map(function (index) {
+                            var value = _this.internalValue[index];
+
+                            var onDrag = function onDrag(e) {
+                                _this.isActive = true;
+                                _this.activeThumb = index;
+
+                                _this.onSliderMouseDown(e);
+                            };
+
+                            var onFocus = function onFocus(e) {
+                                _this.isFocused = true;
+                                _this.activeThumb = index;
+
+                                _this.$emit('focus', e);
+                            };
+
+                            var onBlur = function onBlur(e) {
+                                _this.isFocused = false;
+                                _this.activeThumb = null;
+
+                                _this.$emit('blur', e);
+                            };
+
+                            var valueWidth = _this.inputWidth[index];
+                            var isActive = _this.isActive && _this.activeThumb === index;
+                            var isFocused = _this.isFocused && _this.activeThumb === index;
+                            return _this.genThumbContainer(value, valueWidth, isActive, isFocused, onDrag, onFocus, onBlur, "thumb_" + index);
+                        })];
+                    },
+                    reevaluateSelected: function reevaluateSelected(value) {
+                        this.activeThumb = this.getIndexOfClosestValue(this.internalValue, value);
+                        var refName = "thumb_" + this.activeThumb;
+                        var thumbRef = this.$refs[refName];
+                        thumbRef.focus();
+                    },
+                    onSliderMouseDown: function onSliderMouseDown(e) {
+                        var value = this.parseMouseMove(e).value;
+                        this.reevaluateSelected(value);
+                        this.oldValue = this.internalValue;
+                        this.keyPressed = 2;
+                        this.isActive = true;
+                        var mouseUpOptions = _util_helpers__WEBPACK_IMPORTED_MODULE_2__["passiveSupported"] ? {
+                            passive: true,
+                            capture: true
+                        } : true;
+                        var mouseMoveOptions = _util_helpers__WEBPACK_IMPORTED_MODULE_2__["passiveSupported"] ? {
+                            passive: true
+                        } : false;
+
+                        if ('touches' in e) {
+                            this.app.addEventListener('touchmove', this.onMouseMove, mouseMoveOptions);
+                            Object(_util_helpers__WEBPACK_IMPORTED_MODULE_2__["addOnceEventListener"])(this.app, 'touchend', this.onSliderMouseUp, mouseUpOptions);
+                        } else {
+                            this.onMouseMove(e);
+                            this.app.addEventListener('mousemove', this.onMouseMove, mouseMoveOptions);
+                            Object(_util_helpers__WEBPACK_IMPORTED_MODULE_2__["addOnceEventListener"])(this.app, 'mouseup', this.onSliderMouseUp, mouseUpOptions);
+                        }
+
+                        this.$emit('start', this.internalValue);
+                    },
+                    onSliderClick: function onSliderClick(e) {
+                        if (!this.isActive) {
+                            if (this.noClick) {
+                                this.noClick = false;
+                                return;
+                            }
+
+                            var _a = this.parseMouseMove(e),
+                                value = _a.value,
+                                isInsideTrack = _a.isInsideTrack;
+
+                            if (isInsideTrack) {
+                                this.reevaluateSelected(value);
+                            }
+
+                            this.setInternalValue(value);
+                            this.$emit('change', this.internalValue);
+                        }
+                    },
+                    onMouseMove: function onMouseMove(e) {
+                        var _a = this.parseMouseMove(e),
+                            value = _a.value,
+                            isInsideTrack = _a.isInsideTrack;
+
+                        if (isInsideTrack && this.activeThumb === null) {
+                            this.activeThumb = this.getIndexOfClosestValue(this.internalValue, value);
+                        }
+
+                        this.setInternalValue(value);
+                    },
+                    onKeyDown: function onKeyDown(e) {
+                        if (this.activeThumb === null) return;
+                        var value = this.parseKeyDown(e, this.internalValue[this.activeThumb]);
+                        if (value == null) return;
+                        this.setInternalValue(value);
+                        this.$emit('change', this.internalValue);
+                    },
+                    setInternalValue: function setInternalValue(value) {
+                        var _this = this;
+
+                        this.internalValue = this.internalValue.map(function (v, i) {
+                            if (i === _this.activeThumb) return value;else return Number(v);
+                        });
+                    }
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VRangeSlider/index.ts":
+        /*!**********************************************!*\
+  !*** ./src/components/VRangeSlider/index.ts ***!
+  \**********************************************/
+        /*! exports provided: VRangeSlider, default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VRangeSlider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VRangeSlider */ "./src/components/VRangeSlider/VRangeSlider.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VRangeSlider", function() { return _VRangeSlider__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+
+
+            /* harmony default export */ __webpack_exports__["default"] = (_VRangeSlider__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+            /***/ }),
+
         /***/ "./src/components/VRating/VRating.sass":
         /*!*********************************************!*\
   !*** ./src/components/VRating/VRating.sass ***!
@@ -15155,6 +22663,7 @@
                         this.isMenuActive = false;
                         this.isFocused = false;
                         this.selectedIndex = -1;
+                        this.setMenuIndex(-1);
                     },
 
                     /** @public */
@@ -16532,17 +24041,17 @@
                             // This matches the default 2.2 behavior
 
                             case true:
-                                return this.isOverflowing;
+                                return this.isOverflowing || Math.abs(this.scrollOffset) > 0;
                             // Always show on mobile
 
                             case 'mobile':
-                                return this.isMobile || this.isOverflowing;
+                                return this.isMobile || this.isOverflowing || Math.abs(this.scrollOffset) > 0;
                             // https://material.io/components/tabs#scrollable-tabs
                             // Always show arrows when
                             // overflowed on desktop
 
                             default:
-                                return !this.isMobile && this.isOverflowing;
+                                return !this.isMobile && (this.isOverflowing || Math.abs(this.scrollOffset) > 0);
                         }
                     },
                     hasNext: function hasNext() {
@@ -16723,6 +24232,15 @@
                     scrollIntoView
                     /* istanbul ignore next */
                         : function scrollIntoView() {
+                        if (!this.selectedItem && this.items.length) {
+                            var lastItemPosition = this.items[this.items.length - 1].$el.getBoundingClientRect();
+                            var wrapperPosition = this.$refs.wrapper.getBoundingClientRect();
+
+                            if (this.$vuetify.rtl && wrapperPosition.right < lastItemPosition.right || !this.$vuetify.rtl && wrapperPosition.left > lastItemPosition.left) {
+                                this.scrollTo('prev');
+                            }
+                        }
+
                         if (!this.selectedItem) {
                             return;
                         }
@@ -17122,12 +24640,13 @@
                                 value: this.onBlur
                             }],
                             on: {
-                                click: this.onSliderClick
+                                click: this.onSliderClick,
+                                mousedown: this.onSliderMouseDown
                             }
                         }, this.genChildren());
                     },
                     genChildren: function genChildren() {
-                        return [this.genInput(), this.genTrackContainer(), this.genSteps(), this.genThumbContainer(this.internalValue, this.inputWidth, this.isActive, this.isFocused, this.onThumbMouseDown, this.onFocus, this.onBlur)];
+                        return [this.genInput(), this.genTrackContainer(), this.genSteps(), this.genThumbContainer(this.internalValue, this.inputWidth, this.isActive, this.isFocused, this.onSliderMouseDown, this.onFocus, this.onBlur)];
                     },
                     genInput: function genInput() {
                         return this.$createElement('input', {
@@ -17274,7 +24793,7 @@
                             transition: this.trackTransition
                         }, _a[direction] = value + "%", _a;
                     },
-                    onThumbMouseDown: function onThumbMouseDown(e) {
+                    onSliderMouseDown: function onSliderMouseDown(e) {
                         e.preventDefault();
                         this.oldValue = this.internalValue;
                         this.keyPressed = 2;
@@ -17291,6 +24810,7 @@
                             this.app.addEventListener('touchmove', this.onMouseMove, mouseMoveOptions);
                             Object(_util_helpers__WEBPACK_IMPORTED_MODULE_6__["addOnceEventListener"])(this.app, 'touchend', this.onSliderMouseUp, mouseUpOptions);
                         } else {
+                            this.onMouseMove(e);
                             this.app.addEventListener('mousemove', this.onMouseMove, mouseMoveOptions);
                             Object(_util_helpers__WEBPACK_IMPORTED_MODULE_6__["addOnceEventListener"])(this.app, 'mouseup', this.onSliderMouseUp, mouseUpOptions);
                         }
@@ -20798,6 +28318,860 @@
 
             /***/ }),
 
+        /***/ "./src/components/VTimePicker/SelectingTimes.ts":
+        /*!******************************************************!*\
+  !*** ./src/components/VTimePicker/SelectingTimes.ts ***!
+  \******************************************************/
+        /*! exports provided: SelectingTimes */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SelectingTimes", function() { return SelectingTimes; });
+            var SelectingTimes;
+
+            (function (SelectingTimes) {
+                SelectingTimes[SelectingTimes["Hour"] = 1] = "Hour";
+                SelectingTimes[SelectingTimes["Minute"] = 2] = "Minute";
+                SelectingTimes[SelectingTimes["Second"] = 3] = "Second";
+            })(SelectingTimes || (SelectingTimes = {}));
+
+
+
+            /***/ }),
+
+        /***/ "./src/components/VTimePicker/VTimePicker.ts":
+        /*!***************************************************!*\
+  !*** ./src/components/VTimePicker/VTimePicker.ts ***!
+  \***************************************************/
+        /*! exports provided: SelectingTimes, default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VTimePickerTitle__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VTimePickerTitle */ "./src/components/VTimePicker/VTimePickerTitle.ts");
+            /* harmony import */ var _VTimePickerClock__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VTimePickerClock */ "./src/components/VTimePicker/VTimePickerClock.ts");
+            /* harmony import */ var _mixins_picker__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../mixins/picker */ "./src/mixins/picker/index.ts");
+            /* harmony import */ var _mixins_picker_button__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../mixins/picker-button */ "./src/mixins/picker-button/index.ts");
+            /* harmony import */ var _util_helpers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../util/helpers */ "./src/util/helpers.ts");
+            /* harmony import */ var _VDatePicker_util_pad__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../VDatePicker/util/pad */ "./src/components/VDatePicker/util/pad.ts");
+            /* harmony import */ var _util_mixins__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../util/mixins */ "./src/util/mixins.ts");
+            /* harmony import */ var _SelectingTimes__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./SelectingTimes */ "./src/components/VTimePicker/SelectingTimes.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SelectingTimes", function() { return _SelectingTimes__WEBPACK_IMPORTED_MODULE_7__["SelectingTimes"]; });
+
+            var __read = undefined && undefined.__read || function (o, n) {
+                var m = typeof Symbol === "function" && o[Symbol.iterator];
+                if (!m) return o;
+                var i = m.call(o),
+                    r,
+                    ar = [],
+                    e;
+
+                try {
+                    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
+                        ar.push(r.value);
+                    }
+                } catch (error) {
+                    e = {
+                        error: error
+                    };
+                } finally {
+                    try {
+                        if (r && !r.done && (m = i["return"])) m.call(i);
+                    } finally {
+                        if (e) throw e.error;
+                    }
+                }
+
+                return ar;
+            }; // Components
+
+
+
+            // Mixins
+
+
+            // Utils
+
+
+
+
+
+            var rangeHours24 = Object(_util_helpers__WEBPACK_IMPORTED_MODULE_4__["createRange"])(24);
+            var rangeHours12am = Object(_util_helpers__WEBPACK_IMPORTED_MODULE_4__["createRange"])(12);
+            var rangeHours12pm = rangeHours12am.map(function (v) {
+                return v + 12;
+            });
+            var range60 = Object(_util_helpers__WEBPACK_IMPORTED_MODULE_4__["createRange"])(60);
+            var selectingNames = {
+                1: 'hour',
+                2: 'minute',
+                3: 'second'
+            };
+
+            /* harmony default export */ __webpack_exports__["default"] = (Object(_util_mixins__WEBPACK_IMPORTED_MODULE_6__["default"])(_mixins_picker__WEBPACK_IMPORTED_MODULE_2__["default"], _mixins_picker_button__WEBPACK_IMPORTED_MODULE_3__["default"]
+                /* @vue/component */
+            ).extend({
+                name: 'v-time-picker',
+                props: {
+                    allowedHours: [Function, Array],
+                    allowedMinutes: [Function, Array],
+                    allowedSeconds: [Function, Array],
+                    disabled: Boolean,
+                    format: {
+                        type: String,
+                        default: 'ampm',
+                        validator: function validator(val) {
+                            return ['ampm', '24hr'].includes(val);
+                        }
+                    },
+                    min: String,
+                    max: String,
+                    readonly: Boolean,
+                    scrollable: Boolean,
+                    useSeconds: Boolean,
+                    value: null,
+                    ampmInTitle: Boolean
+                },
+                data: function data() {
+                    return {
+                        inputHour: null,
+                        inputMinute: null,
+                        inputSecond: null,
+                        lazyInputHour: null,
+                        lazyInputMinute: null,
+                        lazyInputSecond: null,
+                        period: 'am',
+                        selecting: _SelectingTimes__WEBPACK_IMPORTED_MODULE_7__["SelectingTimes"].Hour
+                    };
+                },
+                computed: {
+                    selectingHour: {
+                        get: function get() {
+                            return this.selecting === _SelectingTimes__WEBPACK_IMPORTED_MODULE_7__["SelectingTimes"].Hour;
+                        },
+                        set: function set(v) {
+                            this.selecting = _SelectingTimes__WEBPACK_IMPORTED_MODULE_7__["SelectingTimes"].Hour;
+                        }
+                    },
+                    selectingMinute: {
+                        get: function get() {
+                            return this.selecting === _SelectingTimes__WEBPACK_IMPORTED_MODULE_7__["SelectingTimes"].Minute;
+                        },
+                        set: function set(v) {
+                            this.selecting = _SelectingTimes__WEBPACK_IMPORTED_MODULE_7__["SelectingTimes"].Minute;
+                        }
+                    },
+                    selectingSecond: {
+                        get: function get() {
+                            return this.selecting === _SelectingTimes__WEBPACK_IMPORTED_MODULE_7__["SelectingTimes"].Second;
+                        },
+                        set: function set(v) {
+                            this.selecting = _SelectingTimes__WEBPACK_IMPORTED_MODULE_7__["SelectingTimes"].Second;
+                        }
+                    },
+                    isAllowedHourCb: function isAllowedHourCb() {
+                        var _this = this;
+
+                        var cb;
+
+                        if (this.allowedHours instanceof Array) {
+                            cb = function cb(val) {
+                                return _this.allowedHours.includes(val);
+                            };
+                        } else {
+                            cb = this.allowedHours;
+                        }
+
+                        if (!this.min && !this.max) return cb;
+                        var minHour = this.min ? Number(this.min.split(':')[0]) : 0;
+                        var maxHour = this.max ? Number(this.max.split(':')[0]) : 23;
+                        return function (val) {
+                            return val >= minHour * 1 && val <= maxHour * 1 && (!cb || cb(val));
+                        };
+                    },
+                    isAllowedMinuteCb: function isAllowedMinuteCb() {
+                        var _this = this;
+
+                        var cb;
+                        var isHourAllowed = !this.isAllowedHourCb || this.inputHour === null || this.isAllowedHourCb(this.inputHour);
+
+                        if (this.allowedMinutes instanceof Array) {
+                            cb = function cb(val) {
+                                return _this.allowedMinutes.includes(val);
+                            };
+                        } else {
+                            cb = this.allowedMinutes;
+                        }
+
+                        if (!this.min && !this.max) {
+                            return isHourAllowed ? cb : function () {
+                                return false;
+                            };
+                        }
+
+                        var _a = __read(this.min ? this.min.split(':').map(Number) : [0, 0], 2),
+                            minHour = _a[0],
+                            minMinute = _a[1];
+
+                        var _b = __read(this.max ? this.max.split(':').map(Number) : [23, 59], 2),
+                            maxHour = _b[0],
+                            maxMinute = _b[1];
+
+                        var minTime = minHour * 60 + minMinute * 1;
+                        var maxTime = maxHour * 60 + maxMinute * 1;
+                        return function (val) {
+                            var time = 60 * _this.inputHour + val;
+                            return time >= minTime && time <= maxTime && isHourAllowed && (!cb || cb(val));
+                        };
+                    },
+                    isAllowedSecondCb: function isAllowedSecondCb() {
+                        var _this = this;
+
+                        var cb;
+                        var isHourAllowed = !this.isAllowedHourCb || this.inputHour === null || this.isAllowedHourCb(this.inputHour);
+                        var isMinuteAllowed = isHourAllowed && (!this.isAllowedMinuteCb || this.inputMinute === null || this.isAllowedMinuteCb(this.inputMinute));
+
+                        if (this.allowedSeconds instanceof Array) {
+                            cb = function cb(val) {
+                                return _this.allowedSeconds.includes(val);
+                            };
+                        } else {
+                            cb = this.allowedSeconds;
+                        }
+
+                        if (!this.min && !this.max) {
+                            return isMinuteAllowed ? cb : function () {
+                                return false;
+                            };
+                        }
+
+                        var _a = __read(this.min ? this.min.split(':').map(Number) : [0, 0, 0], 3),
+                            minHour = _a[0],
+                            minMinute = _a[1],
+                            minSecond = _a[2];
+
+                        var _b = __read(this.max ? this.max.split(':').map(Number) : [23, 59, 59], 3),
+                            maxHour = _b[0],
+                            maxMinute = _b[1],
+                            maxSecond = _b[2];
+
+                        var minTime = minHour * 3600 + minMinute * 60 + (minSecond || 0) * 1;
+                        var maxTime = maxHour * 3600 + maxMinute * 60 + (maxSecond || 0) * 1;
+                        return function (val) {
+                            var time = 3600 * _this.inputHour + 60 * _this.inputMinute + val;
+                            return time >= minTime && time <= maxTime && isMinuteAllowed && (!cb || cb(val));
+                        };
+                    },
+                    isAmPm: function isAmPm() {
+                        return this.format === 'ampm';
+                    }
+                },
+                watch: {
+                    value: 'setInputData'
+                },
+                mounted: function mounted() {
+                    this.setInputData(this.value);
+                    this.$on('update:period', this.setPeriod);
+                },
+                methods: {
+                    genValue: function genValue() {
+                        if (this.inputHour != null && this.inputMinute != null && (!this.useSeconds || this.inputSecond != null)) {
+                            return Object(_VDatePicker_util_pad__WEBPACK_IMPORTED_MODULE_5__["default"])(this.inputHour) + ":" + Object(_VDatePicker_util_pad__WEBPACK_IMPORTED_MODULE_5__["default"])(this.inputMinute) + (this.useSeconds ? ":" + Object(_VDatePicker_util_pad__WEBPACK_IMPORTED_MODULE_5__["default"])(this.inputSecond) : '');
+                        }
+
+                        return null;
+                    },
+                    emitValue: function emitValue() {
+                        var value = this.genValue();
+                        if (value !== null) this.$emit('input', value);
+                    },
+                    setPeriod: function setPeriod(period) {
+                        this.period = period;
+
+                        if (this.inputHour != null) {
+                            var newHour = this.inputHour + (period === 'am' ? -12 : 12);
+                            this.inputHour = this.firstAllowed('hour', newHour);
+                            this.emitValue();
+                        }
+                    },
+                    setInputData: function setInputData(value) {
+                        if (value == null || value === '') {
+                            this.inputHour = null;
+                            this.inputMinute = null;
+                            this.inputSecond = null;
+                        } else if (value instanceof Date) {
+                            this.inputHour = value.getHours();
+                            this.inputMinute = value.getMinutes();
+                            this.inputSecond = value.getSeconds();
+                        } else {
+                            var _a = __read(value.trim().toLowerCase().match(/^(\d+):(\d+)(:(\d+))?([ap]m)?$/) || new Array(6), 6),
+                                hour = _a[1],
+                                minute = _a[2],
+                                second = _a[4],
+                                period = _a[5];
+
+                            this.inputHour = period ? this.convert12to24(parseInt(hour, 10), period) : parseInt(hour, 10);
+                            this.inputMinute = parseInt(minute, 10);
+                            this.inputSecond = parseInt(second || 0, 10);
+                        }
+
+                        this.period = this.inputHour == null || this.inputHour < 12 ? 'am' : 'pm';
+                    },
+                    convert24to12: function convert24to12(hour) {
+                        return hour ? (hour - 1) % 12 + 1 : 12;
+                    },
+                    convert12to24: function convert12to24(hour, period) {
+                        return hour % 12 + (period === 'pm' ? 12 : 0);
+                    },
+                    onInput: function onInput(value) {
+                        if (this.selecting === _SelectingTimes__WEBPACK_IMPORTED_MODULE_7__["SelectingTimes"].Hour) {
+                            this.inputHour = this.isAmPm ? this.convert12to24(value, this.period) : value;
+                        } else if (this.selecting === _SelectingTimes__WEBPACK_IMPORTED_MODULE_7__["SelectingTimes"].Minute) {
+                            this.inputMinute = value;
+                        } else {
+                            this.inputSecond = value;
+                        }
+
+                        this.emitValue();
+                    },
+                    onChange: function onChange(value) {
+                        this.$emit("click:" + selectingNames[this.selecting], value);
+                        var emitChange = this.selecting === (this.useSeconds ? _SelectingTimes__WEBPACK_IMPORTED_MODULE_7__["SelectingTimes"].Second : _SelectingTimes__WEBPACK_IMPORTED_MODULE_7__["SelectingTimes"].Minute);
+
+                        if (this.selecting === _SelectingTimes__WEBPACK_IMPORTED_MODULE_7__["SelectingTimes"].Hour) {
+                            this.selecting = _SelectingTimes__WEBPACK_IMPORTED_MODULE_7__["SelectingTimes"].Minute;
+                        } else if (this.useSeconds && this.selecting === _SelectingTimes__WEBPACK_IMPORTED_MODULE_7__["SelectingTimes"].Minute) {
+                            this.selecting = _SelectingTimes__WEBPACK_IMPORTED_MODULE_7__["SelectingTimes"].Second;
+                        }
+
+                        if (this.inputHour === this.lazyInputHour && this.inputMinute === this.lazyInputMinute && (!this.useSeconds || this.inputSecond === this.lazyInputSecond)) return;
+                        var time = this.genValue();
+                        if (time === null) return;
+                        this.lazyInputHour = this.inputHour;
+                        this.lazyInputMinute = this.inputMinute;
+                        this.useSeconds && (this.lazyInputSecond = this.inputSecond);
+                        emitChange && this.$emit('change', time);
+                    },
+                    firstAllowed: function firstAllowed(type, value) {
+                        var allowedFn = type === 'hour' ? this.isAllowedHourCb : type === 'minute' ? this.isAllowedMinuteCb : this.isAllowedSecondCb;
+                        if (!allowedFn) return value; // TODO: clean up
+
+                        var range = type === 'minute' ? range60 : type === 'second' ? range60 : this.isAmPm ? value < 12 ? rangeHours12am : rangeHours12pm : rangeHours24;
+                        var first = range.find(function (v) {
+                            return allowedFn((v + value) % range.length + range[0]);
+                        });
+                        return ((first || 0) + value) % range.length + range[0];
+                    },
+                    genClock: function genClock() {
+                        return this.$createElement(_VTimePickerClock__WEBPACK_IMPORTED_MODULE_1__["default"], {
+                            props: {
+                                allowedValues: this.selecting === _SelectingTimes__WEBPACK_IMPORTED_MODULE_7__["SelectingTimes"].Hour ? this.isAllowedHourCb : this.selecting === _SelectingTimes__WEBPACK_IMPORTED_MODULE_7__["SelectingTimes"].Minute ? this.isAllowedMinuteCb : this.isAllowedSecondCb,
+                                color: this.color,
+                                dark: this.dark,
+                                disabled: this.disabled,
+                                double: this.selecting === _SelectingTimes__WEBPACK_IMPORTED_MODULE_7__["SelectingTimes"].Hour && !this.isAmPm,
+                                format: this.selecting === _SelectingTimes__WEBPACK_IMPORTED_MODULE_7__["SelectingTimes"].Hour ? this.isAmPm ? this.convert24to12 : function (val) {
+                                    return val;
+                                } : function (val) {
+                                    return Object(_VDatePicker_util_pad__WEBPACK_IMPORTED_MODULE_5__["default"])(val, 2);
+                                },
+                                light: this.light,
+                                max: this.selecting === _SelectingTimes__WEBPACK_IMPORTED_MODULE_7__["SelectingTimes"].Hour ? this.isAmPm && this.period === 'am' ? 11 : 23 : 59,
+                                min: this.selecting === _SelectingTimes__WEBPACK_IMPORTED_MODULE_7__["SelectingTimes"].Hour && this.isAmPm && this.period === 'pm' ? 12 : 0,
+                                readonly: this.readonly,
+                                scrollable: this.scrollable,
+                                size: Number(this.width) - (!this.fullWidth && this.landscape ? 80 : 20),
+                                step: this.selecting === _SelectingTimes__WEBPACK_IMPORTED_MODULE_7__["SelectingTimes"].Hour ? 1 : 5,
+                                value: this.selecting === _SelectingTimes__WEBPACK_IMPORTED_MODULE_7__["SelectingTimes"].Hour ? this.inputHour : this.selecting === _SelectingTimes__WEBPACK_IMPORTED_MODULE_7__["SelectingTimes"].Minute ? this.inputMinute : this.inputSecond
+                            },
+                            on: {
+                                input: this.onInput,
+                                change: this.onChange
+                            },
+                            ref: 'clock'
+                        });
+                    },
+                    genClockAmPm: function genClockAmPm() {
+                        return this.$createElement('div', this.setTextColor(this.color || 'primary', {
+                            staticClass: 'v-time-picker-clock__ampm'
+                        }), [this.genPickerButton('period', 'am', this.$vuetify.lang.t('$vuetify.timePicker.am'), this.disabled || this.readonly), this.genPickerButton('period', 'pm', this.$vuetify.lang.t('$vuetify.timePicker.pm'), this.disabled || this.readonly)]);
+                    },
+                    genPickerBody: function genPickerBody() {
+                        return this.$createElement('div', {
+                            staticClass: 'v-time-picker-clock__container',
+                            key: this.selecting
+                        }, [!this.ampmInTitle && this.isAmPm && this.genClockAmPm(), this.genClock()]);
+                    },
+                    genPickerTitle: function genPickerTitle() {
+                        var _this = this;
+
+                        return this.$createElement(_VTimePickerTitle__WEBPACK_IMPORTED_MODULE_0__["default"], {
+                            props: {
+                                ampm: this.isAmPm,
+                                ampmReadonly: this.isAmPm && !this.ampmInTitle,
+                                disabled: this.disabled,
+                                hour: this.inputHour,
+                                minute: this.inputMinute,
+                                second: this.inputSecond,
+                                period: this.period,
+                                readonly: this.readonly,
+                                useSeconds: this.useSeconds,
+                                selecting: this.selecting
+                            },
+                            on: {
+                                'update:selecting': function updateSelecting(value) {
+                                    return _this.selecting = value;
+                                },
+                                'update:period': function updatePeriod(period) {
+                                    return _this.$emit('update:period', period);
+                                }
+                            },
+                            ref: 'title',
+                            slot: 'title'
+                        });
+                    }
+                },
+                render: function render() {
+                    return this.genPicker('v-picker--time');
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VTimePicker/VTimePickerClock.sass":
+        /*!**********************************************************!*\
+  !*** ./src/components/VTimePicker/VTimePickerClock.sass ***!
+  \**********************************************************/
+        /*! no static exports found */
+        /***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+            /***/ }),
+
+        /***/ "./src/components/VTimePicker/VTimePickerClock.ts":
+        /*!********************************************************!*\
+  !*** ./src/components/VTimePicker/VTimePickerClock.ts ***!
+  \********************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VTimePickerClock_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VTimePickerClock.sass */ "./src/components/VTimePicker/VTimePickerClock.sass");
+            /* harmony import */ var _VTimePickerClock_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VTimePickerClock_sass__WEBPACK_IMPORTED_MODULE_0__);
+            /* harmony import */ var _mixins_colorable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins/colorable */ "./src/mixins/colorable/index.ts");
+            /* harmony import */ var _mixins_themeable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../mixins/themeable */ "./src/mixins/themeable/index.ts");
+            /* harmony import */ var _util_mixins__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../util/mixins */ "./src/util/mixins.ts");
+            var __assign = undefined && undefined.__assign || function () {
+                __assign = Object.assign || function (t) {
+                    for (var s, i = 1, n = arguments.length; i < n; i++) {
+                        s = arguments[i];
+
+                        for (var p in s) {
+                            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+                        }
+                    }
+
+                    return t;
+                };
+
+                return __assign.apply(this, arguments);
+            };
+
+            // Mixins
+
+
+            // Types
+
+
+            /* harmony default export */ __webpack_exports__["default"] = (Object(_util_mixins__WEBPACK_IMPORTED_MODULE_3__["default"])(_mixins_colorable__WEBPACK_IMPORTED_MODULE_1__["default"], _mixins_themeable__WEBPACK_IMPORTED_MODULE_2__["default"]
+                /* @vue/component */
+            ).extend({
+                name: 'v-time-picker-clock',
+                props: {
+                    allowedValues: Function,
+                    ampm: Boolean,
+                    disabled: Boolean,
+                    double: Boolean,
+                    format: {
+                        type: Function,
+                        default: function _default(val) {
+                            return val;
+                        }
+                    },
+                    max: {
+                        type: Number,
+                        required: true
+                    },
+                    min: {
+                        type: Number,
+                        required: true
+                    },
+                    scrollable: Boolean,
+                    readonly: Boolean,
+                    rotate: {
+                        type: Number,
+                        default: 0
+                    },
+                    step: {
+                        type: Number,
+                        default: 1
+                    },
+                    value: Number
+                },
+                data: function data() {
+                    return {
+                        inputValue: this.value,
+                        isDragging: false,
+                        valueOnMouseDown: null,
+                        valueOnMouseUp: null
+                    };
+                },
+                computed: {
+                    count: function count() {
+                        return this.max - this.min + 1;
+                    },
+                    degreesPerUnit: function degreesPerUnit() {
+                        return 360 / this.roundCount;
+                    },
+                    degrees: function degrees() {
+                        return this.degreesPerUnit * Math.PI / 180;
+                    },
+                    displayedValue: function displayedValue() {
+                        return this.value == null ? this.min : this.value;
+                    },
+                    innerRadiusScale: function innerRadiusScale() {
+                        return 0.62;
+                    },
+                    roundCount: function roundCount() {
+                        return this.double ? this.count / 2 : this.count;
+                    }
+                },
+                watch: {
+                    value: function value(_value) {
+                        this.inputValue = _value;
+                    }
+                },
+                methods: {
+                    wheel: function wheel(e) {
+                        e.preventDefault();
+                        var delta = Math.sign(-e.deltaY || 1);
+                        var value = this.displayedValue;
+
+                        do {
+                            value = value + delta;
+                            value = (value - this.min + this.count) % this.count + this.min;
+                        } while (!this.isAllowed(value) && value !== this.displayedValue);
+
+                        if (value !== this.displayedValue) {
+                            this.update(value);
+                        }
+                    },
+                    isInner: function isInner(value) {
+                        return this.double && value - this.min >= this.roundCount;
+                    },
+                    handScale: function handScale(value) {
+                        return this.isInner(value) ? this.innerRadiusScale : 1;
+                    },
+                    isAllowed: function isAllowed(value) {
+                        return !this.allowedValues || this.allowedValues(value);
+                    },
+                    genValues: function genValues() {
+                        var children = [];
+
+                        for (var value = this.min; value <= this.max; value = value + this.step) {
+                            var color = value === this.value && (this.color || 'accent');
+                            children.push(this.$createElement('span', this.setBackgroundColor(color, {
+                                staticClass: 'v-time-picker-clock__item',
+                                class: {
+                                    'v-time-picker-clock__item--active': value === this.displayedValue,
+                                    'v-time-picker-clock__item--disabled': this.disabled || !this.isAllowed(value)
+                                },
+                                style: this.getTransform(value),
+                                domProps: {
+                                    innerHTML: "<span>" + this.format(value) + "</span>"
+                                }
+                            })));
+                        }
+
+                        return children;
+                    },
+                    genHand: function genHand() {
+                        var scale = "scaleY(" + this.handScale(this.displayedValue) + ")";
+                        var angle = this.rotate + this.degreesPerUnit * (this.displayedValue - this.min);
+                        var color = this.value != null && (this.color || 'accent');
+                        return this.$createElement('div', this.setBackgroundColor(color, {
+                            staticClass: 'v-time-picker-clock__hand',
+                            class: {
+                                'v-time-picker-clock__hand--inner': this.isInner(this.value)
+                            },
+                            style: {
+                                transform: "rotate(" + angle + "deg) " + scale
+                            }
+                        }));
+                    },
+                    getTransform: function getTransform(i) {
+                        var _a = this.getPosition(i),
+                            x = _a.x,
+                            y = _a.y;
+
+                        return {
+                            left: 50 + x * 50 + "%",
+                            top: 50 + y * 50 + "%"
+                        };
+                    },
+                    getPosition: function getPosition(value) {
+                        var rotateRadians = this.rotate * Math.PI / 180;
+                        return {
+                            x: Math.sin((value - this.min) * this.degrees + rotateRadians) * this.handScale(value),
+                            y: -Math.cos((value - this.min) * this.degrees + rotateRadians) * this.handScale(value)
+                        };
+                    },
+                    onMouseDown: function onMouseDown(e) {
+                        e.preventDefault();
+                        this.valueOnMouseDown = null;
+                        this.valueOnMouseUp = null;
+                        this.isDragging = true;
+                        this.onDragMove(e);
+                    },
+                    onMouseUp: function onMouseUp(e) {
+                        e.stopPropagation();
+                        this.isDragging = false;
+
+                        if (this.valueOnMouseUp !== null && this.isAllowed(this.valueOnMouseUp)) {
+                            this.$emit('change', this.valueOnMouseUp);
+                        }
+                    },
+                    onDragMove: function onDragMove(e) {
+                        e.preventDefault();
+                        if (!this.isDragging && e.type !== 'click') return;
+
+                        var _a = this.$refs.clock.getBoundingClientRect(),
+                            width = _a.width,
+                            top = _a.top,
+                            left = _a.left;
+
+                        var innerWidth = this.$refs.innerClock.getBoundingClientRect().width;
+
+                        var _b = 'touches' in e ? e.touches[0] : e,
+                            clientX = _b.clientX,
+                            clientY = _b.clientY;
+
+                        var center = {
+                            x: width / 2,
+                            y: -width / 2
+                        };
+                        var coords = {
+                            x: clientX - left,
+                            y: top - clientY
+                        };
+                        var handAngle = Math.round(this.angle(center, coords) - this.rotate + 360) % 360;
+                        var insideClick = this.double && this.euclidean(center, coords) < (innerWidth + innerWidth * this.innerRadiusScale) / 4;
+                        var checksCount = Math.ceil(15 / this.degreesPerUnit);
+                        var value;
+
+                        for (var i = 0; i < checksCount; i++) {
+                            value = this.angleToValue(handAngle + i * this.degreesPerUnit, insideClick);
+                            if (this.isAllowed(value)) return this.setMouseDownValue(value);
+                            value = this.angleToValue(handAngle - i * this.degreesPerUnit, insideClick);
+                            if (this.isAllowed(value)) return this.setMouseDownValue(value);
+                        }
+                    },
+                    angleToValue: function angleToValue(angle, insideClick) {
+                        var value = (Math.round(angle / this.degreesPerUnit) + (insideClick ? this.roundCount : 0)) % this.count + this.min; // Necessary to fix edge case when selecting left part of the value(s) at 12 o'clock
+
+                        if (angle < 360 - this.degreesPerUnit / 2) return value;
+                        return insideClick ? this.max - this.roundCount + 1 : this.min;
+                    },
+                    setMouseDownValue: function setMouseDownValue(value) {
+                        if (this.valueOnMouseDown === null) {
+                            this.valueOnMouseDown = value;
+                        }
+
+                        this.valueOnMouseUp = value;
+                        this.update(value);
+                    },
+                    update: function update(value) {
+                        if (this.inputValue !== value) {
+                            this.inputValue = value;
+                            this.$emit('input', value);
+                        }
+                    },
+                    euclidean: function euclidean(p0, p1) {
+                        var dx = p1.x - p0.x;
+                        var dy = p1.y - p0.y;
+                        return Math.sqrt(dx * dx + dy * dy);
+                    },
+                    angle: function angle(center, p1) {
+                        var value = 2 * Math.atan2(p1.y - center.y - this.euclidean(center, p1), p1.x - center.x);
+                        return Math.abs(value * 180 / Math.PI);
+                    }
+                },
+                render: function render(h) {
+                    var _this = this;
+
+                    var data = {
+                        staticClass: 'v-time-picker-clock',
+                        class: __assign({
+                            'v-time-picker-clock--indeterminate': this.value == null
+                        }, this.themeClasses),
+                        on: this.readonly || this.disabled ? undefined : {
+                            mousedown: this.onMouseDown,
+                            mouseup: this.onMouseUp,
+                            mouseleave: function mouseleave(e) {
+                                return _this.isDragging && _this.onMouseUp(e);
+                            },
+                            touchstart: this.onMouseDown,
+                            touchend: this.onMouseUp,
+                            mousemove: this.onDragMove,
+                            touchmove: this.onDragMove
+                        },
+                        ref: 'clock'
+                    };
+
+                    if (this.scrollable && data.on) {
+                        data.on.wheel = this.wheel;
+                    }
+
+                    return h('div', data, [h('div', {
+                        staticClass: 'v-time-picker-clock__inner',
+                        ref: 'innerClock'
+                    }, [this.genHand(), this.genValues()])]);
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VTimePicker/VTimePickerTitle.sass":
+        /*!**********************************************************!*\
+  !*** ./src/components/VTimePicker/VTimePickerTitle.sass ***!
+  \**********************************************************/
+        /*! no static exports found */
+        /***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+            /***/ }),
+
+        /***/ "./src/components/VTimePicker/VTimePickerTitle.ts":
+        /*!********************************************************!*\
+  !*** ./src/components/VTimePicker/VTimePickerTitle.ts ***!
+  \********************************************************/
+        /*! exports provided: default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VTimePickerTitle_sass__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VTimePickerTitle.sass */ "./src/components/VTimePicker/VTimePickerTitle.sass");
+            /* harmony import */ var _VTimePickerTitle_sass__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_VTimePickerTitle_sass__WEBPACK_IMPORTED_MODULE_0__);
+            /* harmony import */ var _mixins_picker_button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins/picker-button */ "./src/mixins/picker-button/index.ts");
+            /* harmony import */ var _VDatePicker_util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../VDatePicker/util */ "./src/components/VDatePicker/util/index.ts");
+            /* harmony import */ var _util_mixins__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../util/mixins */ "./src/util/mixins.ts");
+            /* harmony import */ var _SelectingTimes__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./SelectingTimes */ "./src/components/VTimePicker/SelectingTimes.ts");
+            // Mixins
+
+            // Utils
+
+
+
+
+            /* harmony default export */ __webpack_exports__["default"] = (Object(_util_mixins__WEBPACK_IMPORTED_MODULE_3__["default"])(_mixins_picker_button__WEBPACK_IMPORTED_MODULE_1__["default"]
+                /* @vue/component */
+            ).extend({
+                name: 'v-time-picker-title',
+                props: {
+                    ampm: Boolean,
+                    ampmReadonly: Boolean,
+                    disabled: Boolean,
+                    hour: Number,
+                    minute: Number,
+                    second: Number,
+                    period: {
+                        type: String,
+                        validator: function validator(period) {
+                            return period === 'am' || period === 'pm';
+                        }
+                    },
+                    readonly: Boolean,
+                    useSeconds: Boolean,
+                    selecting: Number
+                },
+                methods: {
+                    genTime: function genTime() {
+                        var hour = this.hour;
+
+                        if (this.ampm) {
+                            hour = hour ? (hour - 1) % 12 + 1 : 12;
+                        }
+
+                        var displayedHour = this.hour == null ? '--' : this.ampm ? String(hour) : Object(_VDatePicker_util__WEBPACK_IMPORTED_MODULE_2__["pad"])(hour);
+                        var displayedMinute = this.minute == null ? '--' : Object(_VDatePicker_util__WEBPACK_IMPORTED_MODULE_2__["pad"])(this.minute);
+                        var titleContent = [this.genPickerButton('selecting', _SelectingTimes__WEBPACK_IMPORTED_MODULE_4__["SelectingTimes"].Hour, displayedHour, this.disabled), this.$createElement('span', ':'), this.genPickerButton('selecting', _SelectingTimes__WEBPACK_IMPORTED_MODULE_4__["SelectingTimes"].Minute, displayedMinute, this.disabled)];
+
+                        if (this.useSeconds) {
+                            var displayedSecond = this.second == null ? '--' : Object(_VDatePicker_util__WEBPACK_IMPORTED_MODULE_2__["pad"])(this.second);
+                            titleContent.push(this.$createElement('span', ':'));
+                            titleContent.push(this.genPickerButton('selecting', _SelectingTimes__WEBPACK_IMPORTED_MODULE_4__["SelectingTimes"].Second, displayedSecond, this.disabled));
+                        }
+
+                        return this.$createElement('div', {
+                            class: 'v-time-picker-title__time'
+                        }, titleContent);
+                    },
+                    genAmPm: function genAmPm() {
+                        return this.$createElement('div', {
+                            staticClass: 'v-time-picker-title__ampm',
+                            class: {
+                                'v-time-picker-title__ampm--readonly': this.ampmReadonly
+                            }
+                        }, [!this.ampmReadonly || this.period === 'am' ? this.genPickerButton('period', 'am', this.$vuetify.lang.t('$vuetify.timePicker.am'), this.disabled || this.readonly) : null, !this.ampmReadonly || this.period === 'pm' ? this.genPickerButton('period', 'pm', this.$vuetify.lang.t('$vuetify.timePicker.pm'), this.disabled || this.readonly) : null]);
+                    }
+                },
+                render: function render(h) {
+                    var children = [this.genTime()];
+                    this.ampm && children.push(this.genAmPm());
+                    return h('div', {
+                        staticClass: 'v-time-picker-title'
+                    }, children);
+                }
+            }));
+
+            /***/ }),
+
+        /***/ "./src/components/VTimePicker/index.ts":
+        /*!*********************************************!*\
+  !*** ./src/components/VTimePicker/index.ts ***!
+  \*********************************************/
+        /*! exports provided: VTimePicker, VTimePickerClock, VTimePickerTitle, default */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony import */ var _VTimePicker__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./VTimePicker */ "./src/components/VTimePicker/VTimePicker.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VTimePicker", function() { return _VTimePicker__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+            /* harmony import */ var _VTimePickerClock__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./VTimePickerClock */ "./src/components/VTimePicker/VTimePickerClock.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VTimePickerClock", function() { return _VTimePickerClock__WEBPACK_IMPORTED_MODULE_1__["default"]; });
+
+            /* harmony import */ var _VTimePickerTitle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./VTimePickerTitle */ "./src/components/VTimePicker/VTimePickerTitle.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VTimePickerTitle", function() { return _VTimePickerTitle__WEBPACK_IMPORTED_MODULE_2__["default"]; });
+
+
+
+
+
+            /* harmony default export */ __webpack_exports__["default"] = ({
+                $_vuetify_subcomponents: {
+                    VTimePicker: _VTimePicker__WEBPACK_IMPORTED_MODULE_0__["default"],
+                    VTimePickerClock: _VTimePickerClock__WEBPACK_IMPORTED_MODULE_1__["default"],
+                    VTimePickerTitle: _VTimePickerTitle__WEBPACK_IMPORTED_MODULE_2__["default"]
+                }
+            });
+
+            /***/ }),
+
         /***/ "./src/components/VTimeline/VTimeline.sass":
         /*!*************************************************!*\
   !*** ./src/components/VTimeline/VTimeline.sass ***!
@@ -23262,7 +31636,7 @@
         /*!*********************************!*\
   !*** ./src/components/index.ts ***!
   \*********************************/
-        /*! exports provided: VApp, VAppBar, VAppBarNavIcon, VAppBarTitle, VAlert, VAutocomplete, VAvatar, VBadge, VBanner, VBottomSheet, VBtn, VCard, VCardActions, VCardSubtitle, VCardText, VCardTitle, VCarousel, VCarouselItem, VCheckbox, VSimpleCheckbox, VChip, VChipGroup, VContent, VCombobox, VCounter, VData, VDataIterator, VDataFooter, VDataTable, VEditDialog, VTableOverflow, VDataTableHeader, VSimpleTable, VVirtualTable, VDatePickerTitle, VDatePickerHeader, VDatePickerDateTable, VDatePickerMonthTable, VDatePickerYears, VDialog, VDivider, VExpansionPanels, VExpansionPanel, VExpansionPanelHeader, VExpansionPanelContent, VFileInput, VFooter, VForm, VContainer, VCol, VRow, VSpacer, VLayout, VFlex, VIcon, VImg, VInput, VItem, VItemGroup, VLabel, VLazy, VListItemActionText, VListItemContent, VListItemTitle, VListItemSubtitle, VList, VListGroup, VListItem, VListItemAction, VListItemAvatar, VListItemIcon, VListItemGroup, VMain, VMenu, VMessages, VNavigationDrawer, VOverflowBtn, VOverlay, VPagination, VSheet, VParallax, VPicker, VProgressCircular, VProgressLinear, VRadioGroup, VRadio, VRating, VResponsive, VSelect, VSkeletonLoader, VSlider, VSlideGroup, VSlideItem, VSnackbar, VSparkline, VSpeedDial, VStepper, VStepperContent, VStepperStep, VStepperHeader, VStepperItems, VSubheader, VSwitch, VSystemBar, VTabs, VTab, VTabItem, VTabsItems, VTabsSlider, VTextarea, VTextField, VThemeProvider, VTimeline, VTimelineItem, VToolbar, VToolbarItems, VToolbarTitle, VTooltip, VTreeview, VTreeviewNode, VVirtualScroll, VWindow, VWindowItem, VCarouselTransition, VCarouselReverseTransition, VTabTransition, VTabReverseTransition, VMenuTransition, VFabTransition, VDialogTransition, VDialogBottomTransition, VDialogTopTransition, VFadeTransition, VScaleTransition, VScrollXTransition, VScrollXReverseTransition, VScrollYTransition, VScrollYReverseTransition, VSlideXTransition, VSlideXReverseTransition, VSlideYTransition, VSlideYReverseTransition, VExpandTransition, VExpandXTransition */
+        /*! exports provided: VApp, VAppBar, VAppBarNavIcon, VAppBarTitle, VAlert, VAutocomplete, VAvatar, VBadge, VBanner, VBottomNavigation, VBottomSheet, VBreadcrumbs, VBreadcrumbsItem, VBreadcrumbsDivider, VBtn, VBtnToggle, VCalendar, VCalendarCategory, VCalendarDaily, VCalendarWeekly, VCalendarMonthly, VCard, VCardActions, VCardSubtitle, VCardText, VCardTitle, VCarousel, VCarouselItem, VCheckbox, VSimpleCheckbox, VChip, VChipGroup, VColorPicker, VColorPickerSwatches, VColorPickerCanvas, VContent, VCombobox, VCounter, VData, VDataIterator, VDataFooter, VDataTable, VEditDialog, VTableOverflow, VDataTableHeader, VSimpleTable, VVirtualTable, VDatePicker, VDatePickerTitle, VDatePickerHeader, VDatePickerDateTable, VDatePickerMonthTable, VDatePickerYears, VDialog, VDivider, VExpansionPanels, VExpansionPanel, VExpansionPanelHeader, VExpansionPanelContent, VFileInput, VFooter, VForm, VContainer, VCol, VRow, VSpacer, VLayout, VFlex, VHover, VIcon, VImg, VInput, VItem, VItemGroup, VLabel, VLazy, VListItemActionText, VListItemContent, VListItemTitle, VListItemSubtitle, VList, VListGroup, VListItem, VListItemAction, VListItemAvatar, VListItemIcon, VListItemGroup, VMain, VMenu, VMessages, VNavigationDrawer, VOverflowBtn, VOverlay, VPagination, VSheet, VParallax, VPicker, VProgressCircular, VProgressLinear, VRadioGroup, VRadio, VRangeSlider, VRating, VResponsive, VSelect, VSkeletonLoader, VSlider, VSlideGroup, VSlideItem, VSnackbar, VSparkline, VSpeedDial, VStepper, VStepperContent, VStepperStep, VStepperHeader, VStepperItems, VSubheader, VSwitch, VSystemBar, VTabs, VTab, VTabItem, VTabsItems, VTabsSlider, VTextarea, VTextField, VThemeProvider, VTimeline, VTimelineItem, VTimePicker, VTimePickerClock, VTimePickerTitle, VToolbar, VToolbarItems, VToolbarTitle, VTooltip, VTreeview, VTreeviewNode, VVirtualScroll, VWindow, VWindowItem, VCarouselTransition, VCarouselReverseTransition, VTabTransition, VTabReverseTransition, VMenuTransition, VFabTransition, VDialogTransition, VDialogBottomTransition, VDialogTopTransition, VFadeTransition, VScaleTransition, VScrollXTransition, VScrollXReverseTransition, VScrollYTransition, VScrollYReverseTransition, VSlideXTransition, VSlideXReverseTransition, VSlideYTransition, VSlideYReverseTransition, VExpandTransition, VExpandXTransition */
         /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
             "use strict";
@@ -23295,11 +31669,22 @@
             /* harmony import */ var _VBottomSheet__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./VBottomSheet */ "./src/components/VBottomSheet/index.ts");
             /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBottomSheet", function() { return _VBottomSheet__WEBPACK_IMPORTED_MODULE_8__["VBottomSheet"]; });
 
-
             /* harmony import */ var _VBtn__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./VBtn */ "./src/components/VBtn/index.ts");
             /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBtn", function() { return _VBtn__WEBPACK_IMPORTED_MODULE_10__["VBtn"]; });
 
+            /* harmony import */ var _VBtnToggle__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./VBtnToggle */ "./src/components/VBtnToggle/index.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VBtnToggle", function() { return _VBtnToggle__WEBPACK_IMPORTED_MODULE_11__["VBtnToggle"]; });
 
+            /* harmony import */ var _VCalendar__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./VCalendar */ "./src/components/VCalendar/index.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VCalendar", function() { return _VCalendar__WEBPACK_IMPORTED_MODULE_12__["VCalendar"]; });
+
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VCalendarCategory", function() { return _VCalendar__WEBPACK_IMPORTED_MODULE_12__["VCalendarCategory"]; });
+
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VCalendarDaily", function() { return _VCalendar__WEBPACK_IMPORTED_MODULE_12__["VCalendarDaily"]; });
+
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VCalendarWeekly", function() { return _VCalendar__WEBPACK_IMPORTED_MODULE_12__["VCalendarWeekly"]; });
+
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VCalendarMonthly", function() { return _VCalendar__WEBPACK_IMPORTED_MODULE_12__["VCalendarMonthly"]; });
 
             /* harmony import */ var _VCard__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./VCard */ "./src/components/VCard/index.ts");
             /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VCard", function() { return _VCard__WEBPACK_IMPORTED_MODULE_13__["VCard"]; });
@@ -23327,6 +31712,13 @@
 
             /* harmony import */ var _VChipGroup__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./VChipGroup */ "./src/components/VChipGroup/index.ts");
             /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VChipGroup", function() { return _VChipGroup__WEBPACK_IMPORTED_MODULE_17__["VChipGroup"]; });
+
+            /* harmony import */ var _VColorPicker__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./VColorPicker */ "./src/components/VColorPicker/index.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VColorPicker", function() { return _VColorPicker__WEBPACK_IMPORTED_MODULE_18__["VColorPicker"]; });
+
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VColorPickerSwatches", function() { return _VColorPicker__WEBPACK_IMPORTED_MODULE_18__["VColorPickerSwatches"]; });
+
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VColorPickerCanvas", function() { return _VColorPicker__WEBPACK_IMPORTED_MODULE_18__["VColorPickerCanvas"]; });
 
             /* harmony import */ var _VContent__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./VContent */ "./src/components/VContent/index.ts");
             /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VContent", function() { return _VContent__WEBPACK_IMPORTED_MODULE_19__["VContent"]; });
@@ -23357,6 +31749,19 @@
             /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VSimpleTable", function() { return _VDataTable__WEBPACK_IMPORTED_MODULE_24__["VSimpleTable"]; });
 
             /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VVirtualTable", function() { return _VDataTable__WEBPACK_IMPORTED_MODULE_24__["VVirtualTable"]; });
+
+            /* harmony import */ var _VDatePicker__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./VDatePicker */ "./src/components/VDatePicker/index.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VDatePicker", function() { return _VDatePicker__WEBPACK_IMPORTED_MODULE_25__["VDatePicker"]; });
+
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VDatePickerTitle", function() { return _VDatePicker__WEBPACK_IMPORTED_MODULE_25__["VDatePickerTitle"]; });
+
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VDatePickerHeader", function() { return _VDatePicker__WEBPACK_IMPORTED_MODULE_25__["VDatePickerHeader"]; });
+
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VDatePickerDateTable", function() { return _VDatePicker__WEBPACK_IMPORTED_MODULE_25__["VDatePickerDateTable"]; });
+
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VDatePickerMonthTable", function() { return _VDatePicker__WEBPACK_IMPORTED_MODULE_25__["VDatePickerMonthTable"]; });
+
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VDatePickerYears", function() { return _VDatePicker__WEBPACK_IMPORTED_MODULE_25__["VDatePickerYears"]; });
 
             /* harmony import */ var _VDialog__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./VDialog */ "./src/components/VDialog/index.ts");
             /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VDialog", function() { return _VDialog__WEBPACK_IMPORTED_MODULE_26__["VDialog"]; });
@@ -23394,6 +31799,9 @@
             /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VLayout", function() { return _VGrid__WEBPACK_IMPORTED_MODULE_32__["VLayout"]; });
 
             /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VFlex", function() { return _VGrid__WEBPACK_IMPORTED_MODULE_32__["VFlex"]; });
+
+            /* harmony import */ var _VHover__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./VHover */ "./src/components/VHover/index.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VHover", function() { return _VHover__WEBPACK_IMPORTED_MODULE_33__["VHover"]; });
 
             /* harmony import */ var _VIcon__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./VIcon */ "./src/components/VIcon/index.ts");
             /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VIcon", function() { return _VIcon__WEBPACK_IMPORTED_MODULE_34__["VIcon"]; });
@@ -23479,6 +31887,9 @@
 
             /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VRadio", function() { return _VRadioGroup__WEBPACK_IMPORTED_MODULE_53__["VRadio"]; });
 
+            /* harmony import */ var _VRangeSlider__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(/*! ./VRangeSlider */ "./src/components/VRangeSlider/index.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VRangeSlider", function() { return _VRangeSlider__WEBPACK_IMPORTED_MODULE_54__["VRangeSlider"]; });
+
             /* harmony import */ var _VRating__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(/*! ./VRating */ "./src/components/VRating/index.ts");
             /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VRating", function() { return _VRating__WEBPACK_IMPORTED_MODULE_55__["VRating"]; });
 
@@ -23552,6 +31963,13 @@
             /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VTimeline", function() { return _VTimeline__WEBPACK_IMPORTED_MODULE_72__["VTimeline"]; });
 
             /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VTimelineItem", function() { return _VTimeline__WEBPACK_IMPORTED_MODULE_72__["VTimelineItem"]; });
+
+            /* harmony import */ var _VTimePicker__WEBPACK_IMPORTED_MODULE_73__ = __webpack_require__(/*! ./VTimePicker */ "./src/components/VTimePicker/index.ts");
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VTimePicker", function() { return _VTimePicker__WEBPACK_IMPORTED_MODULE_73__["VTimePicker"]; });
+
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VTimePickerClock", function() { return _VTimePicker__WEBPACK_IMPORTED_MODULE_73__["VTimePickerClock"]; });
+
+            /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VTimePickerTitle", function() { return _VTimePicker__WEBPACK_IMPORTED_MODULE_73__["VTimePickerTitle"]; });
 
             /* harmony import */ var _VToolbar__WEBPACK_IMPORTED_MODULE_74__ = __webpack_require__(/*! ./VToolbar */ "./src/components/VToolbar/index.ts");
             /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "VToolbar", function() { return _VToolbar__WEBPACK_IMPORTED_MODULE_74__["VToolbar"]; });
@@ -24976,7 +33394,7 @@
 
                     Vuetify.install = _install__WEBPACK_IMPORTED_MODULE_0__["install"];
                     Vuetify.installed = false;
-                    Vuetify.version = "2.4.0";
+                    Vuetify.version = "2.4.2";
                     Vuetify.config = {
                         silent: false
                     };
@@ -25214,50 +33632,13 @@
 
             "use strict";
             __webpack_require__.r(__webpack_exports__);
+
             /* harmony import */ var _en__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./en */ "./src/locale/en.ts");
             /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "en", function() { return _en__WEBPACK_IMPORTED_MODULE_8__["default"]; });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             /***/ }),
+
 
         /***/ "./src/mixins/activatable/index.ts":
         /*!*****************************************!*\
@@ -31616,6 +39997,81 @@ let all = factory().extend({
 
             /***/ }),
 
+        /***/ "./src/util/dateTimeUtils.ts":
+        /*!***********************************!*\
+  !*** ./src/util/dateTimeUtils.ts ***!
+  \***********************************/
+        /*! exports provided: weekNumber, isLeapYear */
+        /***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "weekNumber", function() { return weekNumber; });
+            /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isLeapYear", function() { return isLeapYear; });
+            function createUTCDate(year, month, day) {
+                if (month === void 0) {
+                    month = 0;
+                }
+
+                if (day === void 0) {
+                    day = 1;
+                }
+
+                var date;
+
+                if (year < 100 && year >= 0) {
+                    date = new Date(Date.UTC(year, month, day));
+
+                    if (isFinite(date.getUTCFullYear())) {
+                        date.setUTCFullYear(year);
+                    }
+                } else {
+                    date = new Date(Date.UTC(year, month, day));
+                }
+
+                return date;
+            }
+
+            function firstWeekOffset(year, firstDayOfWeek, firstDayOfYear) {
+                var firstWeekDayInFirstWeek = 7 + firstDayOfWeek - firstDayOfYear;
+                var firstWeekDayOfYear = (7 + createUTCDate(year, 0, firstWeekDayInFirstWeek).getUTCDay() - firstDayOfWeek) % 7;
+                return -firstWeekDayOfYear + firstWeekDayInFirstWeek - 1;
+            }
+
+            function dayOfYear(year, month, day, firstDayOfWeek) {
+                var dayOfYear = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334][month];
+
+                if (month > 1 && isLeapYear(year)) {
+                    dayOfYear++;
+                }
+
+                return dayOfYear + day;
+            }
+
+            function weeksInYear(year, firstDayOfWeek, firstDayOfYear) {
+                var weekOffset = firstWeekOffset(year, firstDayOfWeek, firstDayOfYear);
+                var weekOffsetNext = firstWeekOffset(year + 1, firstDayOfWeek, firstDayOfYear);
+                var daysInYear = isLeapYear(year) ? 366 : 365;
+                return (daysInYear - weekOffset + weekOffsetNext) / 7;
+            }
+
+            function weekNumber(year, month, day, firstDayOfWeek, localeFirstDayOfYear) {
+                var weekOffset = firstWeekOffset(year, firstDayOfWeek, localeFirstDayOfYear);
+                var week = Math.ceil((dayOfYear(year, month, day, firstDayOfWeek) - weekOffset) / 7);
+
+                if (week < 1) {
+                    return week + weeksInYear(year - 1, firstDayOfWeek, localeFirstDayOfYear);
+                } else if (week > weeksInYear(year, firstDayOfWeek, localeFirstDayOfYear)) {
+                    return week - weeksInYear(year, firstDayOfWeek, localeFirstDayOfYear);
+                } else {
+                    return week;
+                }
+            }
+            function isLeapYear(year) {
+                return year % 4 === 0 && year % 100 !== 0 || year % 400 === 0;
+            }
+
+            /***/ }),
 
         /***/ "./src/util/dedupeModelListeners.ts":
         /*!******************************************!*\
